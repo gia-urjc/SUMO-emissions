@@ -4,4 +4,4 @@
 <node id="n3" x="-150" y="200" type="traffic_light" />
 <node id="n4" x="0" y="0" />
 <node id="n5" x="150" y="200" />
-<nodes>
+</nodes>
