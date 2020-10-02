@@ -1,6 +1,6 @@
-# SUMO: Manually Creation of Network
+# SUMO: From OSM to Network + Random Trips Simulation
 
-https://www.youtube.com/watch?v=9MyIABer_NY&ab_channel=RodrigueTchamna 
+https://www.youtube.com/watch?v=LWecm_rCPJw&ab_channel=RodrigueTchamna
 
 Firstly, install SUMO. 
 
