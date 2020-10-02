@@ -1,16 +1,25 @@
-# SUMO: From OSM to Network + Random Trips Simulation
+# SUMO: Origin - Destination To Trip Simulation
 
-https://www.youtube.com/watch?v=LWecm_rCPJw&ab_channel=RodrigueTchamna
+https://www.youtube.com/watch?v=R6v7wDkvXrk&ab_channel=RodrigueTchamna
 
 Firstly, install SUMO. 
 
 After: 
 
-  1) Search & download Open Street Map (OSM)
+  1) Have the network file (myNetwork.net.xml) ready of the demo 2 
 
-  2) Convert the Map into SUMO Network: netconvert --osm-files map.osm -o test.net.xml
+  2) Make the TAZ (traffic analysis zone) file (.xml): TAZ_file.taz.xml
 
-  3) Add trip & route to the network using build-in Python scripts: randomTrips.py :
+  3) Make the OD (Origin-Destination) Matrix file (.od): OD_file.od
+  
+  4) Make the od2trips.config file (.xml) : od2trips.config.xml
+  
+  5) TAZ_file.taz.xml + OD_file.od + od2trips.config.xml = od_file.odtrips.xml. Combine = 
+  ```
+  od2trips -c YOURPATH\od2trips.config.xml -n YOURPATH\taz_file.taz.xml -d YOURPATH\OD_file.od -o YOURPATH\od_file.odtrips.xml
+  ```  
+  
+  5) Make the duarouter.config file (.duarcfg)
   ```
   python PATH\randomTrips.py -n test.net.xml -r test.rou.xml -e 50 -l
   ```
