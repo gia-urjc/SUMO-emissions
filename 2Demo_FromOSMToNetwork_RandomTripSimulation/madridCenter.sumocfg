@@ -1,0 +1,10 @@
+<configuration>
+<input>
+<net-file value="madridCenter.net.xml"/>
+<route-files value="madridCenter.rou.xml"/>
+</input>
+<time>
+<begin value="0"/>
+<end value="2000"/>
+</time>
+</configuration>
