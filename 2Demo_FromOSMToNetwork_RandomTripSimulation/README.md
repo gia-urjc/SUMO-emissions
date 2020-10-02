@@ -6,13 +6,14 @@ Firstly, install SUMO.
 
 After: 
 
-  1) Create files: my_edge.edg.xml, my_nodes.nod.xml, my_type.type.xml
+  1) Search & download Open Street Map (OSM)
 
-  2) Mix the files creating my_nodes.nod.xml. Use the cmd: netconvert --node-files my_nodes.nod.xml --edge-files my_edge.edg.xml -t my_type.type.xml -o my_net.net.xml
+  2) Convert the Map into SUMO Network: netconvert --osm-files map.osm -o test.net.xml
 
-  3) Create my_route.rou.xml
-
-  4) Create my_config_file.sumocfg (WITHOUT XML, IT'S A SUMO EXTENSION)
+  3) Add trip & route to the network using build-in Python scripts: randomTrips.py :
+  ´´´
+  python PATH\randomTrips.py -n test.net.xml -r test.rou.xml -e 50 -l
+  ´´´
 
 Lastly,in the folder, open my_config_file. It should open in SUMO. Or, open CMD: sumo-gui -c my_config_file.sumocfg
 
