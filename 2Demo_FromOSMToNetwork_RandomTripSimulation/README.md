@@ -2,7 +2,7 @@
 
 https://www.youtube.com/watch?v=LWecm_rCPJw&ab_channel=RodrigueTchamna
 
-Firstly, install SUMO and Python. And create a new folder for the demo. 
+Firstly, install SUMO and create a new folder for the demo. 
 
 After: 
 
