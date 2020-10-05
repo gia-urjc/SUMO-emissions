@@ -1,3 +1,3 @@
-# SUMO: Hello World
+# SUMO: OSM Web Wizard
 
-https://sumo.dlr.de/docs/Tutorials/Hello_World.html
+https://sumo.dlr.de/docs/Tutorials/OSMWebWizard.html
