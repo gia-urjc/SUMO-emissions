@@ -45,6 +45,7 @@
     <vType id="CarB" length="7.50" maxSpeed="50.00" accel="2.0" decel="6.0"/>
     <vType id="CarC" maxSpeed="40.00" accel="1.0" decel="5.0"/>
     <vType id="CarD" length="7.50" maxSpeed="30.00" accel="1.0" decel="5.0"/>
+    <route edges="D2 L2 L12 L10 L7 D7" color="yellow" id="route01" />
     <route edges="D2 L2 L12 L15 L18 L5 D5" color="yellow" id="route02"/>
     <route edges="D2 L2 L12 L15 L13 L3 D3" color="yellow" id="route03"/>
     <route edges="D4 L4 L14 L18 L5 D5" color="yellow" id="route04"/>
