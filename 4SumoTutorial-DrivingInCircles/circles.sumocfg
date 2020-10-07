@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 10/07/20 13:45:09 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 10/07/20 14:40:02 by Eclipse SUMO GUI Version 1.7.0
 -->
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
@@ -8,6 +8,7 @@
     <input>
         <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.net.xml"/>
         <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.rou.xml"/>
+        <additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.add.xml"/>
     </input>
 
 </configuration>
