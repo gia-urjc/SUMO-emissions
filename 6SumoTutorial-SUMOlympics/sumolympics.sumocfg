@@ -7,7 +7,7 @@
 
     <input>
         <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolypics.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolympics.rou.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolympics.rou.xml, C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolympicWalks.rou.xml"/>
     </input>
     <processing>
         <lateral-resolution value="1." />
