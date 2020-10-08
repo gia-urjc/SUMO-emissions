@@ -43,12 +43,12 @@
 <additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
     <rerouter id="rerouter_0" edges="gneE0" pos="-12.18,66.55">
         <interval begin="0.00" end="1000000000.00">
-            <destProbReroute id="gneE1"/>
+            <destProbReroute id="gneE5"/>
         </interval>
     </rerouter>
     <rerouter id="rerouter_1" edges="gneE1" pos="11.65,89.48">
         <interval begin="0.00" end="1000000000.00">
-            <destProbReroute id="gneE2"/>
+            <destProbReroute id="gneE4"/>
         </interval>
     </rerouter>
 </additional>
