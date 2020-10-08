@@ -1,3 +1,3 @@
-# SUMO: Driving In Circles - Exercise
+# SUMO: SUMOlympics
 
-https://sumo.dlr.de/docs/Tutorials/Driving_in_Circles.html#exercises
+https://sumo.dlr.de/docs/Tutorials/SUMOlympics.html
