@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 10/08/20 17:53:11 by Eclipse SUMO netedit Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\7SumoTutorial-Autobahn\autobahn.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\7SumoTutorial-Autobahn\autobahn.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <netedit>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\7SumoTutorial-Autobahn\autobahn.rou.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="coach" maxSpeed="30.00" speedFactor="normc(1.00,0.10,0.20,2.00)" vClass="coach"/>
+    <vType id="normal_car" maxSpeed="40.00" speedFactor="normc(0.90,0.20,0.20,2.00)" sigma="0.5"/>
+    <vType id="sporty_car" maxSpeed="60.00" speedFactor="normc(1.30,0.10,0.20,2.00)" vClass="passenger" sigma="0.1"/>
+    <vType id="trailer" maxSpeed="30.00" speedFactor="normc(1.10,0.10,0.20,2.00)" vClass="trailer"/>
+    <flow id="coach" type="coach" begin="0.00" departLane="best" departPos="last" color="255,0,235" from="entry" to="exit" end="4999.80" number="300"/>
+    <flow id="normal" type="normal_car" begin="0.00" departLane="best" departPos="last" color="255,0,235" from="entry" to="exit" end="5000.00" number="5000"/>
+    <flow id="sporty" type="sporty_car" begin="0.00" departLane="best" departPos="last" color="255,0,235" from="entry" to="exit" end="4999.80" number="300"/>
+    <flow id="trailer" type="trailer" begin="0.00" departLane="best" departPos="last" color="255,0,235" from="entry" to="exit" end="4999.40" number="700"/>
+</routes>
