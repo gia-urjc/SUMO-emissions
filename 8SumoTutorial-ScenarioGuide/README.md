@@ -61,4 +61,4 @@ https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
   2) SUMO > File > Save Configuration
   
   3) Open file sumocfg and add: 
-```<additional-files value="berlin.poly.xml"/>```
+```<additional-files value= "mymap.poly.xml"/>```
