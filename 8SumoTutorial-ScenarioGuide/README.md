@@ -53,3 +53,5 @@ https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
   <polygonType id="admin_level" name="admin_level"    color="1.0,.33,.33" layer="0" fill="false" discard="true"/>
 </polygonTypes>
   ```
+  2)cmd: 
+  ```polyconvert --net-file mymap.net.xml --osm-files mymap.osm --type-file osmPolyconvert.typ.xml -o mymap.poly.xml```
