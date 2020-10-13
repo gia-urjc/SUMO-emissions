@@ -6,7 +6,8 @@ https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
 ## Build the road network
   1) Open StreetMap & Export
 
-  2) netconvert --osm-files mymap.osm.xml -o mymap.net.xml
+  2) cmd:
+  ```netconvert --osm-files mymap.osm.xml -o mymap.net.xml```
 
 ## Importing additional Polygons (Buildings, Water, etc.)
   1) Create osmPolyconvert.typ.xml file: 
