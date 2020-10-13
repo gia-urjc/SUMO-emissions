@@ -3,13 +3,13 @@
 Create scenarios step by step.
 https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
 
-## Build the road network
+## 1) Build the road network
   1) Open StreetMap & Export
 
   2) cmd:
   ```netconvert --osm-files mymap.osm.xml -o mymap.net.xml```
 
-## Importing additional Polygons (Buildings, Water, etc.)
+## 2) Importing additional Polygons (Buildings, Water, etc.)
   1) Create osmPolyconvert.typ.xml file: 
   ```
   <polygonTypes>
@@ -53,5 +53,12 @@ https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
   <polygonType id="admin_level" name="admin_level"    color="1.0,.33,.33" layer="0" fill="false" discard="true"/>
 </polygonTypes>
   ```
-  2)cmd: 
+  2) cmd: 
   ```polyconvert --net-file mymap.net.xml --osm-files mymap.osm --type-file osmPolyconvert.typ.xml -o mymap.poly.xml```
+## 3) Create sumocfg
+  1) SUMO > File > Open Network
+  
+  2) SUMO > File > Save Configuration
+  
+  3) Open file sumocfg and add: 
+```<additional-files value="berlin.poly.xml"/>```
