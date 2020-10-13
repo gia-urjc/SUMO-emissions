@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 10/13/20 17:39:53 by Eclipse SUMO GUI Version 1.7.0
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\8SumoTutorial-ScenarioGuide\moratalaz.net.xml"/>
+	<additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\8SumoTutorial-ScenarioGuide\moratalaz.poly.xml"/>
+    </input>
+
+</configuration>
