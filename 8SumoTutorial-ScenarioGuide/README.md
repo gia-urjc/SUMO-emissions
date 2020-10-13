@@ -62,3 +62,5 @@ https://sumo.dlr.de/docs/Tutorials/ScenarioGuide.html#build_the_road_network
   
   3) Open file sumocfg and add: 
 ```<additional-files value= "mymap.poly.xml"/>```
+## 4) Generate the traffic
+https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html
