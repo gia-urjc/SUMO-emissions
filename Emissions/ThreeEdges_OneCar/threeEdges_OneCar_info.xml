@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 11/10/20 16:50:43 by Eclipse SUMO GUI Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.net.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_Onecar.rou.xml"/>
+    </input>
+
+    <output>
+        <fcd-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.fcd.xml"/>
+        <tripinfo-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_info.xml"/>
+    </output>
+
+    <emissions>
+        <device.emissions.probability value="1"/>
+    </emissions>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="vehicle_1" depart="0.00" departLane="-edge2_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="84.00" arrivalLane="-edge1_0" arrivalPos="546.16" arrivalSpeed="13.45" duration="84.00" routeLength="1079.13" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="8.71" rerouteNo="0" devices="tripinfo_vehicle_1 emissions_vehicle_1 fcd_vehicle_1" vType="CarType" speedFactor="1.06" vaporized="">
+        <emissions CO_abs="2496.344461" CO2_abs="214608.161061" HC_abs="16.367063" PMx_abs="3.511017" NOx_abs="84.591868" fuel_abs="92.250742" electricity_abs="0"/>
+    </tripinfo>
+    <tripinfo id="vehicle_0" depart="0.00" departLane="edge1_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="94.00" arrivalLane="edge2_0" arrivalPos="521.64" arrivalSpeed="13.03" duration="94.00" routeLength="1076.06" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="9.18" rerouteNo="0" devices="tripinfo_vehicle_0 routing_vehicle_0 emissions_vehicle_0 fcd_vehicle_0" vType="CarType" speedFactor="0.94" vaporized="">
+        <emissions CO_abs="2639.419156" CO2_abs="207452.177699" HC_abs="16.840723" PMx_abs="3.236843" NOx_abs="81.429856" fuel_abs="89.175065" electricity_abs="0"/>
+    </tripinfo>
+</tripinfos>
