@@ -18,6 +18,8 @@
    	<tripinfo-output value="threeEdges_OneCar_info.xml"/>
         <fcd-output value="threeEdges_OneCar.fcd.xml"/>
 	<emission-output value="threeEdges_OneCar_emission_output.xml"/>
+	<emission-output.precision value="0"/>
+
     </output>
 
 </configuration>
