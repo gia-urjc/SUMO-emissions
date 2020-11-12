@@ -6,8 +6,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_Onecar.rou.xml"/>
+        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_EdgelaneEmissions\threeEdges_OneCar.net.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_EdgelaneEmissions\threeEdges_Onecar.rou.xml"/>
     </input>
 
     <emissions>

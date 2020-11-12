@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 11/12/20 22:09:15 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 11/12/20 23:54:02 by Eclipse SUMO GUI Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_Onecar.rou.xml"/>
+        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar.net.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_Onecar.rou.xml"/>
     </input>
 
     <output>
-        <emission-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_emission_output.xml"/>
+        <emission-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_emission_output.xml"/>
         <emission-output.precision value="2"/>
-        <battery-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_battery_output.xml"/>
-        <elechybrid-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_elechybrid.xml"/>
-        <chargingstations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_chargingstations.xml"/>
-        <substations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_substations.xml"/>
-        <fcd-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.fcd.xml"/>
-        <tripinfo-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_info.xml"/>
+        <battery-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_battery_output.xml"/>
+        <elechybrid-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_elechybrid.xml"/>
+        <chargingstations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_chargingstations.xml"/>
+        <substations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_substations.xml"/>
+        <fcd-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar.fcd.xml"/>
+        <tripinfo-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_TripAndEmissionInformation\threeEdges_OneCar_info.xml"/>
     </output>
 
     <emissions>
@@ -31,16 +31,4 @@
 -->
 
 <tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
-    <tripinfo id="vehicle_0" depart="0.00" departLane="edge1_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="82.00" arrivalLane="edge2_0" arrivalPos="521.64" arrivalSpeed="14.05" duration="82.00" routeLength="1076.06" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="8.61" rerouteNo="0" devices="tripinfo_vehicle_0 routing_vehicle_0 emissions_vehicle_0 battery_vehicle_0 fcd_vehicle_0" vType="CarType" speedFactor="1.08" vaporized="">
-        <emissions CO_abs="2524.957732" CO2_abs="214499.941914" HC_abs="16.447418" PMx_abs="3.519498" NOx_abs="84.478273" fuel_abs="92.204238" electricity_abs="0"/>
-    </tripinfo>
-    <tripinfo id="vehicle_1" depart="0.00" departLane="-edge2_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="83.00" arrivalLane="-edge1_0" arrivalPos="546.16" arrivalSpeed="14.22" duration="83.00" routeLength="1079.13" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="8.42" rerouteNo="0" devices="tripinfo_vehicle_1 emissions_vehicle_1 battery_vehicle_1 fcd_vehicle_1" vType="CarType" speedFactor="1.06" vaporized="">
-        <emissions CO_abs="2369.701497" CO2_abs="216300.544590" HC_abs="15.735838" PMx_abs="3.402987" NOx_abs="84.143169" fuel_abs="92.978317" electricity_abs="0"/>
-    </tripinfo>
-    <tripinfo id="vehicle_electric" depart="3.00" departLane="-edge2_0" departPos="5.10" departSpeed="0.00" departDelay="3.00" arrival="97.00" arrivalLane="-edge1_0" arrivalPos="546.16" arrivalSpeed="12.68" duration="94.00" routeLength="1079.13" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="9.63" rerouteNo="0" devices="tripinfo_vehicle_electric emissions_vehicle_electric battery_vehicle_electric fcd_vehicle_electric" vType="electricCar" speedFactor="0.94" vaporized="">
-        <emissions CO_abs="0" CO2_abs="0" HC_abs="0" PMx_abs="0" NOx_abs="0" fuel_abs="0" electricity_abs="162.072395"/>
-    </tripinfo>
-    <tripinfo id="vehicle_zeroEmissions" depart="6.00" departLane="-edge2_0" departPos="5.10" departSpeed="0.00" departDelay="6.00" arrival="99.00" arrivalLane="-edge1_0" arrivalPos="546.16" arrivalSpeed="13.29" duration="93.00" routeLength="1079.13" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="13.91" rerouteNo="0" devices="tripinfo_vehicle_zeroEmissions emissions_vehicle_zeroEmissions battery_vehicle_zeroEmissions fcd_vehicle_zeroEmissions" vType="electricCarZeroEmissions" speedFactor="1.01" vaporized="">
-        <emissions CO_abs="3068.027304" CO2_abs="241663.245384" HC_abs="19.612062" PMx_abs="3.953427" NOx_abs="96.029401" fuel_abs="103.880695" electricity_abs="0"/>
-    </tripinfo>
 </tripinfos>
