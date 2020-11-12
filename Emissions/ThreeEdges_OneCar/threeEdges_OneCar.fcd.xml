@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 11/12/20 21:27:15 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 11/12/20 22:02:54 by Eclipse SUMO GUI Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -11,7 +11,10 @@
     <output>
         <emission-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_emission_output.xml"/>
         <emission-output.precision value="2"/>
-        <battery-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_batery_output.xml"/>
+        <battery-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_battery_output.xml"/>
+        <elechybrid-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_elechybrid.xml"/>
+        <chargingstations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_chargingstations.xml"/>
+        <substations-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_substations.xml"/>
         <fcd-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.fcd.xml"/>
         <tripinfo-output value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar_info.xml"/>
     </output>
@@ -19,6 +22,10 @@
     <emissions>
         <device.emissions.probability value="1"/>
     </emissions>
+
+    <battery>
+        <device.battery.probability value="1"/>
+    </battery>
 
 </configuration>
 -->
@@ -39,356 +46,540 @@
     <timestep time="3.00">
         <vehicle id="vehicle_0" x="-277.61" y="-176.46" angle="90.00" type="CarType" speed="6.54" pos="17.66" lane="edge1_0" slope="0.00"/>
         <vehicle id="vehicle_1" x="-243.13" y="-70.87" angle="101.35" type="CarType" speed="6.23" pos="17.45" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-255.24" y="-68.43" angle="101.35" type="electricCar" speed="0.00" pos="5.10" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="4.00">
         <vehicle id="vehicle_0" x="-269.34" y="-176.46" angle="90.00" type="CarType" speed="8.27" pos="25.93" lane="edge1_0" slope="0.00"/>
         <vehicle id="vehicle_1" x="-235.19" y="-72.46" angle="101.35" type="CarType" speed="8.09" pos="25.55" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-252.98" y="-68.89" angle="101.35" type="electricCar" speed="2.30" pos="7.40" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="5.00">
         <vehicle id="vehicle_0" x="-259.65" y="-176.46" angle="90.00" type="CarType" speed="9.69" pos="35.62" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-225.00" y="-74.50" angle="101.35" type="CarType" speed="10.40" pos="35.94" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-225.20" y="-74.46" angle="101.35" type="CarType" speed="10.19" pos="35.74" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-249.32" y="-69.62" angle="101.35" type="electricCar" speed="3.74" pos="11.14" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="6.00">
         <vehicle id="vehicle_0" x="-248.28" y="-176.46" angle="90.00" type="CarType" speed="11.37" pos="46.99" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-212.75" y="-76.96" angle="101.35" type="CarType" speed="12.49" pos="48.44" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-213.47" y="-76.82" angle="101.35" type="CarType" speed="11.96" pos="47.70" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-244.21" y="-70.65" angle="101.35" type="electricCar" speed="5.21" pos="16.35" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-255.24" y="-68.43" angle="101.35" type="electricCarZeroEmissions" speed="0.00" pos="5.10" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="7.00">
-        <vehicle id="vehicle_0" x="-236.18" y="-176.46" angle="90.00" type="CarType" speed="12.09" pos="59.09" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-199.45" y="-79.63" angle="101.35" type="CarType" speed="13.56" pos="62.00" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-235.24" y="-176.46" angle="90.00" type="CarType" speed="13.03" pos="60.03" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-200.29" y="-79.46" angle="101.35" type="CarType" speed="13.44" pos="61.14" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-237.57" y="-71.98" angle="101.35" type="electricCar" speed="6.77" pos="23.12" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-252.88" y="-68.91" angle="101.35" type="electricCarZeroEmissions" speed="2.40" pos="7.50" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="8.00">
-        <vehicle id="vehicle_0" x="-224.36" y="-176.46" angle="90.00" type="CarType" speed="11.82" pos="70.91" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-185.84" y="-82.36" angle="101.35" type="CarType" speed="13.89" pos="75.89" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-221.42" y="-176.46" angle="90.00" type="CarType" speed="13.83" pos="73.85" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-186.29" y="-82.27" angle="101.35" type="CarType" speed="14.28" pos="75.42" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-228.94" y="-73.71" angle="101.35" type="electricCar" speed="8.80" pos="31.92" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-248.79" y="-69.73" angle="101.35" type="electricCarZeroEmissions" speed="4.18" pos="11.68" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="9.00">
-        <vehicle id="vehicle_0" x="-212.18" y="-176.46" angle="90.00" type="CarType" speed="12.18" pos="83.09" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-172.50" y="-85.04" angle="101.35" type="CarType" speed="13.60" pos="89.48" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-207.23" y="-176.46" angle="90.00" type="CarType" speed="14.19" pos="88.04" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-171.90" y="-85.16" angle="101.35" type="CarType" speed="14.68" pos="90.10" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-218.74" y="-75.76" angle="101.35" type="electricCar" speed="10.41" pos="42.33" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-242.96" y="-70.90" angle="101.35" type="electricCarZeroEmissions" speed="5.94" pos="17.63" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="10.00">
-        <vehicle id="vehicle_0" x="-199.63" y="-176.46" angle="90.00" type="CarType" speed="12.55" pos="95.64" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-159.16" y="-87.72" angle="101.35" type="CarType" speed="13.61" pos="103.09" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-192.67" y="-176.46" angle="90.00" type="CarType" speed="14.56" pos="102.60" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-157.93" y="-87.97" angle="101.35" type="CarType" speed="14.25" pos="104.34" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-206.95" y="-78.13" angle="101.35" type="electricCar" speed="12.02" pos="54.35" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-235.21" y="-72.45" angle="101.35" type="electricCarZeroEmissions" speed="7.90" pos="25.53" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="11.00">
-        <vehicle id="vehicle_0" x="-187.82" y="-176.46" angle="90.00" type="CarType" speed="11.81" pos="107.45" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-145.75" y="-90.41" angle="101.35" type="CarType" speed="13.68" pos="116.77" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-178.86" y="-176.46" angle="90.00" type="CarType" speed="13.81" pos="116.41" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-144.74" y="-90.61" angle="101.35" type="CarType" speed="13.46" pos="117.80" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-195.32" y="-80.46" angle="101.35" type="electricCar" speed="11.86" pos="66.21" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-225.90" y="-74.32" angle="101.35" type="electricCarZeroEmissions" speed="9.49" pos="35.02" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="12.00">
-        <vehicle id="vehicle_0" x="-175.37" y="-176.46" angle="90.00" type="CarType" speed="12.45" pos="119.90" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-131.51" y="-93.27" angle="101.35" type="CarType" speed="14.53" pos="131.30" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-164.40" y="-176.46" angle="90.00" type="CarType" speed="14.46" pos="130.87" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-130.85" y="-93.40" angle="101.35" type="CarType" speed="14.17" pos="131.97" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-183.15" y="-82.90" angle="101.35" type="electricCar" speed="12.41" pos="78.62" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-214.52" y="-76.61" angle="101.35" type="electricCarZeroEmissions" speed="11.61" pos="46.63" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="13.00">
-        <vehicle id="vehicle_0" x="-163.18" y="-176.46" angle="90.00" type="CarType" speed="12.19" pos="132.09" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-117.51" y="-96.08" angle="101.35" type="CarType" speed="14.28" pos="145.58" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-150.21" y="-176.46" angle="90.00" type="CarType" speed="14.19" pos="145.06" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-117.01" y="-96.18" angle="101.35" type="CarType" speed="14.12" pos="146.09" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-171.51" y="-85.24" angle="101.35" type="electricCar" speed="11.87" pos="90.50" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-201.15" y="-79.29" angle="101.35" type="electricCarZeroEmissions" speed="13.64" pos="60.27" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="14.00">
-        <vehicle id="vehicle_0" x="-151.31" y="-176.46" angle="90.00" type="CarType" speed="11.87" pos="143.96" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-103.63" y="-98.87" angle="101.35" type="CarType" speed="14.16" pos="159.73" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-136.34" y="-176.46" angle="90.00" type="CarType" speed="13.87" pos="158.93" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-103.20" y="-98.95" angle="101.35" type="CarType" speed="14.08" pos="160.17" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-159.91" y="-87.57" angle="101.35" type="electricCar" speed="11.83" pos="102.33" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-187.98" y="-81.93" angle="101.35" type="electricCarZeroEmissions" speed="13.44" pos="73.70" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="15.00">
-        <vehicle id="vehicle_0" x="-139.12" y="-176.46" angle="90.00" type="CarType" speed="12.19" pos="156.15" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-90.00" y="-101.60" angle="101.35" type="CarType" speed="13.90" pos="173.63" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-122.14" y="-176.46" angle="90.00" type="CarType" speed="14.20" pos="173.13" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-88.83" y="-101.84" angle="101.35" type="CarType" speed="14.65" pos="174.82" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-147.30" y="-90.10" angle="101.35" type="electricCar" speed="12.87" pos="115.19" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-174.95" y="-84.55" angle="101.35" type="electricCarZeroEmissions" speed="13.28" pos="86.99" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="16.00">
-        <vehicle id="vehicle_0" x="-127.09" y="-176.46" angle="90.00" type="CarType" speed="12.03" pos="168.18" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-75.61" y="-104.49" angle="101.35" type="CarType" speed="14.68" pos="188.31" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-108.11" y="-176.46" angle="90.00" type="CarType" speed="14.03" pos="187.16" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-75.34" y="-104.54" angle="101.35" type="CarType" speed="13.76" pos="188.59" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-134.69" y="-92.63" angle="101.35" type="electricCar" speed="12.86" pos="128.05" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-162.31" y="-87.09" angle="101.35" type="electricCarZeroEmissions" speed="12.90" pos="99.88" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="17.00">
-        <vehicle id="vehicle_0" x="-115.24" y="-176.46" angle="90.00" type="CarType" speed="11.85" pos="180.03" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-62.15" y="-107.19" angle="101.35" type="CarType" speed="13.73" pos="202.04" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-94.25" y="-176.46" angle="90.00" type="CarType" speed="13.86" pos="201.02" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-62.15" y="-107.19" angle="101.35" type="CarType" speed="13.45" pos="202.04" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-122.94" y="-94.99" angle="101.35" type="electricCar" speed="11.98" pos="140.03" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-149.56" y="-89.65" angle="101.35" type="electricCarZeroEmissions" speed="13.00" pos="112.88" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="18.00">
-        <vehicle id="vehicle_0" x="-102.24" y="-176.46" angle="90.00" type="CarType" speed="12.99" pos="193.03" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-48.53" y="-109.92" angle="101.35" type="CarType" speed="13.89" pos="215.93" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-79.25" y="-176.46" angle="90.00" type="CarType" speed="15.00" pos="216.02" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-48.39" y="-109.95" angle="101.35" type="CarType" speed="14.03" pos="216.07" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-111.31" y="-97.32" angle="101.35" type="electricCar" speed="11.86" pos="151.90" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-136.51" y="-92.27" angle="101.35" type="electricCarZeroEmissions" speed="13.32" pos="126.20" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="19.00">
-        <vehicle id="vehicle_0" x="-90.10" y="-176.46" angle="90.00" type="CarType" speed="12.14" pos="205.17" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-34.57" y="-112.73" angle="101.35" type="CarType" speed="14.25" pos="230.17" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-65.10" y="-176.46" angle="90.00" type="CarType" speed="14.15" pos="230.17" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-35.11" y="-112.62" angle="101.35" type="CarType" speed="13.54" pos="229.61" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-99.00" y="-99.79" angle="101.35" type="electricCar" speed="12.55" pos="164.45" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-124.10" y="-94.76" angle="101.35" type="electricCarZeroEmissions" speed="12.65" pos="138.85" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="20.00">
-        <vehicle id="vehicle_0" x="-77.10" y="-176.46" angle="90.00" type="CarType" speed="13.00" pos="218.17" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-21.10" y="-115.43" angle="101.35" type="CarType" speed="13.74" pos="243.91" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-50.09" y="-176.46" angle="90.00" type="CarType" speed="15.01" pos="245.18" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-20.89" y="-115.47" angle="101.35" type="CarType" speed="14.51" pos="244.12" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-86.28" y="-102.35" angle="101.35" type="electricCar" speed="12.97" pos="177.42" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-110.46" y="-97.49" angle="101.35" type="electricCarZeroEmissions" speed="13.91" pos="152.76" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="21.00">
-        <vehicle id="vehicle_0" x="-64.54" y="-176.46" angle="90.00" type="CarType" speed="12.55" pos="230.73" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-7.29" y="-118.20" angle="101.35" type="CarType" speed="14.08" pos="257.99" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-35.53" y="-176.46" angle="90.00" type="CarType" speed="14.56" pos="259.74" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-6.84" y="-118.29" angle="101.35" type="CarType" speed="14.33" pos="258.45" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-74.35" y="-104.74" angle="101.35" type="electricCar" speed="12.17" pos="189.59" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-97.65" y="-100.07" angle="101.35" type="electricCarZeroEmissions" speed="13.07" pos="165.83" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="22.00">
-        <vehicle id="vehicle_0" x="-51.99" y="-176.46" angle="90.00" type="CarType" speed="12.55" pos="243.28" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="5.90" y="-120.85" angle="101.35" type="CarType" speed="13.46" pos="271.44" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-20.98" y="-176.46" angle="90.00" type="CarType" speed="14.56" pos="274.29" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="7.45" y="-121.16" angle="101.35" type="CarType" speed="14.57" pos="273.02" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-61.86" y="-107.25" angle="101.35" type="electricCar" speed="12.73" pos="202.33" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-84.82" y="-102.64" angle="101.35" type="electricCarZeroEmissions" speed="13.08" pos="178.91" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="23.00">
-        <vehicle id="vehicle_0" x="-39.33" y="-176.46" angle="90.00" type="CarType" speed="12.66" pos="255.94" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="19.19" y="-123.52" angle="101.35" type="CarType" speed="13.55" pos="285.00" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-6.31" y="-176.46" angle="90.00" type="CarType" speed="14.66" pos="288.96" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="21.18" y="-123.92" angle="101.35" type="CarType" speed="14.00" pos="287.02" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-49.36" y="-109.76" angle="101.35" type="electricCar" speed="12.75" pos="215.08" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-71.43" y="-105.33" angle="101.35" type="electricCarZeroEmissions" speed="13.67" pos="192.58" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="24.00">
-        <vehicle id="vehicle_0" x="-26.81" y="-176.46" angle="90.00" type="CarType" speed="12.53" pos="268.46" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="32.64" y="-126.22" angle="101.35" type="CarType" speed="13.72" pos="298.71" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="8.22" y="-176.46" angle="90.00" type="CarType" speed="14.53" pos="303.49" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="34.83" y="-126.66" angle="101.35" type="CarType" speed="13.93" pos="300.95" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-37.48" y="-112.14" angle="101.35" type="electricCar" speed="12.11" pos="227.19" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-59.15" y="-107.79" angle="101.35" type="electricCarZeroEmissions" speed="12.52" pos="205.10" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="25.00">
-        <vehicle id="vehicle_0" x="-14.70" y="-176.46" angle="90.00" type="CarType" speed="12.11" pos="280.57" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="46.53" y="-129.01" angle="101.35" type="CarType" speed="14.17" pos="312.88" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="22.34" y="-176.46" angle="90.00" type="CarType" speed="14.12" pos="317.61" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="48.49" y="-129.40" angle="101.35" type="CarType" speed="13.93" pos="314.88" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-25.84" y="-114.48" angle="101.35" type="electricCar" speed="11.87" pos="239.07" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-47.14" y="-110.20" angle="101.35" type="electricCarZeroEmissions" speed="12.25" pos="217.35" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="26.00">
-        <vehicle id="vehicle_0" x="-2.76" y="-176.46" angle="90.00" type="CarType" speed="11.93" pos="292.51" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="60.35" y="-131.78" angle="101.35" type="CarType" speed="14.10" pos="326.98" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="36.27" y="-176.46" angle="90.00" type="CarType" speed="13.94" pos="331.54" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="62.27" y="-132.17" angle="101.35" type="CarType" speed="14.06" pos="328.94" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-13.10" y="-117.04" angle="101.35" type="electricCar" speed="13.00" pos="252.07" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-35.17" y="-112.61" angle="101.35" type="electricCarZeroEmissions" speed="12.21" pos="229.55" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="27.00">
-        <vehicle id="vehicle_0" x="9.36" y="-176.46" angle="90.00" type="CarType" speed="12.13" pos="304.63" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="74.31" y="-134.58" angle="101.35" type="CarType" speed="14.24" pos="341.22" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="50.41" y="-176.46" angle="90.00" type="CarType" speed="14.13" pos="345.68" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="75.94" y="-134.91" angle="101.35" type="CarType" speed="13.95" pos="342.88" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-1.32" y="-119.40" angle="101.35" type="electricCar" speed="12.01" pos="264.08" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-22.04" y="-115.24" angle="101.35" type="electricCarZeroEmissions" speed="13.39" pos="242.94" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="28.00">
-        <vehicle id="vehicle_0" x="21.93" y="-176.46" angle="90.00" type="CarType" speed="12.57" pos="317.20" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="88.16" y="-137.36" angle="101.35" type="CarType" speed="14.12" pos="355.34" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="64.98" y="-176.46" angle="90.00" type="CarType" speed="14.58" pos="360.25" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="89.79" y="-137.69" angle="101.35" type="CarType" speed="14.13" pos="357.01" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="10.45" y="-121.76" angle="101.35" type="electricCar" speed="12.01" pos="276.08" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-10.93" y="-117.47" angle="101.35" type="electricCarZeroEmissions" speed="11.34" pos="254.28" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="29.00">
-        <vehicle id="vehicle_0" x="33.97" y="-176.46" angle="90.00" type="CarType" speed="12.04" pos="329.24" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="101.46" y="-140.03" angle="101.35" type="CarType" speed="13.56" pos="368.90" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="79.02" y="-176.46" angle="90.00" type="CarType" speed="14.04" pos="374.29" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="103.65" y="-140.47" angle="101.35" type="CarType" speed="14.13" pos="371.14" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="22.85" y="-124.25" angle="101.35" type="electricCar" speed="12.65" pos="288.73" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="1.04" y="-119.88" angle="101.35" type="electricCarZeroEmissions" speed="12.21" pos="266.49" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="30.00">
-        <vehicle id="vehicle_0" x="46.48" y="-176.46" angle="90.00" type="CarType" speed="12.51" pos="341.75" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="115.51" y="-142.85" angle="101.35" type="CarType" speed="14.33" pos="383.23" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="93.54" y="-176.46" angle="90.00" type="CarType" speed="14.52" pos="388.81" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="117.84" y="-143.32" angle="101.35" type="CarType" speed="14.47" pos="385.61" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="35.12" y="-126.72" angle="101.35" type="electricCar" speed="12.51" pos="301.24" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="13.46" y="-122.37" angle="101.35" type="electricCarZeroEmissions" speed="12.67" pos="279.15" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="31.00">
-        <vehicle id="vehicle_0" x="59.29" y="-176.46" angle="90.00" type="CarType" speed="12.81" pos="354.56" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="129.31" y="-145.62" angle="101.35" type="CarType" speed="14.08" pos="397.32" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="108.36" y="-176.46" angle="90.00" type="CarType" speed="14.81" pos="403.63" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="131.02" y="-145.97" angle="101.35" type="CarType" speed="13.45" pos="399.06" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="47.67" y="-129.23" angle="101.35" type="electricCar" speed="12.80" pos="314.04" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="26.12" y="-124.91" angle="101.35" type="electricCarZeroEmissions" speed="12.91" pos="292.06" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="32.00">
-        <vehicle id="vehicle_0" x="71.19" y="-176.46" angle="90.00" type="CarType" speed="11.90" pos="366.46" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="142.57" y="-148.28" angle="101.35" type="CarType" speed="13.52" pos="410.83" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="122.26" y="-176.46" angle="90.00" type="CarType" speed="13.90" pos="417.53" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="144.77" y="-148.73" angle="101.35" type="CarType" speed="14.02" pos="413.08" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="59.75" y="-131.66" angle="101.35" type="electricCar" speed="12.33" pos="326.37" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="38.29" y="-127.35" angle="101.35" type="electricCarZeroEmissions" speed="12.41" pos="304.47" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="33.00">
-        <vehicle id="vehicle_0" x="83.10" y="-176.46" angle="90.00" type="CarType" speed="11.91" pos="378.37" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="156.42" y="-151.06" angle="101.35" type="CarType" speed="14.12" pos="424.96" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="136.17" y="-176.46" angle="90.00" type="CarType" speed="13.92" pos="431.44" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="158.81" y="-151.54" angle="101.35" type="CarType" speed="14.32" pos="427.40" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="71.57" y="-134.03" angle="101.35" type="electricCar" speed="12.06" pos="338.43" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="49.84" y="-129.67" angle="101.35" type="electricCarZeroEmissions" speed="11.78" pos="316.25" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="34.00">
-        <vehicle id="vehicle_0" x="95.09" y="-176.46" angle="90.00" type="CarType" speed="11.99" pos="390.36" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="170.78" y="-153.95" angle="101.35" type="CarType" speed="14.65" pos="439.61" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="150.17" y="-176.46" angle="90.00" type="CarType" speed="14.00" pos="445.44" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="172.21" y="-154.23" angle="101.35" type="CarType" speed="13.66" pos="441.07" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="84.11" y="-136.55" angle="101.35" type="electricCar" speed="12.79" pos="351.21" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="61.52" y="-132.01" angle="101.35" type="electricCarZeroEmissions" speed="11.91" pos="328.17" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="35.00">
-        <vehicle id="vehicle_0" x="107.71" y="-176.46" angle="90.00" type="CarType" speed="12.62" pos="402.98" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="185.05" y="-156.81" angle="101.35" type="CarType" speed="14.56" pos="454.17" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="164.80" y="-176.46" angle="90.00" type="CarType" speed="14.62" pos="460.07" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="185.79" y="-156.96" angle="101.35" type="CarType" speed="13.85" pos="454.92" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="96.75" y="-139.09" angle="101.35" type="electricCar" speed="12.89" pos="364.10" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="74.71" y="-134.66" angle="101.35" type="electricCarZeroEmissions" speed="13.46" pos="341.62" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="36.00">
-        <vehicle id="vehicle_0" x="120.50" y="-176.46" angle="90.00" type="CarType" speed="12.79" pos="415.77" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="198.75" y="-159.56" angle="101.35" type="CarType" speed="13.97" pos="468.14" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="179.59" y="-176.46" angle="90.00" type="CarType" speed="14.80" pos="474.86" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="200.03" y="-159.82" angle="101.35" type="CarType" speed="14.53" pos="469.44" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="109.44" y="-141.63" angle="101.35" type="electricCar" speed="12.94" pos="377.05" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="87.75" y="-137.28" angle="101.35" type="electricCarZeroEmissions" speed="13.29" pos="354.92" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="37.00">
-        <vehicle id="vehicle_0" x="133.18" y="-176.46" angle="90.00" type="CarType" speed="12.68" pos="428.45" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="212.25" y="-162.27" angle="101.35" type="CarType" speed="13.76" pos="481.90" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="194.28" y="-176.46" angle="90.00" type="CarType" speed="14.69" pos="489.55" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="213.57" y="-162.53" angle="101.35" type="CarType" speed="13.81" pos="483.25" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="121.57" y="-144.07" angle="101.35" type="electricCar" speed="12.37" pos="389.41" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="100.95" y="-139.93" angle="101.35" type="electricCarZeroEmissions" speed="13.47" pos="368.39" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="38.00">
-        <vehicle id="vehicle_0" x="145.29" y="-176.46" angle="90.00" type="CarType" speed="12.10" pos="440.56" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="226.51" y="-165.13" angle="101.35" type="CarType" speed="14.55" pos="496.45" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="208.39" y="-176.46" angle="90.00" type="CarType" speed="14.11" pos="503.66" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="227.97" y="-165.42" angle="101.35" type="CarType" speed="14.69" pos="497.94" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="134.13" y="-146.59" angle="101.35" type="electricCar" speed="12.81" pos="402.22" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="112.47" y="-142.24" angle="101.35" type="electricCarZeroEmissions" speed="11.75" pos="380.13" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="39.00">
-        <vehicle id="vehicle_0" x="157.52" y="-176.46" angle="90.00" type="CarType" speed="12.23" pos="452.79" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="239.83" y="-167.81" angle="101.35" type="CarType" speed="13.59" pos="510.04" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="222.62" y="-176.46" angle="90.00" type="CarType" speed="14.23" pos="517.89" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="241.44" y="-168.13" angle="101.35" type="CarType" speed="13.74" pos="511.68" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="146.65" y="-149.10" angle="101.35" type="electricCar" speed="12.77" pos="415.00" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="125.21" y="-144.80" angle="101.35" type="electricCarZeroEmissions" speed="12.99" pos="393.13" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="40.00">
-        <vehicle id="vehicle_0" x="170.18" y="-176.46" angle="90.00" type="CarType" speed="12.66" pos="465.45" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="249.41" y="-169.73" angle="101.35" type="CarType" speed="9.77" pos="519.81" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="237.29" y="-176.46" angle="90.00" type="CarType" speed="14.67" pos="532.56" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="250.53" y="-169.95" angle="101.35" type="CarType" speed="9.27" pos="520.95" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="159.08" y="-151.60" angle="101.35" type="electricCar" speed="12.68" pos="427.67" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="137.95" y="-147.36" angle="101.35" type="electricCarZeroEmissions" speed="13.00" pos="406.13" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="41.00">
-        <vehicle id="vehicle_0" x="182.80" y="-176.46" angle="90.00" type="CarType" speed="12.62" pos="478.07" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="254.77" y="-170.92" angle="102.68" type="CarType" speed="5.49" pos="3.66" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="247.49" y="-176.46" angle="90.00" type="CarType" speed="10.20" pos="542.76" lane="edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="256.70" y="-171.37" angle="103.16" type="CarType" speed="6.33" pos="5.64" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="171.69" y="-154.13" angle="101.35" type="electricCar" speed="12.86" pos="440.54" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="150.06" y="-149.79" angle="101.35" type="electricCarZeroEmissions" speed="12.35" pos="418.48" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="42.00">
-        <vehicle id="vehicle_0" x="194.76" y="-176.46" angle="90.00" type="CarType" speed="11.95" pos="490.03" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="257.12" y="-173.01" angle="154.00" type="CarType" speed="6.54" pos="10.19" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="253.00" y="-175.55" angle="79.35" type="CarType" speed="5.70" pos="2.29" lane=":node2_0_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="255.14" y="-173.12" angle="249.00" type="CarType" speed="6.54" pos="12.18" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="183.65" y="-156.53" angle="101.35" type="electricCar" speed="12.20" pos="452.74" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="162.83" y="-152.35" angle="101.35" type="electricCarZeroEmissions" speed="13.02" pos="431.49" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="43.00">
-        <vehicle id="vehicle_0" x="207.47" y="-176.46" angle="90.00" type="CarType" speed="12.71" pos="502.74" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="250.99" y="-173.26" angle="268.11" type="CarType" speed="6.14" pos="16.33" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="255.19" y="-171.55" angle="29.14" type="CarType" speed="4.95" pos="7.24" lane=":node2_0_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="249.01" y="-173.26" angle="268.82" type="CarType" speed="6.14" pos="1.88" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="195.71" y="-158.95" angle="101.35" type="electricCar" speed="12.30" pos="465.04" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="174.39" y="-154.67" angle="101.35" type="electricCarZeroEmissions" speed="11.79" pos="443.29" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="44.00">
-        <vehicle id="vehicle_0" x="219.61" y="-176.46" angle="90.00" type="CarType" speed="12.15" pos="514.88" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="245.37" y="-173.26" angle="270.00" type="CarType" speed="5.62" pos="5.52" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="252.61" y="-167.48" angle="326.82" type="CarType" speed="5.18" pos="12.42" lane=":node2_0_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="241.12" y="-173.26" angle="270.00" type="CarType" speed="7.89" pos="9.77" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="207.39" y="-161.29" angle="101.35" type="electricCar" speed="11.91" pos="476.94" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="185.97" y="-156.99" angle="101.35" type="electricCarZeroEmissions" speed="11.81" pos="455.10" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="45.00">
-        <vehicle id="vehicle_0" x="231.36" y="-176.46" angle="90.00" type="CarType" speed="11.74" pos="526.63" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="237.99" y="-173.26" angle="270.00" type="CarType" speed="7.37" pos="12.90" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="246.83" y="-165.94" angle="281.35" type="CarType" speed="6.05" pos="5.11" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="231.33" y="-173.26" angle="270.00" type="CarType" speed="9.79" pos="19.56" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="219.18" y="-163.66" angle="101.35" type="electricCar" speed="12.03" pos="488.97" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="197.33" y="-159.28" angle="101.35" type="electricCarZeroEmissions" speed="11.59" pos="466.69" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="46.00">
-        <vehicle id="vehicle_0" x="243.31" y="-176.46" angle="90.00" type="CarType" speed="11.96" pos="538.58" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="228.72" y="-173.26" angle="270.00" type="CarType" speed="9.28" pos="22.17" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="239.50" y="-164.47" angle="281.35" type="CarType" speed="7.48" pos="12.59" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="219.45" y="-173.26" angle="270.00" type="CarType" speed="11.88" pos="31.44" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="231.18" y="-166.07" angle="101.35" type="electricCar" speed="12.24" pos="501.22" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="209.86" y="-161.79" angle="101.35" type="electricCarZeroEmissions" speed="12.78" pos="479.47" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="47.00">
-        <vehicle id="vehicle_0" x="250.77" y="-176.46" angle="90.00" type="CarType" speed="7.46" pos="546.04" lane="edge1_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="217.35" y="-173.26" angle="270.00" type="CarType" speed="11.37" pos="33.54" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="229.61" y="-162.49" angle="281.35" type="CarType" speed="10.08" pos="22.67" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="205.98" y="-173.26" angle="270.00" type="CarType" speed="13.47" pos="44.91" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="243.29" y="-168.50" angle="101.35" type="electricCar" speed="12.35" pos="513.56" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="221.57" y="-164.14" angle="101.35" type="electricCarZeroEmissions" speed="11.94" pos="491.41" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="48.00">
-        <vehicle id="vehicle_0" x="254.59" y="-173.78" angle="55.18" type="CarType" speed="4.97" pos="4.85" lane=":node2_0_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="204.39" y="-173.26" angle="270.00" type="CarType" speed="12.95" pos="46.50" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="217.60" y="-160.08" angle="281.35" type="CarType" speed="12.25" pos="34.92" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="192.27" y="-173.26" angle="270.00" type="CarType" speed="13.72" pos="58.62" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="250.99" y="-170.04" angle="101.35" type="electricCar" speed="7.85" pos="521.41" lane="-edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="234.10" y="-166.65" angle="101.35" type="electricCarZeroEmissions" speed="12.78" pos="504.18" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="49.00">
-        <vehicle id="vehicle_0" x="254.83" y="-169.85" angle="7.13" type="CarType" speed="4.13" pos="8.98" lane=":node2_0_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="190.68" y="-173.26" angle="270.00" type="CarType" speed="13.72" pos="60.21" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="203.21" y="-157.19" angle="281.35" type="CarType" speed="14.68" pos="49.60" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="178.06" y="-173.26" angle="270.00" type="CarType" speed="14.21" pos="72.83" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="256.26" y="-171.27" angle="103.16" type="electricCar" speed="5.42" pos="5.19" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="242.32" y="-168.31" angle="101.35" type="electricCarZeroEmissions" speed="8.39" pos="512.58" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="50.00">
-        <vehicle id="vehicle_0" x="251.85" y="-166.96" angle="318.42" type="CarType" speed="4.37" pos="13.35" lane=":node2_0_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="176.47" y="-173.26" angle="270.00" type="CarType" speed="14.21" pos="74.42" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="189.01" y="-154.34" angle="281.35" type="CarType" speed="14.47" pos="64.08" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="164.19" y="-173.26" angle="270.00" type="CarType" speed="13.86" pos="86.70" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="257.24" y="-172.97" angle="147.39" type="electricCar" speed="4.87" pos="10.06" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="247.73" y="-169.39" angle="101.35" type="electricCarZeroEmissions" speed="5.52" pos="518.09" lane="-edge2_0" slope="0.00"/>
     </timestep>
     <timestep time="51.00">
-        <vehicle id="vehicle_0" x="246.72" y="-165.92" angle="281.35" type="CarType" speed="5.23" pos="5.22" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="162.60" y="-173.26" angle="270.00" type="CarType" speed="13.86" pos="88.29" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="174.45" y="-151.42" angle="281.35" type="CarType" speed="14.86" pos="78.94" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="149.98" y="-173.26" angle="270.00" type="CarType" speed="14.21" pos="100.91" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="252.32" y="-173.21" angle="267.06" type="electricCar" speed="4.93" pos="14.99" lane=":node2_1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="252.42" y="-170.37" angle="101.80" type="electricCarZeroEmissions" speed="4.79" pos="1.24" lane=":node2_1_0" slope="0.00"/>
     </timestep>
     <timestep time="52.00">
-        <vehicle id="vehicle_0" x="240.19" y="-164.61" angle="281.35" type="CarType" speed="6.67" pos="11.89" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="148.39" y="-173.26" angle="270.00" type="CarType" speed="14.21" pos="102.50" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="160.81" y="-148.68" angle="281.35" type="CarType" speed="13.91" pos="92.85" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="135.70" y="-173.26" angle="270.00" type="CarType" speed="14.29" pos="115.19" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="247.42" y="-173.26" angle="269.42" type="electricCar" speed="4.90" pos="3.47" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="256.67" y="-171.37" angle="103.16" type="electricCarZeroEmissions" speed="4.36" pos="5.60" lane=":node2_1_0" slope="0.00"/>
     </timestep>
     <timestep time="53.00">
-        <vehicle id="vehicle_0" x="231.10" y="-162.79" angle="281.35" type="CarType" speed="9.27" pos="21.15" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="134.11" y="-173.26" angle="270.00" type="CarType" speed="14.29" pos="116.78" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="147.28" y="-145.96" angle="281.35" type="CarType" speed="13.79" pos="106.64" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="121.61" y="-173.26" angle="270.00" type="CarType" speed="14.09" pos="129.28" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="240.60" y="-173.26" angle="270.00" type="electricCar" speed="6.83" pos="10.29" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="256.26" y="-173.08" angle="207.94" type="electricCarZeroEmissions" speed="5.46" pos="11.06" lane=":node2_1_0" slope="0.00"/>
     </timestep>
     <timestep time="54.00">
-        <vehicle id="vehicle_0" x="219.88" y="-160.54" angle="281.35" type="CarType" speed="11.44" pos="32.59" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="120.02" y="-173.26" angle="270.00" type="CarType" speed="14.09" pos="130.87" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="133.14" y="-143.13" angle="281.35" type="CarType" speed="14.42" pos="121.06" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="107.50" y="-173.26" angle="270.00" type="CarType" speed="14.11" pos="143.39" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="232.37" y="-173.26" angle="270.00" type="electricCar" speed="8.23" pos="18.52" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="251.04" y="-173.26" angle="268.11" type="electricCarZeroEmissions" speed="5.22" pos="16.28" lane=":node2_1_0" slope="0.00"/>
     </timestep>
     <timestep time="55.00">
-        <vehicle id="vehicle_0" x="207.28" y="-158.01" angle="281.35" type="CarType" speed="12.86" pos="45.45" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="105.97" y="-173.26" angle="270.00" type="CarType" speed="14.05" pos="144.92" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="119.63" y="-140.41" angle="281.35" type="CarType" speed="13.79" pos="134.85" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="94.05" y="-173.26" angle="270.00" type="CarType" speed="13.45" pos="156.84" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="222.26" y="-173.26" angle="270.00" type="electricCar" speed="10.10" pos="28.63" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="244.90" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="6.13" pos="5.99" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="56.00">
-        <vehicle id="vehicle_0" x="195.05" y="-155.55" angle="281.35" type="CarType" speed="12.47" pos="57.92" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="91.86" y="-173.26" angle="270.00" type="CarType" speed="14.11" pos="159.03" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="105.05" y="-137.49" angle="281.35" type="CarType" speed="14.87" pos="149.72" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="80.60" y="-173.26" angle="270.00" type="CarType" speed="13.45" pos="170.29" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="210.26" y="-173.26" angle="270.00" type="electricCar" speed="12.00" pos="40.63" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="236.64" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="8.26" pos="14.25" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="57.00">
-        <vehicle id="vehicle_0" x="182.45" y="-153.02" angle="281.35" type="CarType" speed="12.85" pos="70.77" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="78.34" y="-173.26" angle="270.00" type="CarType" speed="13.53" pos="172.55" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="90.93" y="-134.65" angle="281.35" type="CarType" speed="14.40" pos="164.12" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="66.79" y="-173.26" angle="270.00" type="CarType" speed="13.81" pos="184.10" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="197.35" y="-173.26" angle="270.00" type="electricCar" speed="12.91" pos="53.54" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="226.32" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="10.32" pos="24.57" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="58.00">
-        <vehicle id="vehicle_0" x="170.77" y="-150.68" angle="281.35" type="CarType" speed="11.91" pos="82.68" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="64.88" y="-173.26" angle="270.00" type="CarType" speed="13.45" pos="186.01" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="76.82" y="-131.82" angle="281.35" type="CarType" speed="14.39" pos="178.50" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="52.91" y="-173.26" angle="270.00" type="CarType" speed="13.88" pos="197.98" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="185.56" y="-173.26" angle="270.00" type="electricCar" speed="11.78" pos="65.33" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="213.48" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.84" pos="37.41" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="59.00">
-        <vehicle id="vehicle_0" x="159.21" y="-148.36" angle="281.35" type="CarType" speed="11.79" pos="94.47" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="50.89" y="-173.26" angle="270.00" type="CarType" speed="13.99" pos="200.00" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="62.90" y="-129.02" angle="281.35" type="CarType" speed="14.20" pos="192.71" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="39.12" y="-173.26" angle="270.00" type="CarType" speed="13.78" pos="211.77" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="172.53" y="-173.26" angle="270.00" type="electricCar" speed="13.03" pos="78.36" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="200.01" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.47" pos="50.88" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="60.00">
-        <vehicle id="vehicle_0" x="147.04" y="-145.92" angle="281.35" type="CarType" speed="12.41" pos="106.88" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="37.44" y="-173.26" angle="270.00" type="CarType" speed="13.45" pos="213.45" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="49.06" y="-126.25" angle="281.35" type="CarType" speed="14.12" pos="206.82" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="24.47" y="-173.26" angle="270.00" type="CarType" speed="14.66" pos="226.42" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="159.90" y="-173.26" angle="270.00" type="electricCar" speed="12.63" pos="90.99" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="186.98" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.03" pos="63.91" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="61.00">
-        <vehicle id="vehicle_0" x="135.49" y="-143.60" angle="281.35" type="CarType" speed="11.78" pos="118.67" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="23.42" y="-173.26" angle="270.00" type="CarType" speed="14.02" pos="227.47" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="34.35" y="-123.29" angle="281.35" type="CarType" speed="15.00" pos="221.82" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="10.10" y="-173.26" angle="270.00" type="CarType" speed="14.37" pos="240.79" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="148.10" y="-173.26" angle="270.00" type="electricCar" speed="11.80" pos="102.79" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="173.13" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.85" pos="77.76" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="62.00">
-        <vehicle id="vehicle_0" x="122.88" y="-141.06" angle="281.35" type="CarType" speed="12.86" pos="131.53" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="9.17" y="-173.26" angle="270.00" type="CarType" speed="14.25" pos="241.72" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="19.92" y="-120.40" angle="281.35" type="CarType" speed="14.71" pos="236.54" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-3.87" y="-173.26" angle="270.00" type="CarType" speed="13.96" pos="254.76" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="135.16" y="-173.26" angle="270.00" type="electricCar" speed="12.94" pos="115.73" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="160.36" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.77" pos="90.53" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="63.00">
-        <vehicle id="vehicle_0" x="110.73" y="-138.63" angle="281.35" type="CarType" speed="12.39" pos="143.92" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-4.64" y="-173.26" angle="270.00" type="CarType" speed="13.81" pos="255.53" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="6.01" y="-117.61" angle="281.35" type="CarType" speed="14.19" pos="250.73" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-18.52" y="-173.26" angle="270.00" type="CarType" speed="14.65" pos="269.41" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="122.87" y="-173.26" angle="270.00" type="electricCar" speed="12.28" pos="128.02" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="146.81" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.54" pos="104.08" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="64.00">
-        <vehicle id="vehicle_0" x="98.59" y="-136.19" angle="281.35" type="CarType" speed="12.38" pos="156.31" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-19.24" y="-173.26" angle="270.00" type="CarType" speed="14.60" pos="270.13" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-7.94" y="-114.81" angle="281.35" type="CarType" speed="14.23" pos="264.96" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-31.97" y="-173.26" angle="270.00" type="CarType" speed="13.45" pos="282.86" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="110.27" y="-173.26" angle="270.00" type="electricCar" speed="12.61" pos="140.62" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="133.52" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.30" pos="117.37" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="65.00">
-        <vehicle id="vehicle_0" x="86.63" y="-133.79" angle="281.35" type="CarType" speed="12.20" pos="168.51" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-33.42" y="-173.26" angle="270.00" type="CarType" speed="14.18" pos="284.31" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-22.35" y="-111.91" angle="281.35" type="CarType" speed="14.69" pos="279.65" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-46.31" y="-173.26" angle="270.00" type="CarType" speed="14.34" pos="297.20" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="97.82" y="-173.26" angle="270.00" type="electricCar" speed="12.45" pos="153.07" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="120.31" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.20" pos="130.58" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="66.00">
-        <vehicle id="vehicle_0" x="74.75" y="-131.40" angle="281.35" type="CarType" speed="12.11" pos="180.62" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-47.31" y="-173.26" angle="270.00" type="CarType" speed="13.88" pos="298.20" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-36.80" y="-109.01" angle="281.35" type="CarType" speed="14.74" pos="294.39" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-60.61" y="-173.26" angle="270.00" type="CarType" speed="14.30" pos="311.50" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="85.26" y="-173.26" angle="270.00" type="electricCar" speed="12.55" pos="165.63" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="108.18" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.13" pos="142.71" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="67.00">
-        <vehicle id="vehicle_0" x="62.01" y="-128.85" angle="281.35" type="CarType" speed="13.00" pos="193.61" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-60.78" y="-173.26" angle="270.00" type="CarType" speed="13.47" pos="311.67" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-50.55" y="-106.25" angle="281.35" type="CarType" speed="14.03" pos="308.42" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-74.38" y="-173.26" angle="270.00" type="CarType" speed="13.77" pos="325.27" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="73.07" y="-173.26" angle="270.00" type="electricCar" speed="12.20" pos="177.82" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="95.52" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.67" pos="155.37" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="68.00">
-        <vehicle id="vehicle_0" x="49.55" y="-126.35" angle="281.35" type="CarType" speed="12.71" pos="206.32" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-75.43" y="-173.26" angle="270.00" type="CarType" speed="14.64" pos="326.32" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-64.93" y="-103.37" angle="281.35" type="CarType" speed="14.66" pos="323.08" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-88.99" y="-173.26" angle="270.00" type="CarType" speed="14.61" pos="339.88" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="61.24" y="-173.26" angle="270.00" type="electricCar" speed="11.83" pos="189.65" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="82.43" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.08" pos="168.46" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="69.00">
-        <vehicle id="vehicle_0" x="37.61" y="-123.95" angle="281.35" type="CarType" speed="12.18" pos="218.50" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-89.21" y="-173.26" angle="270.00" type="CarType" speed="13.78" pos="340.10" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-79.40" y="-100.46" angle="281.35" type="CarType" speed="14.76" pos="337.84" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-102.78" y="-173.26" angle="270.00" type="CarType" speed="13.80" pos="353.67" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="48.69" y="-173.26" angle="270.00" type="electricCar" speed="12.55" pos="202.20" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="71.19" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.25" pos="179.70" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="70.00">
-        <vehicle id="vehicle_0" x="25.62" y="-121.54" angle="281.35" type="CarType" speed="12.23" pos="230.73" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-103.93" y="-173.26" angle="270.00" type="CarType" speed="14.72" pos="354.82" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-93.15" y="-97.70" angle="281.35" type="CarType" speed="14.03" pos="351.87" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-117.38" y="-173.26" angle="270.00" type="CarType" speed="14.60" pos="368.27" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="35.85" y="-173.26" angle="270.00" type="electricCar" speed="12.84" pos="215.04" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="58.82" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.37" pos="192.07" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="71.00">
-        <vehicle id="vehicle_0" x="13.18" y="-119.05" angle="281.35" type="CarType" speed="12.69" pos="243.41" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-118.09" y="-173.26" angle="270.00" type="CarType" speed="14.16" pos="368.98" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-107.87" y="-94.75" angle="281.35" type="CarType" speed="15.01" pos="366.88" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-130.98" y="-173.26" angle="270.00" type="CarType" speed="13.60" pos="381.87" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="23.84" y="-173.26" angle="270.00" type="electricCar" speed="12.01" pos="227.05" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="46.05" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.77" pos="204.84" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="72.00">
-        <vehicle id="vehicle_0" x="0.69" y="-116.54" angle="281.35" type="CarType" speed="12.74" pos="256.15" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-132.74" y="-173.26" angle="270.00" type="CarType" speed="14.66" pos="383.63" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-122.11" y="-91.89" angle="281.35" type="CarType" speed="14.52" pos="381.40" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-144.61" y="-173.26" angle="270.00" type="CarType" speed="13.62" pos="395.50" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="10.92" y="-173.26" angle="270.00" type="electricCar" speed="12.92" pos="239.97" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="33.87" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.18" pos="217.02" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="73.00">
-        <vehicle id="vehicle_0" x="-11.09" y="-114.17" angle="281.35" type="CarType" speed="12.02" pos="268.17" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-147.06" y="-173.26" angle="270.00" type="CarType" speed="14.32" pos="397.95" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-136.35" y="-89.03" angle="281.35" type="CarType" speed="14.52" pos="395.92" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-158.26" y="-173.26" angle="270.00" type="CarType" speed="13.66" pos="409.15" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-1.47" y="-173.26" angle="270.00" type="electricCar" speed="12.39" pos="252.36" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="21.28" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.59" pos="229.61" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="74.00">
-        <vehicle id="vehicle_0" x="-23.50" y="-111.68" angle="281.35" type="CarType" speed="12.65" pos="280.83" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-160.78" y="-173.26" angle="270.00" type="CarType" speed="13.72" pos="411.67" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-150.42" y="-86.21" angle="281.35" type="CarType" speed="14.35" pos="410.28" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-172.13" y="-173.26" angle="270.00" type="CarType" speed="13.86" pos="423.02" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-13.35" y="-173.26" angle="270.00" type="electricCar" speed="11.88" pos="264.24" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="9.22" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.06" pos="241.67" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="75.00">
-        <vehicle id="vehicle_0" x="-36.01" y="-109.17" angle="281.35" type="CarType" speed="12.75" pos="293.58" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-175.15" y="-173.26" angle="270.00" type="CarType" speed="14.37" pos="426.04" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-164.56" y="-83.37" angle="281.35" type="CarType" speed="14.42" pos="424.70" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-186.37" y="-173.26" angle="270.00" type="CarType" speed="14.24" pos="437.26" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-25.73" y="-173.26" angle="270.00" type="electricCar" speed="12.38" pos="276.62" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-3.61" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.83" pos="254.50" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="76.00">
-        <vehicle id="vehicle_0" x="-47.80" y="-106.81" angle="281.35" type="CarType" speed="12.03" pos="305.61" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-188.64" y="-173.26" angle="270.00" type="CarType" speed="13.49" pos="439.53" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-179.30" y="-80.41" angle="281.35" type="CarType" speed="15.04" pos="439.73" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-200.64" y="-173.26" angle="270.00" type="CarType" speed="14.27" pos="451.53" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-37.88" y="-173.26" angle="270.00" type="electricCar" speed="12.15" pos="288.77" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-16.13" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.53" pos="267.02" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="77.00">
-        <vehicle id="vehicle_0" x="-60.55" y="-104.25" angle="281.35" type="CarType" speed="13.01" pos="318.61" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-203.18" y="-173.26" angle="270.00" type="CarType" speed="14.54" pos="454.07" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-193.22" y="-77.62" angle="281.35" type="CarType" speed="14.20" pos="453.93" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-214.78" y="-173.26" angle="270.00" type="CarType" speed="14.14" pos="465.67" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-49.80" y="-173.26" angle="270.00" type="electricCar" speed="11.93" pos="300.69" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-28.74" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.61" pos="279.63" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="78.00">
-        <vehicle id="vehicle_0" x="-72.82" y="-101.78" angle="281.35" type="CarType" speed="12.52" pos="331.13" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-217.15" y="-173.26" angle="270.00" type="CarType" speed="13.96" pos="468.04" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-207.75" y="-74.70" angle="281.35" type="CarType" speed="14.82" pos="468.75" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-228.76" y="-173.26" angle="270.00" type="CarType" speed="13.98" pos="479.65" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-61.95" y="-173.26" angle="270.00" type="electricCar" speed="12.15" pos="312.84" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-40.90" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.16" pos="291.79" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="79.00">
-        <vehicle id="vehicle_0" x="-85.09" y="-99.32" angle="281.35" type="CarType" speed="12.51" pos="343.65" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-231.78" y="-173.26" angle="270.00" type="CarType" speed="14.63" pos="482.67" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-221.54" y="-71.93" angle="281.35" type="CarType" speed="14.06" pos="482.81" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-243.24" y="-173.26" angle="270.00" type="CarType" speed="14.47" pos="494.13" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-74.12" y="-173.26" angle="270.00" type="electricCar" speed="12.17" pos="325.01" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-52.51" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.61" pos="303.40" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="80.00">
-        <vehicle id="vehicle_0" x="-97.20" y="-96.89" angle="281.35" type="CarType" speed="12.35" pos="355.99" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-245.62" y="-173.26" angle="270.00" type="CarType" speed="13.84" pos="496.51" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-235.97" y="-69.04" angle="281.35" type="CarType" speed="14.72" pos="497.53" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-256.80" y="-173.26" angle="270.00" type="CarType" speed="13.56" pos="507.69" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-86.03" y="-173.26" angle="270.00" type="electricCar" speed="11.90" pos="336.92" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-64.63" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.12" pos="315.52" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="81.00">
-        <vehicle id="vehicle_0" x="-109.37" y="-94.45" angle="281.35" type="CarType" speed="12.42" pos="368.41" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-260.27" y="-173.26" angle="270.00" type="CarType" speed="14.65" pos="511.16" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_0" x="-250.17" y="-66.19" angle="281.35" type="CarType" speed="14.48" pos="512.01" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-270.29" y="-173.26" angle="270.00" type="CarType" speed="13.50" pos="521.18" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-97.79" y="-173.26" angle="270.00" type="electricCar" speed="11.77" pos="348.68" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-76.01" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.38" pos="326.90" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="82.00">
-        <vehicle id="vehicle_0" x="-122.15" y="-91.88" angle="281.35" type="CarType" speed="13.03" pos="381.44" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-274.25" y="-173.26" angle="270.00" type="CarType" speed="13.97" pos="525.14" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_1" x="-283.90" y="-173.26" angle="270.00" type="CarType" speed="13.61" pos="534.79" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-110.41" y="-173.26" angle="270.00" type="electricCar" speed="12.62" pos="361.30" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-87.56" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.55" pos="338.45" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="83.00">
-        <vehicle id="vehicle_0" x="-134.11" y="-89.48" angle="281.35" type="CarType" speed="12.19" pos="393.63" lane="edge2_0" slope="0.00"/>
-        <vehicle id="vehicle_1" x="-288.48" y="-173.26" angle="270.00" type="CarType" speed="14.23" pos="539.37" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-122.77" y="-173.26" angle="270.00" type="electricCar" speed="12.36" pos="373.66" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-99.81" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.25" pos="350.70" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="84.00">
-        <vehicle id="vehicle_0" x="-146.67" y="-86.96" angle="281.35" type="CarType" speed="12.82" pos="406.45" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-135.73" y="-173.26" angle="270.00" type="electricCar" speed="12.95" pos="386.62" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-112.21" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.40" pos="363.10" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="85.00">
-        <vehicle id="vehicle_0" x="-158.49" y="-84.59" angle="281.35" type="CarType" speed="12.05" pos="418.50" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-147.90" y="-173.26" angle="270.00" type="electricCar" speed="12.17" pos="398.79" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-125.29" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.08" pos="376.18" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="86.00">
-        <vehicle id="vehicle_0" x="-170.95" y="-82.09" angle="281.35" type="CarType" speed="12.72" pos="431.22" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-159.84" y="-173.26" angle="270.00" type="electricCar" speed="11.94" pos="410.73" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-138.33" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.04" pos="389.22" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="87.00">
-        <vehicle id="vehicle_0" x="-183.18" y="-79.63" angle="281.35" type="CarType" speed="12.47" pos="443.69" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-172.53" y="-173.26" angle="270.00" type="electricCar" speed="12.69" pos="423.42" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-150.86" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.53" pos="401.75" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="88.00">
-        <vehicle id="vehicle_0" x="-194.99" y="-77.26" angle="281.35" type="CarType" speed="12.04" pos="455.73" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-185.14" y="-173.26" angle="270.00" type="electricCar" speed="12.62" pos="436.03" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-163.62" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.76" pos="414.51" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="89.00">
-        <vehicle id="vehicle_0" x="-206.66" y="-74.92" angle="281.35" type="CarType" speed="11.91" pos="467.64" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-198.03" y="-173.26" angle="270.00" type="electricCar" speed="12.89" pos="448.92" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-176.52" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.90" pos="427.41" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="90.00">
-        <vehicle id="vehicle_0" x="-219.19" y="-72.40" angle="281.35" type="CarType" speed="12.78" pos="480.41" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-210.91" y="-173.26" angle="270.00" type="electricCar" speed="12.88" pos="461.80" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-188.82" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.30" pos="439.71" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="91.00">
-        <vehicle id="vehicle_0" x="-231.18" y="-70.00" angle="281.35" type="CarType" speed="12.23" pos="492.65" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-223.01" y="-173.26" angle="270.00" type="electricCar" speed="12.10" pos="473.90" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-202.03" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="13.21" pos="452.92" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="92.00">
-        <vehicle id="vehicle_0" x="-243.83" y="-67.46" angle="281.35" type="CarType" speed="12.90" pos="505.55" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-235.10" y="-173.26" angle="270.00" type="electricCar" speed="12.09" pos="485.99" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-214.51" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.48" pos="465.40" lane="-edge1_0" slope="0.00"/>
     </timestep>
     <timestep time="93.00">
-        <vehicle id="vehicle_0" x="-256.41" y="-64.93" angle="281.35" type="CarType" speed="12.82" pos="518.37" lane="edge2_0" slope="0.00"/>
+        <vehicle id="vehicle_electric" x="-247.44" y="-173.26" angle="270.00" type="electricCar" speed="12.34" pos="498.33" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-226.78" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.27" pos="477.67" lane="-edge1_0" slope="0.00"/>
     </timestep>
-    <timestep time="94.00"/>
+    <timestep time="94.00">
+        <vehicle id="vehicle_electric" x="-259.51" y="-173.26" angle="270.00" type="electricCar" speed="12.07" pos="510.40" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-239.38" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.60" pos="490.27" lane="-edge1_0" slope="0.00"/>
+    </timestep>
+    <timestep time="95.00">
+        <vehicle id="vehicle_electric" x="-271.66" y="-173.26" angle="270.00" type="electricCar" speed="12.16" pos="522.55" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-251.22" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.84" pos="502.11" lane="-edge1_0" slope="0.00"/>
+    </timestep>
+    <timestep time="96.00">
+        <vehicle id="vehicle_electric" x="-284.05" y="-173.26" angle="270.00" type="electricCar" speed="12.39" pos="534.94" lane="-edge1_0" slope="0.00"/>
+        <vehicle id="vehicle_zeroEmissions" x="-262.72" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="11.49" pos="513.61" lane="-edge1_0" slope="0.00"/>
+    </timestep>
+    <timestep time="97.00">
+        <vehicle id="vehicle_zeroEmissions" x="-275.17" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.45" pos="526.06" lane="-edge1_0" slope="0.00"/>
+    </timestep>
+    <timestep time="98.00">
+        <vehicle id="vehicle_zeroEmissions" x="-288.03" y="-173.26" angle="270.00" type="electricCarZeroEmissions" speed="12.85" pos="538.92" lane="-edge1_0" slope="0.00"/>
+    </timestep>
+    <timestep time="99.00"/>
 </fcd-export>

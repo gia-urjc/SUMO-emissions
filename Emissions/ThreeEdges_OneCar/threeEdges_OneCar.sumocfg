@@ -14,13 +14,21 @@
         <device.emissions.probability value="1"/>
     </emissions>
 
+    <battery>
+        <device.battery.probability value="1"/>
+    </battery>
+
+	
+
     <output>
    	<tripinfo-output value="threeEdges_OneCar_info.xml"/>
         <fcd-output value="threeEdges_OneCar.fcd.xml"/>
 	<emission-output value="threeEdges_OneCar_emission_output.xml"/>
 	<emission-output.precision value="2"/>
-	<battery-output value="threeEdges_OneCar_batery_output.xml"/>
-
+	<battery-output value="threeEdges_OneCar_battery_output.xml"/>
+	<elechybrid-output value="threeEdges_OneCar_elechybrid.xml"/>
+	<chargingstations-output value="threeEdges_OneCar_chargingstations.xml"/>
+	<substations-output value="threeEdges_OneCar_substations.xml"/>
     </output>
 
 </configuration>
