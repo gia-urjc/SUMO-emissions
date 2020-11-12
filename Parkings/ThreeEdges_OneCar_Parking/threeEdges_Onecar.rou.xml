@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 11/12/20 21:34:41 by Eclipse SUMO netedit Version 1.7.0
+<!-- generated on 11/12/20 23:58:07 by Eclipse SUMO netedit Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <sumo-net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.net.xml"/>
+        <sumo-net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_Parking\threeEdges_OneCar.net.xml"/>
     </input>
 
     <output>
-        <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_OneCar.net.xml"/>
+        <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_Parking\threeEdges_OneCar.net.xml"/>
     </output>
 
     <processing>
@@ -30,7 +30,8 @@
     </pedestrian>
 
     <netedit>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar\threeEdges_Onecar.rou.xml"/>
+        <additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_Parking\threeEdges_OneCar_Parking.add.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_Parking\threeEdges_Onecar.rou.xml"/>
     </netedit>
 
     <report>
@@ -45,8 +46,14 @@
     <vType id="electricCar" vClass="evehicle" emissionClass="Energy/default" color="red"/>
     <vType id="electricCarZeroEmissions"/>
     <route edges="-edge2 -edge1" color="green" id="route_1"/>
-    <vehicle id="vehicle_1" type="CarType" depart="0.00" color="blue" route="route_1"/>
-    <vehicle id="vehicle_electric" type="electricCar" depart="0.00" route="route_1"/>
-    <vehicle id="vehicle_zeroEmissions" type="electricCarZeroEmissions" depart="0.00" route="route_1"/>
+    <vehicle id="vehicle_1" type="CarType" depart="0.00" color="blue" route="route_1">
+        <stop parkingArea="parkingArea_0" duration="50.00"/>
+    </vehicle>
+    <vehicle id="vehicle_electric" type="electricCar" depart="0.00" route="route_1">
+        <stop parkingArea="parkingArea_0" duration="50.00"/>
+    </vehicle>
+    <vehicle id="vehicle_zeroEmissions" type="electricCarZeroEmissions" depart="0.00" route="route_1">
+        <stop parkingArea="parkingArea_0" duration="50.00"/>
+    </vehicle>
     <trip id="vehicle_0" type="CarType" depart="0.00" from="edge1" to="edge2"/>
 </routes>
