@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 11/10/20 14:19:17 by Eclipse SUMO GUI Version 1.7.0
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_Parking\threeEdges_OneCar.net.xml"/>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Emissions\ThreeEdges_OneCar_Parking\threeEdges_Onecar.rou.xml"/>
+    </input>
+
+    <emissions>
+        <device.emissions.probability value="1"/>
+    </emissions>
+
+    <battery>
+        <device.battery.probability value="1"/>
+    </battery>
+
+	
+
+    <output>
+   	<tripinfo-output value="threeEdges_OneCar_info.xml"/>
+    </output>
+
+</configuration>
