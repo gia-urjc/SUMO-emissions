@@ -21,8 +21,13 @@ def get_options():
 
 # Contains TraCI control loop:
 def run():
-    print("1")
-
+    step = 0 # way of keeping track of our time step
+    while traci.simulation.getMinExpectedNumber() > 0: # exit when no more vehicles left in the simulation
+        traci.simulationStep() # Advance the simulation in one time step
+        print(step)
+        step+=1
+    traci.close()
+    sys.stdout.flush() #consol
 # Main entry point:
 if __name__ == "__main__":
     options = get_options()
