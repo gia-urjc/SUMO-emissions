@@ -25,9 +25,15 @@ def run():
     while traci.simulation.getMinExpectedNumber() > 0: # exit when no more vehicles left in the simulation
         traci.simulationStep() # Advance the simulation in one time step
         print(step)
-        if step == 100:
-            traci.vehicle.changeTarget("1", "e9")
-            traci.vehicle.changeTarget("3", "e9")
+        #if step == 100:
+        #    traci.vehicle.changeTarget("1", "e9")
+        #    traci.vehicle.changeTarget("3", "e9")
+
+        # See which vehicles have passed in the last time step:
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_0")
+        for veh in det_vehicles:
+            print("Vehicle:",veh)
+            traci.vehicle.changeLane(veh,2,25)
         step+=1
     traci.close()
     sys.stdout.flush() #consol
