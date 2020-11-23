@@ -31,8 +31,8 @@
     <vType id="ev" length="7.00" minGap="0.20" maxSpeed="20.00" speedFactor="normc(2.00,0.00)" vClass="emergency" guiShape="emergency" accel="5.5" decel="2.2" sigma="1.0"/>
 
     <route id="route_0" edges="e9 e1 e2 e3 e4 e5 e6 e7 e8" />
-    <flow id="carflow" type="car" begin="0" end="0" number="5" from="e9" to="e8" />
-
+    <flow id="carflow" type="car" begin="0" end="0" number="5" from="e1" to="e8" />
+    <flow id="evflow" type="ev" begin="0" end="0" number="1" from="e1" to="e8" />
     <!--<vehicle id="0" type="car" route="route_0" depart="0" />-->
 
 </routes>
