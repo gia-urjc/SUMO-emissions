@@ -8,6 +8,7 @@
     <input>
         <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\TraCI_ini\demo.net.xml"/>
         <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\TraCI_ini\demo.rou.xml"/>
+        <additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\TraCI_ini\demo.add.xml"/>
     </input>
 
 </configuration>
