@@ -4,7 +4,7 @@ import optparse
 
 # We need to import some python modules from the $SUMO_HOME/tools directory
 if 'SUMO_HOME' in os.environ:
-    tools = os.path.jois(os.environ['SUMO_HOME'], 'tools')
+    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:
     sys.exist("please declare environment variable 'SUMO_HOME'")
