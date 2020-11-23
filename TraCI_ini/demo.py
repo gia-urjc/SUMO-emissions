@@ -25,6 +25,9 @@ def run():
     while traci.simulation.getMinExpectedNumber() > 0: # exit when no more vehicles left in the simulation
         traci.simulationStep() # Advance the simulation in one time step
         print(step)
+        if step == 100:
+            traci.vehicle.changeTarget("1", "e9")
+            traci.vehicle.changeTarget("3", "e9")
         step+=1
     traci.close()
     sys.stdout.flush() #consol
