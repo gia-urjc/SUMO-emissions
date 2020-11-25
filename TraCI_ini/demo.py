@@ -7,7 +7,7 @@ if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:
-    sys.exist("please declare environment variable 'SUMO_HOME'")
+    sys.exit("please declare environment variable 'SUMO_HOME'")
 
 from sumolib import checkBinary # checks for the binary in environ vars
 import traci
@@ -18,6 +18,7 @@ def get_options():
                           default=False, help="run the commandline version of sumo")
     options, args = opt_parser.parse_args()
     return options
+
 
 # Contains TraCI control loop:
 def run():
@@ -46,6 +47,8 @@ if __name__ == "__main__":
         sumoBinary = checkBinary('sumo')
     else:
         sumoBinary = checkBinary('sumo-gui')
+
+
 
     # TraCI starts sumo as a subprocess and then this script connects and runs
     traci.start([sumoBinary, "-c", "demo.sumocfg", "--tripinfo-output", "tripinfo.xml"])
