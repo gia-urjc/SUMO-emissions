@@ -21,7 +21,7 @@ def generate_routefile():
     # demand per second from different directions
     pWE = 1. / 10
     pEW = 1. / 11
-    pNS = 1. / 30
+    pNS = 1. / 30 #means that a vehicle is generated every 30 seconds in average.
     with open("cross.rou.xml", "w") as routes:
         print("""<routes>
         <vType id="typeWE" accel="0.8" decel="4.5" sigma="0.5" length="5" minGap="2.5" maxSpeed="16.67" \
@@ -62,18 +62,22 @@ def run():
 
     step = 0
     # we start with phase 2 where EW has green
-    #traci.trafficlight.setPhase("0", 2)
-    while traci.simulation.getMinExpectedNumber() > 0:
-        traci.simulationStep()
-        """
-        if traci.trafficlight.getPhase("0") == 2:
+    traci.trafficlight.setPhase("n0", 2) # Sets the phase of the traffic light to the given.
+    print("S:",traci.trafficlight.getPhase("n0")) # Gets the phase of the traffic light
+    while traci.simulation.getMinExpectedNumber() > 0:  # The number of vehicles which are in the net plus the ones still waiting to start.
+        traci.simulationStep() # Advance the simulation in one time step
+        print("SA:", traci.trafficlight.getPhase("n0"))
+        if traci.trafficlight.getPhase("n0") == 2: # If is in phase 2
             # we are not already switching
             if traci.inductionloop.getLastStepVehicleNumber("0") > 0:
                 # there is a vehicle from the north, switch
-                traci.trafficlight.setPhase("0", 3)
+                print("CAMBIA")
+                traci.trafficlight.setPhase("n0", 3)
+                print("SB:", traci.trafficlight.getPhase("n0"))
             else:
                 # otherwise try to keep green for EW
-                traci.trafficlight.setPhase("0", 2)"""
+                traci.trafficlight.setPhase("n0", 2)
+                print("N")
         step += 1
     traci.close()
     sys.stdout.flush()
