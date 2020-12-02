@@ -6,8 +6,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\3SumoTutorial-QuickStart\quickstart.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\3SumoTutorial-QuickStart\quickstart.rou.xml"/>
+        <net-file value="quickstart.net.xml"/>
+        <route-files value="quickstart.rou.xml"/>
     </input>
 
     <time>

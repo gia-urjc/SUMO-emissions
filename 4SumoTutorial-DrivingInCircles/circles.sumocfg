@@ -6,9 +6,9 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.rou.xml"/>
-        <additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\4SumoTutorial-DrivingInCircles\circles.add.xml"/>
+        <net-file value="circles.net.xml"/>
+        <route-files value="circles.rou.xml"/>
+        <additional-files value="circles.add.xml"/>
     </input>
 
 </configuration>

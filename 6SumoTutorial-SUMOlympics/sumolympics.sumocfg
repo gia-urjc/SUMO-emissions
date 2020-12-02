@@ -6,8 +6,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolypics.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolympics.rou.xml, C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\6SumoTutorial-SUMOlympics\sumolympicWalks.rou.xml"/>
+        <net-file value="sumolypics.net.xml"/>
+        <route-files value="sumolympicWalks.rou.xml"/>
     </input>
     <processing>
         <lateral-resolution value="1." />

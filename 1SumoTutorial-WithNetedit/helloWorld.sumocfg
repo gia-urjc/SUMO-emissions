@@ -6,8 +6,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\1SumoTutorial\helloWorld.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\1SumoTutorial\helloWorld.rou.xml"/>
+        <net-file value="helloWorld.net.xml"/>
+        <route-files value="helloWorld.rou.xml"/>
     </input>
 
 </configuration>
