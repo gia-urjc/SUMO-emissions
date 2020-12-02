@@ -6,9 +6,9 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_ParkingRerouter\threeEdges_OneCar.net.xml"/>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_ParkingRerouter\threeEdges_Onecar.rou.xml"/>
-        <additional-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Parkings\ThreeEdges_OneCar_ParkingRerouter\threeEdges_OneCar_Parking.add.xml"/>
+        <net-file value="threeEdges_OneCar.net.xml"/>
+        <route-files value="threeEdges_Onecar.rou.xml"/>
+        <additional-files value="threeEdges_OneCar_Parking.add.xml"/>
     </input>
 
 </configuration>
