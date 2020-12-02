@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2020-11-27 17:02:21.197325 by createNetTaxi.py v1_7_0+0000-714814baed
+  options: 
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <flow id="c" type="cybercar" begin="50" period="100" number="3" line="taxi">
+        <route edges="cyberin cyber0to1"/>
+    </flow>
+</routes>

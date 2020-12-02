@@ -1,0 +1,10 @@
+<configuration>
+    <input>
+        <net-file value="park.net.xml"/>
+        <route-files value="park_cyber.rou.xml,park_demand30.rou.xml"/>
+        <additional-files value="park.add.xml"/>
+        <no-step-log value="True"/>
+        <time-to-teleport value="0"/>
+        <device.taxi.dispatch-algorithm value="routeExtension"/>
+    </input>
+</configuration>

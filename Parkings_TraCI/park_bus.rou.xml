@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2020-11-27 17:02:21.198324 by createNetTaxi.py v1_7_0+0000-714814baed
+  options: 
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <flow id="b" from="cyberin" to="cyberout" type="bus"
+          begin="50" period="100" number="2" line="taxi">
+    <stop busStop="cyber0to1stop" duration="10"/>
+    <stop busStop="cyber1to2stop" duration="10"/>
+    <stop busStop="cyber2to3stop" duration="10"/>
+    <stop busStop="cyber3to4stop" duration="10"/>
+    <stop busStop="cyber4to5stop" duration="10"/>
+    <stop busStop="cyber5to6stop" duration="10"/>
+    <stop busStop="cyber6to7stop" duration="10"/>
+    </flow>
+</routes>

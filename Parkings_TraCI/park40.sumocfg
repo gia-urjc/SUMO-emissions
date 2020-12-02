@@ -1,0 +1,9 @@
+<configuration>
+    <input>
+        <net-file value="park.net.xml"/>
+        <route-files value="park_bus.rou.xml,park_demand40.rou.xml"/>
+        <additional-files value="park.add.xml"/>
+        <no-step-log value="True"/>
+        <time-to-teleport value="0"/>
+    </input>
+</configuration>
