@@ -1,34 +1,249 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- generated on 12/02/20 21:54:15 by Eclipse SUMO netedit Version 1.7.0
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
-
-    <output>
-        <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Intersections\Instersections_TrafficLights_TraCI\intersec_TL.net.xml"/>
-    </output>
-
-    <processing>
-        <offset.disable-normalization value="true"/>
-    </processing>
-
-    <junctions>
-        <no-turnarounds value="true"/>
-    </junctions>
-
-    <netedit>
-        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Intersections\Instersections_TrafficLights_TraCI\intersec_TL.rou.xml"/>
-    </netedit>
-
-    <report>
-        <aggregate-warnings value="5"/>
-    </report>
-
-</configuration>
--->
-
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <vType id="autonomous_Car" vClass="evehicle" color="green"/>
-    <vType id="normal_car" color="255,0,170"/>
-
-
+ <routes>
+        <vType id="autonomous_car" vClass="evehicle" color="green"/>
+        <vType id="normal_car" color="255,0,170"/>
+        
+        <route edges="-e4 e2" color="yellow" id="route_1"/>
+        <route edges="-e3 -e1" color="yellow" id="route_2"/>
+        <route edges="-e2 e4" color="yellow" id="route_3"/>
+        <route edges="e1 e3" color="yellow" id="route_4"/>
+     <vehicle id="NS0" type="normal_car" route="route_4" depart="1" />
+     <vehicle id="SN1" type="normal_car" route="route_2" depart="1" />
+    <vehicle id="Au2" type="autonomous_car" route="route_2" depart="1" />
+     <vehicle id="NS3" type="normal_car" route="route_1" depart="2" />
+    <vehicle id="Au4" type="autonomous_car" route="route_4" depart="2" />
+     <vehicle id="EO5" type="normal_car" route="route_3" depart="3" />
+     <vehicle id="NS6" type="normal_car" route="route_1" depart="4" />
+     <vehicle id="EO7" type="normal_car" route="route_3" depart="5" />
+     <vehicle id="NS8" type="normal_car" route="route_4" depart="7" />
+    <vehicle id="Au9" type="autonomous_car" route="route_1" depart="8" />
+     <vehicle id="NS10" type="normal_car" route="route_4" depart="9" />
+     <vehicle id="NS11" type="normal_car" route="route_1" depart="11" />
+    <vehicle id="Au12" type="autonomous_car" route="route_4" depart="12" />
+     <vehicle id="NS13" type="normal_car" route="route_4" depart="14" />
+     <vehicle id="NS14" type="normal_car" route="route_1" depart="15" />
+    <vehicle id="Au15" type="autonomous_car" route="route_4" depart="15" />
+    <vehicle id="Au16" type="autonomous_car" route="route_2" depart="15" />
+     <vehicle id="NS17" type="normal_car" route="route_1" depart="16" />
+    <vehicle id="Au18" type="autonomous_car" route="route_4" depart="17" />
+    <vehicle id="Au19" type="autonomous_car" route="route_3" depart="18" />
+    <vehicle id="Au20" type="autonomous_car" route="route_1" depart="18" />
+     <vehicle id="NS21" type="normal_car" route="route_4" depart="21" />
+     <vehicle id="NS22" type="normal_car" route="route_1" depart="22" />
+    <vehicle id="Au23" type="autonomous_car" route="route_2" depart="22" />
+     <vehicle id="NS24" type="normal_car" route="route_1" depart="25" />
+    <vehicle id="Au25" type="autonomous_car" route="route_2" depart="29" />
+     <vehicle id="NS26" type="normal_car" route="route_4" depart="31" />
+     <vehicle id="SN27" type="normal_car" route="route_2" depart="32" />
+     <vehicle id="NS28" type="normal_car" route="route_1" depart="32" />
+    <vehicle id="Au29" type="autonomous_car" route="route_3" depart="32" />
+     <vehicle id="EO30" type="normal_car" route="route_3" depart="33" />
+     <vehicle id="NS31" type="normal_car" route="route_4" depart="35" />
+     <vehicle id="SN32" type="normal_car" route="route_2" depart="35" />
+    <vehicle id="Au33" type="autonomous_car" route="route_1" depart="35" />
+     <vehicle id="SN34" type="normal_car" route="route_2" depart="40" />
+     <vehicle id="NS35" type="normal_car" route="route_1" depart="40" />
+    <vehicle id="Au36" type="autonomous_car" route="route_2" depart="40" />
+    <vehicle id="Au37" type="autonomous_car" route="route_1" depart="41" />
+    <vehicle id="Au38" type="autonomous_car" route="route_2" depart="43" />
+     <vehicle id="NS39" type="normal_car" route="route_1" depart="45" />
+    <vehicle id="Au40" type="autonomous_car" route="route_2" depart="46" />
+     <vehicle id="SN41" type="normal_car" route="route_2" depart="47" />
+     <vehicle id="NS42" type="normal_car" route="route_1" depart="48" />
+    <vehicle id="Au43" type="autonomous_car" route="route_4" depart="50" />
+    <vehicle id="Au44" type="autonomous_car" route="route_2" depart="50" />
+     <vehicle id="NS45" type="normal_car" route="route_1" depart="53" />
+     <vehicle id="EO46" type="normal_car" route="route_3" depart="54" />
+     <vehicle id="NS47" type="normal_car" route="route_4" depart="58" />
+     <vehicle id="NS48" type="normal_car" route="route_1" depart="58" />
+     <vehicle id="EO49" type="normal_car" route="route_3" depart="61" />
+    <vehicle id="Au50" type="autonomous_car" route="route_1" depart="62" />
+     <vehicle id="EO51" type="normal_car" route="route_3" depart="64" />
+     <vehicle id="NS52" type="normal_car" route="route_1" depart="66" />
+     <vehicle id="NS53" type="normal_car" route="route_1" depart="70" />
+     <vehicle id="SN54" type="normal_car" route="route_2" depart="71" />
+     <vehicle id="EO55" type="normal_car" route="route_3" depart="75" />
+    <vehicle id="Au56" type="autonomous_car" route="route_1" depart="78" />
+     <vehicle id="SN57" type="normal_car" route="route_2" depart="79" />
+    <vehicle id="Au58" type="autonomous_car" route="route_2" depart="79" />
+    <vehicle id="Au59" type="autonomous_car" route="route_2" depart="82" />
+     <vehicle id="SN60" type="normal_car" route="route_2" depart="84" />
+    <vehicle id="Au61" type="autonomous_car" route="route_4" depart="84" />
+     <vehicle id="EO62" type="normal_car" route="route_3" depart="85" />
+     <vehicle id="NS63" type="normal_car" route="route_1" depart="85" />
+    <vehicle id="Au64" type="autonomous_car" route="route_2" depart="85" />
+    <vehicle id="Au65" type="autonomous_car" route="route_1" depart="85" />
+     <vehicle id="NS66" type="normal_car" route="route_4" depart="86" />
+     <vehicle id="SN67" type="normal_car" route="route_2" depart="86" />
+    <vehicle id="Au68" type="autonomous_car" route="route_4" depart="87" />
+     <vehicle id="NS69" type="normal_car" route="route_1" depart="88" />
+    <vehicle id="Au70" type="autonomous_car" route="route_4" depart="90" />
+    <vehicle id="Au71" type="autonomous_car" route="route_2" depart="90" />
+     <vehicle id="EO72" type="normal_car" route="route_3" depart="91" />
+    <vehicle id="Au73" type="autonomous_car" route="route_2" depart="91" />
+     <vehicle id="SN74" type="normal_car" route="route_2" depart="92" />
+     <vehicle id="NS75" type="normal_car" route="route_1" depart="92" />
+    <vehicle id="Au76" type="autonomous_car" route="route_2" depart="92" />
+    <vehicle id="Au77" type="autonomous_car" route="route_3" depart="92" />
+    <vehicle id="Au78" type="autonomous_car" route="route_1" depart="94" />
+    <vehicle id="Au79" type="autonomous_car" route="route_2" depart="96" />
+     <vehicle id="NS80" type="normal_car" route="route_4" depart="97" />
+    <vehicle id="Au81" type="autonomous_car" route="route_3" depart="102" />
+    <vehicle id="Au82" type="autonomous_car" route="route_1" depart="102" />
+     <vehicle id="EO83" type="normal_car" route="route_3" depart="103" />
+    <vehicle id="Au84" type="autonomous_car" route="route_1" depart="103" />
+    <vehicle id="Au85" type="autonomous_car" route="route_4" depart="104" />
+    <vehicle id="Au86" type="autonomous_car" route="route_1" depart="107" />
+    <vehicle id="Au87" type="autonomous_car" route="route_2" depart="108" />
+    <vehicle id="Au88" type="autonomous_car" route="route_1" depart="113" />
+     <vehicle id="EO89" type="normal_car" route="route_3" depart="114" />
+    <vehicle id="Au90" type="autonomous_car" route="route_2" depart="116" />
+     <vehicle id="NS91" type="normal_car" route="route_4" depart="117" />
+    <vehicle id="Au92" type="autonomous_car" route="route_1" depart="117" />
+    <vehicle id="Au93" type="autonomous_car" route="route_1" depart="118" />
+     <vehicle id="NS94" type="normal_car" route="route_1" depart="120" />
+     <vehicle id="NS95" type="normal_car" route="route_1" depart="121" />
+     <vehicle id="NS96" type="normal_car" route="route_1" depart="123" />
+    <vehicle id="Au97" type="autonomous_car" route="route_3" depart="127" />
+    <vehicle id="Au98" type="autonomous_car" route="route_1" depart="128" />
+     <vehicle id="EO99" type="normal_car" route="route_3" depart="129" />
+    <vehicle id="Au100" type="autonomous_car" route="route_4" depart="130" />
+    <vehicle id="Au101" type="autonomous_car" route="route_2" depart="130" />
+     <vehicle id="NS102" type="normal_car" route="route_4" depart="131" />
+    <vehicle id="Au103" type="autonomous_car" route="route_1" depart="131" />
+    <vehicle id="Au104" type="autonomous_car" route="route_2" depart="132" />
+     <vehicle id="NS105" type="normal_car" route="route_1" depart="133" />
+    <vehicle id="Au106" type="autonomous_car" route="route_4" depart="133" />
+    <vehicle id="Au107" type="autonomous_car" route="route_1" depart="136" />
+     <vehicle id="EO108" type="normal_car" route="route_3" depart="138" />
+     <vehicle id="EO109" type="normal_car" route="route_3" depart="139" />
+     <vehicle id="EO110" type="normal_car" route="route_3" depart="141" />
+     <vehicle id="NS111" type="normal_car" route="route_4" depart="142" />
+    <vehicle id="Au112" type="autonomous_car" route="route_3" depart="143" />
+     <vehicle id="NS113" type="normal_car" route="route_4" depart="144" />
+     <vehicle id="EO114" type="normal_car" route="route_3" depart="144" />
+     <vehicle id="NS115" type="normal_car" route="route_1" depart="144" />
+    <vehicle id="Au116" type="autonomous_car" route="route_4" depart="147" />
+    <vehicle id="Au117" type="autonomous_car" route="route_2" depart="148" />
+    <vehicle id="Au118" type="autonomous_car" route="route_3" depart="149" />
+    <vehicle id="Au119" type="autonomous_car" route="route_1" depart="152" />
+     <vehicle id="NS120" type="normal_car" route="route_4" depart="153" />
+     <vehicle id="EO121" type="normal_car" route="route_3" depart="154" />
+     <vehicle id="SN122" type="normal_car" route="route_2" depart="155" />
+     <vehicle id="NS123" type="normal_car" route="route_4" depart="159" />
+    <vehicle id="Au124" type="autonomous_car" route="route_2" depart="164" />
+    <vehicle id="Au125" type="autonomous_car" route="route_1" depart="164" />
+     <vehicle id="EO126" type="normal_car" route="route_3" depart="167" />
+    <vehicle id="Au127" type="autonomous_car" route="route_4" depart="168" />
+     <vehicle id="EO128" type="normal_car" route="route_3" depart="169" />
+     <vehicle id="SN129" type="normal_car" route="route_2" depart="171" />
+     <vehicle id="EO130" type="normal_car" route="route_3" depart="171" />
+     <vehicle id="EO131" type="normal_car" route="route_3" depart="173" />
+    <vehicle id="Au132" type="autonomous_car" route="route_1" depart="173" />
+    <vehicle id="Au133" type="autonomous_car" route="route_2" depart="174" />
+    <vehicle id="Au134" type="autonomous_car" route="route_1" depart="174" />
+    <vehicle id="Au135" type="autonomous_car" route="route_4" depart="176" />
+    <vehicle id="Au136" type="autonomous_car" route="route_4" depart="177" />
+     <vehicle id="EO137" type="normal_car" route="route_3" depart="181" />
+    <vehicle id="Au138" type="autonomous_car" route="route_4" depart="181" />
+     <vehicle id="SN139" type="normal_car" route="route_2" depart="183" />
+    <vehicle id="Au140" type="autonomous_car" route="route_1" depart="183" />
+    <vehicle id="Au141" type="autonomous_car" route="route_3" depart="184" />
+    <vehicle id="Au142" type="autonomous_car" route="route_1" depart="184" />
+    <vehicle id="Au143" type="autonomous_car" route="route_1" depart="185" />
+     <vehicle id="NS144" type="normal_car" route="route_1" depart="186" />
+    <vehicle id="Au145" type="autonomous_car" route="route_1" depart="187" />
+    <vehicle id="Au146" type="autonomous_car" route="route_1" depart="188" />
+     <vehicle id="NS147" type="normal_car" route="route_1" depart="189" />
+     <vehicle id="EO148" type="normal_car" route="route_3" depart="190" />
+    <vehicle id="Au149" type="autonomous_car" route="route_2" depart="190" />
+     <vehicle id="NS150" type="normal_car" route="route_4" depart="191" />
+    <vehicle id="Au151" type="autonomous_car" route="route_1" depart="191" />
+     <vehicle id="SN152" type="normal_car" route="route_2" depart="192" />
+    <vehicle id="Au153" type="autonomous_car" route="route_4" depart="192" />
+     <vehicle id="NS154" type="normal_car" route="route_4" depart="193" />
+    <vehicle id="Au155" type="autonomous_car" route="route_1" depart="194" />
+     <vehicle id="NS156" type="normal_car" route="route_4" depart="195" />
+     <vehicle id="NS157" type="normal_car" route="route_4" depart="196" />
+     <vehicle id="NS158" type="normal_car" route="route_4" depart="199" />
+    <vehicle id="Au159" type="autonomous_car" route="route_3" depart="200" />
+     <vehicle id="EO160" type="normal_car" route="route_3" depart="201" />
+     <vehicle id="NS161" type="normal_car" route="route_4" depart="202" />
+    <vehicle id="Au162" type="autonomous_car" route="route_2" depart="204" />
+     <vehicle id="EO163" type="normal_car" route="route_3" depart="206" />
+    <vehicle id="Au164" type="autonomous_car" route="route_1" depart="206" />
+     <vehicle id="EO165" type="normal_car" route="route_3" depart="208" />
+    <vehicle id="Au166" type="autonomous_car" route="route_2" depart="210" />
+    <vehicle id="Au167" type="autonomous_car" route="route_3" depart="210" />
+     <vehicle id="SN168" type="normal_car" route="route_2" depart="211" />
+     <vehicle id="EO169" type="normal_car" route="route_3" depart="211" />
+    <vehicle id="Au170" type="autonomous_car" route="route_2" depart="211" />
+    <vehicle id="Au171" type="autonomous_car" route="route_3" depart="211" />
+    <vehicle id="Au172" type="autonomous_car" route="route_4" depart="213" />
+     <vehicle id="NS173" type="normal_car" route="route_1" depart="214" />
+     <vehicle id="SN174" type="normal_car" route="route_2" depart="215" />
+     <vehicle id="NS175" type="normal_car" route="route_1" depart="217" />
+     <vehicle id="NS176" type="normal_car" route="route_4" depart="221" />
+     <vehicle id="EO177" type="normal_car" route="route_3" depart="222" />
+    <vehicle id="Au178" type="autonomous_car" route="route_1" depart="223" />
+     <vehicle id="NS179" type="normal_car" route="route_4" depart="226" />
+     <vehicle id="EO180" type="normal_car" route="route_3" depart="227" />
+    <vehicle id="Au181" type="autonomous_car" route="route_2" depart="227" />
+     <vehicle id="SN182" type="normal_car" route="route_2" depart="230" />
+     <vehicle id="NS183" type="normal_car" route="route_4" depart="231" />
+    <vehicle id="Au184" type="autonomous_car" route="route_2" depart="231" />
+    <vehicle id="Au185" type="autonomous_car" route="route_2" depart="232" />
+     <vehicle id="NS186" type="normal_car" route="route_4" depart="233" />
+     <vehicle id="SN187" type="normal_car" route="route_2" depart="233" />
+    <vehicle id="Au188" type="autonomous_car" route="route_2" depart="233" />
+    <vehicle id="Au189" type="autonomous_car" route="route_1" depart="234" />
+     <vehicle id="NS190" type="normal_car" route="route_4" depart="235" />
+     <vehicle id="NS191" type="normal_car" route="route_1" depart="235" />
+    <vehicle id="Au192" type="autonomous_car" route="route_3" depart="236" />
+    <vehicle id="Au193" type="autonomous_car" route="route_3" depart="239" />
+    <vehicle id="Au194" type="autonomous_car" route="route_3" depart="240" />
+    <vehicle id="Au195" type="autonomous_car" route="route_4" depart="241" />
+     <vehicle id="NS196" type="normal_car" route="route_1" depart="242" />
+    <vehicle id="Au197" type="autonomous_car" route="route_3" depart="243" />
+     <vehicle id="SN198" type="normal_car" route="route_2" depart="244" />
+     <vehicle id="SN199" type="normal_car" route="route_2" depart="247" />
+    <vehicle id="Au200" type="autonomous_car" route="route_4" depart="248" />
+    <vehicle id="Au201" type="autonomous_car" route="route_4" depart="249" />
+     <vehicle id="SN202" type="normal_car" route="route_2" depart="251" />
+    <vehicle id="Au203" type="autonomous_car" route="route_1" depart="251" />
+     <vehicle id="NS204" type="normal_car" route="route_4" depart="252" />
+    <vehicle id="Au205" type="autonomous_car" route="route_2" depart="254" />
+    <vehicle id="Au206" type="autonomous_car" route="route_3" depart="254" />
+     <vehicle id="NS207" type="normal_car" route="route_1" depart="255" />
+     <vehicle id="NS208" type="normal_car" route="route_1" depart="262" />
+     <vehicle id="EO209" type="normal_car" route="route_3" depart="263" />
+    <vehicle id="Au210" type="autonomous_car" route="route_2" depart="265" />
+    <vehicle id="Au211" type="autonomous_car" route="route_1" depart="265" />
+    <vehicle id="Au212" type="autonomous_car" route="route_4" depart="268" />
+     <vehicle id="NS213" type="normal_car" route="route_1" depart="269" />
+    <vehicle id="Au214" type="autonomous_car" route="route_2" depart="269" />
+     <vehicle id="NS215" type="normal_car" route="route_1" depart="270" />
+    <vehicle id="Au216" type="autonomous_car" route="route_2" depart="270" />
+     <vehicle id="NS217" type="normal_car" route="route_1" depart="272" />
+    <vehicle id="Au218" type="autonomous_car" route="route_2" depart="272" />
+     <vehicle id="EO219" type="normal_car" route="route_3" depart="273" />
+    <vehicle id="Au220" type="autonomous_car" route="route_2" depart="273" />
+    <vehicle id="Au221" type="autonomous_car" route="route_1" depart="274" />
+     <vehicle id="EO222" type="normal_car" route="route_3" depart="276" />
+    <vehicle id="Au223" type="autonomous_car" route="route_3" depart="276" />
+    <vehicle id="Au224" type="autonomous_car" route="route_1" depart="276" />
+    <vehicle id="Au225" type="autonomous_car" route="route_2" depart="277" />
+     <vehicle id="SN226" type="normal_car" route="route_2" depart="279" />
+    <vehicle id="Au227" type="autonomous_car" route="route_2" depart="279" />
+     <vehicle id="EO228" type="normal_car" route="route_3" depart="280" />
+     <vehicle id="NS229" type="normal_car" route="route_1" depart="281" />
+    <vehicle id="Au230" type="autonomous_car" route="route_3" depart="284" />
+    <vehicle id="Au231" type="autonomous_car" route="route_2" depart="287" />
+    <vehicle id="Au232" type="autonomous_car" route="route_1" depart="287" />
+     <vehicle id="NS233" type="normal_car" route="route_4" depart="290" />
+     <vehicle id="EO234" type="normal_car" route="route_3" depart="290" />
+    <vehicle id="Au235" type="autonomous_car" route="route_4" depart="292" />
+    <vehicle id="Au236" type="autonomous_car" route="route_4" depart="293" />
+    <vehicle id="Au237" type="autonomous_car" route="route_4" depart="296" />
+    <vehicle id="Au238" type="autonomous_car" route="route_2" depart="297" />
+     <vehicle id="NS239" type="normal_car" route="route_4" depart="299" />
 </routes>
