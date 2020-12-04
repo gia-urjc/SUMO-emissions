@@ -104,8 +104,18 @@
         <lane id="e4_1" index="1" speed="13.89" length="778.04" shape="26.08,-357.76 -751.96,-357.26"/>
     </edge>
 
-    <tlLogic id="n0" type="static" programID="0" offset="0">
+    <tlLogic id="n0" programID="0" offset="0" type="actuated">
+        <param key="max-gap" value="0"/>
+        <param key="detector-gap" value="2.0"/>
+        <param key="passing-time" value="2.0"/>
+        <param key="vTypes" value="autonomous_car"/>
+        <param key="show-detectors" value="false"/>
+        <param key="file" value="NULL"/>
+        <param key="freq" value="300"/>
+
+
         <phase duration="90" state="rrrrrrrrrrrrrrrr"/>
+        <phase duration="5" state="gggggggggggggggg"/>
     </tlLogic>
 
     <junction id="n0" type="traffic_light" x="36.48" y="-359.36" incLanes="e1_0 e1_1 -e2_0 -e2_1 -e3_0 -e3_1 -e4_0 -e4_1" intLanes=":n0_0_0 :n0_1_0 :n0_1_1 :n0_3_0 :n0_4_0 :n0_5_0 :n0_5_1 :n0_7_0 :n0_8_0 :n0_9_0 :n0_9_1 :n0_11_0 :n0_12_0 :n0_13_0 :n0_13_1 :n0_15_0" shape="30.08,-348.95 42.88,-348.95 43.33,-351.18 43.88,-351.95 44.66,-352.51 45.66,-352.84 46.88,-352.95 46.90,-365.75 44.67,-366.20 43.89,-366.75 43.33,-367.53 43.00,-368.53 42.89,-369.75 30.09,-369.76 29.64,-367.54 29.08,-366.76 28.30,-366.20 27.30,-365.87 26.08,-365.76 26.08,-352.96 28.31,-352.51 29.08,-351.96 29.64,-351.18 29.97,-350.18">

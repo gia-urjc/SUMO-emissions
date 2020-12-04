@@ -41,40 +41,42 @@ def generateRoutes():
         vehNr = 0
 
         for i in range(timeStep):
-            if random.uniform(0,1)<probabilityNS:
-                print('     <vehicle id="NS%i" type="normal_car" route="route_4" depart="%i" />' % (
-                        vehNr, i), file =routes)
-                vehNr +=1
-            if random.uniform(0, 1) < probabilitySN:
-                print('     <vehicle id="SN%i" type="normal_car" route="route_2" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            if random.uniform(0, 1) < probabilityEO:
-                print('     <vehicle id="EO%i" type="normal_car" route="route_3" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            if random.uniform(0, 1) < probabilityOE:
-                print('     <vehicle id="NS%i" type="normal_car" route="route_1" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            possible_routes = ["route_1","route_2","route_3","route_4"]
+            if i<20:
+                if random.uniform(0, 1) < pAutonomousNS:
+                    print('    <vehicle id="Au%i" type="autonomous_car" route="route_4" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                if random.uniform(0, 1) < pAutonomousSN:
+                    print('    <vehicle id="Au%i" type="autonomous_car" route="route_2" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                if random.uniform(0, 1) < pAutonomousEO:
+                    print('    <vehicle id="Au%i" type="autonomous_car" route="route_3" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                if random.uniform(0, 1) < pAutonomousOE:
+                    print('    <vehicle id="Au%i" type="autonomous_car" route="route_1" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+            else:
+                if random.uniform(0,1)<probabilityNS:
+                    print('     <vehicle id="NS%i" type="normal_car" route="route_4" depart="%i" />' % (
+                            vehNr, i), file =routes)
+                    vehNr +=1
+                if random.uniform(0, 1) < probabilitySN:
+                    print('     <vehicle id="SN%i" type="normal_car" route="route_2" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                if random.uniform(0, 1) < probabilityEO:
+                    print('     <vehicle id="EO%i" type="normal_car" route="route_3" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                if random.uniform(0, 1) < probabilityOE:
+                    print('     <vehicle id="NS%i" type="normal_car" route="route_1" depart="%i" />' % (
+                        vehNr, i), file=routes)
+                    vehNr += 1
+                possible_routes = ["route_1","route_2","route_3","route_4"]
 
-            if random.uniform(0, 1) < pAutonomousNS:
-                print('    <vehicle id="Au%i" type="autonomous_car" route="route_4" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            if random.uniform(0, 1) < pAutonomousSN:
-                print('    <vehicle id="Au%i" type="autonomous_car" route="route_2" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            if random.uniform(0, 1) < pAutonomousEO:
-                print('    <vehicle id="Au%i" type="autonomous_car" route="route_3" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
-            if random.uniform(0, 1) < pAutonomousOE:
-                print('    <vehicle id="Au%i" type="autonomous_car" route="route_1" depart="%i" />' % (
-                    vehNr, i), file=routes)
-                vehNr += 1
         print("</routes>", file=routes)
 
 
