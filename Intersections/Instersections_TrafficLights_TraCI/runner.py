@@ -92,6 +92,8 @@ def run():
 
     traci.close()
     sys.stdout.flush()
+
+
 def get_options():
     opt_parser = optparse.OptionParser()
     opt_parser.add_option("--nogui", action ="store_true", default=False, help="run the commandline version of sumo")
