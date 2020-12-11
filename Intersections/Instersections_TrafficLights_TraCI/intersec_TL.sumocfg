@@ -8,6 +8,7 @@
     <input>
         <net-file value="intersec_TL.net.xml"/>
         <route-files value="intersec_TL.rou.xml"/>
+        <additional-files value="intersec_TL.add.xml"/>
     </input>
 
 </configuration>

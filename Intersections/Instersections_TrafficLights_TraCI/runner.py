@@ -31,7 +31,7 @@ def generateRoutes():
 
         print(""" <routes>
         <vType id="autonomous_car" vClass="emergency" color="green">
-        <param key="has.bluelight.device" value="true"/>
+            <param key="has.bluelight.device" value="true"/>
         </vType>
         <vType id="normal_car" color="255,0,170"/>
         
@@ -91,7 +91,14 @@ def run():
 
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         traci.simulationStep() # Advance one time step
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_0")
 
+        for veh in det_vehicles:
+            print("Vehicle:", veh)
+            if(traci.vehicle.getTypeID(vehID=veh)=="normal_car"):
+                traci.vehicle.setType(vehID=veh,typeID="autonomous_car")
+                traci.vehicle.setVehicleClass(vehID=veh, clazz="emergency")
+                traci.vehicle.setParameter(objID=veh, param="has.bluelight.device", value="true")
     traci.close()
     sys.stdout.flush()
 
