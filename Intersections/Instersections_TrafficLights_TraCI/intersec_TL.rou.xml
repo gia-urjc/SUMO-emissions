@@ -2,7 +2,9 @@
         <vType id="autonomous_car" vClass="emergency" color="green">
             <param key="has.bluelight.device" value="true"/>
         </vType>
-        <vType id="normal_car" color="255,0,170"/>
+        <vType id="normal_car" color="255,0,170">
+            <param key="has.bluelight.device" value="false"/>
+        </vType>
         
         <route edges="-e4 e2" color="yellow" id="route_1"/>
         <route edges="-e3 -e1" color="yellow" id="route_2"/>

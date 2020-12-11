@@ -27,7 +27,7 @@ def generateRoutes():
     pAutonomousEO = 1. / 15
     pAutonomousOE = 2. / 15
 
-    with open("intersec_TL.rou.xml", "w") as routes:
+    with open("vel0.rou.xml", "w") as routes:
 
         print(""" <routes>
         <vType id="autonomous_car" vClass="evehicle" color="green"/>
@@ -86,9 +86,83 @@ def generateRoutes():
 
 
 def run():
-
+    all_vehicles = [[]]
+    all_vehicles_step = []
+    step = 0
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
+        #all_vehicles.extend(["-",step])
         traci.simulationStep() # Advance one time step
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_0")
+
+        all_vehicles.append(list(det_vehicles))
+        #det_time = traci.inductionloop.getTimeSinceDetection("det_1_0")
+        #print(det_time)
+        #det_vehicles_with_time = [list(det_vehicles), list(det_time)]
+        #print(det_vehicles_with_time)
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_1")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_2_0")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_2_1")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_3_0")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_3_1")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_4_0")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_4_1")
+        all_vehicles[step].append(list(det_vehicles))
+        for veh in det_vehicles:
+            #print("Vehicle:", veh)
+            traci.vehicle.setAccel(vehID=veh, accel=0)
+            traci.vehicle.setSpeed(vehID=veh, speed=0)
+        #print(range(len(all_vehicles_step)))
+        for i in range(len(all_vehicles)):
+            if i == step-10:
+                print("SI", all_vehicles[i], step)
+                if all_vehicles[i]:
+                    for j in range(len(all_vehicles)):
+                        print("NO")
+                        veh = all_vehicles[i][j]
+                        traci.vehicle.setAccel(vehID=veh, accel=2.6)
+                        traci.vehicle.setSpeed(vehID=veh, speed=60)
+
+
+
+
+        step +=1
+
+
 
     traci.close()
     sys.stdout.flush()
@@ -110,6 +184,6 @@ if __name__ == "__main__":
     print("NO")
     generateRoutes()
     print("SI")
-    traci.start([sumoBinary, "-c", "intersec_TL.sumocfg", "--tripinfo-output", "tripinfo.xml"])
+    traci.start([sumoBinary, "-c", "vel0.sumocfg", "--tripinfo-output", "tripinfo.xml"])
 
     run()

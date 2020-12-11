@@ -33,7 +33,9 @@ def generateRoutes():
         <vType id="autonomous_car" vClass="emergency" color="green">
             <param key="has.bluelight.device" value="true"/>
         </vType>
-        <vType id="normal_car" color="255,0,170"/>
+        <vType id="normal_car" color="255,0,170">
+            <param key="has.bluelight.device" value="false"/>
+        </vType>
         
         <route edges="-e4 e2" color="yellow" id="route_1"/>
         <route edges="-e3 -e1" color="yellow" id="route_2"/>
@@ -98,7 +100,8 @@ def run():
             if(traci.vehicle.getTypeID(vehID=veh)=="normal_car"):
                 traci.vehicle.setType(vehID=veh,typeID="autonomous_car")
                 traci.vehicle.setVehicleClass(vehID=veh, clazz="emergency")
-                traci.vehicle.setParameter(objID=veh, param="has.bluelight.device", value="true")
+                traci.vehicle.setParameter(objID=veh, param="device.bluelight.explicit", value="true")
+                #traci.vehicle.setParameter(objID=veh, param="has.bluelight.device", value="true")
     traci.close()
     sys.stdout.flush()
 

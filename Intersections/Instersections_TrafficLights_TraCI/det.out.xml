@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 12/11/20 18:11:27 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 12/11/20 18:19:35 by Eclipse SUMO GUI Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -14,12 +14,12 @@
     </output>
 
     <traci_server>
-        <remote-port value="63172"/>
+        <remote-port value="63252"/>
     </traci_server>
 
 </configuration>
 -->
 
 <detector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/det_e1_file.xsd">
-    <interval begin="0.00" end="61.00" id="det_1_0" nVehContrib="4" flow="236.07" occupancy="3.04" speed="13.17" harmonicMeanSpeed="13.13" length="6.13" nVehEntered="4"/>
+    <interval begin="0.00" end="63.00" id="det_1_0" nVehContrib="3" flow="171.43" occupancy="2.39" speed="13.01" harmonicMeanSpeed="13.01" length="6.50" nVehEntered="4"/>
 </detector>
