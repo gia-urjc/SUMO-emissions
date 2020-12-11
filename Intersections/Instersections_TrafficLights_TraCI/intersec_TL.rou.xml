@@ -1,5 +1,7 @@
  <routes>
-        <vType id="autonomous_car" vClass="evehicle" color="green"/>
+        <vType id="autonomous_car" vClass="emergency" color="green">
+        <param key="has.bluelight.device" value="true"/>
+        </vType>
         <vType id="normal_car" color="255,0,170"/>
         
         <route edges="-e4 e2" color="yellow" id="route_1"/>
