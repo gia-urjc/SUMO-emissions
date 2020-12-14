@@ -93,8 +93,8 @@ def run():
         #all_vehicles.extend(["-",step])
         traci.simulationStep() # Advance one time step
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_0")
-
-        all_vehicles.append(list(det_vehicles))
+        print("L",list(det_vehicles))
+        all_vehicles.append([list(det_vehicles)])
         #det_time = traci.inductionloop.getTimeSinceDetection("det_1_0")
         #print(det_time)
         #det_vehicles_with_time = [list(det_vehicles), list(det_time)]
@@ -148,12 +148,14 @@ def run():
             traci.vehicle.setSpeed(vehID=veh, speed=0)
         #print(range(len(all_vehicles_step)))
         for i in range(len(all_vehicles)):
-            if i == step-10:
-                print("SI", all_vehicles[i], step)
-                if all_vehicles[i]:
-                    for j in range(len(all_vehicles)):
-                        print("NO")
-                        veh = all_vehicles[i][j]
+            if i == step-20:
+                print("SI", all_vehicles[i], step, range(len(all_vehicles[i])))
+                print(all_vehicles)
+                for j in range(len(all_vehicles[i])):
+                    if all_vehicles[i][j]:
+
+                        veh = all_vehicles[i][j][0]
+                        print(veh)
                         traci.vehicle.setAccel(vehID=veh, accel=2.6)
                         traci.vehicle.setSpeed(vehID=veh, speed=60)
 
