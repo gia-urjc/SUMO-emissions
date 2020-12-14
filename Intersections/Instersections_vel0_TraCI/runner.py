@@ -89,11 +89,12 @@ def run():
     all_vehicles = [[]]
     all_vehicles_step = []
     step = 0
+    total_CO2emissions = 0
+    measured_vehicles_C02 = set()
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         #all_vehicles.extend(["-",step])
         traci.simulationStep() # Advance one time step
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_0")
-        print("L",list(det_vehicles))
         all_vehicles.append([list(det_vehicles)])
         #det_time = traci.inductionloop.getTimeSinceDetection("det_1_0")
         #print(det_time)
@@ -101,61 +102,111 @@ def run():
         #print(det_vehicles_with_time)
         for veh in det_vehicles:
             #print("Vehicle:", veh)
-
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            if(veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ",traci.vehicle.getSpeed(veh),". CO2Emission: ", vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_1")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_2_0")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_2_1")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_3_0")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_3_1")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_4_0")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_4_1")
         all_vehicles[step].append(list(det_vehicles))
         for veh in det_vehicles:
-            #print("Vehicle:", veh)
-            traci.vehicle.setAccel(vehID=veh, accel=0)
-            traci.vehicle.setSpeed(vehID=veh, speed=0)
+            # print("Vehicle:", veh)
+            if (veh not in measured_vehicles_C02):
+                traci.vehicle.setAccel(vehID=veh, accel=0)
+                traci.vehicle.setSpeed(vehID=veh, speed=0)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                measured_vehicles_C02.add(veh)
+                print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ", traci.vehicle.getSpeed(veh), ". CO2Emission: ",
+                      vehCO2Emission)
+                total_CO2emissions += vehCO2Emission
         #print(range(len(all_vehicles_step)))
         for i in range(len(all_vehicles)):
             if i == step-20:
-                print("SI", all_vehicles[i], step, range(len(all_vehicles[i])))
-                print(all_vehicles)
+                #print("SI", all_vehicles[i], step, range(len(all_vehicles[i])))
+                #print(all_vehicles)
                 for j in range(len(all_vehicles[i])):
                     if all_vehicles[i][j]:
-
                         veh = all_vehicles[i][j][0]
-                        print(veh)
+                        #print("1", all_vehicles)
+                        all_vehicles[i][j] = []
+                        #print("CHANGE", veh, all_vehicles[i][j])
+                        #print("2", all_vehicles)
+                        #print("NOW", all_vehicles[i][j])
+                        #print(veh)
                         traci.vehicle.setAccel(vehID=veh, accel=2.6)
                         traci.vehicle.setSpeed(vehID=veh, speed=60)
 
@@ -165,7 +216,7 @@ def run():
         step +=1
 
 
-
+    print("Total CO2 emission when stopping: ", total_CO2emissions)
     traci.close()
     sys.stdout.flush()
 
