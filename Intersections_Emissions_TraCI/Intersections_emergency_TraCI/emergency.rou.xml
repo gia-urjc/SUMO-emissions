@@ -1,0 +1,98 @@
+ <routes>
+        <vType id="emergency_car" vClass="emergency" guiShape="emergency"/>
+        <vType id="normal_car" vClass="passenger" color="0,40,255"/>
+        
+        <route id="t_1" edges="e1a e1b e3"/>
+        <route id="t_2" edges="e1a e1b e2"/>
+        <route id="t_3" edges="e4 e3"/>
+        <route id="t_4" edges="e4 e2"/>
+     <vehicle id="NSn0" type="normal_car" route="t_1" depart="1" />
+     <vehicle id="WSn1" type="normal_car" route="t_3" depart="1" />
+     <vehicle id="NEn2" type="normal_car" route="t_2" depart="2" />
+     <vehicle id="NEn3" type="normal_car" route="t_2" depart="4" />
+     <vehicle id="WEn4" type="normal_car" route="t_4" depart="8" />
+     <vehicle id="NEn5" type="normal_car" route="t_2" depart="11" />
+     <vehicle id="WSe6" type="emergency_car" route="t_3" depart="15" />
+     <vehicle id="WSn7" type="normal_car" route="t_3" depart="15" />
+     <vehicle id="WEn8" type="normal_car" route="t_4" depart="18" />
+     <vehicle id="NEn9" type="normal_car" route="t_2" depart="22" />
+     <vehicle id="WSn10" type="normal_car" route="t_3" depart="22" />
+     <vehicle id="NEn11" type="normal_car" route="t_2" depart="25" />
+     <vehicle id="WSn12" type="normal_car" route="t_3" depart="29" />
+     <vehicle id="NSn13" type="normal_car" route="t_1" depart="32" />
+     <vehicle id="NSn14" type="normal_car" route="t_1" depart="35" />
+     <vehicle id="NSn15" type="normal_car" route="t_1" depart="40" />
+     <vehicle id="WSn16" type="normal_car" route="t_3" depart="43" />
+     <vehicle id="WSn17" type="normal_car" route="t_3" depart="46" />
+     <vehicle id="NEn18" type="normal_car" route="t_2" depart="48" />
+     <vehicle id="NSe19" type="emergency_car" route="t_1" depart="58" />
+     <vehicle id="NEn20" type="normal_car" route="t_2" depart="58" />
+     <vehicle id="WEn21" type="normal_car" route="t_4" depart="62" />
+     <vehicle id="NEe22" type="emergency_car" route="t_2" depart="64" />
+     <vehicle id="NEn23" type="normal_car" route="t_2" depart="66" />
+     <vehicle id="NEn24" type="normal_car" route="t_2" depart="70" />
+     <vehicle id="NSn25" type="normal_car" route="t_1" depart="71" />
+     <vehicle id="WSn26" type="normal_car" route="t_3" depart="79" />
+     <vehicle id="WSn27" type="normal_car" route="t_3" depart="82" />
+     <vehicle id="NSn28" type="normal_car" route="t_1" depart="84" />
+     <vehicle id="WSn29" type="normal_car" route="t_3" depart="85" />
+     <vehicle id="NSn30" type="normal_car" route="t_1" depart="86" />
+     <vehicle id="NSn31" type="normal_car" route="t_1" depart="92" />
+     <vehicle id="WEn32" type="normal_car" route="t_4" depart="107" />
+     <vehicle id="WSn33" type="normal_car" route="t_3" depart="108" />
+     <vehicle id="NEe34" type="emergency_car" route="t_2" depart="114" />
+     <vehicle id="NEn35" type="normal_car" route="t_2" depart="123" />
+     <vehicle id="WSe36" type="emergency_car" route="t_3" depart="130" />
+     <vehicle id="WSn37" type="normal_car" route="t_3" depart="130" />
+     <vehicle id="WEn38" type="normal_car" route="t_4" depart="131" />
+     <vehicle id="WSn39" type="normal_car" route="t_3" depart="132" />
+     <vehicle id="NEn40" type="normal_car" route="t_2" depart="133" />
+     <vehicle id="NSe41" type="emergency_car" route="t_1" depart="142" />
+     <vehicle id="NEe42" type="emergency_car" route="t_2" depart="144" />
+     <vehicle id="NEn43" type="normal_car" route="t_2" depart="144" />
+     <vehicle id="WEn44" type="normal_car" route="t_4" depart="152" />
+     <vehicle id="NEe45" type="emergency_car" route="t_2" depart="154" />
+     <vehicle id="NSn46" type="normal_car" route="t_1" depart="155" />
+     <vehicle id="NSe47" type="emergency_car" route="t_1" depart="159" />
+     <vehicle id="NSn48" type="normal_car" route="t_1" depart="171" />
+     <vehicle id="WEn49" type="normal_car" route="t_4" depart="173" />
+     <vehicle id="WEn50" type="normal_car" route="t_4" depart="174" />
+     <vehicle id="WSe51" type="emergency_car" route="t_3" depart="181" />
+     <vehicle id="NSn52" type="normal_car" route="t_1" depart="183" />
+     <vehicle id="WEn53" type="normal_car" route="t_4" depart="188" />
+     <vehicle id="NEn54" type="normal_car" route="t_2" depart="189" />
+     <vehicle id="WEn55" type="normal_car" route="t_4" depart="191" />
+     <vehicle id="NSn56" type="normal_car" route="t_1" depart="192" />
+     <vehicle id="WSe57" type="emergency_car" route="t_3" depart="192" />
+     <vehicle id="WEn58" type="normal_car" route="t_4" depart="194" />
+     <vehicle id="WEe59" type="emergency_car" route="t_4" depart="200" />
+     <vehicle id="NEe60" type="emergency_car" route="t_2" depart="201" />
+     <vehicle id="NEe61" type="emergency_car" route="t_2" depart="206" />
+     <vehicle id="WEn62" type="normal_car" route="t_4" depart="206" />
+     <vehicle id="NEe63" type="emergency_car" route="t_2" depart="208" />
+     <vehicle id="WSn64" type="normal_car" route="t_3" depart="210" />
+     <vehicle id="NEe65" type="emergency_car" route="t_2" depart="211" />
+     <vehicle id="WSn66" type="normal_car" route="t_3" depart="211" />
+     <vehicle id="WEe67" type="emergency_car" route="t_4" depart="211" />
+     <vehicle id="WSe68" type="emergency_car" route="t_3" depart="213" />
+     <vehicle id="NSn69" type="normal_car" route="t_1" depart="215" />
+     <vehicle id="NEn70" type="normal_car" route="t_2" depart="217" />
+     <vehicle id="NSe71" type="emergency_car" route="t_1" depart="221" />
+     <vehicle id="WSn72" type="normal_car" route="t_3" depart="227" />
+     <vehicle id="WSn73" type="normal_car" route="t_3" depart="232" />
+     <vehicle id="NEn74" type="normal_car" route="t_2" depart="235" />
+     <vehicle id="WEe75" type="emergency_car" route="t_4" depart="240" />
+     <vehicle id="WEe76" type="emergency_car" route="t_4" depart="243" />
+     <vehicle id="NSn77" type="normal_car" route="t_1" depart="247" />
+     <vehicle id="NEn78" type="normal_car" route="t_2" depart="255" />
+     <vehicle id="NEn79" type="normal_car" route="t_2" depart="269" />
+     <vehicle id="WSn80" type="normal_car" route="t_3" depart="269" />
+     <vehicle id="WSn81" type="normal_car" route="t_3" depart="272" />
+     <vehicle id="WSn82" type="normal_car" route="t_3" depart="273" />
+     <vehicle id="WEn83" type="normal_car" route="t_4" depart="274" />
+     <vehicle id="NEe84" type="emergency_car" route="t_2" depart="276" />
+     <vehicle id="NEn85" type="normal_car" route="t_2" depart="281" />
+     <vehicle id="WEn86" type="normal_car" route="t_4" depart="287" />
+     <vehicle id="WSe87" type="emergency_car" route="t_3" depart="296" />
+     <vehicle id="WSn88" type="normal_car" route="t_3" depart="297" />
+</routes>
