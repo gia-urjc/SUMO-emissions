@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 12/14/20 21:16:55 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 12/14/20 21:20:42 by Eclipse SUMO GUI Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -14,14 +14,15 @@
     </output>
 
     <traci_server>
-        <remote-port value="59393"/>
+        <remote-port value="59428"/>
     </traci_server>
 
 </configuration>
 -->
 
 <tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
-    <tripinfo id="Au0" depart="2.00" departLane="-e3_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="90.00" arrivalLane="-e1_0" arrivalPos="431.25" arrivalSpeed="14.72" duration="88.00" routeLength="911.58" waitingTime="17.00" waitingCount="1" stopTime="0.00" timeLoss="25.44" rerouteNo="0" devices="tripinfo_Au0" vType="autonomous_car@Au0" speedFactor="1.06" vaporized=""/>
+</tripinfos>
+id="Au0" depart="2.00" departLane="-e3_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="90.00" arrivalLane="-e1_0" arrivalPos="431.25" arrivalSpeed="14.72" duration="88.00" routeLength="911.58" waitingTime="17.00" waitingCount="1" stopTime="0.00" timeLoss="25.44" rerouteNo="0" devices="tripinfo_Au0" vType="autonomous_car@Au0" speedFactor="1.06" vaporized=""/>
     <tripinfo id="Au3" depart="5.00" departLane="e1_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="93.00" arrivalLane="e3_0" arrivalPos="464.63" arrivalSpeed="15.04" duration="88.00" routeLength="911.58" waitingTime="18.00" waitingCount="1" stopTime="0.00" timeLoss="26.99" rerouteNo="0" devices="tripinfo_Au3" vType="autonomous_car@Au3" speedFactor="1.08" vaporized=""/>
     <tripinfo id="Au1" depart="5.00" departLane="-e3_0" departPos="5.10" departSpeed="0.00" departDelay="2.00" arrival="101.00" arrivalLane="-e1_0" arrivalPos="431.25" arrivalSpeed="13.03" duration="96.00" routeLength="911.58" waitingTime="18.00" waitingCount="1" stopTime="0.00" timeLoss="25.42" rerouteNo="0" devices="tripinfo_Au1" vType="autonomous_car@Au1" speedFactor="0.94" vaporized=""/>
     <tripinfo id="Au6" depart="14.00" departLane="e1_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="103.00" arrivalLane="e3_0" arrivalPos="464.63" arrivalSpeed="14.53" duration="89.00" routeLength="911.58" waitingTime="17.00" waitingCount="1" stopTime="0.00" timeLoss="25.59" rerouteNo="0" devices="tripinfo_Au6" vType="autonomous_car@Au6" speedFactor="1.05" vaporized=""/>
@@ -144,3 +145,4 @@
     <tripinfo id="NS109" depart="266.00" departLane="-e4_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="511.00" arrivalLane="e2_0" arrivalPos="656.44" arrivalSpeed="13.33" duration="245.00" routeLength="1450.20" waitingTime="104.00" waitingCount="7" stopTime="0.00" timeLoss="135.52" rerouteNo="0" devices="tripinfo_NS109" vType="normal_car@NS109" speedFactor="0.96" vaporized=""/>
     <tripinfo id="NS111" depart="273.00" departLane="-e4_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="526.00" arrivalLane="e2_0" arrivalPos="656.44" arrivalSpeed="12.03" duration="253.00" routeLength="1450.20" waitingTime="99.00" waitingCount="6" stopTime="0.00" timeLoss="132.16" rerouteNo="0" devices="tripinfo_NS111" vType="normal_car@NS111" speedFactor="0.87" vaporized=""/>
     <tripinfo id="NS119" depart="288.00" departLane="-e4_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="530.00" arrivalLane="e2_0" arrivalPos="656.44" arrivalSpeed="14.87" duration="242.00" routeLength="1450.20" waitingTime="107.00" waitingCount="8" stopTime="0.00" timeLoss="143.73" rerouteNo="0" devices="tripinfo_NS119" vType="normal_car@NS119" speedFactor="1.07" vaporized=""/>
+</tripinfos>

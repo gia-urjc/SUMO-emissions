@@ -105,7 +105,8 @@ def run():
             if(veh not in measured_vehicles_C02):
                 traci.vehicle.setAccel(vehID=veh, accel=0)
                 traci.vehicle.setSpeed(vehID=veh, speed=0)
-                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+                vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh) # Return CO2 emissions in each step
+                
                 measured_vehicles_C02.add(veh)
                 print("STEP: ", step, ". Vehicle: ", veh, ". Speed: ",traci.vehicle.getSpeed(veh),". CO2Emission: ", vehCO2Emission)
                 total_CO2emissions += vehCO2Emission
