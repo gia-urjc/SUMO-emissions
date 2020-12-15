@@ -1,0 +1,136 @@
+ <routes>
+        <vType id="autonomous_car" vClass="emergency" color="green">
+            <param key="has.bluelight.device" value="true"/>
+        </vType>
+        <vType id="normal_car" color="255,0,170">
+            <param key="has.bluelight.device" value="false"/>
+        </vType>
+        
+        <route edges="-e4 e2" color="yellow" id="route_1"/>
+        <route edges="-e3 -e1" color="yellow" id="route_2"/>
+        <route edges="-e2 e4" color="yellow" id="route_3"/>
+        <route edges="e1 e3" color="yellow" id="route_4"/>
+    <vehicle id="Au0" type="autonomous_car" route="route_2" depart="2" />
+    <vehicle id="Au1" type="autonomous_car" route="route_2" depart="3" />
+    <vehicle id="Au2" type="autonomous_car" route="route_1" depart="4" />
+    <vehicle id="Au3" type="autonomous_car" route="route_4" depart="5" />
+    <vehicle id="Au4" type="autonomous_car" route="route_3" depart="6" />
+    <vehicle id="Au5" type="autonomous_car" route="route_1" depart="8" />
+    <vehicle id="Au6" type="autonomous_car" route="route_4" depart="14" />
+    <vehicle id="Au7" type="autonomous_car" route="route_1" depart="17" />
+    <vehicle id="Au8" type="autonomous_car" route="route_4" depart="18" />
+     <vehicle id="NS9" type="normal_car" route="route_1" depart="22" />
+     <vehicle id="NS10" type="normal_car" route="route_4" depart="25" />
+     <vehicle id="NS11" type="normal_car" route="route_4" depart="28" />
+     <vehicle id="NS12" type="normal_car" route="route_1" depart="30" />
+     <vehicle id="NS13" type="normal_car" route="route_4" depart="31" />
+     <vehicle id="SN14" type="normal_car" route="route_2" depart="31" />
+     <vehicle id="NS15" type="normal_car" route="route_1" depart="32" />
+     <vehicle id="NS16" type="normal_car" route="route_4" depart="35" />
+     <vehicle id="EO17" type="normal_car" route="route_3" depart="37" />
+     <vehicle id="NS18" type="normal_car" route="route_1" depart="37" />
+     <vehicle id="NS19" type="normal_car" route="route_4" depart="42" />
+     <vehicle id="NS20" type="normal_car" route="route_1" depart="44" />
+     <vehicle id="SN21" type="normal_car" route="route_2" depart="45" />
+     <vehicle id="NS22" type="normal_car" route="route_1" depart="50" />
+     <vehicle id="NS23" type="normal_car" route="route_4" depart="55" />
+     <vehicle id="SN24" type="normal_car" route="route_2" depart="59" />
+     <vehicle id="EO25" type="normal_car" route="route_3" depart="59" />
+     <vehicle id="NS26" type="normal_car" route="route_4" depart="62" />
+     <vehicle id="SN27" type="normal_car" route="route_2" depart="64" />
+     <vehicle id="NS28" type="normal_car" route="route_1" depart="64" />
+     <vehicle id="EO29" type="normal_car" route="route_3" depart="65" />
+     <vehicle id="EO30" type="normal_car" route="route_3" depart="66" />
+     <vehicle id="EO31" type="normal_car" route="route_3" depart="67" />
+     <vehicle id="EO32" type="normal_car" route="route_3" depart="69" />
+     <vehicle id="NS33" type="normal_car" route="route_4" depart="70" />
+     <vehicle id="SN34" type="normal_car" route="route_2" depart="70" />
+     <vehicle id="NS35" type="normal_car" route="route_1" depart="71" />
+     <vehicle id="EO36" type="normal_car" route="route_3" depart="75" />
+     <vehicle id="SN37" type="normal_car" route="route_2" depart="80" />
+     <vehicle id="NS38" type="normal_car" route="route_1" depart="80" />
+     <vehicle id="SN39" type="normal_car" route="route_2" depart="81" />
+     <vehicle id="EO40" type="normal_car" route="route_3" depart="81" />
+     <vehicle id="NS41" type="normal_car" route="route_1" depart="83" />
+     <vehicle id="EO42" type="normal_car" route="route_3" depart="85" />
+     <vehicle id="SN43" type="normal_car" route="route_2" depart="87" />
+     <vehicle id="NS44" type="normal_car" route="route_1" depart="90" />
+     <vehicle id="SN45" type="normal_car" route="route_2" depart="93" />
+     <vehicle id="SN46" type="normal_car" route="route_2" depart="94" />
+     <vehicle id="NS47" type="normal_car" route="route_1" depart="96" />
+     <vehicle id="NS48" type="normal_car" route="route_4" depart="101" />
+     <vehicle id="SN49" type="normal_car" route="route_2" depart="101" />
+     <vehicle id="NS50" type="normal_car" route="route_1" depart="106" />
+     <vehicle id="EO51" type="normal_car" route="route_3" depart="108" />
+     <vehicle id="NS52" type="normal_car" route="route_4" depart="116" />
+     <vehicle id="NS53" type="normal_car" route="route_1" depart="116" />
+     <vehicle id="EO54" type="normal_car" route="route_3" depart="122" />
+     <vehicle id="NS55" type="normal_car" route="route_1" depart="125" />
+     <vehicle id="EO56" type="normal_car" route="route_3" depart="128" />
+     <vehicle id="NS57" type="normal_car" route="route_1" depart="132" />
+     <vehicle id="NS58" type="normal_car" route="route_1" depart="140" />
+     <vehicle id="SN59" type="normal_car" route="route_2" depart="142" />
+     <vehicle id="NS60" type="normal_car" route="route_4" depart="145" />
+     <vehicle id="EO61" type="normal_car" route="route_3" depart="150" />
+     <vehicle id="NS62" type="normal_car" route="route_1" depart="157" />
+     <vehicle id="SN63" type="normal_car" route="route_2" depart="158" />
+     <vehicle id="SN64" type="normal_car" route="route_2" depart="159" />
+     <vehicle id="EO65" type="normal_car" route="route_3" depart="161" />
+     <vehicle id="SN66" type="normal_car" route="route_2" depart="165" />
+     <vehicle id="SN67" type="normal_car" route="route_2" depart="168" />
+     <vehicle id="NS68" type="normal_car" route="route_4" depart="169" />
+     <vehicle id="EO69" type="normal_car" route="route_3" depart="170" />
+     <vehicle id="NS70" type="normal_car" route="route_1" depart="170" />
+     <vehicle id="SN71" type="normal_car" route="route_2" depart="171" />
+     <vehicle id="NS72" type="normal_car" route="route_4" depart="172" />
+     <vehicle id="SN73" type="normal_car" route="route_2" depart="172" />
+     <vehicle id="NS74" type="normal_car" route="route_4" depart="175" />
+     <vehicle id="NS75" type="normal_car" route="route_1" depart="176" />
+     <vehicle id="NS76" type="normal_car" route="route_4" depart="181" />
+     <vehicle id="EO77" type="normal_car" route="route_3" depart="182" />
+     <vehicle id="SN78" type="normal_car" route="route_2" depart="184" />
+     <vehicle id="NS79" type="normal_car" route="route_1" depart="184" />
+     <vehicle id="EO80" type="normal_car" route="route_3" depart="185" />
+     <vehicle id="NS81" type="normal_car" route="route_1" depart="189" />
+     <vehicle id="NS82" type="normal_car" route="route_4" depart="194" />
+     <vehicle id="EO83" type="normal_car" route="route_3" depart="197" />
+     <vehicle id="EO84" type="normal_car" route="route_3" depart="205" />
+     <vehicle id="NS85" type="normal_car" route="route_1" depart="205" />
+     <vehicle id="EO86" type="normal_car" route="route_3" depart="206" />
+     <vehicle id="EO87" type="normal_car" route="route_3" depart="207" />
+     <vehicle id="NS88" type="normal_car" route="route_1" depart="207" />
+     <vehicle id="NS89" type="normal_car" route="route_4" depart="209" />
+     <vehicle id="NS90" type="normal_car" route="route_1" depart="215" />
+     <vehicle id="SN91" type="normal_car" route="route_2" depart="217" />
+     <vehicle id="EO92" type="normal_car" route="route_3" depart="217" />
+     <vehicle id="EO93" type="normal_car" route="route_3" depart="228" />
+     <vehicle id="NS94" type="normal_car" route="route_4" depart="233" />
+     <vehicle id="NS95" type="normal_car" route="route_4" depart="234" />
+     <vehicle id="NS96" type="normal_car" route="route_1" depart="235" />
+     <vehicle id="NS97" type="normal_car" route="route_1" depart="237" />
+     <vehicle id="NS98" type="normal_car" route="route_1" depart="240" />
+     <vehicle id="NS99" type="normal_car" route="route_1" depart="242" />
+     <vehicle id="NS100" type="normal_car" route="route_1" depart="246" />
+     <vehicle id="EO101" type="normal_car" route="route_3" depart="255" />
+     <vehicle id="EO102" type="normal_car" route="route_3" depart="258" />
+     <vehicle id="NS103" type="normal_car" route="route_4" depart="261" />
+     <vehicle id="SN104" type="normal_car" route="route_2" depart="261" />
+     <vehicle id="NS105" type="normal_car" route="route_4" depart="262" />
+     <vehicle id="NS106" type="normal_car" route="route_1" depart="263" />
+     <vehicle id="SN107" type="normal_car" route="route_2" depart="265" />
+     <vehicle id="EO108" type="normal_car" route="route_3" depart="265" />
+     <vehicle id="NS109" type="normal_car" route="route_1" depart="266" />
+     <vehicle id="NS110" type="normal_car" route="route_4" depart="267" />
+     <vehicle id="NS111" type="normal_car" route="route_1" depart="273" />
+     <vehicle id="EO112" type="normal_car" route="route_3" depart="276" />
+     <vehicle id="EO113" type="normal_car" route="route_3" depart="278" />
+     <vehicle id="EO114" type="normal_car" route="route_3" depart="282" />
+     <vehicle id="NS115" type="normal_car" route="route_4" depart="284" />
+     <vehicle id="EO116" type="normal_car" route="route_3" depart="287" />
+     <vehicle id="NS117" type="normal_car" route="route_4" depart="288" />
+     <vehicle id="EO118" type="normal_car" route="route_3" depart="288" />
+     <vehicle id="NS119" type="normal_car" route="route_1" depart="288" />
+     <vehicle id="NS120" type="normal_car" route="route_4" depart="295" />
+     <vehicle id="SN121" type="normal_car" route="route_2" depart="297" />
+     <vehicle id="EO122" type="normal_car" route="route_3" depart="299" />
+</routes>
