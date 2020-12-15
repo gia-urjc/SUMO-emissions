@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 12/15/20 16:58:07 by Eclipse SUMO netedit Version 1.7.0
+<!-- generated on 12/15/20 18:39:32 by Eclipse SUMO netedit Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <output>
@@ -72,7 +72,14 @@
         <lane id="gneE9_1" index="1" speed="13.89" length="66.54" shape="0.39,74.95 0.39,8.41"/>
     </edge>
 
-    <junction id="n0" type="priority" x="1.99" y="4.41" incLanes="gneE9_0 gneE9_1 gneE6_0" intLanes=":n0_0_0 :n0_1_0 :n0_2_0 :n0_3_0 :n0_4_0 :n0_5_0 :n0_6_0 :n0_6_1" shape="-4.41,8.41 1.99,8.41 2.43,6.19 2.99,5.41 3.77,4.85 4.77,4.52 5.99,4.41 5.99,-1.99 3.77,-2.44 2.99,-2.99 2.43,-3.77 2.10,-4.77 1.99,-5.99 -4.41,-5.99 -4.52,-3.79 -4.86,-1.99 -5.41,-0.59 -6.19,0.41 -7.19,1.01 -8.41,1.21 -8.41,4.41 -6.19,4.85 -5.41,5.41 -4.86,6.19 -4.52,7.19">
+    <tlLogic id="n0" type="static" programID="0" offset="0">
+        <phase duration="42" state="GgGGrrrr"/>
+        <phase duration="3"  state="Ggyyrrrr"/>
+        <phase duration="42" state="GgrrGGGG"/>
+        <phase duration="3"  state="Ggrryyyy"/>
+    </tlLogic>
+
+    <junction id="n0" type="traffic_light" x="1.99" y="4.41" incLanes="gneE9_0 gneE9_1 gneE6_0" intLanes=":n0_0_0 :n0_1_0 :n0_2_0 :n0_3_0 :n0_4_0 :n0_5_0 :n0_6_0 :n0_6_1" shape="-4.41,8.41 1.99,8.41 2.43,6.19 2.99,5.41 3.77,4.85 4.77,4.52 5.99,4.41 5.99,-1.99 3.77,-2.44 2.99,-2.99 2.43,-3.77 2.10,-4.77 1.99,-5.99 -4.41,-5.99 -4.52,-3.79 -4.86,-1.99 -5.41,-0.59 -6.19,0.41 -7.19,1.01 -8.41,1.21 -8.41,4.41 -6.19,4.85 -5.41,5.41 -4.86,6.19 -4.52,7.19">
         <request index="0" response="00000000" foes="11110000" cont="0"/>
         <request index="1" response="00000100" foes="11000100" cont="0"/>
         <request index="2" response="00000000" foes="11110010" cont="0"/>
@@ -91,16 +98,16 @@
     <junction id="n3" type="dead_end" x="1.99" y="-74.20" incLanes="gneE4_0 gneE4_1" intLanes="" shape="-4.41,-74.20 1.99,-74.20"/>
     <junction id="n4" type="dead_end" x="-105.38" y="4.41" incLanes="" intLanes="" shape="-105.38,4.41 -105.38,1.21"/>
 
-    <connection from="gneE6" to="gneE4" fromLane="0" toLane="0" via=":n0_4_0" dir="r" state="m"/>
-    <connection from="gneE6" to="gneE4" fromLane="0" toLane="1" via=":n0_5_0" dir="r" state="m"/>
-    <connection from="gneE6" to="gneE5" fromLane="0" toLane="0" via=":n0_6_0" dir="s" state="m"/>
-    <connection from="gneE6" to="gneE5" fromLane="0" toLane="1" via=":n0_6_1" dir="s" state="m"/>
+    <connection from="gneE6" to="gneE4" fromLane="0" toLane="0" via=":n0_4_0" tl="n0" linkIndex="4" dir="r" state="o"/>
+    <connection from="gneE6" to="gneE4" fromLane="0" toLane="1" via=":n0_5_0" tl="n0" linkIndex="5" dir="r" state="o"/>
+    <connection from="gneE6" to="gneE5" fromLane="0" toLane="0" via=":n0_6_0" tl="n0" linkIndex="6" dir="s" state="o"/>
+    <connection from="gneE6" to="gneE5" fromLane="0" toLane="1" via=":n0_6_1" tl="n0" linkIndex="7" dir="s" state="o"/>
     <connection from="gneE8" to="gneE9" fromLane="0" toLane="0" via=":n1b_0_0" dir="s" state="M"/>
     <connection from="gneE8" to="gneE9" fromLane="0" toLane="1" via=":n1b_0_1" dir="s" state="M"/>
-    <connection from="gneE9" to="gneE4" fromLane="0" toLane="0" via=":n0_0_0" dir="s" state="M"/>
-    <connection from="gneE9" to="gneE5" fromLane="0" toLane="0" via=":n0_1_0" dir="l" state="m"/>
-    <connection from="gneE9" to="gneE4" fromLane="1" toLane="1" via=":n0_2_0" dir="s" state="M"/>
-    <connection from="gneE9" to="gneE5" fromLane="1" toLane="1" via=":n0_3_0" dir="l" state="M"/>
+    <connection from="gneE9" to="gneE4" fromLane="0" toLane="0" via=":n0_0_0" tl="n0" linkIndex="0" dir="s" state="O"/>
+    <connection from="gneE9" to="gneE5" fromLane="0" toLane="0" via=":n0_1_0" tl="n0" linkIndex="1" dir="l" state="O"/>
+    <connection from="gneE9" to="gneE4" fromLane="1" toLane="1" via=":n0_2_0" tl="n0" linkIndex="2" dir="s" state="O"/>
+    <connection from="gneE9" to="gneE5" fromLane="1" toLane="1" via=":n0_3_0" tl="n0" linkIndex="3" dir="l" state="O"/>
 
     <connection from=":n0_0" to="gneE4" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":n0_1" to="gneE5" fromLane="0" toLane="0" dir="l" state="M"/>
