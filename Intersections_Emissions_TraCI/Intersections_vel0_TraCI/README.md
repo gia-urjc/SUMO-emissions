@@ -14,6 +14,7 @@ When a detector detects the car, the car stops and we can recover the CO2 emissi
 At the end of the simulation, the total CO2 emission is recovered.
 
 ![Intersection](https://raw.githubusercontent.com/sandruskyi/SUMO_DEMOS/master/Intersections_Emissions_TraCI/Intersections_vel0_TraCI/image1.PNG)
+
 Results: 
 
 - Console Results, example: 
@@ -25,7 +26,7 @@ Results:
 ```
 <tripinfo id="Au0" depart="2.00" departLane="-e3_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="90.00" arrivalLane="-e1_0" arrivalPos="431.25" arrivalSpeed="14.72" duration="88.00" routeLength="911.58" waitingTime="17.00" waitingCount="1" stopTime="0.00" timeLoss="25.44" rerouteNo="0" devices="tripinfo_Au0" vType="autonomous_car@Au0" speedFactor="1.06" vaporized=""/>
     <tripinfo id="Au3" depart="5.00" departLane="e1_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="93.00" arrivalLane="e3_0" arrivalPos="464.63" arrivalSpeed="15.04" duration="88.00" routeLength="911.58" waitingTime="18.00" waitingCount="1" stopTime="0.00" timeLoss="26.99" rerouteNo="0" devices="tripinfo_Au3" vType="autonomous_car@Au3" speedFactor="1.08" vaporized=""/>
-    ```
+```
     
 - Detectors out, example: 
 ```
@@ -45,7 +46,7 @@ Results:
     <interval begin="300.00" end="531.00" id="det_3_1" nVehContrib="2" flow="31.17" occupancy="10.34" speed="0.31" harmonicMeanSpeed="0.29" length="5.00" nVehEntered="1"/>
     <interval begin="300.00" end="531.00" id="det_4_0" nVehContrib="8" flow="124.68" occupancy="51.23" speed="1.01" harmonicMeanSpeed="0.34" length="5.00" nVehEntered="8"/>
     <interval begin="300.00" end="531.00" id="det_4_1" nVehContrib="7" flow="109.09" occupancy="70.06" speed="0.23" harmonicMeanSpeed="0.23" length="5.00" nVehEntered="7"/>
-    ```
+```
 
     
 
