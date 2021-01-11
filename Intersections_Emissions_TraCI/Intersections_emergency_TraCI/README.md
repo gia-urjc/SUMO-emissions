@@ -5,6 +5,7 @@ WORKS!!!!
 In this example, the cars are going from one extreme to the other (N-> S/E, W->E)
 
 There are 3 traffic lights (R-G-G and G-G-R):
+
 ![Traffic lights ](https://raw.githubusercontent.com/sandruskyi/SUMO_DEMOS/master/Intersections_Emissions_TraCI/Intersections_emergency_TraCI/image1.PNG)
 
 
