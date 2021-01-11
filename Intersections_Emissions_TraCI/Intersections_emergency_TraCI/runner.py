@@ -82,10 +82,10 @@ def run():
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         traci.simulationStep() # Advance one time step
         det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1a")
-        print(traci.trafficlight.getPhase(tlsID="n0"))
+        #print(traci.trafficlight.getPhase(tlsID="n0"))
         if traci.trafficlight.getPhase(tlsID="n0")==(2 or 3):
             traci.lane.setDisallowed(laneID="e1b_0", disallowedClasses=["passenger"])
-            print("SIIIIIIII")
+            #print("SIIIIIIII")
         else:
             if step == (last_step_em +30):
                 traci.lane.setAllowed(laneID="e1b_0", allowedClasses=["passenger","emergency"])
