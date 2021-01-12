@@ -43,4 +43,15 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
     <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
+
+    <route edges="-gneE118 gneE123" color="yellow" id="route_1"/>
+    <route edges="gneE104 gneE122" color="yellow" id="route_2"/>
+    <route edges="-gneE119 -gneE14" color="yellow" id="route_3"/>
+    <route edges="gneE100 gneE60" color="yellow" id="route_4"/>
+
+    <vehicle id="veh1" type="eVehicle" route="route_1" depart="10" />
+    <vehicle id="veh2" type="eVehicle" route="route_2" depart="100" />
+    <vehicle id="veh3" type="eVehicle" route="route_3" depart="200" />
+    <vehicle id="veh4" type="eVehicle" route="route_4" depart="300" />
+
 </routes>
