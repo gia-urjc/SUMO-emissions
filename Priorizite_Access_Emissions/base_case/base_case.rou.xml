@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 01/12/21 13:23:54 by Eclipse SUMO netedit Version 1.7.0
+<!-- generated on 01/12/21 13:27:26 by Eclipse SUMO netedit Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.net.xml"/>
+    </input>
 
     <output>
         <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.net.xml"/>
     </output>
 
     <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
         <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
     </processing>
 
     <junctions>
         <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
     </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
 
     <netedit>
         <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.rou.xml"/>
@@ -27,6 +41,6 @@
 -->
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <vType id="eVehicle" vClass="evehicle" color="green"/>
-    <vType id="normalVehicle" guiShape="passenger" color="0,0,128"/>
+    <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
+    <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
 </routes>
