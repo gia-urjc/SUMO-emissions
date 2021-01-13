@@ -44,14 +44,9 @@
     <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
     <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
 
-    <route edges="-gneE118 gneE123" color="yellow" id="route_1"/>
-    <route edges="gneE104 gneE122" color="yellow" id="route_2"/>
-    <route edges="-gneE119 -gneE14" color="yellow" id="route_3"/>
-    <route edges="gneE100 gneE60" color="yellow" id="route_4"/>
-
-    <vehicle id="veh1" type="eVehicle" route="route_1" depart="10" />
-    <vehicle id="veh2" type="eVehicle" route="route_2" depart="100" />
-    <vehicle id="veh3" type="eVehicle" route="route_3" depart="200" />
-    <vehicle id="veh4" type="eVehicle" route="route_4" depart="300" />
+    <trip depart="10" from="-gneE118" to="gneE123" color="yellow" type="eVehicle" id="veh1"/>
+    <trip depart="100" from="gneE104" to="gneE122" color="yellow" type="normalVehicle" id="veh2"/>
+    <trip depart="200" from="-gneE119" to="-gneE14" color="yellow" type="eVehicle" id="veh3"/>
+    <trip depart="300" from="gneE100" to="gneE60" color="yellow" type="normalVehicle" id="veh4"/>
 
 </routes>
