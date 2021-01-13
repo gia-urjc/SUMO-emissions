@@ -18,12 +18,30 @@ def run():
 
     step = 0
 
+    vehicles_in_simulation = []
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
 
         traci.simulationStep() # Advance one time step
-        #det_vehicles = traci.inductionloop.getLastStepVehicleIDs("det_1_0")
+
+        id_vehicles_departed = traci.simulation.getDepartedIDList()
+        id_list_vehicles_departed = list(id_vehicles_departed)
+        if (id_list_vehicles_departed):
+            vehicles_in_simulation.extend(id_list_vehicles_departed)
+            #print(vehicles_in_simulation)
+
+        id_vehicles_arrived = traci.simulation.getArrivedIDList()
+        for veh in id_vehicles_arrived:
+            if veh in vehicles_in_simulation:
+                vehicles_in_simulation.remove(veh)
+        #print(vehicles_in_simulation)
+
+        for veh in vehicles_in_simulation:
+            vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+            pos = traci.vehicle.getPosition(vehID=veh)
+            print(pos, vehCO2Emission, veh)
+
+
         step +=1
-        print("1")
 
     traci.close()
     sys.stdout.flush()
