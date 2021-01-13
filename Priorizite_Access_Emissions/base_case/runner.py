@@ -24,7 +24,7 @@ def run():
     vehicles_in_simulation = []
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
 
-        traci.simulationStep() # Advance one time step
+        traci.simulationStep() # Advance one time step: one second
 
         id_vehicles_departed = traci.simulation.getDepartedIDList()
         id_list_vehicles_departed = list(id_vehicles_departed)
@@ -39,17 +39,17 @@ def run():
         #print(vehicles_in_simulation)
 
         for veh in vehicles_in_simulation:
-            vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
+            vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh) # mg/s
             pos = traci.vehicle.getPosition(vehID=veh)
             #print(pos, vehCO2Emission, veh)
             CO2_total += vehCO2Emission
             # Control Area:
             if (pos[1]<=302 and pos[1]>=-4) and (pos[0]>=-4 and pos[0]<=302):
                 CO2_zona_control += vehCO2Emission
-                print("SI ", CO2_zona_control)
+                #print("SI ", CO2_zona_control)
         step +=1
-
-    print("CO2_total: ", CO2_total, ". CO2_zona_control", CO2_zona_control)
+    minutes = round(step/60,3)
+    print("CO2_total: ", CO2_total, ". CO2_zona_control", CO2_zona_control, ". In ", step, "seconds (",minutes," minutes)")
     traci.close()
     sys.stdout.flush()
 
@@ -67,6 +67,7 @@ if __name__ == "__main__":
         sumoBinary = checkBinary("SUMO")
     else:
         sumoBinary = checkBinary("sumo-gui")
-    traci.start([sumoBinary, "-c", "base_case.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output","emissionOutput.xml"])
+    #traci.start([sumoBinary, "-c", "base_case.sumocfg", "--step-length", "0.001",  "--tripinfo-output", "tripinfo.xml", "--emission-output","emissionOutput.xml"])
+    traci.start([sumoBinary, "-c", "base_case.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
 
     run()
