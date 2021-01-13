@@ -18,6 +18,9 @@ def run():
 
     step = 0
 
+    CO2_total = 0
+    CO2_zona_control = 0
+
     vehicles_in_simulation = []
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
 
@@ -38,11 +41,15 @@ def run():
         for veh in vehicles_in_simulation:
             vehCO2Emission = traci.vehicle.getCO2Emission(vehID=veh)
             pos = traci.vehicle.getPosition(vehID=veh)
-            print(pos, vehCO2Emission, veh)
-
-
+            #print(pos, vehCO2Emission, veh)
+            CO2_total += vehCO2Emission
+            # Control Area:
+            if (pos[1]<=302 and pos[1]>=-4) and (pos[0]>=-4 and pos[0]<=302):
+                CO2_zona_control += vehCO2Emission
+                print("SI ", CO2_zona_control)
         step +=1
 
+    print("CO2_total: ", CO2_total, ". CO2_zona_control", CO2_zona_control)
     traci.close()
     sys.stdout.flush()
 
