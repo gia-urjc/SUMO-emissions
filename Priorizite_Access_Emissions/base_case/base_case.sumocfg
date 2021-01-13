@@ -8,6 +8,7 @@
     <input>
         <net-file value="base_case.net.xml"/>
         <route-files value="base_case.rou.xml"/>
+        <additional-files value="base_case.add.xml"/>
     </input>
 
 </configuration>
