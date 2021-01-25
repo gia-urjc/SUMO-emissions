@@ -68,7 +68,7 @@ def run():
                         stage = traci.simulation.findRoute(bordes[0], bordes[rouIndex])
                         rouLength = stage.length
                         km_per_vehicle[iVeh] = [veh,rouLength]
-                        print(km_per_vehicle)
+                        #print(km_per_vehicle)
 
         step +=1
     minutes = round(step/60,3)
