@@ -125,7 +125,7 @@ def run():
                     if km_per_vehicle[iVeh] == veh: # km_per_vehicle position selected for this vehicle
                         stage = traci.simulation.findRoute(edges[0], edges[rouIndex])
                         rouLength = stage.length  # Route Length
-                        km_per_vehicle[iVeh] = [veh,rouLength] 
+                        km_per_vehicle[iVeh] = [veh,rouLength]
                         #print(km_per_vehicle)
 
         step +=1
