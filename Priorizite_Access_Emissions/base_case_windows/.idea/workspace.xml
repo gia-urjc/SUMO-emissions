@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9869019e-998a-4d37-9b0f-45a9a8340de1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/base_case.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_case_windows.add.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_case_windows.net.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_case_windows.rou.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base_case_windows.sumocfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/emissionEdge2Output.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/emissionEdgeOutput.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/emissionOutput.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tripinfo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case1/case1.rou.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../case1/case1.rou.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case1/case1.sumocfg" beforeDir="false" afterPath="$PROJECT_DIR$/../case1/case1.sumocfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case1/runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../case1/runner.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JupyterTrust" id="58d23931-211c-4d73-b344-6d632a5f39a5" />
+  <component name="ProjectId" id="1myAB45iDTpJZ1phsYZJXP1TaZv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../main_case_windows" />
+  </component>
+  <component name="RunManager">
+    <configuration name="runner" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="base_case" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runner.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.runner" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9869019e-998a-4d37-9b0f-45a9a8340de1" name="Default Changelist" comment="" />
+      <created>1610455320704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610455320704</updated>
+      <workItem from="1610455322975" duration="1350000" />
+      <workItem from="1610526756288" duration="9930000" />
+      <workItem from="1611056352081" duration="3307000" />
+      <workItem from="1611139370404" duration="716000" />
+      <workItem from="1611568320107" duration="2536000" />
+      <workItem from="1611571547720" duration="13593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1611615658227">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1611615658227" />
+    <state width="1237" height="219" key="GridCell.Tab.0.bottom" timestamp="1611615659506">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="222" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611140093390" />
+    <state width="1237" height="219" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1611615659506" />
+    <state width="1237" height="219" key="GridCell.Tab.0.center" timestamp="1611615659506">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="222" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611140093390" />
+    <state width="1237" height="219" key="GridCell.Tab.0.center/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1611615659506" />
+    <state width="1237" height="219" key="GridCell.Tab.0.left" timestamp="1611615659506">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="222" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611140093390" />
+    <state width="1237" height="219" key="GridCell.Tab.0.left/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1611615659506" />
+    <state width="1237" height="219" key="GridCell.Tab.0.right" timestamp="1611615659506">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="222" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611140093390" />
+    <state width="1237" height="219" key="GridCell.Tab.0.right/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1611615659506" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/base_case_windows$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611615442536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/base_case$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611570850896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
