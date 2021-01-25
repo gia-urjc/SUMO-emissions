@@ -162,6 +162,6 @@ if __name__ == "__main__":
     else:
         sumoBinary = checkBinary("sumo-gui")
     #traci.start([sumoBinary, "-c", "base_case.sumocfg", "--step-length", "0.001",  "--tripinfo-output", "tripinfo.xml", "--emission-output","emissionOutput.xml"])
-    traci.start([sumoBinary, "-c", "base_case.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
+    traci.start([sumoBinary, "-c", "base_case_windows.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
 
     run()

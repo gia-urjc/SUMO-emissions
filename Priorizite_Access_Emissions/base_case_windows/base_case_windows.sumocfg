@@ -6,9 +6,9 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="base_case.net.xml"/>
-        <route-files value="base_case.rou.xml"/>
-        <additional-files value="base_case.add.xml"/>
+        <net-file value="base_case_windows.net.xml"/>
+        <route-files value="base_case_windows.rou.xml"/>
+        <additional-files value="base_case_windows.add.xml"/>
     </input>
 
 </configuration>
