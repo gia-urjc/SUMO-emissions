@@ -36,7 +36,7 @@ def run():
     NOx_control_zone_window = 0
         # Variables in each window
     veh_total_number_window = 0
-    vehicles_in_window = []
+    vehicles_in_window = set()
         # All windows
     windows = []
 
@@ -56,7 +56,7 @@ def run():
             NOx_total_window = 0
             NOx_control_zone_window = 0
             veh_total_number_window = 0
-            vehicles_in_window = []
+            vehicles_in_window = set()
 
 
         # MANAGE VEHICLES - All simulation
@@ -65,9 +65,6 @@ def run():
 
         if (id_list_vehicles_departed): # if the list is not empty
 
-            # Per window:
-            vehicles_in_window.extend(id_list_vehicles_departed) # Add the vehicles in the window list
-            veh_total_number_window += len(id_list_vehicles_departed) # Add vehicles to the vehicle window counter
 
             # All simulation:
             vehicles_in_simulation.extend(id_list_vehicles_departed) # Add vehicles to the simulation list
@@ -87,6 +84,11 @@ def run():
             if veh in vehicles_in_simulation: # If the vehicle has arrived then remove it from the simulation list
                 vehicles_in_simulation.remove(veh)
                 veh_total_number +=1 # Update Vehicle Total Number in all simulation
+
+        # Per window:
+        for veh in vehicles_in_simulation:
+            vehicles_in_window.add(veh)  # Add the vehicles in the window list
+        veh_total_number_window += len(vehicles_in_simulation)  # Add vehicles to the vehicle window counter
 
         for veh in vehicles_in_simulation: # For each vehicle
             # Emissions:
