@@ -11,4 +11,6 @@
         <additional-files value="case1.add.xml"/>
     </input>
 
+    <ignore-route-errors value = "true" />
+
 </configuration>

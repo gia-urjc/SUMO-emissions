@@ -40,6 +40,13 @@ def run():
         # All windows
     windows = []
 
+    ## Case 1
+        # Threshold:
+    threshold = 14 # NOx_total in main_case_window = 28 => 28/2 = 14
+    control_area_edges = ["gneE19_0","-gneE19_0","gneE21_0","-gneE21_0","gneE16_0","-gneE16_0","gneE17_0","-gneE17_0",
+                          "gneE18_0","-gneE18_0","gneE22_0","-gneE22_0","gneE20_0","-gneE20_0","gneE15_0","-gneE15_0",
+                          "gneE24_0","-gneE24_0","gneE25_0","-gneE25_0","gneE14_0","-gneE14_0","gneE23_0","-gneE23_0"]
+
 
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         traci.simulationStep() # Advance one time step: one second
@@ -89,6 +96,8 @@ def run():
                 veh_total_number +=1 # Update Vehicle Total Number in all simulation
 
         for veh in vehicles_in_simulation: # For each vehicle
+
+
             # Emissions:
                 # All simulation
             vehNOxEmission = traci.vehicle.getNOxEmission(veh)  # Return the NOx value per vehicle in each step
@@ -127,7 +136,17 @@ def run():
                         rouLength = stage.length  # Route Length
                         km_per_vehicle[iVeh] = [veh,rouLength]
                         #print(km_per_vehicle)
+            #print(veh, NOx_control_zone, NOx_total, pos)
 
+            if (edges[len(edges) - 1] in control_area_edges):
+                traci.vehicle.setType(vehID=veh, typeID="pass")
+            else:
+                if NOx_control_zone > threshold:
+                    for aEd in control_area_edges:
+                        traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
+                        traci.lane.setAllowed(laneID=aEd, allowedClasses=["ignoring"])
+
+        print(NOx_control_zone, NOx_total)
         step +=1
 
 
