@@ -46,7 +46,8 @@ def run():
     control_area_edges = ["gneE19_0","-gneE19_0","gneE21_0","-gneE21_0","gneE16_0","-gneE16_0","gneE17_0","-gneE17_0",
                           "gneE18_0","-gneE18_0","gneE22_0","-gneE22_0","gneE20_0","-gneE20_0","gneE15_0","-gneE15_0",
                           "gneE24_0","-gneE24_0","gneE25_0","-gneE25_0","gneE14_0","-gneE14_0","gneE23_0","-gneE23_0"]
-
+    restrictionMode = False
+    NOx_control_zone_restriction_mode = 0
 
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         traci.simulationStep() # Advance one time step: one second
@@ -56,7 +57,7 @@ def run():
             #print(step)
 
             # Add variables for the last 50 steps
-            windows.append([vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone])
+            windows.append([step, vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone])
             #print(windows)
 
             # Reboot all
@@ -122,6 +123,9 @@ def run():
                 # Per window:
                 NOx_control_zone_window += vehNOxEmission
 
+                # Control are:
+                NOx_control_zone_restriction_mode += vehNOxEmission
+
 
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh)
@@ -138,15 +142,22 @@ def run():
                         #print(km_per_vehicle)
             #print(veh, NOx_control_zone, NOx_total, pos)
 
+            # Control area - Threshold:
             if (edges[len(edges) - 1] in control_area_edges):
                 traci.vehicle.setType(vehID=veh, typeID="pass")
-            else:
-                if NOx_control_zone > threshold:
+            elif NOx_control_zone_restriction_mode > threshold:
+                if step != 0 and ((step % 50) == 0): # Discount NOx of the last window
+                    for w in range(len(windows)):
+                        if windows[w][0]==step-50:
+                            NOx_control_zone_restriction_mode -= windows[w][4]
+                else:
+                    NOx_control_zone_restriction_mode = NOx_control_zone_restriction_mode
                     for aEd in control_area_edges:
                         traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
                         traci.lane.setAllowed(laneID=aEd, allowedClasses=["ignoring"])
 
-        print(NOx_control_zone, NOx_total)
+
+        print("NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)
         step +=1
 
 
@@ -156,11 +167,12 @@ def run():
 
     # Results:
 
-    print("[vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone] :")
+    print("[step,vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone] :")
     print(windows)
     print("NOx_per_vehicle: ",NOx_per_vehicle)
-    print("NOx_total: ", NOx_total, ". NOx_control_zone", NOx_control_zone, ". In ", step, "seconds (",minutes," minutes)")
+    print("NOx_total: ", NOx_total, ". NOx_control_zone", NOx_control_zone,". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode)
     print(veh_total_number," vehicles - ",total_kilometers," kilometers")
+    print("In ", step, "seconds (", minutes, " minutes)")
 
     # TraCI
     traci.close()
