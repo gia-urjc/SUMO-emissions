@@ -53,7 +53,7 @@ def run():
             #print(pos, vehNOxEmission, veh)
             NOx_total += vehNOxEmission
             # Control Area:
-            if (pos[1]<=302 and pos[1]>=-4) and (pos[0]>=-4 and pos[0]<=302):
+            if (pos[1]<=296 and pos[1]>=3) and (pos[0]>=3 and pos[0]<=296):
                 NOx_control_zone += vehNOxEmission
                 #print("SI ", CO2_zona_control)
             rouIndex = traci.vehicle.getRouteIndex(veh)
