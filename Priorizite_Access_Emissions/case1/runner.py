@@ -58,7 +58,7 @@ def run():
 
             # Add variables for the last 50 steps
             windows.append([step, vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone])
-            #print(windows)
+            print(windows)
 
             # Reboot all
             NOx_total_window = 0
@@ -74,7 +74,6 @@ def run():
         if (id_list_vehicles_departed): # if the list is not empty
             # All simulation:
             vehicles_in_simulation.extend(id_list_vehicles_departed) # Add vehicles to the simulation list
-            print("Vs: ",vehicles_in_simulation)
             km_per_vehicle.extend(id_list_vehicles_departed) # Add vehicles to the km list
             NOx_per_vehicle.extend(id_list_vehicles_departed) # Add vehicles to the NOx list
                 # Initialize NOx values for each vehicle:
@@ -85,22 +84,23 @@ def run():
                     NOx_per_vehicle[lVeh] = [vehi, 0] # Initialized
                     #print(NOx_per_vehicle)
 
+            # Per window:
+            for veh in vehicles_in_simulation:
+                vehicles_in_window.add(veh)  # Add the vehicles in the window list
+            veh_total_number_window = len(vehicles_in_window)  # Add vehicles to the vehicle window counter
+
             # Taking into account the vehicles that reach their destination:
         id_vehicles_arrived = traci.simulation.getArrivedIDList()
         for veh in id_vehicles_arrived:
             if veh in vehicles_in_simulation: # If the vehicle has arrived then remove it from the simulation list
                 vehicles_in_simulation.remove(veh)
+                if veh in vehicles_in_window:
+                    vehicles_in_window.remove(veh)
 
                 veh_total_number +=1 # Update Vehicle Total Number in all simulation
 
-        # Per window:
-        for veh in vehicles_in_simulation:
-            vehicles_in_window.add(veh)  # Add the vehicles in the window list
-        veh_total_number_window += len(vehicles_in_simulation)  # Add vehicles to the vehicle window counter
 
         for veh in vehicles_in_simulation: # For each vehicle
-
-
             # Emissions:
                 # All simulation
             vehNOxEmission = traci.vehicle.getNOxEmission(veh)  # Return the NOx value per vehicle in each step
@@ -145,19 +145,21 @@ def run():
             #print(veh, NOx_control_zone, NOx_total, pos)
 
             # Control area - Threshold:
-            if (edges[len(edges) - 1] in control_area_edges):
+            string_edge = edges[len(edges) - 1] + "_0"
+            if (string_edge in control_area_edges):
+                print(veh, string_edge)
                 traci.vehicle.setType(vehID=veh, typeID="pass")
             elif NOx_control_zone_restriction_mode > threshold:
-                if step != 0 and ((step % 50) == 0): # Discount NOx of the last window
-                    for w in range(len(windows)):
-                        if windows[w][0]==step-50:
-                            NOx_control_zone_restriction_mode -= windows[w][4]
-                else:
-                    NOx_control_zone_restriction_mode = NOx_control_zone_restriction_mode
                     for aEd in control_area_edges:
                         traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
                         traci.lane.setAllowed(laneID=aEd, allowedClasses=["ignoring"])
-
+            else:
+                for aEd in control_area_edges:
+                    traci.lane.setAllowed(laneID=aEd, allowedClasses=["ignoring","passenger","evehicle"])
+            if step != 0 and ((step % 50) == 0):  # Discount NOx of the last window
+                for w in range(len(windows)):
+                    if windows[w][0] == step - 50:
+                        NOx_control_zone_restriction_mode -= windows[w][4]
 
         #print("NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)
         step +=1
