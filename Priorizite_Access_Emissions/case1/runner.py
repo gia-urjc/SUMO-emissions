@@ -54,10 +54,18 @@ def run():
 
         # Window
         if step != 0 and ((step % 50) == 0) and vehicles_in_window!=[]: # Each window 50 steps
+
+            for w in range(len(windows)):# Discount NOx of the last window
+                if windows[w][0] == step - 50:
+                    print(NOx_control_zone_restriction_mode, windows[w][4])
+                    NOx_control_zone_restriction_mode -= windows[w][4]
+                    if (NOx_control_zone_restriction_mode < 0): NOx_control_zone_restriction_mode = 0
+                    print(NOx_control_zone_restriction_mode)
             #print(step)
 
             # Add variables for the last 50 steps
-            windows.append([step, vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone])
+            windows.append([step, vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone_window])
+            #windows.append([step, vehicles_in_window, veh_total_number_window, NOx_total_window, NOx_control_zone_restriction_mode])
             print(windows)
 
             # Reboot all
@@ -147,7 +155,7 @@ def run():
             # Control area - Threshold:
             string_edge = edges[len(edges) - 1] + "_0"
             if (string_edge in control_area_edges):
-                print(veh, string_edge)
+                #print(veh, string_edge) TODO
                 traci.vehicle.setType(vehID=veh, typeID="pass")
             elif NOx_control_zone_restriction_mode > threshold:
                     for aEd in control_area_edges:
@@ -156,10 +164,7 @@ def run():
             else:
                 for aEd in control_area_edges:
                     traci.lane.setAllowed(laneID=aEd, allowedClasses=["ignoring","passenger","evehicle"])
-            if step != 0 and ((step % 50) == 0):  # Discount NOx of the last window
-                for w in range(len(windows)):
-                    if windows[w][0] == step - 50:
-                        NOx_control_zone_restriction_mode -= windows[w][4]
+
 
         #print("NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)
         step +=1
