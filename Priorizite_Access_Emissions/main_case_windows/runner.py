@@ -88,7 +88,7 @@ def run():
         # Per window:
         for veh in vehicles_in_simulation:
             vehicles_in_window.add(veh)  # Add the vehicles in the window list
-        veh_total_number_window += len(vehicles_in_simulation)  # Add vehicles to the vehicle window counter
+        veh_total_number_window = len(vehicles_in_window)  # Add vehicles to the vehicle window counter
 
         for veh in vehicles_in_simulation: # For each vehicle
             # Emissions:
