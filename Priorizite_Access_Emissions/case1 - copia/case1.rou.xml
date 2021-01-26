@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 01/12/21 13:27:26 by Eclipse SUMO netedit Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <netedit>
+        <route-files value="C:\Users\Sandrus\Documents\Research\SUMO\SUMO_DEMOS\Priorizite_Access_Emissions\base_case\base_case.rou.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
+    <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
+    <vType id="pass" vClass="ignoring" guiShape="passenger" color="red" />
+
+    <trip depart="10" from="-gneE118" to="gneE123" color="yellow" type="eVehicle" id="veh1"/>
+    <trip depart="70" from="gneE104" to="gneE122" color="yellow" type="normalVehicle" id="veh2"/>
+    <trip depart="100" from="-gneE119" to="-gneE14" color="yellow" type="eVehicle" id="veh3"/>
+    <trip depart="120" from="gneE100" to="gneE60" color="yellow" type="normalVehicle" id="veh4"/>
+    <trip depart="150" from="-gneE119" to="gneE60" color="yellow" type="normalVehicle" id="veh5"/>
+    <trip depart="160" from="-gneE119" to="gneE124" color="yellow" type="normalVehicle" id="veh6"/>
+    <trip depart="170" from="-gneE119" to="gneE123" color="yellow" type="normalVehicle" id="veh7"/>
+    <trip depart="200" from="-gneE119" to="gneE22" color="yellow" type="eVehicle" id="veh8"/>
+    <trip depart="220" from="gneE103" to="gneE122" color="yellow" type="normalVehicle" id="veh9"/>
+    <trip depart="250" from="-gneE115" to="gneE120" color="yellow" type="eVehicle" id="veh10"/>
+
+
+</routes>
