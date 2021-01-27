@@ -43,7 +43,7 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
     <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
-    <vType id="pass" vClass="ignoring" guiShape="passenger" color="red" />
+    <vType id="authority" vClass="authority" guiShape="passenger" color="red" />
 
     <trip depart="10" from="-gneE118" to="gneE123" color="yellow" type="eVehicle" id="veh1"/>
     <trip depart="70" from="gneE104" to="gneE122" color="yellow" type="normalVehicle" id="veh2"/>
