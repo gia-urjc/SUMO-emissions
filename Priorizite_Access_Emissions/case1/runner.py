@@ -203,13 +203,12 @@ def run():
         #if auxSandra==0 and step != 0 and ((step % 50) == 0):
 
         if vehicles_in_simulation!=[] and restrictionMode== False and NOx_control_zone_restriction_mode > threshold:
-            print("CONTROL ZONE", NOx_control_zone_restriction_mode )
+            print("CONTROL ZONE ON", NOx_control_zone_restriction_mode )
             #auxSandra = 1
             restrictionMode = True
             print("B")
 
             for aEd in control_area_edges:
-                print("A")
                 traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger","evehicle"])
                 print("disa ",traci.lane.getDisallowed(laneID=aEd))
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
@@ -218,11 +217,11 @@ def run():
             """
             traci.lane.setDisallowed(laneID="gneE22_0", disallowedClasses=["passenger", "evehicle"])
             #traci.lane.setDisallowed(laneID="-gneE22_0", disallowedClasses=["passenger", "evehicle"])"""
-        """if (restrictionMode == True and NOx_control_zone_restriction_mode <= threshold):
-            print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        if (restrictionMode == True and NOx_control_zone_restriction_mode <= threshold):
+            print("CONTROL ZONE OFF")
             restrictionMode = False
             for aEd in control_area_edges:
-                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority","passenger","evehicle"])"""
+                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority","passenger","evehicle"])
 
 
         print(step, "NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)
