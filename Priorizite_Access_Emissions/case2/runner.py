@@ -190,12 +190,22 @@ def run():
 
             # Control area - Threshold:
             string_current_edge = edges[rouIndex] + "_0"
-            if restrictionMode==True and traci.vehicle.getVehicleClass(veh)!="authority":
+            if restrictionMode == True and traci.vehicle.getVehicleClass(veh)!="authority":
                 if (string_current_edge in control_area_edges): #  current edge in control area
                     vClass_last2 = traci.vehicle.getVehicleClass(veh)
                     traci.vehicle.setType(vehID=veh, typeID="authority")
                     if (vClass_last2 != "passenger"):
                         traci.vehicle.setEmissionClass(veh, "zero")
+
+            if restrictionMode == True:
+                inList = False
+                for edg in edges:
+                    edgStrng = edg + "_0"
+                    if edgStrng in control_area_edges:
+                        inList = True
+                if inList:
+                    traci.vehicle.rerouteTraveltime(veh, True)
+
 
 
             print(veh, traci.vehicle.getTypeID(veh))
@@ -218,11 +228,13 @@ def run():
             traci.lane.setDisallowed(laneID="gneE22_0", disallowedClasses=["passenger", "evehicle"])
             #traci.lane.setDisallowed(laneID="-gneE22_0", disallowedClasses=["passenger", "evehicle"])"""
 
-        """if (restrictionMode == True and NOx_control_zone_restriction_mode <= threshold):
+        if (restrictionMode == True and NOx_control_zone_restriction_mode <= threshold):
             print("CONTROL ZONE OFF")
             restrictionMode = False
             for aEd in control_area_edges:
-                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority","passenger","evehicle"])"""
+                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority","passenger","evehicle"])
+            for veh in vehicles_in_simulation:
+                traci.vehicle.rerouteTraveltime(veh, True)
 
 
         print(step, "NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)

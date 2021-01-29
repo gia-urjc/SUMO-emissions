@@ -51,10 +51,13 @@
     <trip depart="120" from="gneE100" to="gneE60" color="yellow" type="normalVehicle" id="veh4"/>
     <trip depart="150" from="-gneE119" to="gneE60" color="yellow" type="normalVehicle" id="veh5"/>
     <trip depart="160" from="-gneE119" to="gneE124" color="yellow" type="normalVehicle" id="veh6"/>
+
     <trip depart="170" from="-gneE119" to="gneE123" color="yellow" type="normalVehicle" id="veh7"/>
     <trip depart="200" from="-gneE119" to="gneE22" color="yellow" type="eVehicle" id="veh8"/>
     <trip depart="220" from="gneE103" to="gneE122" color="yellow" type="normalVehicle" id="veh9"/>
     <trip depart="250" from="-gneE115" to="gneE120" color="yellow" type="eVehicle" id="veh10"/>
+
+
 
 
 </routes>
