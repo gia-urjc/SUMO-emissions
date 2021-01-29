@@ -64,7 +64,6 @@ def run():
                     traci.vehicle.setEmissionClass(veh_load, "zero")
 
 
-
     while traci.simulation.getMinExpectedNumber() > 0: # While there are cars (and waiting cars)
         # LAST STEP
 
