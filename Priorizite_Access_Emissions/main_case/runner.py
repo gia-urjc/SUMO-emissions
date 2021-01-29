@@ -77,6 +77,7 @@ def run():
 
     print("NOx_total: ", NOx_total, ". NOx_control_zone", NOx_control_zone, ". In ", step, "seconds (",minutes," minutes)")
     print(veh_total_number," vehicles - ",total_kilometers," kilometers")
+
     traci.close()
     sys.stdout.flush()
 
