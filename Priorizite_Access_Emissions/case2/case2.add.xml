@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2020-11-27 17:02:21.196154 by createNetTaxi.py v1_7_0+0000-714814baed
+  options:
+-->
+<additional>
+    <edgeData id="edgeDetector" type="emissions" freq="75" file="emissionEdgeOutput.xml" excludeEmpty="true"/>
+    <edgeData id="edgeDetector2" type="emissions" file="emissionEdge2Output.xml" excludeEmpty="true"/>
+
+    <rerouter id="myRerouter" edges="gneE6 -gneE7 gneE7 -gneE8 gneE111 gneE109">
+        <!--<interval begin="0" end="2000">
+            <closingReroute id="gneE19"/>
+        </interval>-->
+    </rerouter>
+
+    <!--    <rerouter id="myRerouter" edges="gneE19 -gneE19 gneE21 -gneE21 gneE16 -gneE16 gneE17 -gneE17 gneE18 -gneE18 gneE22 -gneE22 gneE20 -gneE20 gneE15 -gneE15 gneE24 -gneE24 gneE25 -gneE25 gneE14 -gneE14 gneE23 -gneE23">
+        <interval begin="0" end="2000">
+            <closingReroute id="gneE19"/>
+        </interval>
+    </rerouter> -->
+
+
+
+
+</additional>
