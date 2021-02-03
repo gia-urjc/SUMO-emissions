@@ -94,7 +94,7 @@ def run():
                 if windows[w][0] == step - 50:
                     print(NOx_control_zone_restriction_mode, windows[w][4])
                     NOx_control_zone_restriction_mode -= windows[w][4]
-                    if (NOx_control_zone_restriction_mode < 0): NOx_control_zone_restriction_mode = 0
+                    if (NOx_control_zone_restriction_mode < 0): NOx_control_zone_restriction_mode = 0 # TODO NOS QUEDAMOS AQUI
                     print(NOx_control_zone_restriction_mode)
             #print(step)
 
