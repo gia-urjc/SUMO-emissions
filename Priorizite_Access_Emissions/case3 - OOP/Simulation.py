@@ -1,15 +1,20 @@
 #! /usr/bin/env python
 class Simulation():
     """TODO"""
-    def Simulation(self, NOx_total = 0, NOx_control_zone = 0, total_kilometers = 0, vehicles_in_simulation = [],windows = []):
-        # Emissions
+    def Simulation(self, threshold, NOx_total = 0, NOx_control_zone = 0, veh_total_number = 0, vehicles_in_simulation = [], total_kilometers = 0 ,windows = []):
+
+        self.threshold = threshold
+
         self.NOx_total = NOx_total
         self.NOx_control_zone = NOx_control_zone
-        self.total_kilometers = total_kilometers
+        self.veh_total_number = veh_total_number
         self.vehicles_in_simulation = vehicles_in_simulation
+        self.total_kilometers = total_kilometers
         self.windows = windows
 
-
+    """
+    ADD METHODS
+    """
 
     def add_NOx_Total(self,NOx):
         self.NOx_total +=NOx
@@ -17,9 +22,27 @@ class Simulation():
     def add_NOx_control_zone(self,NOx):
         self.NOx_control_zone +=NOx
 
+    def add_veh_total_number(self,num):
+        self.veh_total_number +=num
+
+    # def add_vehicles_in_simulation(self,num) # SEE vehicles_in_simulation.SETTER!!
+
     def add_total_kilometers(self,km):
         self.total_kilometers +=km
 
+    # def add_window(self,wind) # SEE windows.SETTER!!
+
+    """
+    GETTERS AND SETTERS
+    """
+
+    @property  ##Getter
+    def threshold(self):
+        return self._threshold
+
+    @threshold.setter
+    def threshold(self, threshold):
+        self._threshold = threshold
 
     @property ##Getter
     def NOx_Total(self):
@@ -37,20 +60,28 @@ class Simulation():
         self._NOx_control_zone = NOx_control_zone
 
     @property  ##Getter
+    def veh_total_number(self):
+        return self._veh_total_number
+
+    @veh_total_number.setter
+    def veh_total_number(self, veh_total_number):
+        self._veh_total_number = veh_total_number
+
+    @property  ##Getter
+    def vehicles_in_simulation(self):
+        return self._vehicles_in_simulation
+
+    @vehicles_in_simulation.setter
+    def vehicles_in_simulation(self, vehicles_in_simulation):
+        self._vehicles_in_simulation.append(vehicles_in_simulation)
+
+    @property  ##Getter
     def total_kilometers(self):
         return self._total_kilometers
 
     @total_kilometers.setter
     def total_kilometers(self, total_kilometers):
         self._total_kilometers = total_kilometers
-
-    @property  ##Getter
-    def vehicles_in_simulation(self):
-        return self._vehicles_in_simulation
-
-    @total_kilometers.setter
-    def vehicles_in_simulation(self, vehicles_in_simulation):
-        self._vehicles_in_simulation.append(vehicles_in_simulation)
 
     @property  ##Getter
     def windows(self):
