@@ -2,7 +2,8 @@
 class Vehicle():
     """This class contains all vehicle definitions"""
 
-    def __init__(self, NOx = 0, km = 0):
+    def __init__(self, id = "", NOx = 0, km = 0):
+        self.id = id
         self.NOx = NOx
         self.total_km = km
 
@@ -18,6 +19,14 @@ class Vehicle():
     """
     GETTERS AND SETTERS
     """
+    @property # Getter
+    def id(self):
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        self._id = id
+        
     @property
     def NOx(self):
         return self._NOx
@@ -32,4 +41,6 @@ class Vehicle():
     @total_km.setter
     def total_km(self, total_km):
         self._total_km = total_km
+
+
 
