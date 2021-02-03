@@ -2,12 +2,22 @@
 class Vehicle():
     """This class contains all vehicle definitions"""
 
-    veh_total_number = 0
-    def __init__(self, NOx, km):
+    def __init__(self, NOx = 0, km = 0):
         self.NOx = NOx
         self.total_km = km
-        Vehicle.veh_total_number += 1
 
+    """
+    ADD METHODS
+    """
+    def add_NOx(self,NOx):
+        self.NOx +=NOx
+
+    def add_total_km(self,km):
+        self.total_km +=km
+
+    """
+    GETTERS AND SETTERS
+    """
     @property
     def NOx(self):
         return self._NOx
