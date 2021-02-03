@@ -1,11 +1,12 @@
 #! /usr/bin/env python
 class Simulation():
     """TODO"""
-    def Simulation(self, threshold, control_area_edges = [], restrictionMode = False,
+    def __init__(self, step, threshold, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], total_kilometers = 0,
                    windows = []):
 
+        self.step = step
         self.threshold = threshold
         self.control_area_edges = control_area_edges
         self.restrictionMode = restrictionMode
@@ -16,7 +17,7 @@ class Simulation():
 
         self.veh_total_number = veh_total_number
         self.vehicles_in_simulation = vehicles_in_simulation
-        self.vehs_load = vehs_load
+        self.vehs_load = vehs_load      # ID LIST
         self.total_kilometers = total_kilometers
 
         self.windows = windows
@@ -25,7 +26,6 @@ class Simulation():
     """
     ADD METHODS
     """
-
     def add_NOx_Total(self,NOx):
         self.NOx_total +=NOx
 
@@ -51,18 +51,32 @@ class Simulation():
         self.windows.append(wind)
 
     """
+        SUBSTRACTION METHODS
+    """
+    def sub_NOx_control_zone_restriction_mode(self, NOx):
+        self.NOx_control_zone_restriction_mode -= NOx
+
+    """
     UPDATE METHODS
     """
-
     def change_Restriction_Mode(self,mode):
         """ Mode = True or False """
         self.restrictionMode = mode
 
+    def update_Step(self):
+        self.step +=1
 
 
     """
     GETTERS AND SETTERS
     """
+    @property  ##Getter
+    def step(self):
+        return self._step
+
+    @step.setter
+    def step(self, step):
+        self._step = step
 
     @property  ##Getter
     def threshold(self):
