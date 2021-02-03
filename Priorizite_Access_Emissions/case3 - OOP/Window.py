@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 class Window():
     """TODO"""
-    def Window(self, NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0, vehicles_in_w=set()):
+    def __init__(self, NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0, vehicles_in_w=set()):
         self.NOx_total_w = NOx_total_w
         self.NOx_control_zone_w = NOx_control_zone_w
         self.veh_total_number_w = veh_total_number_w
