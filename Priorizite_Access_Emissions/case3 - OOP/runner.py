@@ -94,7 +94,7 @@ def run():
                 if windows[w][0] == step - 50:
                     print(NOx_control_zone_restriction_mode, windows[w][4])
                     NOx_control_zone_restriction_mode -= windows[w][4]
-                    if (NOx_control_zone_restriction_mode < 0): NOx_control_zone_restriction_mode = 0 # TODO NOS QUEDAMOS AQUI
+                    if (NOx_control_zone_restriction_mode < 0): NOx_control_zone_restriction_mode = 0
                     print(NOx_control_zone_restriction_mode)
             #print(step)
 
@@ -197,7 +197,7 @@ def run():
                     if (vClass_last2 != "passenger"):
                         traci.vehicle.setEmissionClass(veh, "zero")
 
-            if restrictionMode == True:
+            if restrictionMode == True: # TODO NOS QUEDAMOS AQUI
                 inList = False
                 for edg in edges:
                     edgStrng = edg + "_0"
@@ -235,7 +235,6 @@ def run():
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority","passenger","evehicle"])
             for veh in vehicles_in_simulation:
                 traci.vehicle.rerouteTraveltime(veh, True)
-
 
         print(step, "NOx_control_zone: ",NOx_control_zone, ". NOx_control_zone_restriction_mode: ",NOx_control_zone_restriction_mode,". NOx_total: ",NOx_total)
 

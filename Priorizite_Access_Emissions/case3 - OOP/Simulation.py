@@ -3,7 +3,7 @@ class Simulation():
     """TODO"""
     def __init__(self, step, threshold, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
-                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], total_kilometers = 0,
+                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), total_kilometers = 0,
                    windows = []):
 
         self.step = step
@@ -18,6 +18,7 @@ class Simulation():
         self.veh_total_number = veh_total_number
         self.vehicles_in_simulation = vehicles_in_simulation
         self.vehs_load = vehs_load      # ID LIST
+        self.all_veh = all_veh
         self.total_kilometers = total_kilometers
 
         self.windows = windows
@@ -39,16 +40,26 @@ class Simulation():
         self.veh_total_number +=num
 
     def add_vehicles_in_simulation(self,veh):
-        self.vehicles_in_simulation.append(veh)
+        self.vehicles_in_simulation.extend(veh)
 
     def add_vehs_load(self,veh):
         self.vehs_load.append(veh)
+
+    def add_all_veh(self, all_v):
+        for veh in all_v:
+            self.all_veh.add(veh)
 
     def add_total_kilometers(self,km):
         self.total_kilometers +=km
 
     def add_window(self,wind):
         self.windows.append(wind)
+
+    """
+        REMOVE METHODS
+    """
+    def remove_vehicles_in_simulation(self,veh):
+        self.vehicles_in_simulation.remove(veh)
 
     """
         SUBSTRACTION METHODS
@@ -151,6 +162,14 @@ class Simulation():
         self._vehs_load = vehs_load
 
     @property  ##Getter
+    def all_veh(self):
+        return self._all_veh
+
+    @all_veh.setter
+    def all_veh(self, all_veh):
+        self._all_veh = all_veh
+
+    @property  ##Getter
     def total_kilometers(self):
         return self._total_kilometers
 
@@ -165,6 +184,21 @@ class Simulation():
     @windows.setter
     def windows(self, windows):
         self._windows = windows
+
+
+    def __str__(self):
+
+        w = ""
+        for wi in self.windows:
+            w += "\n"+ wi.__str__()
+
+        return str(self.step) + ". restrictionMode: " + str(self.restrictionMode) + ".  NOx_total:" + str(self.NOx_total)+ \
+               ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) +". Total km: " + str(self.total_kilometers) + \
+               ". Windows:" + w
+
+
+
+
 
 
 
