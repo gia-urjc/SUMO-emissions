@@ -25,17 +25,15 @@ window_size = 50
 threshold_size = 14
 
 # Control Area:
-control_area_edges_cnf=["gneE19_0", "-gneE19_0", "gneE21_0", "-gneE21_0", "gneE16_0",
-                                                "-gneE16_0", "gneE17_0", "-gneE17_0",
-                                                "gneE18_0", "-gneE18_0", "gneE22_0", "-gneE22_0", "gneE20_0",
-                                                "-gneE20_0", "gneE15_0", "-gneE15_0",
-                                                "gneE24_0", "-gneE24_0", "gneE25_0", "-gneE25_0", "gneE14_0",
-                                                "-gneE14_0", "gneE23_0", "-gneE23_0"]
+control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
+                        "gneE198_0", "-gneE198_0", "gneE203_0", "-gneE203_0", "gneE199_0", "-gneE199_0",
+                        "gneE204_0", "-gneE204_0", "gneE209_0", "-gneE209_0", "gneE210_0", "-gneE210_0",
+                        "gneE215_0", "-gneE215_0", "gneE211_0", "-gneE211_0", "gneE216_0", "-gneE216_0"]
     # Control Area Limits. See with NetEdit:
-min_x = 3
-min_y = 3
-max_x = 296
-max_y = 296
+min_x = 3503
+min_y = -3503
+max_x = 8746
+max_y = -8746
 
 """
 CONTINUE WITH DEF's
@@ -87,9 +85,11 @@ def run():
             # Discount NOx of the last window:
             for w in range(len(simulation.windows)):
                 if simulation.windows[w].step == simulation.step - window_size:
+                    print(simulation.step, simulation.NOx_control_zone_restriction_mode)
                     simulation.sub_NOx_control_zone_restriction_mode(simulation.windows[w].NOx_control_zone_w)
                     if simulation.NOx_control_zone_restriction_mode < 0:
                         simulation.NOx_control_zone_restriction_mode = 0
+                        print(simulation.step, simulation.NOx_control_zone_restriction_mode)
 
 
             # Add variables for the last 50 steps
@@ -144,6 +144,7 @@ def run():
 
             # Control Area:
             pos = traci.vehicle.getPosition(vehID=veh.id)  # (x,y)
+            print(pos)
 
             if (pos[1] <= max_y and pos[1] >= min_y) and (pos[0] >= min_x and pos[0] <= max_x):  # x=> 0, y=>1. If the vehicle is in the control area
                 # All simulation:

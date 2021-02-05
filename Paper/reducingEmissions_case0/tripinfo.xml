@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 02/05/21 13:34:36 by Eclipse SUMO GUI Version 1.7.0
+<!-- generated on 02/05/21 14:27:26 by Eclipse SUMO GUI Version 1.7.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -19,11 +19,17 @@
     </processing>
 
     <traci_server>
-        <remote-port value="59859"/>
+        <remote-port value="60368"/>
     </traci_server>
 
 </configuration>
 -->
 
 <tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="veh1" depart="10.00" departLane="-A_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="1147.00" arrivalLane="C_0" arrivalPos="1742.80" arrivalSpeed="14.40" duration="1137.00" routeLength="15744.90" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="67.37" rerouteNo="1" devices="tripinfo_veh1 routing_veh1 emissions_veh1" vType="eVehicle" speedFactor="1.06" vaporized="">
+        <emissions CO_abs="0" CO2_abs="0" HC_abs="0" PMx_abs="0" NOx_abs="0" fuel_abs="0" electricity_abs="0"/>
+    </tripinfo>
+    <tripinfo id="veh2" depart="70.00" departLane="-E_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="1346.00" arrivalLane="G_0" arrivalPos="1742.80" arrivalSpeed="12.88" duration="1276.00" routeLength="15744.90" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="66.99" rerouteNo="1" devices="tripinfo_veh2 routing_veh2 emissions_veh2" vType="normalVehicle" speedFactor="0.94" vaporized="">
+        <emissions CO_abs="20293.736180" CO2_abs="2397174.631000" HC_abs="147.516112" PMx_abs="31.849218" NOx_abs="894.735072" fuel_abs="1030.446524" electricity_abs="0"/>
+    </tripinfo>
 </tripinfos>
