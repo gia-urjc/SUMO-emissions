@@ -1,13 +1,16 @@
 #! /usr/bin/env python
 class Simulation():
-    """TODO"""
-    def __init__(self, step, threshold, control_area_edges = [], restrictionMode = False,
+    """ Simulation """
+
+    def __init__(self, step, threshold_L, threshold_H , k=1, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
-                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), total_kilometers = 0,
-                   windows = []):
+                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(),windows = []):
+                #total_kilometers = 0,windows = []):
 
         self.step = step
-        self.threshold = threshold
+        self.threshold_L = threshold_L
+        self.threshold_H = threshold_H
+        self.k = k
         self.control_area_edges = control_area_edges
         self.restrictionMode = restrictionMode
 
@@ -19,7 +22,7 @@ class Simulation():
         self.vehicles_in_simulation = vehicles_in_simulation
         self.vehs_load = vehs_load      # ID LIST
         self.all_veh = all_veh
-        self.total_kilometers = total_kilometers
+        #self.total_kilometers = total_kilometers
 
         self.windows = windows
 
@@ -48,13 +51,12 @@ class Simulation():
     def add_all_veh(self, all_v):
         for veh in all_v:
             self.all_veh.add(veh)
-
+    """
     def add_total_kilometers(self,km):
         self.total_kilometers +=km
-
+    """
     def add_window(self,wind):
         self.windows.append(wind)
-
     """
         REMOVE METHODS
     """
@@ -90,12 +92,28 @@ class Simulation():
         self._step = step
 
     @property  ##Getter
-    def threshold(self):
-        return self._threshold
+    def threshold_L(self):
+        return self._threshold_L
 
-    @threshold.setter
-    def threshold(self, threshold):
-        self._threshold = threshold
+    @threshold_L.setter
+    def threshold_L(self, threshold_L):
+        self._threshold_L = threshold_L
+
+    @property  ##Getter
+    def threshold_H(self):
+        return self._threshold_H
+
+    @threshold_H.setter
+    def threshold_H(self, threshold_H):
+        self._threshold_H = threshold_H
+
+    @property  ##Getter
+    def k(self):
+        return self._k
+
+    @k.setter
+    def k(self, k):
+        self._k = k
 
     @property  ##Getter
     def control_area_edges(self):
@@ -169,6 +187,7 @@ class Simulation():
     def all_veh(self, all_veh):
         self._all_veh = all_veh
 
+    """
     @property  ##Getter
     def total_kilometers(self):
         return self._total_kilometers
@@ -176,6 +195,7 @@ class Simulation():
     @total_kilometers.setter
     def total_kilometers(self, total_kilometers):
         self._total_kilometers = total_kilometers
+    """
 
     @property  ##Getter
     def windows(self):
@@ -193,8 +213,9 @@ class Simulation():
             w += "\n"+ wi.__str__()
 
         return str(self.step) + ". restrictionMode: " + str(self.restrictionMode) + ".  NOx_total:" + str(self.NOx_total)+ \
-               ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) +". Total km: " + str(self.total_kilometers) + \
-               ". Windows:" + w
+               ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) + \
+               ". Windows:" + w  # +". Total km: " + str(self.total_kilometers)
+
 
 
 

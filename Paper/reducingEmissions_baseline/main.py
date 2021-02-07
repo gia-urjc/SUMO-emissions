@@ -22,7 +22,8 @@ PARAMETERS TO CONFIGURE
 
 """
 window_size = 50
-threshold_size = 40
+threshold_L = 30
+threshold_H = 40
 
 # Control Area:
 control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
@@ -48,17 +49,96 @@ def update_vehicles_to_control_area(simulation):
         vClass_last = traci.vehicle.getVehicleClass(veh_load.id)
         edges_last = traci.vehicle.getRoute(veh_load.id)
         string_edge = edges_last[len(edges_last) - 1] + "_0"
-
+        """
         # If destination in control area:
         if (string_edge in simulation.control_area_edges):
             traci.vehicle.setType(vehID=veh_load.id, typeID="authority") # Here the program changes the vClass
             if (vClass_last == "evehicle"):
                 traci.vehicle.setEmissionClass(veh_load.id, "zero")
+        """
+
+
+def decision_maker(simulation):
+    p = simulation.NOx_control_zone_restriction_mode
+
+    if p <= simulation.threshold_L: # NO RESTRICTIONS
+        simulation.k = 1
+        if simulation.restrictionMode:
+            print("CONTROL ZONE OFF", simulation.NOx_control_zone_restriction_mode)
+            simulation.restrictionMode = False
+            for aEd in simulation.control_area_edges:
+                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority", "passenger", "evehicle"])
+            for veh in simulation.vehicles_in_simulation:
+                traci.vehicle.rerouteTraveltime(veh.id, True)
+
+    elif p >= simulation.threshold_H: # NO VEHICLES ALLOWED
+        simulation.k = 0
+
+    else: # OTHERWISE
+        simulation.k = (simulation.threshold_H - p)/(simulation.threshold_H - simulation.threshold_L)
+
+    if p>simulation.threshold_L:
+        # CONTROL ZONE ON
+        # print(simulation.step, simulation.NOx_control_zone_restriction_mode)
+        if simulation.vehicles_in_simulation != [] and simulation.restrictionMode == False:
+            print("CONTROL ZONE ON", simulation.NOx_control_zone_restriction_mode)
+            simulation.restrictionMode = True
+
+            for aEd in simulation.control_area_edges:
+                traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
+                # print("disa ", traci.lane.getDisallowed(laneID=aEd))
+                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
+                # print("alo ", traci.lane.getAllowed(laneID=aEd))
+
+def class_veh_changer (simulation, veh):
+    # simulation.k = 1 NO RESTRICTIONS
+    # simulation.k = 0 NO VEHICLES ALLOWED
+    print(simulation.step, veh, simulation.k, simulation.NOx_control_zone_restriction_mode)
+    if simulation.k != 1:
+        # current edge in control area
+        rouIndex = traci.vehicle.getRouteIndex(veh.id)
+        edges = traci.vehicle.getRoute(veh.id)
+
+        string_current_edge = edges[rouIndex] + "_0"
+        if simulation.restrictionMode and traci.vehicle.getVehicleClass(veh.id) != "authority":
+            if (string_current_edge in simulation.control_area_edges):  # current edge in control area
+                vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
+                traci.vehicle.setType(vehID=veh.id, typeID="authority")
+                if (vClass_last2 != "passenger"):
+                    traci.vehicle.setEmissionClass(veh.id, "zero")
+
+        if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
+            """ k is the probability """
+            rand = random.uniform(0, 1)
+            print(rand, simulation.k)
+            if rand < simulation.k:
+                print("Entra")
+                if "authority" not in traci.vehicle.getTypeID(veh.id):
+                    print("No Auto")
+                    vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
+                    traci.vehicle.setType(vehID=veh.id, typeID="authority")
+                    if vClass_last2 == "passenger":
+                        traci.vehicle.setEmissionClass(veh.id,"HBEFA3/PC_G_EU4")
+                        print("P",traci.vehicle.getVehicleClass(vehID=veh.id))
+                    if (vClass_last2 == "evehicle"):
+                        traci.vehicle.setEmissionClass(veh.id, "zero")
+                        print("E",  traci.vehicle.getVehicleClass(vehID=veh.id))
+                        print(traci.vehicle.getEmissionClass(veh.id))
+                        print(traci.vehicle.getTypeID(veh.id))
+            elif traci.vehicle.getVehicleClass(vehID=veh.id)=="authority":
+                em_Class = traci.vehicle.getEmissionClass(veh.id)
+                if em_Class == "HBEFA3/PC_G_EU4":
+                    traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+                    #traci.vehicle.setType(veh.id, typeID="normalVehicle")
+                elif em_Class == "Zero/default":
+                    traci.vehicle.setVehicleClass(vehID=veh.id, clazz="evehicle")
+                    #traci.vehicle.setType(vehID=veh.id, typeID="eVehicle")
+                print("Cambiamos a su clase anterior", traci.vehicle.getVehicleClass(vehID=veh.id))
 
 
 def run():
     print("RUN")
-    simulation = Simulation(step = 0, threshold = threshold_size,
+    simulation = Simulation(step = 0, threshold_L = threshold_L, threshold_H= threshold_H, k = 1,
                             control_area_edges=control_area_edges_cnf)
     window = Window(simulation.step,set(), 0,  0, 0)
 
@@ -154,23 +234,19 @@ def run():
                 # Control area:
                 simulation.add_NOx_control_zone_restriction_mode(vehNOxEmission)
 
+
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh.id)
             edges = traci.vehicle.getRoute(veh.id)
-
+            """
             if rouIndex == (len(edges) - 1):  # Only if is the last edge
                 stage = traci.simulation.findRoute(edges[0], edges[rouIndex])
                 rouLength = stage.length  # Route Length
                 veh.total_km = rouLength
+            """
 
             # Control area - Threshold:
-            string_current_edge = edges[rouIndex] + "_0"
-            if simulation.restrictionMode and traci.vehicle.getVehicleClass(veh.id)!="authority":
-                if (string_current_edge in simulation.control_area_edges):  #  current edge in control area
-                    vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
-                    traci.vehicle.setType(vehID=veh.id, typeID="authority")
-                    if (vClass_last2 != "passenger"):
-                        traci.vehicle.setEmissionClass(veh.id, "zero")
+            class_veh_changer(simulation, veh)
 
                 # REROUTE VEHICLES:
             if simulation.restrictionMode:
@@ -183,33 +259,18 @@ def run():
                 if inList:
                     traci.vehicle.rerouteTraveltime(veh.id, True)
 
-        # CONTROL ZONE ON
-        #print(simulation.step, simulation.NOx_control_zone_restriction_mode)
-        if simulation.vehicles_in_simulation != [] and simulation.restrictionMode == False and simulation.NOx_control_zone_restriction_mode > threshold_size:
-            print("CONTROL ZONE ON", simulation.NOx_control_zone_restriction_mode)
-            simulation.restrictionMode = True
+        # CONTROL ZONE
+        decision_maker(simulation)
 
-            for aEd in simulation.control_area_edges:
-                traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
-                #print("disa ", traci.lane.getDisallowed(laneID=aEd))
-                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
-                #print("alo ", traci.lane.getAllowed(laneID=aEd))
-
-        # CONTROL ZONE OFF
-        if (simulation.restrictionMode and simulation.NOx_control_zone_restriction_mode <= threshold_size):
-            print("CONTROL ZONE OFF", simulation.NOx_control_zone_restriction_mode)
-            simulation.restrictionMode = False
-            for aEd in simulation.control_area_edges:
-                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority", "passenger", "evehicle"])
-            for veh in simulation.vehicles_in_simulation:
-                traci.vehicle.rerouteTraveltime(veh.id, True)
 
         #print(simulation.step, "NOx_control_zone: ", simulation.NOx_control_zone, ". NOx_control_zone_restriction_mode: ", simulation.NOx_control_zone_restriction_mode, ". NOx_total: ", simulation.NOx_total)
 
 
-    minutes = round(simulation.step / 60, 3)
+    minutes = round(simulation.step / 60, 0)
+    """
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
+    """
 
     # Results:
     print("Windows:")
@@ -253,6 +314,6 @@ if __name__ == "__main__":
         sumoBinary = checkBinary("SUMO")
     else:
         sumoBinary = checkBinary("sumo-gui")
-    traci.start([sumoBinary, "-c", "case0.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
+    traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
 
     run()
