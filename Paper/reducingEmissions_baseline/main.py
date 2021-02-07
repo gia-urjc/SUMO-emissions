@@ -17,6 +17,8 @@ from Vehicle import Vehicle
 from Simulation import Simulation
 from Window import Window
 
+from pathlib import Path
+
 """
 PARAMETERS TO CONFIGURE
 
@@ -271,18 +273,43 @@ def run():
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
     """
+    cont_file = 0
+    file = "results_file_"
+    fileName = r"./results/"+file+str(cont_file)+".txt"
+    print(fileName)
+    fileObject = Path(fileName)
+    while fileObject.is_file():
+        cont_file += 1
+        fileName = r"./results/"+ file + str(cont_file) +".txt"
+        print(fileName)
+        fileObject = Path(fileName)
+    #f=open("./"+fileName+".txt", "w")
+    f=open(fileName, "w")
 
     # Results:
     print("Windows:")
+    f.write("Windows:\n")
     for w in simulation.windows:
         print(w)
+
+        vehInW = ""
+        for veh in w.vehicles_in_w:
+            vehInW += veh.id + ","
+        f.write(str(w.step) + ". NOx_total_w: " + str(w.NOx_total_w) + ". NOx_control_zone_w: " + str(w.NOx_control_zone_w) + ". veh_total_number_w: " + str(w.veh_total_number_w) + ". Vehicles: " + vehInW +"\n")
     print("Vehicles:")
+    f.write("Vehicles:\n")
     for v in simulation.all_veh:
         print(v)
+        f.write(str(v.id) + " . Total NOx per vehicle: " + str(v.NOx))
     print("In ", simulation.step, "seconds (", minutes, " minutes)")
+    f.write("In "+ str(simulation.step)+ "seconds ("+ str(minutes)+ " minutes)\n")
     print("All simulation:")
+    f.write("All simulation:\n")
     print(simulation)
+    f.write(str(simulation.step) + ". restrictionMode: " + str(simulation.restrictionMode) + ".  NOx_total:" + str(simulation.NOx_total)+ \
+               ". NOx_control_zone:" + str(simulation.NOx_control_zone) + ". veh_total_number: " + str(simulation.veh_total_number) +"\n")
 
+    f.close()
 
 
     # TraCI
