@@ -273,6 +273,7 @@ def run():
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
     """
+    ## RESULTS FILE
     cont_file = 0
     file = "results_file_"
     fileName = r"./results/"+file+str(cont_file)+".txt"
