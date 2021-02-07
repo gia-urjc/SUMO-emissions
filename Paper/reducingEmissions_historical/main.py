@@ -17,6 +17,8 @@ from Vehicle import Vehicle
 from Simulation import Simulation
 from Window import Window
 
+from pathlib import Path
+
 """
 PARAMETERS TO CONFIGURE
 
@@ -217,13 +219,38 @@ def run():
     for w in simulation.windows:
         print(w)
     print("Vehicles:")
+    ## HISTORICAL
+    hist_veh = {}
+
     for v in simulation.all_veh:
         print(v)
+
+        hist_veh [v.id] = v.NOx
+
+    hist_veh = dict(sorted(hist_veh.items(), key=lambda item: item[1])) # sort
+
     print("In ", simulation.step, "seconds (", minutes, " minutes)")
     print("All simulation:")
     print(simulation)
 
+    # RESULTS FILE - HISTORICAL
+    cont_file = 0
+    file = "historical_"
+    fileName = r"./results/" + file + str(cont_file) + ".txt"
+    print(fileName)
+    fileObject = Path(fileName)
+    while fileObject.is_file():
+        cont_file += 1
+        fileName = r"./results/" + file + str(cont_file) + ".txt"
+        print(fileName)
+        fileObject = Path(fileName)
+    # f=open("./"+fileName+".txt", "w")
+    f = open(fileName, "w")
 
+    for k, v in hist_veh.items():
+        f.write(k+" "+str(v)+"\n")
+
+    f.close()
 
     # TraCI
     traci.close()
