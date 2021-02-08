@@ -347,3 +347,4 @@
     <tripinfo id="veh61" depart="531.00" departLane="-A_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="2661.00" arrivalLane="C_0" arrivalPos="1742.80" arrivalSpeed="14.15" duration="2130.00" routeLength="26228.16" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="439.03" rerouteNo="10" devices="tripinfo_veh61 routing_veh61 emissions_veh61" vType="authority@veh61" speedFactor="1.12" vaporized="">
         <emissions CO_abs="51169.100672" CO2_abs="4835081.803831" HC_abs="344.715501" PMx_abs="74.445028" NOx_abs="1880.058448" fuel_abs="2078.394290" electricity_abs="0"/>
     </tripinfo>
+</tripinfos>
