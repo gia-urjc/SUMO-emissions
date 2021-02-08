@@ -3,7 +3,7 @@ class Simulation():
     """TODO"""
     def __init__(self, step, threshold, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
-                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), total_kilometers = 0,
+                   veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(),
                    windows = []):
 
         self.step = step
@@ -19,7 +19,7 @@ class Simulation():
         self.vehicles_in_simulation = vehicles_in_simulation
         self.vehs_load = vehs_load      # ID LIST
         self.all_veh = all_veh
-        self.total_kilometers = total_kilometers
+        #self.total_kilometers = total_kilometers
 
         self.windows = windows
 
@@ -49,8 +49,10 @@ class Simulation():
         for veh in all_v:
             self.all_veh.add(veh)
 
+    """
     def add_total_kilometers(self,km):
         self.total_kilometers +=km
+    """
 
     def add_window(self,wind):
         self.windows.append(wind)
@@ -169,6 +171,7 @@ class Simulation():
     def all_veh(self, all_veh):
         self._all_veh = all_veh
 
+    """
     @property  ##Getter
     def total_kilometers(self):
         return self._total_kilometers
@@ -176,6 +179,7 @@ class Simulation():
     @total_kilometers.setter
     def total_kilometers(self, total_kilometers):
         self._total_kilometers = total_kilometers
+    """
 
     @property  ##Getter
     def windows(self):
@@ -193,7 +197,7 @@ class Simulation():
             w += "\n"+ wi.__str__()
 
         return str(self.step) + ". restrictionMode: " + str(self.restrictionMode) + ".  NOx_total:" + str(self.NOx_total)+ \
-               ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) +". Total km: " + str(self.total_kilometers) + \
+               ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) + \
                ". Windows:" + w
 
 

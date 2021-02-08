@@ -50,16 +50,19 @@ def update_vehicles_to_control_area(simulation):
         #if (veh_load.id != "simulation.findRoute"):
         traci.vehicle.setParameter(veh_load.id, "has.rerouting.device", "true") ## Add rerouter tool
         #print(veh_load.id)
+        """
         # Currently route and vehicle class
         vClass_last = traci.vehicle.getVehicleClass(veh_load.id)
         edges_last = traci.vehicle.getRoute(veh_load.id)
         string_edge = edges_last[len(edges_last) - 1] + "_0"
 
+        
         # If destination in control area:
         if (string_edge in simulation.control_area_edges):
             traci.vehicle.setType(vehID=veh_load.id, typeID="authority") # Here the program changes the vClass
             if (vClass_last == "evehicle"):
                 traci.vehicle.setEmissionClass(veh_load.id, "zero")
+        """
 
 
 def run():
@@ -170,7 +173,7 @@ def run():
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh.id)
             edges = traci.vehicle.getRoute(veh.id)
-
+            """
             if rouIndex == (len(edges) - 1):  # Only if is the last edge
                 stage = traci.simulation.findRoute(edges[0], edges[rouIndex])
                 rouLength = stage.length  # Route Length
@@ -195,6 +198,7 @@ def run():
                         break
                 if inList:
                     traci.vehicle.rerouteTraveltime(veh.id, True)
+            """
         """
         # CONTROL ZONE ON
         #print(simulation.step, simulation.NOx_control_zone_restriction_mode)
@@ -222,8 +226,10 @@ def run():
 
 
     minutes = round(simulation.step / 60, 3)
+    """
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
+    """
 
     # Results:
     print("Windows:")
@@ -241,12 +247,12 @@ def run():
     # RESULTS FILE - HISTORICAL
     cont_file = 0
     file = "historical_"
-    fileName = r"./results/" + file + str(cont_file) + ".txt"
+    fileName = r"./results/" + file + str(cont_file) + "_max.txt"
     print(fileName)
     fileObject = Path(fileName)
     while fileObject.is_file():
         cont_file += 1
-        fileName = r"./results/" + file + str(cont_file) + ".txt"
+        fileName = r"./results/" + file + str(cont_file) + "_max.txt"
         print(fileName)
         fileObject = Path(fileName)
     # f=open("./"+fileName+".txt", "w")
