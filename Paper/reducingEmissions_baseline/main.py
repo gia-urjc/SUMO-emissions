@@ -23,9 +23,17 @@ from pathlib import Path
 PARAMETERS TO CONFIGURE
 
 """
+
+""" 10 veh
 window_size = 50
 threshold_L = 30
 threshold_H = 40
+"""
+# +100 veh:
+window_size = 50
+threshold_L = 150
+threshold_H = 200
+
 
 # Control Area:
 control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
@@ -95,6 +103,7 @@ def decision_maker(simulation):
 def class_veh_changer (simulation, veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
+
     print(simulation.step, veh, simulation.k, simulation.NOx_control_zone_restriction_mode)
     if simulation.k != 1:
         # current edge in control area
@@ -114,7 +123,7 @@ def class_veh_changer (simulation, veh):
             rand = random.uniform(0, 1)
             print(rand, simulation.k)
             if rand < simulation.k:
-                print("Entra")
+                print("Enter")
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     print("No Auto")
                     vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
@@ -135,7 +144,7 @@ def class_veh_changer (simulation, veh):
                 elif em_Class == "Zero/default":
                     traci.vehicle.setVehicleClass(vehID=veh.id, clazz="evehicle")
                     #traci.vehicle.setType(vehID=veh.id, typeID="eVehicle")
-                print("Cambiamos a su clase anterior", traci.vehicle.getVehicleClass(vehID=veh.id))
+                print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
 
 
 def run():
