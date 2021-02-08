@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9869019e-998a-4d37-9b0f-45a9a8340de1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JupyterTrust" id="58d23931-211c-4d73-b344-6d632a5f39a5" />
+  <component name="ProjectId" id="1myAB45iDTpJZ1phsYZJXP1TaZv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reducingEmissions_VEP" />
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="base_case" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runner" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="base_case" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runner.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.runner" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9869019e-998a-4d37-9b0f-45a9a8340de1" name="Default Changelist" comment="" />
+      <created>1610455320704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610455320704</updated>
+      <workItem from="1610455322975" duration="1350000" />
+      <workItem from="1610526756288" duration="9930000" />
+      <workItem from="1611056352081" duration="3307000" />
+      <workItem from="1611139370404" duration="716000" />
+      <workItem from="1611568320107" duration="2536000" />
+      <workItem from="1611571547720" duration="13256000" />
+      <workItem from="1611615809835" duration="145000" />
+      <workItem from="1611616005737" duration="10000" />
+      <workItem from="1611659464877" duration="6057000" />
+      <workItem from="1611665784513" duration="7569000" />
+      <workItem from="1611762165323" duration="13405000" />
+      <workItem from="1611787513164" duration="2063000" />
+      <workItem from="1611789613551" duration="2412000" />
+      <workItem from="1611831058067" duration="378000" />
+      <workItem from="1611831595879" duration="4740000" />
+      <workItem from="1611914725363" duration="8004000" />
+      <workItem from="1611927425054" duration="70000" />
+      <workItem from="1612173982941" duration="4875000" />
+      <workItem from="1612345513046" duration="12515000" />
+      <workItem from="1612428601094" duration="20232000" />
+      <workItem from="1612517844035" duration="116000" />
+      <workItem from="1612528458133" duration="5909000" />
+      <workItem from="1612702490707" duration="3066000" />
+      <workItem from="1612736432076" duration="3185000" />
+      <workItem from="1612750211305" duration="2564000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="446" y="57" key="#com.intellij.ide.util.MemberChooser" timestamp="1612352647542">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="57" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612352647542" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1612784025372">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611919010354" />
+    <state x="2552" y="147" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612275443969" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612784025372" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1612174037344" />
+    <state width="1237" height="165" key="GridCell.Tab.0.bottom" timestamp="1612784128990">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="113" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611927494709" />
+    <state width="1877" height="345" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612368387363" />
+    <state width="1237" height="165" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612784128990" />
+    <state width="1323" height="405" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612736515478" />
+    <state width="1237" height="165" key="GridCell.Tab.0.center" timestamp="1612784128990">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="113" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611927494709" />
+    <state width="1877" height="345" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612368387363" />
+    <state width="1237" height="165" key="GridCell.Tab.0.center/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612784128990" />
+    <state width="1323" height="405" key="GridCell.Tab.0.center/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612736515478" />
+    <state width="1237" height="165" key="GridCell.Tab.0.left" timestamp="1612784128990">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="113" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611927494709" />
+    <state width="1877" height="345" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612368387363" />
+    <state width="1237" height="165" key="GridCell.Tab.0.left/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612784128990" />
+    <state width="1323" height="405" key="GridCell.Tab.0.left/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612736515478" />
+    <state width="1237" height="165" key="GridCell.Tab.0.right" timestamp="1612784128990">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="113" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611927494709" />
+    <state width="1877" height="345" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612368387363" />
+    <state width="1237" height="165" key="GridCell.Tab.0.right/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612784128990" />
+    <state width="1323" height="405" key="GridCell.Tab.0.right/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612736515478" />
+    <state x="-104" y="-8" width="750" height="496" key="dock-window-1" timestamp="1612479334306">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="107" y="-13" width="987" height="667" maximized="true" key="dock-window-1/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1612351535482" />
+    <state x="-33" y="-13" width="1054" height="715" maximized="true" key="dock-window-1/0.0.1280.680/1920.148.1366.728@0.0.1280.680" timestamp="1612454430041" />
+    <state x="-104" y="-8" width="750" height="496" key="dock-window-1/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612479334306" />
+    <state x="2363" y="305" width="718" height="476" key="search.everywhere.popup" timestamp="1612466288618">
+      <screen x="1920" y="148" width="1366" height="728" />
+    </state>
+    <state x="415" y="147" width="672" height="444" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1611786602179" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611771238498" />
+    <state x="2363" y="305" width="718" height="476" key="search.everywhere.popup/0.0.1280.680/1920.148.1366.728@1920.148.1366.728" timestamp="1612466288618" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/case1$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611831437765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/base_case_windows$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611594961482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/case2$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611927219375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/case3___OOP$main.coverage" NAME="main Coverage Results" MODIFIED="1612479261392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/reducingEmissions_historical$main.coverage" NAME="main Coverage Results" MODIFIED="1612740274460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/base_case$runner.coverage" NAME="runner Coverage Results" MODIFIED="1611570850896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/reducingEmissions_historical_max$main.coverage" NAME="main Coverage Results" MODIFIED="1612755672941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/case3___OOP$runner.coverage" NAME="runner Coverage Results" MODIFIED="1612476885135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/reducingEmissions_case0$main.coverage" NAME="main Coverage Results" MODIFIED="1612723986337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
