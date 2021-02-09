@@ -2,10 +2,10 @@
 class Vehicle():
     """This class contains all vehicle definitions"""
 
-    def __init__(self, id = "", NOx = 0, total_km = 0):
+    def __init__(self, id = "", NOx = 0, n_packages = 0):
         self.id = id
         self.NOx = NOx
-        self.total_km = total_km
+        self.n_packages = n_packages
 
     """
     ADD METHODS
@@ -13,8 +13,8 @@ class Vehicle():
     def add_NOx(self,NOx):
         self.NOx +=NOx
 
-    def add_total_km(self,km):
-        self.total_km +=km
+    def add_n_packages(self,num):
+        self.n_packages +=num
 
     """
     GETTERS AND SETTERS
@@ -35,15 +35,15 @@ class Vehicle():
         self._NOx = NOx
 
     @property
-    def total_km(self):
-        return self._total_km
+    def n_packages(self):
+        return self._n_packages
 
-    @total_km.setter
-    def total_km(self, total_km):
-        self._total_km = total_km
+    @n_packages.setter
+    def n_packages(self, n_packages):
+        self._n_packages = n_packages
 
     def __str__(self):
-        return str(self.id) + " . Total NOx per vehicle: " + str(self.NOx) + " . Km: " + str(self.total_km)
+        return str(self.id) + " . Total NOx per vehicle: " + str(self.NOx) + " . Nº Packages: " + str(self.n_packages)
 
 
 

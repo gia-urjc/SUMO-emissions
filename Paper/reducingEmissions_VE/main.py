@@ -73,6 +73,7 @@ def update_vehicles_to_control_area(simulation):
 def decision_maker(simulation):
     p = simulation.NOx_control_zone_restriction_mode
 
+
     if p <= simulation.threshold_L: # NO RESTRICTIONS
         simulation.k = 1
         if simulation.restrictionMode:
@@ -89,6 +90,7 @@ def decision_maker(simulation):
     else: # OTHERWISE
         simulation.k = (simulation.threshold_H - p)/(simulation.threshold_H - simulation.threshold_L)
 
+    print("p:", p, "k:", simulation.k)
     if p>simulation.threshold_L:
         # CONTROL ZONE ON
         # print(simulation.step, simulation.NOx_control_zone_restriction_mode)
@@ -150,7 +152,7 @@ def class_veh_changer (simulation, veh):
             """ We use simulation.max_historical """
             vehNOxEmission_step = traci.vehicle.getNOxEmission(veh.id)
             print(simulation.max_historical, vehNOxEmission_step)
-            if vehNOxEmission_step < simulation.max_historical:
+            if vehNOxEmission_step <= simulation.max_historical:
                 print("Enter")
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     print("No Auto")

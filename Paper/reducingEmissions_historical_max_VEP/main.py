@@ -37,6 +37,11 @@ min_x = 3503
 min_y = -3503
 max_x = 8746
 max_y = -8746
+
+# Nº packages:
+min_packages = 5
+max_packages = 10
+
 """
 HISTORICAL
 """
@@ -50,16 +55,18 @@ def update_vehicles_to_control_area(simulation):
         #if (veh_load.id != "simulation.findRoute"):
         traci.vehicle.setParameter(veh_load.id, "has.rerouting.device", "true") ## Add rerouter tool
         #print(veh_load.id)
+        """
         # Currently route and vehicle class
         vClass_last = traci.vehicle.getVehicleClass(veh_load.id)
         edges_last = traci.vehicle.getRoute(veh_load.id)
         string_edge = edges_last[len(edges_last) - 1] + "_0"
-
+        
         # If destination in control area:
         if (string_edge in simulation.control_area_edges):
             traci.vehicle.setType(vehID=veh_load.id, typeID="authority") # Here the program changes the vClass
             if (vClass_last == "evehicle"):
                 traci.vehicle.setEmissionClass(veh_load.id, "zero")
+        """
 
 
 def run():
@@ -115,6 +122,10 @@ def run():
             for id_veh_dep in id_vehs_departed:
                 if id_veh_dep != "simulation.findRoute":
                     id_veh_dep_Vehicle = Vehicle(id_veh_dep)
+                    num_packages = random.randint(min_packages, max_packages)
+                    id_veh_dep_Vehicle.n_packages = num_packages
+                    print(id_veh_dep_Vehicle.id, id_veh_dep_Vehicle.n_packages)
+
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle) # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -170,13 +181,14 @@ def run():
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh.id)
             edges = traci.vehicle.getRoute(veh.id)
-
+            """
             if rouIndex == (len(edges) - 1):  # Only if is the last edge
                 stage = traci.simulation.findRoute(edges[0], edges[rouIndex])
                 rouLength = stage.length  # Route Length
                 veh.total_km = rouLength
-
+            """
             # Control area - Threshold:
+            """
             string_current_edge = edges[rouIndex] + "_0"
             if simulation.restrictionMode and traci.vehicle.getVehicleClass(veh.id)!="authority":
                 if (string_current_edge in simulation.control_area_edges):  #  current edge in control area
@@ -184,6 +196,7 @@ def run():
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
                     if (vClass_last2 != "passenger"):
                         traci.vehicle.setEmissionClass(veh.id, "zero")
+            
 
                 # REROUTE VEHICLES:
             if simulation.restrictionMode:
@@ -195,6 +208,7 @@ def run():
                         break
                 if inList:
                     traci.vehicle.rerouteTraveltime(veh.id, True)
+            """
         """
         # CONTROL ZONE ON
         #print(simulation.step, simulation.NOx_control_zone_restriction_mode)
@@ -222,14 +236,18 @@ def run():
 
 
     minutes = round(simulation.step / 60, 3)
+    """
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
+    """
 
     # Results:
     print("Windows:")
     for w in simulation.windows:
         print(w)
     print("Vehicles:")
+    for v in simulation.all_veh:
+        print(v)
 
     print("In ", simulation.step, "seconds (", minutes, " minutes)")
     print("All simulation:")

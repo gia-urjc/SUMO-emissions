@@ -41,6 +41,7 @@ max_y = -8746
 HISTORICAL
 """
 historical_veh_max = {}
+historical_veh_max_contador = {}
 """
 CONTINUE WITH DEF's
 
@@ -147,10 +148,11 @@ def run():
                 # All simulation
             vehNOxEmission = traci.vehicle.getNOxEmission(veh.id)  # Return the NOx value per vehicle in each step
 
-            if veh.id in historical_veh_max:   #HISTORICAL
-                if historical_veh_max[veh.id] < vehNOxEmission:
-                    historical_veh_max[veh.id] = vehNOxEmission
-            else:
+            if vehNOxEmission>0 and veh.id in historical_veh_max:   #HISTORICAL
+                historical_veh_max_contador[veh.id] +=1
+                historical_veh_max[veh.id] += vehNOxEmission
+            elif veh.id not in historical_veh_max:
+                historical_veh_max_contador[veh.id] = 1
                 historical_veh_max[veh.id] = vehNOxEmission
 
             simulation.add_NOx_Total(vehNOxEmission)
@@ -241,9 +243,13 @@ def run():
     print("All simulation:")
     print(simulation)
 
-
     ## HISTORICAL
+    for veh in simulation.all_veh:
+        print(historical_veh_max[veh.id], historical_veh_max_contador[veh.id])
+        historical_veh_max[veh.id] = historical_veh_max[veh.id] / historical_veh_max_contador[veh.id]
+        print(historical_veh_max[veh.id])
     hist_veh = dict(sorted(historical_veh_max.items(), key=lambda item: item[1])) # sort
+
     # RESULTS FILE - HISTORICAL
     cont_file = 0
     file = "historical_"
