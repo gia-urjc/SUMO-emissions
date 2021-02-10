@@ -26,6 +26,10 @@ PARAMETERS TO CONFIGURE
 window_size = 50
 threshold_size = 40
 
+# p(t)
+alpha_ini = 0.5
+p_t_ini = 75
+
 
 # Control Area:
 control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
@@ -70,7 +74,7 @@ def run():
     print("RUN")
     simulation = Simulation(step = 0, threshold = threshold_size,
                             control_area_edges=control_area_edges_cnf)
-    window = Window(simulation.step,set(), 0,  0, 0)
+    window = Window(simulation.step,set(), set(), 0,  0, 0)
 
     while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and waiting cars)
         # LAST STEP
@@ -85,29 +89,26 @@ def run():
         simulation.vehs_load = vehs_load_Vehicle
         update_vehicles_to_control_area(simulation)
 
-        # NEW STEP
-        traci.simulationStep()  # Advance one time step: one second
-        simulation.update_Step()
-        window.update_Step()
-
-        # Window
-        if  ((simulation.step % window_size) == 0) and window.vehicles_in_w != []:  # Each window, window_size steps # TODO change [] for set()
-            # Discount NOx of the last window:
-            for w in range(len(simulation.windows)):
-                if simulation.windows[w].step == simulation.step - window_size:
-                    #print("1",simulation.step, simulation.NOx_control_zone_restriction_mode)
-                    simulation.sub_NOx_control_zone_restriction_mode(simulation.windows[w].NOx_control_zone_w)
-                    if simulation.NOx_control_zone_restriction_mode < 0:
-                        simulation.NOx_control_zone_restriction_mode = 0
-                        #print("2",simulation.step, simulation.NOx_control_zone_restriction_mode)
-
+        if simulation.step == 0:
+            simulation.NOx_control_zone_restriction_mode = p_t_ini
+            window.NOx_control_zone_w = p_t_ini
+            window.p_t = p_t_ini
+            simulation.add_alpha(alpha_ini)
+            #print("STEP 0", simulation.alphas)
+            #print(simulation.alphas[len(simulation.alphas) - 1])
 
             # Add variables for the last 50 steps
             simulation.add_window(window)
             print("Window: ", window)
 
             # Reboot all
-            window = Window(simulation.step,window.vehicles_in_w.copy(), 0,  0, window.veh_total_number_w)
+            window = Window(simulation.step, window.vehicles_in_w.copy(), set(), 0, 0, window.veh_total_number_w)
+
+        # NEW STEP
+        traci.simulationStep()  # Advance one time step: one second
+        simulation.update_Step()
+        window.update_Step()
+
 
 
         # MANAGE VEHICLES - All simulation
@@ -175,6 +176,8 @@ def run():
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh.id)
             edges = traci.vehicle.getRoute(veh.id)
+            if veh not in window.vehicles_in_control_zone_w and edges[rouIndex]+ "_0" in control_area_edges_cnf:
+                window.add_vehicles_in_control_zone_w(veh.id)
             """
             if rouIndex == (len(edges) - 1):  # Only if is the last edge
                 stage = traci.simulation.findRoute(edges[0], edges[rouIndex])
@@ -201,6 +204,33 @@ def run():
                 if inList:
                     traci.vehicle.rerouteTraveltime(veh.id, True)
             """
+        # Window
+        if ((simulation.step % window_size) == 0):  # Each window, window_size steps # TODO change [] for set()
+            # Discount NOx of the last window:
+            for w in range(len(simulation.windows)):
+                if simulation.windows[w].step == simulation.step - window_size:  # The last window
+                    lambda_l = random.uniform(0.8, 1.2)
+
+                    alpha = max(0.5, min(1, lambda_l * simulation.alphas[len(simulation.alphas) - 1]))
+                    simulation.add_alpha(alpha)
+
+                    p_t = alpha * simulation.windows[w].p_t + window.NOx_control_zone_w
+
+                    simulation.NOx_control_zone_restriction_mode = p_t
+                    window.p_t = p_t
+
+                    if simulation.NOx_control_zone_restriction_mode < 0:
+                        simulation.NOx_control_zone_restriction_mode = 0
+                        window.p_t = 0
+
+            # Add variables for the last 50 steps
+            simulation.add_window(window)
+            print("Window: ", window)
+
+            # Reboot all
+            window = Window(simulation.step, window.vehicles_in_w.copy(), window.vehicles_in_control_zone_w.copy(), 0,
+                            0, window.veh_total_number_w)
+            window.vehicles_in_control_zone_w = set()
         """
         # CONTROL ZONE ON
         #print(simulation.step, simulation.NOx_control_zone_restriction_mode)

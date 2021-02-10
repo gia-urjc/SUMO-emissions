@@ -1,11 +1,13 @@
 #! /usr/bin/env python
+import random
+
 class Simulation():
     """ Simulation """
 
     def __init__(self, step, threshold_L, threshold_H , k=1, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
-                   max_historical = 0):
+                   max_historical = 0, alphas = []):
                 #total_kilometers = 0,windows = [], max_historical = 0):
 
         self.step = step
@@ -28,6 +30,7 @@ class Simulation():
         self.windows = windows
 
         self.max_historical = max_historical
+        self.alphas = alphas
 
 
     """
@@ -60,6 +63,9 @@ class Simulation():
     """
     def add_window(self,wind):
         self.windows.append(wind)
+
+    def add_alpha(self,alp):
+        self.alphas.append(alp)
     """
         REMOVE METHODS
     """
@@ -69,8 +75,10 @@ class Simulation():
     """
         SUBSTRACTION METHODS
     """
+    """
     def sub_NOx_control_zone_restriction_mode(self, NOx):
         self.NOx_control_zone_restriction_mode -= NOx
+    """
 
     """
     UPDATE METHODS
@@ -216,9 +224,16 @@ class Simulation():
     def max_historical(self, max_historical):
         self._max_historical = max_historical
 
+    @property  ##Getter
+    def alphas(self):
+        return self._alphas
+
+    @alphas.setter
+    def alphas(self, alphas):
+        self._alphas = alphas
+
 
     def __str__(self):
-
         w = ""
         for wi in self.windows:
             w += "\n"+ wi.__str__()
