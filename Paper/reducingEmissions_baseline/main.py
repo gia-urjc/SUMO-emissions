@@ -192,7 +192,7 @@ def run():
     print("RUN")
     simulation = Simulation(step = 0, threshold_L = threshold_L, threshold_H= threshold_H, k = 1,
                             control_area_edges=control_area_edges_cnf)
-    window = Window(simulation.step,set(), set(), 0,  0, 0, 0, 0, 1)
+    window = Window(simulation.step,set(), set(), 0,  0, 0, 0, 0, 1, 0.5, 0.8)
 
     while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and waiting cars)
         # LAST STEP
@@ -212,7 +212,9 @@ def run():
             window.NOx_total_w = p_t_ini
             window.NOx_control_zone_w = p_t_ini
             window.p_t = p_t_ini
-            window.p_t_all = p_t_ini
+            window.p_t_total=p_t_ini
+            window.lambda_l = 0.8
+            window.alpha = alpha_ini
             simulation.add_alpha(alpha_ini)
             #print("STEP 0", simulation.alphas)
             #print(simulation.alphas[len(simulation.alphas) - 1])
@@ -245,6 +247,7 @@ def run():
                     id_veh_dep_Vehicle.step_ini = simulation.step
                     num_packages = random.randint(min_packages, max_packages)
                     id_veh_dep_Vehicle.n_packages = num_packages
+                    id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle) # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -329,6 +332,9 @@ def run():
                     alpha = max(0.5, min(1, lambda_l * simulation.alphas[len(simulation.alphas) - 1]))
                     simulation.add_alpha(alpha)
 
+                    window.lambda_l = lambda_l
+                    window.alpha = alpha
+
                     p_t = alpha * simulation.windows[w].p_t + window.NOx_control_zone_w
                     p_t_total = alpha * simulation.windows[w].p_t_total + window.NOx_total_w
 
@@ -409,12 +415,12 @@ def run():
     ## RESULTS FILE 2
     cont_file = 0
     file = "results_file_"
-    fileName = r"./results2/" + file + str(cont_file) + ".txt"
+    fileName = r"./results2/" + file + str(cont_file) + ".csv"
     print(fileName)
     fileObject = Path(fileName)
     while fileObject.is_file():
         cont_file += 1
-        fileName = r"./results2/" + file + str(cont_file) + ".txt"
+        fileName = r"./results2/" + file + str(cont_file) + ".csv"
         print(fileName)
         fileObject = Path(fileName)
     f = open(fileName, "w")
@@ -426,15 +432,15 @@ def run():
     f.write("window_size, threshold_L, threshold_H, alpha_ini, p_t_ini, min_packages, max_packages,"+"\n")
     f.write(str(window_size) +","+ str(threshold_L) +","+ str(threshold_H) +","+ str(alpha_ini) +","+ str(p_t_ini)+","+ str(min_packages) +","+ str(max_packages)+","+"\n")
     f.write("WINDOWS,"+"\n")
-    f.write("step, NOx_total_w, NOx_total_acum, p_t, e_t, p_t_total, e_t_total, vehicles_in_control_zone_w "+"\n")
+    f.write("step, NOx_total_w, NOx_total_acum, alpha, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, num_veh_total, num_vehicles_control_zone,  "+"\n")
 
     acum = 0
     for w in simulation.windows:
         acum += w.NOx_total_w
-        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(len(w.vehicles_in_control_zone_w))+",""\n")
+        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
 
     f.write("VEHICLES,"+"\n")
-    f.write("id, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,"+"\n")
+    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,"+"\n")
 
     p_all= 0
     cont = 0
@@ -443,7 +449,8 @@ def run():
         median_package = total_time / v.n_packages
         p_all += median_package
         cont +=1
-        f.write(v.id  +","+  str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+"\n")
+
+        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+"\n")
 
     median_package_all = p_all / cont
     f.write("ALL SIMULATION," + "\n")
