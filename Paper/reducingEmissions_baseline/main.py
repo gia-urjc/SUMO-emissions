@@ -432,12 +432,12 @@ def run():
     f.write("window_size, threshold_L, threshold_H, alpha_ini, p_t_ini, min_packages, max_packages,"+"\n")
     f.write(str(window_size) +","+ str(threshold_L) +","+ str(threshold_H) +","+ str(alpha_ini) +","+ str(p_t_ini)+","+ str(min_packages) +","+ str(max_packages)+","+"\n")
     f.write("WINDOWS,"+"\n")
-    f.write("step, NOx_total_w, NOx_total_acum, alpha, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, num_veh_total, num_vehicles_control_zone,  "+"\n")
+    f.write("step, NOx_total_w, NOx_total_acum, alpha, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, k_control_zone, num_veh_total, num_vehicles_control_zone,  "+"\n")
 
     acum = 0
     for w in simulation.windows:
         acum += w.NOx_total_w
-        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
+        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.k)+","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
 
     f.write("VEHICLES,"+"\n")
     f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,"+"\n")

@@ -52,6 +52,7 @@ class Vehicle():
     @property
     def NOx(self):
         return self._NOx
+
     @NOx.setter
     def NOx(self,NOx):
         self._NOx = NOx

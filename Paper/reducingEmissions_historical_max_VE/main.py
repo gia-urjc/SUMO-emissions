@@ -23,12 +23,16 @@ from pathlib import Path
 PARAMETERS TO CONFIGURE
 
 """
-window_size = 50
+window_size = 60
 threshold_size = 40
 
 # p(t)
 alpha_ini = 0.5
 p_t_ini = 75
+
+# Nº packages:
+min_packages = 5
+max_packages = 10
 
 
 # Control Area:
@@ -71,6 +75,7 @@ def update_vehicles_to_control_area(simulation):
 
 
 def run():
+    random.seed(1)
     print("RUN")
     simulation = Simulation(step = 0, threshold = threshold_size,
                             control_area_edges=control_area_edges_cnf)
@@ -91,8 +96,12 @@ def run():
 
         if simulation.step == 0:
             simulation.NOx_control_zone_restriction_mode = p_t_ini
+            window.NOx_total_w = p_t_ini
             window.NOx_control_zone_w = p_t_ini
             window.p_t = p_t_ini
+            window.p_t_total = p_t_ini
+            window.lambda_l = 0.8
+            window.alpha = alpha_ini
             simulation.add_alpha(alpha_ini)
             #print("STEP 0", simulation.alphas)
             #print(simulation.alphas[len(simulation.alphas) - 1])
@@ -120,6 +129,10 @@ def run():
             for id_veh_dep in id_vehs_departed:
                 if id_veh_dep != "simulation.findRoute":
                     id_veh_dep_Vehicle = Vehicle(id_veh_dep)
+                    id_veh_dep_Vehicle.step_ini = simulation.step
+                    num_packages = random.randint(min_packages, max_packages)
+                    id_veh_dep_Vehicle.n_packages = num_packages
+                    id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle) # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -132,6 +145,7 @@ def run():
         for veh in id_vehicles_arrived:
             for veh_sim in simulation.vehicles_in_simulation:
                 if veh == veh_sim.id: # If the vehicle has arrived then remove it from the simulation
+                    simulation.update_step_fin_veh(simulation.step, veh_sim)
                     simulation.remove_vehicles_in_simulation(veh_sim)
                     simulation.add_veh_total_number(1)  # Update Vehicle Total Number in all simulation
                     for veh_w in window.vehicles_in_w:

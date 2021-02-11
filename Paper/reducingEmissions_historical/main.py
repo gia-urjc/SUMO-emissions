@@ -23,12 +23,16 @@ from pathlib import Path
 PARAMETERS TO CONFIGURE
 
 """
-window_size = 50
+window_size = 60
 threshold_size = 40
 
 # p(t)
 alpha_ini = 0.5
 p_t_ini = 75
+
+# Nº packages:
+min_packages = 5
+max_packages = 10
 
 # Control Area:
 control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
@@ -64,6 +68,7 @@ def update_vehicles_to_control_area(simulation):
         """
 
 def run():
+    random.seed(1)
     print("RUN")
     simulation = Simulation(step = 0, threshold = threshold_size,
                             control_area_edges=control_area_edges_cnf)
@@ -84,8 +89,12 @@ def run():
 
         if simulation.step == 0:
             simulation.NOx_control_zone_restriction_mode = p_t_ini
+            window.NOx_total_w = p_t_ini
             window.NOx_control_zone_w = p_t_ini
             window.p_t = p_t_ini
+            window.p_t_total = p_t_ini
+            window.lambda_l = 0.8
+            window.alpha = alpha_ini
             simulation.add_alpha(alpha_ini)
             #print("STEP 0", simulation.alphas)
             #print(simulation.alphas[len(simulation.alphas) - 1])
@@ -113,6 +122,10 @@ def run():
             for id_veh_dep in id_vehs_departed:
                 if id_veh_dep != "simulation.findRoute":
                     id_veh_dep_Vehicle = Vehicle(id_veh_dep)
+                    id_veh_dep_Vehicle.step_ini = simulation.step
+                    num_packages = random.randint(min_packages, max_packages)
+                    id_veh_dep_Vehicle.n_packages = num_packages
+                    id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle) # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -125,6 +138,7 @@ def run():
         for veh in id_vehicles_arrived:
             for veh_sim in simulation.vehicles_in_simulation:
                 if veh == veh_sim.id: # If the vehicle has arrived then remove it from the simulation
+                    simulation.update_step_fin_veh(simulation.step, veh_sim)
                     simulation.remove_vehicles_in_simulation(veh_sim)
                     simulation.add_veh_total_number(1)  # Update Vehicle Total Number in all simulation
                     for veh_w in window.vehicles_in_w:
@@ -192,7 +206,7 @@ def run():
             """
 
         # Window
-        if ((simulation.step % window_size) == 0):  # Each window, window_size steps # TODO change [] for set()
+        if ((simulation.step % window_size) == 0):  # Each window, window_size steps
             # Discount NOx of the last window:
             for w in range(len(simulation.windows)):
                 if simulation.windows[w].step == simulation.step - window_size:  # The last window
@@ -201,10 +215,15 @@ def run():
                     alpha = max(0.5, min(1, lambda_l * simulation.alphas[len(simulation.alphas) - 1]))
                     simulation.add_alpha(alpha)
 
+                    window.lambda_l = lambda_l
+                    window.alpha = alpha
+
                     p_t = alpha * simulation.windows[w].p_t + window.NOx_control_zone_w
+                    p_t_total = alpha * simulation.windows[w].p_t_total + window.NOx_total_w
 
                     simulation.NOx_control_zone_restriction_mode = p_t
                     window.p_t = p_t
+                    window.p_t_total = p_t_total
 
                     if simulation.NOx_control_zone_restriction_mode < 0:
                         simulation.NOx_control_zone_restriction_mode = 0
@@ -244,8 +263,10 @@ def run():
 
 
     minutes = round(simulation.step / 60, 3)
+    """
     for v in simulation.all_veh:
         simulation.total_kilometers += v.total_km
+    """
 
     # Results:
     print("Windows:")
@@ -280,10 +301,60 @@ def run():
     # f=open("./"+fileName+".txt", "w")
     f = open(fileName, "w")
 
-    for k, v in hist_veh.items():
-        f.write(k+" "+str(v)+"\n")
+    for i, j in hist_veh.items():
+        f.write(i+" "+str(j)+"\n")
 
     f.close()
+
+    ## RESULTS FILE 2
+    cont_file = 0
+    file = "results_file_"
+    fileName = r"./results2/" + file + str(cont_file) + ".csv"
+    print(fileName)
+    fileObject = Path(fileName)
+    while fileObject.is_file():
+        cont_file += 1
+        fileName = r"./results2/" + file + str(cont_file) + ".csv"
+        print(fileName)
+        fileObject = Path(fileName)
+    f = open(fileName, "w")
+
+    # Results:
+
+    f.write("HISTORICAL - NO CONTROL ZONE, "+"\n")
+    f.write("PARAMETERS,"+"\n")
+
+    # p(t)
+    f.write("window_size, alpha_ini, p_t_ini, min_packages, max_packages,"+"\n")
+    f.write(str(window_size) +","+ str(alpha_ini) +","+ str(p_t_ini)+","+ str(min_packages) +","+ str(max_packages)+","+"\n")
+    f.write("WINDOWS,"+"\n")
+    f.write("step, NOx_total_w, NOx_total_acum, alpha, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, num_veh_total, num_vehicles_control_zone,  "+"\n")
+
+    acum = 0
+    for w in simulation.windows:
+        acum += w.NOx_total_w
+        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
+
+    f.write("VEHICLES,"+"\n")
+    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,"+"\n")
+
+    p_all= 0
+    cont = 0
+    for v in simulation.all_veh:
+        total_time = v.step_fin - v.step_ini
+        median_package = total_time / v.n_packages
+        p_all += median_package
+        cont +=1
+
+        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+"\n")
+
+    median_package_all = p_all / cont
+    f.write("ALL SIMULATION," + "\n")
+    f.write("total_steps(sec), minutes, median_package_all_sim,"+ "\n")
+    f.write(str(simulation.step) + "," + str(minutes)+ "," + str(median_package_all) +"," + "\n")
+
+    f.close()
+
 
     # TraCI
     traci.close()
