@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 class Window():
     """TODO"""
-    def __init__(self, step, vehicles_in_w,vehicles_in_control_zone_w, NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0, p_t = 0):
+    def __init__(self, step, vehicles_in_w,vehicles_in_control_zone_w, NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0, p_t = 0, p_t_total = 0, k =1):
         self.step = step
         self.NOx_total_w = NOx_total_w
         self.NOx_control_zone_w = NOx_control_zone_w
@@ -11,6 +11,8 @@ class Window():
         self.vehicles_in_control_zone_w = vehicles_in_control_zone_w
 
         self.p_t = p_t
+        self.p_t_total = p_t_total
+        self.k = k
     """
     ADD METHODS
     """
@@ -113,6 +115,22 @@ class Window():
     def p_t(self, p_t):
         self._p_t = p_t
 
+    @property  ##Getter
+    def p_t_total(self):
+        return self._p_t_total
+
+    @p_t_total.setter
+    def p_t_total(self, p_t_total):
+        self._p_t_total = p_t_total
+
+    @property  ##Getter
+    def k(self):
+        return self._k
+
+    @k.setter
+    def k(self, k):
+        self._k = k
+
     def __str__(self):
         vehInW = ""
         for veh in self.vehicles_in_w:
@@ -122,7 +140,7 @@ class Window():
         for veh in self.vehicles_in_control_zone_w:
             vehInWCZ += veh + ","
         return str(self.step) + ". NOx_total_w: " + str(self.NOx_total_w) + ". NOx_control_zone_w: " + \
-               str(self.NOx_control_zone_w) +". p_t: "+str(self.p_t) + ". veh_total_number_w: " + \
-               str(self.veh_total_number_w) + ". Vehicles: " + vehInW + ". Nº veh in control zone: "+\
-               str(cont_vehInWCZ) +". Vehicles in control zone: " + vehInWCZ
+               str(self.NOx_control_zone_w) +". p_t: "+str(self.p_t) +". p_t_total: "+str(self.p_t_total) + ". k: " + \
+               str(self.k) + ". veh_total_number_w: " + str(self.veh_total_number_w) + ". Vehicles: " + vehInW + \
+               ". Nº veh in control zone: "+ str(cont_vehInWCZ) +". Vehicles in control zone: " + vehInWCZ
 

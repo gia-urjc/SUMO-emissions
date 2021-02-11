@@ -86,6 +86,11 @@ class Simulation():
     def update_Step(self):
         self.step +=1
 
+    def update_step_fin_veh(self, step, veh):
+        for i in range(len(self.vehicles_in_simulation)):
+            if self.vehicles_in_simulation[i].id==veh.id :
+                veh.step_fin = step
+
 
     """
     GETTERS AND SETTERS
