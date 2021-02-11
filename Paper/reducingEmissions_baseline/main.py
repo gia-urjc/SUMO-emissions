@@ -30,9 +30,9 @@ threshold_L = 30
 threshold_H = 40
 """
 # +100 veh:
-window_size = 50
-threshold_L = 150
-threshold_H = 200
+window_size = 60
+threshold_L = 200
+threshold_H = 250
 
 # p(t)
 alpha_ini = 0.5
@@ -103,10 +103,50 @@ def decision_maker(simulation):
                 traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
 
+def setEmissionClass(emiLastClass, veh):
+    if emiLastClass == "Zero/default":
+        traci.vehicle.setEmissionClass(veh.id, "zero")
+    elif emiLastClass == "HBEFA3/LDV_G_EU6":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/LDV_G_EU6")
+    elif emiLastClass == "HBEFA3/LDV_D_EU6":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/LDV_D_EU6")
+    elif emiLastClass == "HBEFA3/PC_D_EU6":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/PC_D_EU6")
+    elif emiLastClass == "HBEFA3/PC_G_EU4":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/PC_G_EU4")
+    elif emiLastClass == "HBEFA3/PC_G_EU3":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/PC_G_EU3")
+    elif emiLastClass == "HBEFA3/HDV_D_EU4":
+        traci.vehicle.setEmissionClass(veh.id, "HBEFA3/HDV_D_EU4")
+
+def setSwitchVehicleClass(emiClass, veh):
+    if emiClass == "Zero/default":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="evehicle")
+        traci.vehicle.setType(vehID=veh.id, typeID="eVehicle")
+    elif emiClass == "HBEFA3/LDV_G_EU6":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+        traci.vehicle.setType(veh.id, typeID="gasolineEuroSix")
+    elif emiClass == "HBEFA3/LDV_D_EU6":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+        traci.vehicle.setType(veh.id, typeID="dieselEuroSix")
+    elif emiClass == "HBEFA3/PC_D_EU6":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+        traci.vehicle.setType(veh.id, typeID="hovGasolinaEuroSix")
+    elif emiClass == "HBEFA3/PC_G_EU4":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+        traci.vehicle.setType(veh.id, typeID="normalVehicle")
+    elif emiClass == "HBEFA3/PC_G_EU3":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
+        traci.vehicle.setType(veh.id, typeID="highEmissions")
+    elif emiClass == "HBEFA3/HDV_D_EU4":
+        traci.vehicle.setVehicleClass(vehID=veh.id, clazz="truck")
+        traci.vehicle.setType(veh.id, typeID="truck")
+    #print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
+
+
 def class_veh_changer (simulation, veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
-
     #print(simulation.step, veh, simulation.k, simulation.NOx_control_zone_restriction_mode)
     if simulation.k != 1:
         # current edge in control area
@@ -116,10 +156,10 @@ def class_veh_changer (simulation, veh):
         string_current_edge = edges[rouIndex] + "_0"
         if simulation.restrictionMode and traci.vehicle.getVehicleClass(veh.id) != "authority":
             if (string_current_edge in simulation.control_area_edges):  # current edge in control area
-                vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
+                emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                 traci.vehicle.setType(vehID=veh.id, typeID="authority")
-                if (vClass_last2 != "passenger"):
-                    traci.vehicle.setEmissionClass(veh.id, "zero")
+                setEmissionClass(emiLastClass, veh)
+
 
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
             """ k is the probability """
@@ -127,27 +167,19 @@ def class_veh_changer (simulation, veh):
             #print(rand, simulation.k)
             if rand < simulation.k:
                 #print("Enter")
-                if "authority" not in traci.vehicle.getTypeID(veh.id):
+                #if "authority" not in traci.vehicle.getTypeID(veh.id):
                     #print("No Auto")
-                    vClass_last2 = traci.vehicle.getVehicleClass(veh.id)
+                    emiLastClass = traci.vehicle.getEmissionClass(veh.id)
+                    #print(traci.vehicle.getTypeID(veh.id))
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
-                    if vClass_last2 == "passenger":
-                        traci.vehicle.setEmissionClass(veh.id,"HBEFA3/PC_G_EU4")
-                        #print("P",traci.vehicle.getVehicleClass(vehID=veh.id))
-                    if (vClass_last2 == "evehicle"):
-                        traci.vehicle.setEmissionClass(veh.id, "zero")
-                        #print("E",  traci.vehicle.getVehicleClass(vehID=veh.id))
-                        #print(traci.vehicle.getEmissionClass(veh.id))
-                        #print(traci.vehicle.getTypeID(veh.id))
+                    #print(traci.vehicle.getTypeID(veh.id))
+                    setEmissionClass(emiLastClass, veh)
+                    #print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id))
             elif traci.vehicle.getVehicleClass(vehID=veh.id)=="authority":
+                #print("AUTHORITY", traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
                 em_Class = traci.vehicle.getEmissionClass(veh.id)
-                if em_Class == "HBEFA3/PC_G_EU4":
-                    traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
-                    #traci.vehicle.setType(veh.id, typeID="normalVehicle")
-                elif em_Class == "Zero/default":
-                    traci.vehicle.setVehicleClass(vehID=veh.id, clazz="evehicle")
-                    #traci.vehicle.setType(vehID=veh.id, typeID="eVehicle")
-                #print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
+                setSwitchVehicleClass(em_Class, veh)
+                #print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
 
 
 def run():
@@ -171,6 +203,7 @@ def run():
 
         if simulation.step == 0:
             simulation.NOx_control_zone_restriction_mode = p_t_ini
+            window.NOx_total_w = p_t_ini
             window.NOx_control_zone_w = p_t_ini
             window.p_t = p_t_ini
             simulation.add_alpha(alpha_ini)
@@ -355,6 +388,34 @@ def run():
     print(simulation)
     f.write(str(simulation.step) + ". restrictionMode: " + str(simulation.restrictionMode) + ".  NOx_total:" + str(simulation.NOx_total)+ \
                ". NOx_control_zone:" + str(simulation.NOx_control_zone) + ". veh_total_number: " + str(simulation.veh_total_number) +"\n")
+
+    f.close()
+
+    ## RESULTS FILE 2
+    cont_file = 0
+    file = "results_file_"
+    fileName = r"./results2/" + file + str(cont_file) + ".txt"
+    print(fileName)
+    fileObject = Path(fileName)
+    while fileObject.is_file():
+        cont_file += 1
+        fileName = r"./results2/" + file + str(cont_file) + ".txt"
+        print(fileName)
+        fileObject = Path(fileName)
+    f = open(fileName, "w")
+
+    # Results:
+
+    f.write("BASELINE, ")
+    f.write("PARAMETERS,")
+    f.write("window_size, threshold_L, threshold_H, alpha_ini, p_t_ini, ")
+    f.write(str(window_size) +","+ str(threshold_L) +","+ str(threshold_H) +","+ str(alpha_ini) +","+ str(p_t_ini)+",")
+    f.write("step, NOx_total_w, NOx_total_acum, p_t, e_t,")
+
+    acum = 0
+    for w in simulation.windows:
+        acum += w.NOx_total_w
+        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.p_t) +","+ str(w.NOx_control_zone_w)+",")
 
     f.close()
 
