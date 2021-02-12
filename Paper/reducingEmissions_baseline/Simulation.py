@@ -5,7 +5,7 @@ class Simulation():
     def __init__(self, step, threshold_L, threshold_H , k=1, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
-                   alphas=[]):
+                   alphas=[], p_t = 0):
                 #total_kilometers = 0,windows = []):
 
         self.step = step
@@ -28,6 +28,7 @@ class Simulation():
         self.windows = windows
 
         self.alphas = alphas
+        self.p_t = p_t
 
 
     """
@@ -224,6 +225,14 @@ class Simulation():
     @alphas.setter
     def alphas(self, alphas):
         self._alphas = alphas
+
+    @property  ##Getter
+    def p_t(self):
+        return self._p_t
+
+    @p_t.setter
+    def p_t(self, p_t):
+        self._p_t = p_t
 
 
     def __str__(self):

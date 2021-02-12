@@ -31,6 +31,10 @@ threshold_H = 40
 """
 # +100 veh:
 window_size = 60
+"""
+threshold_L = 50000
+threshold_H = 100000
+"""
 threshold_L = 200
 threshold_H = 250
 
@@ -52,6 +56,9 @@ min_x = 3503
 min_y = -3503
 max_x = 8746
 max_y = -8746
+
+size_ratio = 10
+subs_NOx = 30000
 
 """
 CONTINUE WITH DEF's
@@ -76,16 +83,16 @@ def update_vehicles_to_control_area(simulation):
 
 
 def decision_maker(simulation, w):
-    p = simulation.NOx_control_zone_restriction_mode
+    p = simulation.p_t
 
     if p <= simulation.threshold_L: # NO RESTRICTIONS
         simulation.k = 1
         if simulation.restrictionMode:
-            print("CONTROL ZONE OFF", simulation.NOx_control_zone_restriction_mode, simulation.step)
+            print("CONTROL ZONE OFF", simulation.p_t, simulation.step)
             print("p:", p, "k:", simulation.k)
             simulation.restrictionMode = False
             for aEd in simulation.control_area_edges:
-                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority", "passenger", "evehicle"])
+                traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority", "passenger", "evehicle", "truck"])
             for veh in simulation.vehicles_in_simulation:
                 traci.vehicle.rerouteTraveltime(veh.id, True)
 
@@ -97,14 +104,14 @@ def decision_maker(simulation, w):
 
     if p>simulation.threshold_L:
         # CONTROL ZONE ON
-        # print(simulation.step, simulation.NOx_control_zone_restriction_mode)
-        if simulation.vehicles_in_simulation != [] and simulation.restrictionMode == False:
-            print("CONTROL ZONE ON", simulation.NOx_control_zone_restriction_mode, simulation.step)
+        # print(simulation.step, simulation.p_t)
+        if simulation.restrictionMode == False: # TODO COMPROBAR
+            print("CONTROL ZONE ON", simulation.p_t, simulation.step)
             print("p:", p, "k:", simulation.k)
             simulation.restrictionMode = True
 
             for aEd in simulation.control_area_edges:
-                traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle"])
+                traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle", "truck"])
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
     w.k = simulation.k
 
@@ -152,7 +159,7 @@ def setSwitchVehicleClass(emiClass, veh):
 def class_veh_changer (simulation, veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
-    print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.NOx_control_zone_restriction_mode) # step, veh, k, p
+    print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
     if simulation.k != 1:
         # current edge in control area
         rouIndex = traci.vehicle.getRouteIndex(veh.id)
@@ -173,6 +180,7 @@ def class_veh_changer (simulation, veh):
             if rand < simulation.k:
                 print("Enter")
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
+                    veh.enter_cz = True
                     print("No Auto")
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     print(traci.vehicle.getTypeID(veh.id))
@@ -189,6 +197,8 @@ def class_veh_changer (simulation, veh):
 
 def run():
     random.seed(1)
+    randomLambda = random.Random()
+    randomPackages = random.Random()
     print("RUN")
     simulation = Simulation(step = 0, threshold_L = threshold_L, threshold_H= threshold_H, k = 1,
                             control_area_edges=control_area_edges_cnf)
@@ -209,6 +219,7 @@ def run():
 
         if simulation.step == 0:
             simulation.NOx_control_zone_restriction_mode = p_t_ini
+            simulation.p_t = simulation.NOx_control_zone_restriction_mode
             window.NOx_total_w = p_t_ini
             window.NOx_control_zone_w = p_t_ini
             window.p_t = p_t_ini
@@ -245,7 +256,7 @@ def run():
                 if id_veh_dep != "simulation.findRoute":
                     id_veh_dep_Vehicle = Vehicle(id_veh_dep)
                     id_veh_dep_Vehicle.step_ini = simulation.step
-                    num_packages = random.randint(min_packages, max_packages)
+                    num_packages = randomPackages.randint(min_packages, max_packages)
                     id_veh_dep_Vehicle.n_packages = num_packages
                     id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
@@ -327,28 +338,35 @@ def run():
             # Discount NOx of the last window:
             for w in range(len(simulation.windows)):
                 if simulation.windows[w].step == simulation.step - window_size:
-                    lambda_l = random.uniform(0.8, 1.2)
+                    lambda_l = randomLambda.uniform(0.8, 1.2)
 
                     alpha = max(0.5, min(1, lambda_l * simulation.alphas[len(simulation.alphas) - 1]))
                     simulation.add_alpha(alpha)
 
                     window.lambda_l = lambda_l
                     window.alpha = alpha
-
+                    """
                     p_t = alpha * simulation.windows[w].p_t + window.NOx_control_zone_w
                     p_t_total = alpha * simulation.windows[w].p_t_total + window.NOx_total_w
+                    """
+
+                    x_cz = lambda_l * subs_NOx
+                    p_t = max(0, simulation.windows[w].p_t + window.NOx_control_zone_w - x_cz)
+
+                    y_total = x_cz * size_ratio
+                    p_t_total = max(0, simulation.windows[w].p_t_total + window.NOx_total_w - y_total)
 
                     simulation.NOx_control_zone_restriction_mode = p_t
-
-                    # CONTROL ZONE
-                    decision_maker(simulation, window)
+                    simulation.p_t = p_t
 
                     window.p_t = p_t
                     window.p_t_total = p_t_total
 
-                    if simulation.NOx_control_zone_restriction_mode < 0:
+                    if simulation.p_t < 0:
                         simulation.NOx_control_zone_restriction_mode = 0
+                        simulation.p_t = 0
                         window.p_t = 0
+
 
             # Add variables for the last 50 steps
             simulation.add_window(window)
@@ -359,8 +377,9 @@ def run():
             window = Window(simulation.step, window.vehicles_in_w.copy(), window.vehicles_in_control_zone_w.copy(), 0, 0, window.veh_total_number_w)
             window.vehicles_in_control_zone_w = set()
 
-        # CONTROL ZONE
-        decision_maker(simulation, window)
+            # CONTROL ZONE
+            decision_maker(simulation, window)
+
 
 
         #print(simulation.step, "NOx_control_zone: ", simulation.NOx_control_zone, ". NOx_control_zone_restriction_mode: ", simulation.NOx_control_zone_restriction_mode, ". NOx_total: ", simulation.NOx_total)
@@ -444,7 +463,7 @@ def run():
         f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.k)+","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
 
     f.write("VEHICLES,"+"\n")
-    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,"+"\n")
+    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,enter_cz,"+"\n")
 
     p_all= 0
     cont = 0
@@ -454,7 +473,7 @@ def run():
         p_all += median_package
         cont +=1
 
-        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+"\n")
+        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+ str(v.enter_cz)+","+"\n")
 
     median_package_all = p_all / cont
     f.write("ALL SIMULATION," + "\n")

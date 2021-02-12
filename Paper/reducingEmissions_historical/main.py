@@ -45,6 +45,10 @@ min_y = -3503
 max_x = 8746
 max_y = -8746
 
+# TODO B
+size_ratio = 10
+subs_NOx = 30000
+
 """
 CONTINUE WITH DEF's
 
@@ -218,8 +222,17 @@ def run():
                     window.lambda_l = lambda_l
                     window.alpha = alpha
 
+                    # TODO B
+                    """
                     p_t = alpha * simulation.windows[w].p_t + window.NOx_control_zone_w
                     p_t_total = alpha * simulation.windows[w].p_t_total + window.NOx_total_w
+                    """
+
+                    x_cz = lambda_l * subs_NOx
+                    p_t = max(0,simulation.windows[w].p_t + window.NOx_control_zone_w - x_cz)
+
+                    y_total = x_cz * size_ratio
+                    p_t_total = max(0,simulation.windows[w].p_t_total + window.NOx_total_w - y_total)
 
                     simulation.NOx_control_zone_restriction_mode = p_t
                     window.p_t = p_t
@@ -228,6 +241,7 @@ def run():
                     if simulation.NOx_control_zone_restriction_mode < 0:
                         simulation.NOx_control_zone_restriction_mode = 0
                         window.p_t = 0
+                        simulation.p_t = 0
 
             # Add variables for the last 50 steps
             simulation.add_window(window)
