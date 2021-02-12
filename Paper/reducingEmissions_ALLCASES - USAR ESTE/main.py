@@ -26,7 +26,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = ["historical_VE","historical_VEP","baseline","VE","VEP", "RRE", "RREP"]
-strategy = strategies[1] # SELECT ONE: strategies[0] = historical
+strategy = strategies[0] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 # HISTORICAL FILE
 if strategy == "VE":
@@ -64,10 +64,12 @@ subs_NOx = 45000
 
 
 """
-HISTORICAL - 
+HISTORICAL - DON'T CHANGE THIS
 """
 historical_veh_acum = {}
 historical_veh_acum_contador = {}
+
+not_strategy = ["baseline", "historical_VE", "historical_VEP"]
 
 """
 CONTINUE WITH DEF's
@@ -125,7 +127,6 @@ def decision_maker(simulation, w):
     w.k = simulation.k
 
     # OPEN HISTORICAL
-    not_strategy = ["baseline","historical_VE", "historical_VEP"]
     if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
         try:
             f = open(file_name, 'r')
@@ -263,6 +264,7 @@ def run():
     randomLambda = random.Random()
     randomPackages = random.Random()
     print("RUN")
+    print(strategy)
     simulation = Simulation(step = 0, threshold_L = threshold_L, threshold_H= threshold_H, k = 1,
                             control_area_edges=control_area_edges_cnf)
     window = Window(simulation.step,set(), set(), 0,  0, 0, 0, 0, 1, 0.5, 0.8)
@@ -464,7 +466,8 @@ def run():
             window.vehicles_in_control_zone_w = set()
 
             # CONTROL ZONE
-            decision_maker(simulation, window)
+            if strategy not in not_strategy:
+                decision_maker(simulation, window)
 
 
 
@@ -593,6 +596,7 @@ if __name__ == "__main__":
         sumoBinary = checkBinary("SUMO")
     else:
         sumoBinary = checkBinary("sumo-gui")
-    traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
+    #traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
+    traci.start([sumoBinary, "-c", "casebase.sumocfg"])
 
     run()
