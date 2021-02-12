@@ -5,7 +5,7 @@ class Simulation():
     def __init__(self, step, threshold_L, threshold_H , k=1, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
-                   alphas=[], p_t = 0):
+                   alphas=[], p_t = 0,  max_historical = 0):
                 #total_kilometers = 0,windows = []):
 
         self.step = step
@@ -29,6 +29,9 @@ class Simulation():
 
         self.alphas = alphas
         self.p_t = p_t
+
+        # VE, VEP, RRE, RREP
+        self.max_historical = max_historical
 
 
     """
@@ -233,6 +236,14 @@ class Simulation():
     @p_t.setter
     def p_t(self, p_t):
         self._p_t = p_t
+
+    @property  ##Getter
+    def max_historical(self):
+        return self._max_historical
+
+    @max_historical.setter
+    def max_historical(self, max_historical):
+        self._max_historical = max_historical
 
 
     def __str__(self):
