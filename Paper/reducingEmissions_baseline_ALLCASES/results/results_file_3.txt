@@ -1,0 +1,47 @@
+Windows:
+0. NOx_total_w: 75. NOx_control_zone_w: 75. veh_total_number_w: 0. Vehicles: . Nº veh in control zone: 0. Vehicles in control zone: 
+60. NOx_total_w: 0.0. NOx_control_zone_w: 0. veh_total_number_w: 1. Vehicles: veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+120. NOx_total_w: 247.6451616631165. NOx_control_zone_w: 0. veh_total_number_w: 9. Vehicles: veh7,veh4,veh6,veh3,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+180. NOx_total_w: 291.57607319669637. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+240. NOx_total_w: 312.33942787375156. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+300. NOx_total_w: 316.53181860750266. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+360. NOx_total_w: 309.9431647541684. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+420. NOx_total_w: 311.5498199002025. NOx_control_zone_w: 0.0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 1. Vehicles in control zone: veh1,
+480. NOx_total_w: 338.42708047530385. NOx_control_zone_w: 35.40606227318722. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 3. Vehicles in control zone: veh3,veh4,veh1,
+540. NOx_total_w: 328.4299585202752. NOx_control_zone_w: 198.8975174887209. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 7. Vehicles in control zone: veh1,veh2,veh4,veh7,veh9,veh5,veh3,
+600. NOx_total_w: 325.4784498190025. NOx_control_zone_w: 232.31958252756522. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 7. Vehicles in control zone: veh1,veh2,veh4,veh7,veh9,veh5,veh3,
+660. NOx_total_w: 338.1440112176192. NOx_control_zone_w: 257.83459109848127. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 7. Vehicles in control zone: veh1,veh2,veh4,veh7,veh9,veh5,veh3,
+720. NOx_total_w: 324.9679231132351. NOx_control_zone_w: 238.03417469763065. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 7. Vehicles in control zone: veh1,veh2,veh4,veh7,veh9,veh5,veh3,
+780. NOx_total_w: 309.6852219136539. NOx_control_zone_w: 228.91390533469334. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 7. Vehicles in control zone: veh1,veh2,veh4,veh7,veh9,veh5,veh3,
+840. NOx_total_w: 333.96678063345513. NOx_control_zone_w: 230.77122912953237. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 6. Vehicles in control zone: veh2,veh4,veh7,veh9,veh5,veh3,
+900. NOx_total_w: 337.26623198398204. NOx_control_zone_w: 177.38835186803465. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 5. Vehicles in control zone: veh2,veh7,veh9,veh5,veh3,
+960. NOx_total_w: 338.3925124653318. NOx_control_zone_w: 60.58895574357863. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 4. Vehicles in control zone: veh2,veh5,veh7,veh9,
+1020. NOx_total_w: 304.172170128963. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+1080. NOx_total_w: 315.12724666975606. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+1140. NOx_total_w: 296.97980250114165. NOx_control_zone_w: 0. veh_total_number_w: 10. Vehicles: veh7,veh4,veh6,veh3,veh10,veh9,veh8,veh2,veh5,veh1,. Nº veh in control zone: 0. Vehicles in control zone: 
+1200. NOx_total_w: 309.402337269672. NOx_control_zone_w: 0. veh_total_number_w: 8. Vehicles: veh7,veh6,veh3,veh10,veh9,veh8,veh2,veh5,. Nº veh in control zone: 0. Vehicles in control zone: 
+1260. NOx_total_w: 254.6476838147543. NOx_control_zone_w: 0. veh_total_number_w: 7. Vehicles: veh7,veh6,veh10,veh9,veh8,veh2,veh5,. Nº veh in control zone: 0. Vehicles in control zone: 
+1320. NOx_total_w: 228.92285341998436. NOx_control_zone_w: 0. veh_total_number_w: 7. Vehicles: veh8,veh5,veh7,veh2,veh6,veh10,veh9,. Nº veh in control zone: 0. Vehicles in control zone: 
+1380. NOx_total_w: 149.15907980785354. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh8,veh6,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1440. NOx_total_w: 77.68262672499945. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1500. NOx_total_w: 85.82451613537388. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1560. NOx_total_w: 85.48681757908851. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1620. NOx_total_w: 87.591081195432. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1680. NOx_total_w: 79.2593680312567. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1740. NOx_total_w: 82.63449566301404. NOx_control_zone_w: 0. veh_total_number_w: 3. Vehicles: veh6,veh8,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1800. NOx_total_w: 46.78845753880716. NOx_control_zone_w: 0. veh_total_number_w: 2. Vehicles: veh6,veh10,. Nº veh in control zone: 0. Vehicles in control zone: 
+1860. NOx_total_w: 31.788301904919496. NOx_control_zone_w: 0. veh_total_number_w: 1. Vehicles: veh6,. Nº veh in control zone: 0. Vehicles in control zone: 
+Vehicles:
+veh7 . Total NOx per vehicle: 1157.118156593285
+veh4 . Total NOx per vehicle: 905.0638758186202
+veh6 . Total NOx per vehicle: 0.0
+veh3 . Total NOx per vehicle: 845.0967663979237
+veh10 . Total NOx per vehicle: 1209.7858663739642
+veh9 . Total NOx per vehicle: 0.0
+veh8 . Total NOx per vehicle: 1125.9527917793355
+veh2 . Total NOx per vehicle: 886.8070337331693
+veh5 . Total NOx per vehicle: 1069.985983826015
+veh1 . Total NOx per vehicle: 0.0
+In 1877 seconds (31.0 minutes)
+All simulation:
+1877. restrictionMode: False.  NOx_total:7199.810474522309. NOx_control_zone:1660.1543701614241. veh_total_number: 10

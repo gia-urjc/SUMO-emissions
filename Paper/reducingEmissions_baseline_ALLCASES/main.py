@@ -31,8 +31,12 @@ threshold_H = 40
 """
 # +100 veh:
 window_size = 60
+"""
 threshold_L = 50000
 threshold_H = 100000
+"""
+threshold_L = 200
+threshold_H = 250
 
 # p(t)
 alpha_ini = 0.5
