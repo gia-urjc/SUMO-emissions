@@ -23,12 +23,10 @@ from pathlib import Path
 PARAMETERS TO CONFIGURE
 
 """
+strategies = ["historical","baseline","VE","VEP", "RRE", "RREP"]
+strategy = strategies[1] # SELECT ONE: strategies[0] = historical
+                         #      ...    strategies[5] = RREP
 
-""" 10 veh
-window_size = 50
-threshold_L = 30
-threshold_H = 40
-"""
 # +100 veh:
 window_size = 60
 threshold_L = 50000
@@ -151,8 +149,11 @@ def setSwitchVehicleClass(emiClass, veh):
         traci.vehicle.setType(veh.id, typeID="truck")
     print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
 
+"""
+STRATEGIES
 
-def class_veh_changer (simulation, veh):
+"""
+def class_veh_changer_baseline (simulation, veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
@@ -190,6 +191,11 @@ def class_veh_changer (simulation, veh):
                 setSwitchVehicleClass(em_Class, veh)
                 print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
 
+
+"""
+RUN
+
+"""
 
 def run():
     random.seed(1)
@@ -316,7 +322,22 @@ def run():
             """
 
             # Control area - Threshold:
-            class_veh_changer(simulation, veh)
+            strategies = ["historical", "baseline", "VE", "VEP", "RRE", "REEP"]
+            try:
+                if strategy == "historical":
+                    class_veh_changer_historical(simulation,veh)
+                elif strategy == "baseline":
+                    class_veh_changer_baseline(simulation,veh)
+                elif strategy == "VE":
+                    class_veh_changer_VE(simulation,veh)
+                elif strategy == "VEP":
+                    class_veh_changer_VEP(simulation, veh)
+                elif strategy == "RRE":
+                    class_veh_changer_RRE(simulation, veh)
+                elif strategy == "RREP":
+                    class_veh_changer_RREP(simulation, veh)
+            except NameError:
+                print("Strategy doesn't found")
 
                 # REROUTE VEHICLES:
             if simulation.restrictionMode:
