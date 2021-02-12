@@ -149,13 +149,13 @@ def setSwitchVehicleClass(emiClass, veh):
     elif emiClass == "HBEFA3/HDV_D_EU4":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="truck")
         traci.vehicle.setType(veh.id, typeID="truck")
-    print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
+    #print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
 
 
 def class_veh_changer (simulation, veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
-    print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
+    #print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
     if simulation.k != 1:
         # current edge in control area
         rouIndex = traci.vehicle.getRouteIndex(veh.id)
@@ -172,23 +172,23 @@ def class_veh_changer (simulation, veh):
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
             """ k is the probability """
             rand = random.uniform(0, 1)
-            print(rand, simulation.k)
+            #print(rand, simulation.k)
             if rand < simulation.k:
-                print("Enter")
+                #print("Enter")
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     veh.enter_cz = True
-                    print("No Auto")
+                    #print("No Auto")
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
-                    print(traci.vehicle.getTypeID(veh.id))
+                    #print(traci.vehicle.getTypeID(veh.id))
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
-                    print(traci.vehicle.getTypeID(veh.id))
+                    #print(traci.vehicle.getTypeID(veh.id))
                     setEmissionClass(emiLastClass, veh)
-                    print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id))
+                    #print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id))
             elif traci.vehicle.getVehicleClass(vehID=veh.id)=="authority":
-                print("AUTHORITY", traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
+                #print("AUTHORITY", traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
                 em_Class = traci.vehicle.getEmissionClass(veh.id)
                 setSwitchVehicleClass(em_Class, veh)
-                print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
+                #print(traci.vehicle.getTypeID(veh.id), traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(veh.id))
 
 
 def run():
@@ -347,10 +347,14 @@ def run():
                     """
 
                     x_cz = lambda_l * subs_NOx
+
                     p_t = max(0, simulation.windows[w].p_t + window.NOx_control_zone_w - x_cz)
+                    print("p_t", p_t, simulation.windows[w].p_t, window.NOx_control_zone_w, x_cz)
 
                     y_total = x_cz * size_ratio
                     p_t_total = max(0, simulation.windows[w].p_t_total + window.NOx_total_w - y_total)
+                    print("p_t_total", p_t_total, simulation.windows[w].p_t_total, window.NOx_total_w, y_total)
+
 
                     simulation.NOx_control_zone_restriction_mode = p_t
                     simulation.p_t = p_t
