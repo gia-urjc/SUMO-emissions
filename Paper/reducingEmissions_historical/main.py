@@ -234,7 +234,8 @@ def run():
             print("Window: ", window)
 
             # Reboot all
-            window = Window(simulation.step, window.vehicles_in_w.copy(), window.vehicles_in_control_zone_w.copy(), 0, 0, window.veh_total_number_w)
+            window = Window(simulation.step, window.vehicles_in_w.copy(), window.vehicles_in_control_zone_w.copy(), 0,
+                            0, window.veh_total_number_w)
             window.vehicles_in_control_zone_w = set()
         """
         # CONTROL ZONE ON

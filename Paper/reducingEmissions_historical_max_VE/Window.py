@@ -1,14 +1,21 @@
 #! /usr/bin/env python
 class Window():
     """TODO"""
-    def __init__(self, step, vehicles_in_w, vehicles_in_control_zone_w, NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0, p_t = 0):
+    def __init__(self, step, vehicles_in_w, vehicles_in_control_zone_w,
+                 NOx_total_w = 0, NOx_control_zone_w = 0, veh_total_number_w = 0,
+                 p_t = 0, p_t_total = 0, alpha = 0.5, lambda_l = 0.8):
         self.step = step
         self.NOx_total_w = NOx_total_w
         self.NOx_control_zone_w = NOx_control_zone_w
         self.veh_total_number_w = veh_total_number_w
+
         self.vehicles_in_w = vehicles_in_w
         self.vehicles_in_control_zone_w = vehicles_in_control_zone_w
+
         self.p_t = p_t
+        self.p_t_total = p_t_total
+        self.alpha = alpha
+        self.lambda_l = lambda_l
     """
     ADD METHODS
     """
@@ -25,9 +32,9 @@ class Window():
         for veh in vehw:
             self.vehicles_in_w.add(veh)
 
-
     def add_vehicles_in_control_zone_w(self, vehw):
        self.vehicles_in_control_zone_w.add(vehw)
+
     """
         REMOVE METHODS
     """
@@ -111,16 +118,40 @@ class Window():
     def p_t(self, p_t):
         self._p_t = p_t
 
+    @property  ##Getter
+    def p_t_total(self):
+        return self._p_t_total
+
+    @p_t_total.setter
+    def p_t_total(self, p_t_total):
+        self._p_t_total = p_t_total
+
+    @property  ##Getter
+    def alpha(self):
+        return self._alpha
+
+    @alpha.setter
+    def alpha(self, alpha):
+        self._alpha = alpha
+
+    @property  ##Getter
+    def lambda_l(self):
+        return self._lambda_l
+
+    @lambda_l.setter
+    def lambda_l(self, lambda_l):
+        self._lambda_l = lambda_l
+
     def __str__(self):
         vehInW = ""
         for veh in self.vehicles_in_w:
-            vehInW += veh.id +","
+            vehInW += veh.id + ","
         cont_vehInWCZ = len(self.vehicles_in_control_zone_w)
         vehInWCZ = ""
         for veh in self.vehicles_in_control_zone_w:
             vehInWCZ += veh + ","
         return str(self.step) + ". NOx_total_w: " + str(self.NOx_total_w) + ". NOx_control_zone_w: " + \
-               str(self.NOx_control_zone_w) +". p_t: "+str(self.p_t) + ". veh_total_number_w: " + \
-               str(self.veh_total_number_w) + ". Vehicles: " + vehInW + ". Nº veh in control zone: "+\
-               str(cont_vehInWCZ) +". Vehicles in control zone: " + vehInWCZ
-
+               str(self.NOx_control_zone_w) + ". p_t: " + str(self.p_t) + ". p_t_total: " + str(self.p_t_total) + \
+               ". alpha: " + str(self.alpha) + ". lambda: " + str(self.lambda_l) + ". veh_total_number_w: " + \
+               str(self.veh_total_number_w) + ". Vehicles: " + vehInW + ". Nº veh in control zone: " + \
+               str(cont_vehInWCZ) + ". Vehicles in control zone: " + vehInWCZ
