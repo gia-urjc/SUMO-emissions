@@ -25,14 +25,15 @@ from Window import Window
 PARAMETERS TO CONFIGURE
 
 """
-strategies = ["historical_VE","historical_VEP","baseline","VE","VEP", "RRE", "RREP"]
-strategy = strategies[0] # SELECT ONE: strategies[0] = historical_ve
+strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
+strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
+print(strategy)
 # HISTORICAL FILE
 if strategy == "VE":
-    file_name = r"./historical_VE_results/historical_VE_changeNumber.txt" # Change the txt name
+    file_name = r"./historical_VE_results/historical_VE_0.txt" # Change the txt name
 elif strategy == "VEP":
-    file_name = r"./historical_VEP_results/historical_VEP_changeNumber.txt" # Change the txt name
+    file_name = r"./historical_VEP_results/historical_VEP_0.txt" # Change the txt name
 
 # Window size (steps) and thresholds:
 window_size = 60
@@ -243,6 +244,10 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
             """ We use simulation.max_historical """
             vehNOxEmission_step = traci.vehicle.getNOxEmission(veh.id)
+            #print(vehNOxEmission_step, veh.n_packages)
+            if strategy == "VEP":
+                vehNOxEmission_step = vehNOxEmission_step/veh.n_packages
+            #print(vehNOxEmission_step, simulation.max_historical, traci.vehicle.getTypeID(veh.id))
             if vehNOxEmission_step <= simulation.max_historical:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     veh.enter_cz = True
@@ -395,7 +400,6 @@ def run():
             """
 
             # Control area - Threshold:
-            strategies = ["historical", "baseline", "VE", "VEP", "RRE", "REEP"]
             try:
                 """
                 if strategy == "historical":
