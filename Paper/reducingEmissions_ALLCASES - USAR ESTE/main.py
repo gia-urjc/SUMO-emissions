@@ -207,7 +207,6 @@ def class_veh_changer_baseline (simulation, veh):
             rand = random.uniform(0, 1)
             if rand < simulation.k:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
-
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
                     setEmissionClass(emiLastClass, veh)
@@ -241,10 +240,14 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 if key == veh.vType:
                     break
                 previous = key
-            if veh.vType == "eVehicle":
-                num_control = (simulation.k - 0 ) / (simulation.historical_table[veh.vType])
+            if strategy == "VEP":
+                vType = veh.vType +"-"+str(veh.n_packages)
             else:
-                num_control = (simulation.k - simulation.historical_table[previous])/ (simulation.historical_table[veh.vType] - simulation.historical_table[previous])
+                vType = veh.vType
+            if veh.vType == "eVehicle":
+                num_control = (simulation.k - 0 ) / (simulation.historical_table[vType])
+            else:
+                num_control = (simulation.k - simulation.historical_table[previous])/ (simulation.historical_table[vType] - simulation.historical_table[previous])
             rand = num_control + 1
             if num_control<1 and num_control>0:
                 rand = random.uniform(0, 1)
@@ -539,7 +542,6 @@ def run():
     cont = 0
     avg_contrib = 0
     total_packages = 0
-    print(simulation.all_veh)
     def sortFunc(v):
         return v.step_ini
     simulation.all_veh = sorted(simulation.all_veh, key=sortFunc)
