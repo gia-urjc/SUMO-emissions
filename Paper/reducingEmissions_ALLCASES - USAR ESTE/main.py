@@ -26,7 +26,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
-strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[5] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
@@ -236,15 +236,17 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
             # OPEN HISTORICAL
 
             # num_control = (k-acc(ant))/(acc-acc(ant))
-            previous = ""
-            for key, value in simulation.historical_table.items():
-                if key == veh.vType:
-                    break
-                previous = key
             if strategy == "VEP":
                 vType = veh.vType +"-"+str(veh.n_packages)
             else:
                 vType = veh.vType
+
+            previous = ""
+            for key, value in simulation.historical_table.items():
+                if key == vType:
+                    break
+                previous = key
+
             if veh.vType == "eVehicle":
                 num_control = (simulation.k - 0 ) / (simulation.historical_table[vType])
             else:
@@ -281,16 +283,18 @@ def class_veh_changer_RRE_OR_RREP(simulation,veh):
             # Historical:
             # OPEN HISTORICAL
 
-            # num_control = (k-acc(ant))/(acc-acc(ant))
-            previous = ""
-            for key, value in simulation.historical_table.items():
-                if key == veh.vType:
-                    break
-                previous = key
+            # num_control = ((k*MAX)-acc(ant))/(acc-acc(ant))
             if strategy == "RREP":
                 vType = veh.vType +"-"+str(veh.n_packages)
             else:
                 vType = veh.vType
+
+            previous = ""
+            for key, value in simulation.historical_table.items():
+                if key == vType:
+                    break
+                previous = key
+
             last = list(simulation.historical_table.keys())[-1]
             if veh.vType == "eVehicle":
                 #num_control = ((simulation.k * simulation.historical_table[last]) - 0 ) / (simulation.historical_table[vType])
