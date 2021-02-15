@@ -79,7 +79,7 @@ CONTINUE WITH DEF's
 def update_vehicles_to_control_area(simulation):
     for veh_load in simulation.vehs_load:
         #if (veh_load.id != "simulation.findRoute"):
-        
+
         traci.vehicle.setParameter(veh_load.id, "has.rerouting.device", "true") ## Add rerouter tool
         #print(veh_load.id)
         # Currently route and vehicle class
