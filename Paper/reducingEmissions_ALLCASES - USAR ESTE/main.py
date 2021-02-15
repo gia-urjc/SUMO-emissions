@@ -26,7 +26,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
-strategy = strategies[3] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
@@ -65,6 +65,7 @@ max_y = -8746
 
 size_ratio = 4
 subs_NOx = 45000
+
 
 
 
@@ -251,7 +252,7 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
             rand = num_control + 1
             if num_control<1 and num_control>0:
                 rand = random.uniform(0, 1)
-            if 1<num_control or rand <= num_control:
+            if 1<=num_control or rand <= num_control:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
@@ -260,11 +261,53 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 em_Class = traci.vehicle.getEmissionClass(veh.id)
                 setSwitchVehicleClass(em_Class, veh)
 
-def class_veh_changer_RRE(simulation, veh):
-    print()
+def class_veh_changer_RRE_OR_RREP(simulation,veh):
+    # simulation.k = 1 NO RESTRICTIONS
+    # simulation.k = 0 NO VEHICLES ALLOWED
+    # print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
+    if simulation.k != 1:
+        # current edge in control area
+        rouIndex = traci.vehicle.getRouteIndex(veh.id)
+        edges = traci.vehicle.getRoute(veh.id)
 
-def class_veh_changer_RREP(simulation, veh):
-    print()
+        string_current_edge = edges[rouIndex] + "_0"
+        if simulation.restrictionMode and traci.vehicle.getVehicleClass(veh.id) != "authority":
+            if (string_current_edge in simulation.control_area_edges):  # current edge in control area
+                emiLastClass = traci.vehicle.getEmissionClass(veh.id)
+                traci.vehicle.setType(vehID=veh.id, typeID="authority")
+                setEmissionClass(emiLastClass, veh)
+
+        if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
+            # Historical:
+            # OPEN HISTORICAL
+
+            # num_control = (k-acc(ant))/(acc-acc(ant))
+            previous = ""
+            for key, value in simulation.historical_table.items():
+                if key == veh.vType:
+                    break
+                previous = key
+            if strategy == "RREP":
+                vType = veh.vType +"-"+str(veh.n_packages)
+            else:
+                vType = veh.vType
+            last = list(simulation.historical_table.keys())[-1]
+            if veh.vType == "eVehicle":
+                #num_control = ((simulation.k * simulation.historical_table[last]) - 0 ) / (simulation.historical_table[vType])
+                num_control = 1
+            else:
+                num_control = ((simulation.k * simulation.historical_table[last]) - simulation.historical_table[previous])/ (simulation.historical_table[vType] - simulation.historical_table[previous])
+            rand = num_control + 1
+            if num_control<1 and num_control>0:
+                rand = random.uniform(0, 1)
+            if 1<=num_control or rand <= num_control:
+                if "authority" not in traci.vehicle.getTypeID(veh.id):
+                    emiLastClass = traci.vehicle.getEmissionClass(veh.id)
+                    traci.vehicle.setType(vehID=veh.id, typeID="authority")
+                    setEmissionClass(emiLastClass, veh)
+            elif traci.vehicle.getVehicleClass(vehID=veh.id) == "authority":
+                em_Class = traci.vehicle.getEmissionClass(veh.id)
+                setSwitchVehicleClass(em_Class, veh)
 
 def openHistorical(simulation):
     # OPEN HISTORICAL
@@ -439,10 +482,8 @@ def run():
                     class_veh_changer_baseline(simulation,veh)
                 elif strategy == "VE" or strategy == "VEP":
                     class_veh_changer_VE_OR_VEP(simulation,veh)
-                elif strategy == "RRE":
-                    class_veh_changer_RRE(simulation, veh)
-                elif strategy == "RREP":
-                    class_veh_changer_RREP(simulation, veh)
+                elif strategy == "RRE" or strategy == "RREP":
+                    class_veh_changer_RRE_OR_RREP(simulation, veh)
             except NameError:
                 print("Strategy doesn't found")
                 # REROUTE VEHICLES:
