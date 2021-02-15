@@ -26,19 +26,23 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
-strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[6] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
 if strategy == "VE":
-    file_name = r"./historical_VE_results/historical_VE_0.txt" # Change the txt name
+    file_name = r"./historicals/historical_VE.txt" # Change the txt name if is necessary
 elif strategy == "VEP":
-    file_name = r"./historical_VEP_results/historical_VEP_0.txt" # Change the txt name
+    file_name = r"./historicals/historical_VEP.txt" # Change the txt name if is necessary
+elif strategy == "RRE":
+    file_name = r"./historicals/historical_RRE.txt" # Change the txt name if is necessary
+elif strategy == "RREP":
+    file_name = r"./historicals/historical_RREP.txt" # Change the txt name if is necessary
 
 # Window size (steps) and thresholds:
 window_size = 60
-threshold_L = 50000
-threshold_H = 100000
+threshold_L = 800000
+threshold_H = 1000000
 
 # p(t)
 alpha_ini = 0.5
