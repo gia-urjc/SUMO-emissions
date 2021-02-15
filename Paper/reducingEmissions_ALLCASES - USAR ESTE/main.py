@@ -133,11 +133,12 @@ def decision_maker(simulation, w):
                 traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["passenger", "evehicle", "truck"])
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority"])
     w.k = simulation.k
-
+    """
     # OPEN HISTORICAL
     if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
         max_l = math.ceil(simulation.k * len(simulation.historical_table))
-        simulation.avg_historical = float(simulation.historical_table[max_l-1][1])
+        simulation.avg_historical = float(simulation.historical_table[max_l - 1][1])
+    """
 
 
 
@@ -218,6 +219,12 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     # print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
+    # OPEN HISTORICAL
+    if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
+        max_l = math.ceil(simulation.k * len(simulation.historical_table))
+        simulation.avg_historical = float(simulation.historical_table[max_l - 1][1])
+
+
     if simulation.k != 1:
         # current edge in control area
         rouIndex = traci.vehicle.getRouteIndex(veh.id)
@@ -255,11 +262,15 @@ def openHistorical(simulation):
     # OPEN HISTORICAL
     try:
         count_lines = 0
+        h_t = []
         f = open(file_name, 'r')
+        simulation.historical_table = dict()
         for l in f:
-            simulation.historical_table.append("")
-            simulation.historical_table[count_lines] = l.split()
+            h_t.append("")
+            h_t[count_lines] = l.split()
             count_lines += 1
+        for list_h_t in h_t:
+            simulation.historical_table[list_h_t[0]]= float(list_h_t[1])
         print("HISTORICAL: ", simulation.historical_table)
         f.close()
     except OSError:
@@ -427,9 +438,8 @@ def run():
             except NameError:
                 print("Strategy doesn't found")
                 # REROUTE VEHICLES:
-            if simulation.restrictionMode:
-                if rouIndex != (len(edges) - 1) and edges[rouIndex+1]+"_0" in control_area_edges_cnf:
-                    traci.vehicle.rerouteTraveltime(veh.id, True)
+            #if rouIndex != (len(edges) - 1) and edges[rouIndex+1]+"_0" in control_area_edges_cnf:
+            traci.vehicle.rerouteTraveltime(veh.id, True)
 
 
         # Window
