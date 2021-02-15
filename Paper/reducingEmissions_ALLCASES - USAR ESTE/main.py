@@ -28,7 +28,7 @@ PARAMETERS TO CONFIGURE
 strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
 strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
-print(strategy)
+
 # HISTORICAL FILE
 if strategy == "VE":
     file_name = r"./historical_VE_results/historical_VE_0.txt" # Change the txt name
@@ -79,7 +79,9 @@ CONTINUE WITH DEF's
 def update_vehicles_to_control_area(simulation):
     for veh_load in simulation.vehs_load:
         #if (veh_load.id != "simulation.findRoute"):
+        """
         traci.vehicle.setParameter(veh_load.id, "has.rerouting.device", "true") ## Add rerouter tool
+        """
         #print(veh_load.id)
         # Currently route and vehicle class
         vClass_last = traci.vehicle.getVehicleClass(veh_load.id)
@@ -99,14 +101,16 @@ def decision_maker(simulation, w):
 
     if p <= simulation.threshold_L: # NO RESTRICTIONS
         simulation.k = 1
-        if simulation.restrictionMode:
+        if simulation.restrictionMode and strategy not in not_strategy:
             print("CONTROL ZONE OFF", simulation.p_t, simulation.step)
             print("p:", p, "k:", simulation.k)
             simulation.restrictionMode = False
             for aEd in simulation.control_area_edges:
                 traci.lane.setAllowed(laneID=aEd, allowedClasses=["authority", "passenger", "evehicle", "truck"])
+            """
             for veh in simulation.vehicles_in_simulation:
                 traci.vehicle.rerouteTraveltime(veh.id, True)
+            """
 
     elif p >= simulation.threshold_H: # NO VEHICLES ALLOWED
         simulation.k = 0
@@ -114,7 +118,7 @@ def decision_maker(simulation, w):
     else: # OTHERWISE
         simulation.k = (simulation.threshold_H - p)/(simulation.threshold_H - simulation.threshold_L)
 
-    if p>simulation.threshold_L:
+    if p>simulation.threshold_L and strategy not in not_strategy:
         # CONTROL ZONE ON
         # print(simulation.step, simulation.p_t)
         if simulation.restrictionMode == False:
@@ -129,27 +133,9 @@ def decision_maker(simulation, w):
 
     # OPEN HISTORICAL
     if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
-        try:
-            f = open(file_name, 'r')
-            count_lines = 0
-            for l in f:
-                count_lines += 1
+        max_l = math.ceil(simulation.k * len(simulation.historical_table))
+        simulation.avg_historical = float(simulation.historical_table[max_l-1][1])
 
-            max_l = math.ceil(simulation.k * count_lines)
-            count_lines_2 = 0
-            f.close()
-            f = open(file_name, 'r')
-            for l in f:
-                if (count_lines_2 == (max_l - 1)):
-                    content = l
-                    break
-                count_lines_2 += 1
-
-            data_file = content.split()
-            simulation.max_historical = float(data_file[1])
-            f.close()
-        except OSError:
-            print('cannot open', file_name)
 
 
 def setEmissionClass(emiLastClass, veh):
@@ -217,7 +203,7 @@ def class_veh_changer_baseline (simulation, veh):
             rand = random.uniform(0, 1)
             if rand < simulation.k:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
-                    veh.enter_cz = True
+
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
                     setEmissionClass(emiLastClass, veh)
@@ -242,15 +228,14 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 setEmissionClass(emiLastClass, veh)
 
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
-            """ We use simulation.max_historical """
+            """ We use simulation.avg_historical """
             vehNOxEmission_step = traci.vehicle.getNOxEmission(veh.id)
             #print(vehNOxEmission_step, veh.n_packages)
             if strategy == "VEP":
                 vehNOxEmission_step = vehNOxEmission_step/veh.n_packages
-            #print(vehNOxEmission_step, simulation.max_historical, traci.vehicle.getTypeID(veh.id))
-            if vehNOxEmission_step <= simulation.max_historical:
+            #print(vehNOxEmission_step, simulation.avg_historical, traci.vehicle.getTypeID(veh.id))
+            if vehNOxEmission_step <= simulation.avg_historical:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
-                    veh.enter_cz = True
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
                     setEmissionClass(emiLastClass, veh)
@@ -259,6 +244,19 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 setSwitchVehicleClass(em_Class, veh)
 
 
+def openHistorical(simulation):
+    # OPEN HISTORICAL
+    try:
+        count_lines = 0
+        f = open(file_name, 'r')
+        for l in f:
+            simulation.historical_table.append("")
+            simulation.historical_table[count_lines] = l.split()
+            count_lines += 1
+        print("HISTORICAL: ", simulation.historical_table)
+        f.close()
+    except OSError:
+        print('cannot open', file_name)
 """
 RUN
 
@@ -266,13 +264,17 @@ RUN
 
 def run():
     random.seed(1)
-    randomLambda = random.Random()
-    randomPackages = random.Random()
+    randomLambda = random.Random(1)
+    randomPackages = random.Random(1)
     print("RUN")
     print(strategy)
     simulation = Simulation(step = 0, threshold_L = threshold_L, threshold_H= threshold_H, k = 1,
                             control_area_edges=control_area_edges_cnf)
     window = Window(simulation.step,set(), set(), 0,  0, 0, 0, 0, 1, 0.5, 0.8)
+
+
+    if (strategy not in not_strategy):
+        openHistorical(simulation)
 
     while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and waiting cars)
         # LAST STEP
@@ -384,11 +386,13 @@ def run():
                 window.add_NOx_control_zone_w(vehNOxEmission)
                 # Control area:
                 simulation.add_NOx_control_zone_restriction_mode(vehNOxEmission)
+                veh.enter_cz = True
 
 
             # Route lenght per vehicle
             rouIndex = traci.vehicle.getRouteIndex(veh.id)
             edges = traci.vehicle.getRoute(veh.id)
+
 
             if veh not in window.vehicles_in_control_zone_w and edges[rouIndex]+ "_0" in control_area_edges_cnf:
                 window.add_vehicles_in_control_zone_w(veh.id)
@@ -415,14 +419,11 @@ def run():
                     class_veh_changer_RREP(simulation, veh)
             except NameError:
                 print("Strategy doesn't found")
-
                 # REROUTE VEHICLES:
             if simulation.restrictionMode:
-                for edg in edges:
-                    edgStrng = edg + "_0"
-                    if edgStrng in simulation.control_area_edges:
-                        traci.vehicle.rerouteTraveltime(veh.id, True)
-                        break
+                if rouIndex != (len(edges) - 1) and edges[rouIndex+1]+"_0" in control_area_edges_cnf:
+                    traci.vehicle.rerouteTraveltime(veh.id, True)
+                    print()
 
 
         # Window
@@ -470,8 +471,7 @@ def run():
             window.vehicles_in_control_zone_w = set()
 
             # CONTROL ZONE
-            if strategy not in not_strategy:
-                decision_maker(simulation, window)
+            decision_maker(simulation, window)
 
 
 
@@ -512,22 +512,32 @@ def run():
         f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+ str(w.alpha)+","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.k)+","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
 
     f.write("VEHICLES,"+"\n")
-    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),median_package,enter_cz,"+"\n")
+    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),average_package,enter_cz,"+"\n")
 
     p_all= 0
     cont = 0
+    avg_contrib = 0
+    total_packages = 0
+    print(simulation.all_veh)
+    def sortFunc(v):
+        return v.step_ini
+    simulation.all_veh = sorted(simulation.all_veh, key=sortFunc)
+
+
     for v in simulation.all_veh:
         total_time = v.step_fin - v.step_ini
-        median_package = total_time / v.n_packages
-        p_all += median_package
+        average_package = total_time / v.n_packages
+        p_all += average_package
         cont +=1
+        avg_contrib += total_time * v.n_packages
+        total_packages += v.n_packages
 
-        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(median_package) +","+ str(v.enter_cz)+","+"\n")
+        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(average_package) +","+ str(v.enter_cz)+","+"\n")
 
-    median_package_all = p_all / cont
+    average_package_all =  avg_contrib / total_packages
     f.write("ALL SIMULATION," + "\n")
-    f.write("total_steps(sec), minutes, median_package_all_sim,"+ "\n")
-    f.write(str(simulation.step) + "," + str(minutes)+ "," + str(median_package_all) +"," + "\n")
+    f.write("total_steps(sec), minutes, avg_package_all_sim,"+ "\n")
+    f.write(str(simulation.step) + "," + str(minutes)+ "," + str(average_package_all) +"," + "\n")
 
     f.close()
 

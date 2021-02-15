@@ -12,5 +12,9 @@
     </input>
 
     <ignore-route-errors value = "true" />
+    <routing>
+        <device.rerouting.pre-period value="0"/>
+        <device.rerouting.probability value="-1"/>
+    </routing>
 
 </configuration>
