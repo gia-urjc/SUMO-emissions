@@ -5,7 +5,7 @@ class Simulation():
     def __init__(self, step, threshold_L, threshold_H , k=1, control_area_edges = [], restrictionMode = False,
                    NOx_total = 0, NOx_control_zone = 0, NOx_control_zone_restriction_mode=0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
-                   alphas=[], p_t = 0,  max_historical = 0):
+                   alphas=[], p_t = 0,  avg_historical = 0, historical_table = []):
                 #total_kilometers = 0,windows = []):
 
         self.step = step
@@ -30,8 +30,11 @@ class Simulation():
         self.alphas = alphas
         self.p_t = p_t
 
+        self.historical_table = historical_table
+
         # VE, VEP, RRE, RREP
-        self.max_historical = max_historical
+        self.avg_historical = avg_historical
+
 
 
     """
@@ -238,12 +241,20 @@ class Simulation():
         self._p_t = p_t
 
     @property  ##Getter
-    def max_historical(self):
-        return self._max_historical
+    def historical_table(self):
+        return self._historical_table
 
-    @max_historical.setter
-    def max_historical(self, max_historical):
-        self._max_historical = max_historical
+    @historical_table.setter
+    def historical_table(self, historical_table):
+        self._historical_table = historical_table
+
+    @property  ##Getter
+    def avg_historical(self):
+        return self._avg_historical
+
+    @avg_historical.setter
+    def avg_historical(self, avg_historical):
+        self._avg_historical = avg_historical
 
 
     def __str__(self):
