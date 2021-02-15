@@ -26,7 +26,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"historical_VE", 1:"historical_VEP", 2:"baseline", 3:"VE", 4:"VEP", 5:"RRE", 6:"RREP"}
-strategy = strategies[6] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[3] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
@@ -234,19 +234,21 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
             # Historical:
             # OPEN HISTORICAL
-            """
-            if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
-                max_l = math.ceil(simulation.k * len(simulation.historical_table))
-                simulation.avg_historical = float(simulation.historical_table[max_l - 1][1])
-            """
 
-
-            vehNOxEmission_step = traci.vehicle.getNOxEmission(veh.id)
-            #print(vehNOxEmission_step, veh.n_packages)
-            if strategy == "VEP":
-                vehNOxEmission_step = vehNOxEmission_step/veh.n_packages
-            #print(vehNOxEmission_step, simulation.avg_historical, traci.vehicle.getTypeID(veh.id))
-            if vehNOxEmission_step <= simulation.avg_historical:
+            # num_control = (k-acc(ant))/(acc-acc(ant))
+            previous = ""
+            for key, value in simulation.historical_table.items():
+                if key == veh.vType:
+                    break
+                previous = key
+            if veh.vType == "eVehicle":
+                num_control = (simulation.k - 0 ) / (simulation.historical_table[veh.vType])
+            else:
+                num_control = (simulation.k - simulation.historical_table[previous])/ (simulation.historical_table[veh.vType] - simulation.historical_table[previous])
+            rand = num_control + 1
+            if num_control<1 and num_control>0:
+                rand = random.uniform(0, 1)
+            if 1<num_control or rand <= num_control:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
@@ -254,6 +256,7 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
             elif traci.vehicle.getVehicleClass(vehID=veh.id) == "authority":
                 em_Class = traci.vehicle.getEmissionClass(veh.id)
                 setSwitchVehicleClass(em_Class, veh)
+
 def class_veh_changer_RRE(simulation, veh):
     print()
 
