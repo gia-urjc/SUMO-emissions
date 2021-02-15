@@ -219,12 +219,6 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     # print(simulation.step, veh.id, veh.NOx , simulation.k, simulation.p_t) # step, veh, k, p
-    # OPEN HISTORICAL
-    if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
-        max_l = math.ceil(simulation.k * len(simulation.historical_table))
-        simulation.avg_historical = float(simulation.historical_table[max_l - 1][1])
-
-
     if simulation.k != 1:
         # current edge in control area
         rouIndex = traci.vehicle.getRouteIndex(veh.id)
@@ -238,7 +232,15 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 setEmissionClass(emiLastClass, veh)
 
         if simulation.k != 0 and (string_current_edge not in simulation.control_area_edges):  # OTHERWISE - PROBABILITY and current edge not in control area
-            """ We use simulation.avg_historical """
+            # Historical:
+            # OPEN HISTORICAL
+            """
+            if (strategy not in not_strategy) and simulation.k != 1 and simulation.k != 0:
+                max_l = math.ceil(simulation.k * len(simulation.historical_table))
+                simulation.avg_historical = float(simulation.historical_table[max_l - 1][1])
+            """
+
+
             vehNOxEmission_step = traci.vehicle.getNOxEmission(veh.id)
             #print(vehNOxEmission_step, veh.n_packages)
             if strategy == "VEP":
@@ -291,7 +293,7 @@ def run():
     window = Window(simulation.step,set(), set(), 0,  0, 0, 0, 0, 1, 0.5, 0.8)
 
 
-    if (strategy not in not_strategy):
+    if (strategy!="baseline" and strategy not in not_strategy):
         openHistorical(simulation)
 
     while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and waiting cars)
