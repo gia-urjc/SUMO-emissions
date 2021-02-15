@@ -79,9 +79,8 @@ CONTINUE WITH DEF's
 def update_vehicles_to_control_area(simulation):
     for veh_load in simulation.vehs_load:
         #if (veh_load.id != "simulation.findRoute"):
-        """
+        
         traci.vehicle.setParameter(veh_load.id, "has.rerouting.device", "true") ## Add rerouter tool
-        """
         #print(veh_load.id)
         # Currently route and vehicle class
         vClass_last = traci.vehicle.getVehicleClass(veh_load.id)
@@ -423,7 +422,6 @@ def run():
             if simulation.restrictionMode:
                 if rouIndex != (len(edges) - 1) and edges[rouIndex+1]+"_0" in control_area_edges_cnf:
                     traci.vehicle.rerouteTraveltime(veh.id, True)
-                    print()
 
 
         # Window
