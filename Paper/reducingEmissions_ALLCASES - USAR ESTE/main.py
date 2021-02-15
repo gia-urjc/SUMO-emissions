@@ -70,7 +70,7 @@ HISTORICAL - DON'T CHANGE THIS
 historical_veh_acum = {}
 historical_veh_acum_contador = {}
 
-not_strategy = ["baseline", "historical_VE", "historical_VEP"]
+not_strategy = [ "historical_VE", "historical_VEP"]
 
 """
 CONTINUE WITH DEF's
