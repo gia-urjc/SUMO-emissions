@@ -45,8 +45,8 @@ alpha_ini = 0.5
 p_t_ini = 1000000
 
 # Nº packages:
-min_packages = 5
-max_packages = 10
+min_packages = 1
+max_packages = 20
 
 # Control Area:
 control_area_edges_cnf=["gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0", "gneE197_0", "-gneE197_0",
@@ -241,7 +241,11 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
             elif traci.vehicle.getVehicleClass(vehID=veh.id) == "authority":
                 em_Class = traci.vehicle.getEmissionClass(veh.id)
                 setSwitchVehicleClass(em_Class, veh)
+def class_veh_changer_RRE(simulation, veh):
+    print()
 
+def class_veh_changer_RREP(simulation, veh):
+    print()
 
 def openHistorical(simulation):
     # OPEN HISTORICAL
