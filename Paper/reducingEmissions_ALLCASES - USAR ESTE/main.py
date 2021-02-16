@@ -251,10 +251,8 @@ def class_veh_changer_VE_OR_VEP(simulation,veh):
                 num_control = (simulation.k - 0 ) / (simulation.historical_table[vType])
             else:
                 num_control = (simulation.k - simulation.historical_table[previous])/ (simulation.historical_table[vType] - simulation.historical_table[previous])
-            rand = num_control + 1
-            if num_control<1 and num_control>0:
-                rand = random.uniform(0, 1)
-            if 1<=num_control or rand <= num_control:
+
+            if random.uniform(0, 1) <= num_control:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
@@ -301,10 +299,8 @@ def class_veh_changer_RRE_OR_RREP(simulation,veh):
                 num_control = 1
             else:
                 num_control = ((simulation.k * simulation.historical_table[last]) - simulation.historical_table[previous])/ (simulation.historical_table[vType] - simulation.historical_table[previous])
-            rand = num_control + 1
-            if num_control<1 and num_control>0:
-                rand = random.uniform(0, 1)
-            if 1<=num_control or rand <= num_control:
+
+            if random.uniform(0, 1) <= num_control:
                 if "authority" not in traci.vehicle.getTypeID(veh.id):
                     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
                     traci.vehicle.setType(vehID=veh.id, typeID="authority")
