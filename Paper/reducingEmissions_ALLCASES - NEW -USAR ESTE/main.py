@@ -26,7 +26,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"noControl", 1:"baseline", 2:"VE", 3:"VEP", 4:"RRE", 5:"RREP"}
-strategy = strategies[0] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[2] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
@@ -362,9 +362,6 @@ def run():
 
         ## IMPORTANT PART - FOR EACH VEHICLE analyse whether it can enter or not :
         if strategy != "noControl":
-            no_cars_enter(simulation)
-            lastkSmaller1 = True
-            """
             if simulation.k >=1 : #all cars enter
                 if lastkSmaller1:
                     all_cars_enter(simulation)
@@ -375,7 +372,7 @@ def run():
             else : #some cars enter
                 some_cars_enter(simulation)
                 lastkSmaller1 = True
-            """
+            
         # Window
         if ((simulation.step % window_size) == 0):
             # Discount NOx of the last window:
