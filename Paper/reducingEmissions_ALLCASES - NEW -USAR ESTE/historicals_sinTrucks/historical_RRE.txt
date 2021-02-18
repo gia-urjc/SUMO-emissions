@@ -1,0 +1,7 @@
+eVehicle	0
+gasolineEuroSix	0.0587
+highEmissions	0.1437
+normalVehicle	0.2455
+hovGasolinaEuroSix	0.5593
+dieselEuroSix	1
+truck	1
