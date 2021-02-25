@@ -2,8 +2,8 @@
 class Simulation():
     """ Simulation """
 
-    def __init__(self, step, threshold_L, threshold_H , k=1, restrictionMode = False,
-                   NOx_total = 0, NOx_control_zone = 0,
+    def __init__(self, step, threshold_L, threshold_H , k=1, strategy ="",
+                   restrictionMode = False, NOx_total = 0, NOx_control_zone = 0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
                    p_t = 0,  avg_historical = 0):
                 #total_kilometers = 0,windows = [], alphas=[],):
@@ -12,6 +12,7 @@ class Simulation():
         self.threshold_L = threshold_L
         self.threshold_H = threshold_H
         self.k = k
+        self.strategy = strategy
         self.restrictionMode = restrictionMode
 
         self.NOx_total = NOx_total
@@ -122,6 +123,14 @@ class Simulation():
     @k.setter
     def k(self, k):
         self._k = k
+
+    @property  ##Getter
+    def strategy(self):
+        return self._strategy
+
+    @strategy.setter
+    def strategy(self, strategy):
+        self._strategy = strategy
 
     @property  ##Getter
     def restrictionMode(self):
