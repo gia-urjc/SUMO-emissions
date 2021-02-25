@@ -7,7 +7,7 @@
 
     <input>
         <net-file value="casebase.net.xml"/>
-        <route-files value="2_5h.rou.xml"/>
+        <route-files value="1h.rou.xml"/>
         <additional-files value="casebase.add.xml"/>
     </input>
 
