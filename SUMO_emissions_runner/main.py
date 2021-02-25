@@ -239,6 +239,97 @@ def openHistorical(simulation):
         f.close()
     except OSError:
         print('cannot open', file_name)
+
+def results(simulation):
+    minutes = round(simulation.step / 60, 0)
+
+    ## RESULTS FILE 2
+    cont_file = 0
+    file = "results_file_" + strategy
+    fileName = r"./results/" + file + str(cont_file) + ".csv"
+    print(fileName)
+    fileObject = Path(fileName)
+    while fileObject.is_file():
+        cont_file += 1
+        fileName = r"./results/" + file + str(cont_file) + ".csv"
+        print(fileName)
+        fileObject = Path(fileName)
+    f = open(fileName, "w")
+
+    # Results:
+
+    f.write(strategy + "\n")
+    f.write("PARAMETERS," + "\n")
+    f.write("window_size, threshold_L, threshold_H, p_t_ini, min_packages, max_packages," + "\n")
+    f.write(str(window_size) + "," + str(threshold_L) + "," + str(threshold_H) + "," + str(p_t_ini) + "," + str(
+        min_packages) + "," + str(max_packages) + "," + "\n")
+    f.write("WINDOWS," + "\n")
+    f.write(
+        "step, NOx_total_w, NOx_total_acum, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, k_control_zone, num_veh_total, num_vehicles_control_zone,  " + "\n")
+
+    acum = 0
+    p_t_total_all_steps = 0
+    e_t_total_all_steps = 0
+    p_t_control_zone_all_steps = 0
+    e_t_control_zone_all_steps = 0
+    avg_k_all_steps = 0
+    cont = 0
+    for w in simulation.windows:
+        p_t_total_all_steps += w.p_t_total
+        e_t_total_all_steps += w.NOx_total_w
+        p_t_control_zone_all_steps += w.p_t
+        e_t_control_zone_all_steps += w.NOx_control_zone_w
+        avg_k_all_steps += w.k
+        cont += 1
+
+        acum += w.NOx_total_w
+        f.write(str(w.step) + "," + str(w.NOx_total_w) + "," + str(acum) + "," + str(w.lambda_l) + "," + str(
+            w.p_t_total) + "," + str(w.NOx_total_w) + "," + str(w.p_t) + "," + str(w.NOx_control_zone_w) + "," + str(
+            w.k) + "," + str(w.veh_total_number_w) + "," + str(len(w.vehicles_in_control_zone_w)) + "," + "\n")
+    avg_k_all_steps = avg_k_all_steps / cont
+
+    f.write("VEHICLES," + "\n")
+    f.write(
+        "id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),average_package,enter_cz," + "\n")
+
+    p_all = 0
+    cont = 0
+    avg_contrib = 0
+    total_packages = 0
+
+    def sortFunc(v):
+        return v.step_ini
+
+    simulation.all_veh = sorted(simulation.all_veh, key=sortFunc)
+
+    enter_cz_all_steps = 0
+    avg_total_time_all_steps = 0
+
+    for v in simulation.all_veh:
+        total_time = v.step_fin - v.step_ini
+        avg_total_time_all_steps += total_time
+        average_package = total_time / v.n_packages
+        p_all += average_package
+        cont += 1
+        avg_contrib += total_time * v.n_packages
+        total_packages += v.n_packages
+        if v.enter_cz == False: enter_cz_all_steps += 1
+        f.write(v.id + "," + v.vType + "," + str(v.NOx) + "," + str(v.n_packages) + "," + str(v.step_ini) + "," + str(
+            v.step_fin) + "," + str(total_time) + "," + str(average_package) + "," + str(v.enter_cz) + "," + "\n")
+
+    avg_total_time_all_steps = avg_total_time_all_steps / cont
+    average_package_all = avg_contrib / total_packages
+    f.write("ALL SIMULATION," + "\n")
+    f.write(
+        "total_steps(sec), minutes, avg_package_all_sim, p_t_total_all_steps, e_t_total_all_steps, veh_enter_cz_all_steps" + "\n")
+    f.write(str(simulation.step) + "," + str(minutes) + "," + str(average_package_all) + "," + str(p_t_total_all_steps)
+            + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(
+        e_t_control_zone_all_steps)
+            + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
+
+    f.close()
+
+
 """
 RUN
 
@@ -415,88 +506,7 @@ def run():
             # calculate k
             calculate_k(simulation, window)
 
-    minutes = round(simulation.step / 60, 0)
-    """
-    for v in simulation.all_veh:
-        simulation.total_kilometers += v.total_km
-    """
-
-    ## RESULTS FILE 2
-    cont_file = 0
-    file = "results_file_" + strategy
-    fileName = r"./results/" + file + str(cont_file) + ".csv"
-    print(fileName)
-    fileObject = Path(fileName)
-    while fileObject.is_file():
-        cont_file += 1
-        fileName = r"./results/" + file + str(cont_file) + ".csv"
-        print(fileName)
-        fileObject = Path(fileName)
-    f = open(fileName, "w")
-
-    # Results:
-
-    f.write(strategy +"\n")
-    f.write("PARAMETERS,"+"\n")
-    f.write("window_size, threshold_L, threshold_H, p_t_ini, min_packages, max_packages,"+"\n")
-    f.write(str(window_size) +","+ str(threshold_L) +","+ str(threshold_H)  +","+ str(p_t_ini)+","+ str(min_packages) +","+ str(max_packages)+","+"\n")
-    f.write("WINDOWS,"+"\n")
-    f.write("step, NOx_total_w, NOx_total_acum, lambda, p_t_total, e_t_total, p_t_control_zone, e_t_control_zone, k_control_zone, num_veh_total, num_vehicles_control_zone,  "+"\n")
-
-    acum = 0
-    p_t_total_all_steps = 0
-    e_t_total_all_steps = 0
-    p_t_control_zone_all_steps = 0
-    e_t_control_zone_all_steps = 0
-    avg_k_all_steps = 0
-    cont= 0
-    for w in simulation.windows:
-        p_t_total_all_steps += w.p_t_total
-        e_t_total_all_steps += w.NOx_total_w
-        p_t_control_zone_all_steps += w.p_t
-        e_t_control_zone_all_steps += w.NOx_control_zone_w
-        avg_k_all_steps += w.k
-        cont +=1
-
-        acum += w.NOx_total_w
-        f.write(str(w.step) +","+ str(w.NOx_total_w) +","+ str(acum) +","+str(w.lambda_l)+","+str(w.p_t_total)+","+str(w.NOx_total_w)+","+str(w.p_t) +","+ str(w.NOx_control_zone_w) +","+ str(w.k)+","+ str(w.veh_total_number_w)+","+str(len(w.vehicles_in_control_zone_w))+","+"\n")
-    avg_k_all_steps = avg_k_all_steps/cont
-
-    f.write("VEHICLES,"+"\n")
-    f.write("id, vType, NOx_total_veh, n_packages, step_ini, step_fin, total_time(sec),average_package,enter_cz,"+"\n")
-
-    p_all= 0
-    cont = 0
-    avg_contrib = 0
-    total_packages = 0
-    def sortFunc(v):
-        return v.step_ini
-    simulation.all_veh = sorted(simulation.all_veh, key=sortFunc)
-
-    enter_cz_all_steps = 0
-    avg_total_time_all_steps = 0
-
-    for v in simulation.all_veh:
-        total_time = v.step_fin - v.step_ini
-        avg_total_time_all_steps += total_time
-        average_package = total_time / v.n_packages
-        p_all += average_package
-        cont +=1
-        avg_contrib += total_time * v.n_packages
-        total_packages += v.n_packages
-        if v.enter_cz==False: enter_cz_all_steps +=1
-        f.write(v.id  +","+ v.vType +","+ str(v.NOx)  +","+  str(v.n_packages)  +","+ str(v.step_ini) +","+  str(v.step_fin) +","+ str(total_time)+","+str(average_package) +","+ str(v.enter_cz)+","+"\n")
-
-    avg_total_time_all_steps = avg_total_time_all_steps/cont
-    average_package_all =  avg_contrib / total_packages
-    f.write("ALL SIMULATION," + "\n")
-    f.write("total_steps(sec), minutes, avg_package_all_sim, p_t_total_all_steps, e_t_total_all_steps, veh_enter_cz_all_steps"+ "\n")
-    f.write(str(simulation.step) + "," + str(minutes)+ "," + str(average_package_all) +"," + str(p_t_total_all_steps)
-            + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(e_t_control_zone_all_steps)
-            + "," + str(avg_k_all_steps) +"," + str(enter_cz_all_steps) +"," + str(avg_total_time_all_steps) +"\n")
-
-    f.close()
-
+    results(simulation)
 
     # TraCI
     traci.close()
@@ -528,6 +538,6 @@ if __name__ == "__main__":
     else:
         sumoBinary = checkBinary("sumo-gui")
     #traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
-    traci.start([sumoBinary, "-c", "casebase.sumocfg"])
+    traci.start([sumoBinary, "-c", "emissions.sumocfg"])
 
     run()

@@ -6,9 +6,9 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="casebase.net.xml"/>
-        <route-files value="1h.rou.xml"/>
-        <additional-files value="casebase.add.xml"/>
+        <net-file value="emissions.net.xml"/>
+        <route-files value="smallRoute.rou.xml"/>
+        <additional-files value="emissions.add.xml"/>
     </input>
 
     <ignore-route-errors value = "true" />
