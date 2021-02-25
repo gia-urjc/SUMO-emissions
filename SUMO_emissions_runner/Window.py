@@ -4,7 +4,6 @@ class Window():
     def __init__(self, step, vehicles_in_w, vehicles_in_control_zone_w, NOx_total_w = 0,
                  NOx_control_zone_w = 0, veh_total_number_w = 0,
                  p_t = 0, p_t_total = 0, k =1, lambda_l = 0.8):
-                # alpha = 0.5
         self.step = step
         self.NOx_total_w = NOx_total_w
         self.NOx_control_zone_w = NOx_control_zone_w
@@ -16,7 +15,6 @@ class Window():
         self.p_t = p_t
         self.p_t_total = p_t_total
         self.k = k
-        #self.alpha = alpha
         self.lambda_l = lambda_l
     """
     ADD METHODS
@@ -135,16 +133,6 @@ class Window():
     @k.setter
     def k(self, k):
         self._k = k
-
-    """
-    @property  ##Getter
-    def alpha(self):
-        return self._alpha
-
-    @alpha.setter
-    def alpha(self, alpha):
-        self._alpha = alpha
-    """
 
     @property  ##Getter
     def lambda_l(self):

@@ -3,6 +3,7 @@ import math
 import random
 import traci
 import sys
+import os
 
 from Vehicle import Vehicle
 from Simulation import Simulation
@@ -193,6 +194,8 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
     ## RESULTS FILE 2
     cont_file = 0
     file = "results_file_" + simulation.strategy
+    if not os.path.exists("results"):
+        os.makedirs("results")
     fileName = r"./results/" + file + str(cont_file) + ".csv"
     print(fileName)
     fileObject = Path(fileName)
@@ -286,7 +289,6 @@ RUN
 def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
             min_x, min_y, max_x, max_y):
-    print("HOLA")
     random.seed(1)
     randomLambda = random.Random(1)
     randomPackages = random.Random(1)
@@ -328,8 +330,6 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
             window.p_t = p_t_ini
             window.p_t_total = p_t_ini
             window.lambda_l = 0.8
-            # window.alpha = alpha_ini
-            # simulation.add_alpha(alpha_ini)
 
             # Add variables for the last 50 steps
             simulation.add_window(window)
@@ -420,10 +420,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
             for w in range(len(simulation.windows)):
                 if simulation.windows[w].step == simulation.step - window_size:
                     lambda_l = randomLambda.uniform(0.8, 1.2)
-                    # alpha = max(0.5, min(1, lambda_l * simulation.alphas[len(simulation.alphas) - 1]))
-                    # simulation.add_alpha(alpha)
                     window.lambda_l = lambda_l
-                    # window.alpha = alpha
                     x_cz = lambda_l * subs_NOx
                     # for heating up if emissens are lower than e_ini, use e_ini
                     if start_control and window.NOx_control_zone_w < e_ini:

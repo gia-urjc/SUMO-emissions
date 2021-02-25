@@ -6,7 +6,6 @@ class Simulation():
                    restrictionMode = False, NOx_total = 0, NOx_control_zone = 0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
                    p_t = 0,  avg_historical = 0):
-                #total_kilometers = 0,windows = [], alphas=[],):
 
         self.step = step
         self.threshold_L = threshold_L
@@ -22,11 +21,9 @@ class Simulation():
         self.vehicles_in_simulation = vehicles_in_simulation
         self.vehs_load = vehs_load      # ID LIST
         self.all_veh = all_veh
-        #self.total_kilometers = total_kilometers
 
         self.windows = windows
 
-        #self.alphas = alphas
         self.p_t = p_t
 
         # VE, VEP, RRE, RREP
@@ -55,16 +52,9 @@ class Simulation():
     def add_all_veh(self, all_v):
         for veh in all_v:
             self.all_veh.add(veh)
-    """
-    def add_total_kilometers(self,km):
-        self.total_kilometers +=km
-    """
+
     def add_window(self,wind):
         self.windows.append(wind)
-    """
-    def add_alpha(self,alp):
-        self.alphas.append(alp)
-    """
 
     """
         REMOVE METHODS
@@ -188,15 +178,6 @@ class Simulation():
     def all_veh(self, all_veh):
         self._all_veh = all_veh
 
-    """
-    @property  ##Getter
-    def total_kilometers(self):
-        return self._total_kilometers
-
-    @total_kilometers.setter
-    def total_kilometers(self, total_kilometers):
-        self._total_kilometers = total_kilometers
-    """
 
     @property  ##Getter
     def windows(self):
@@ -205,15 +186,7 @@ class Simulation():
     @windows.setter
     def windows(self, windows):
         self._windows = windows
-    """
-    @property  ##Getter
-    def alphas(self):
-        return self._alphas
 
-    @alphas.setter
-    def alphas(self, alphas):
-        self._alphas = alphas
-    """
 
     @property  ##Getter
     def p_t(self):
@@ -241,7 +214,7 @@ class Simulation():
 
         return str(self.step) + ". restrictionMode: " + str(self.restrictionMode) + ".  NOx_total:" + str(self.NOx_total)+ \
                ". NOx_control_zone:" + str(self.NOx_control_zone) + ". veh_total_number: " + str(self.veh_total_number) + \
-               ". Windows:" + w  # +". Total km: " + str(self.total_kilometers)
+               ". Windows:" + w
 
 
 

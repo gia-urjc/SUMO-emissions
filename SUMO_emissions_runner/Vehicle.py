@@ -10,12 +10,7 @@ class Vehicle():
         self.step_ini = step_ini
         self.step_fin = step_fin
         self.enter_cz = enter_cz
-    """
-    def __init__(self, id = "", NOx = 0, total_km = 0):
-        self.id = id
-        self.NOx = NOx
-        self.total_km = total_km
-    """
+
 
     """
     ADD METHODS
@@ -25,11 +20,6 @@ class Vehicle():
 
     def add_n_packages(self,num):
         self.n_packages +=num
-
-    """
-    def add_total_km(self,km):
-        self.total_km +=km
-    """
 
     """
     GETTERS AND SETTERS
@@ -89,20 +79,6 @@ class Vehicle():
     @enter_cz.setter
     def enter_cz(self, enter_cz):
         self._enter_cz = enter_cz
-
-    """
-    @property
-    def total_km(self):
-        return self._total_km
-
-    @total_km.setter
-    def total_km(self, total_km):
-        self._total_km = total_km
-    
-
-    def __str__(self):
-        return str(self.id) + " . Total NOx per vehicle: " + str(self.NOx) + " . Km: " + str(self.total_km)
-    """
 
     def __str__(self):
         return str(self.id) + " . vType: " + str(self.vType) + " . Total NOx per vehicle: " + str(self.NOx) +" . Step ini: " + str(self.step_ini) +\
