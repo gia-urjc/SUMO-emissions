@@ -268,11 +268,11 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
             v.step_fin) + "," + str(total_time) + "," + str(average_package) + "," + str(v.enter_cz) + "," + "\n")
 
     avg_total_time_all_steps = avg_total_time_all_steps / cont
-    average_package_all = avg_contrib / total_packages
+    avg_time_per_package = avg_contrib / total_packages
     f.write("ALL SIMULATION," + "\n")
     f.write(
-        "total_steps(sec), minutes, avg_package_all_sim, p_t_total_all_steps, e_t_total_all_steps, veh_enter_cz_all_steps" + "\n")
-    f.write(str(simulation.step) + "," + str(minutes) + "," + str(average_package_all) + "," + str(p_t_total_all_steps)
+        "total_steps(sec), minutes, avg_time_per_package, p_t_total_all_steps, e_t_total_all_steps, veh_enter_cz_all_steps" + "\n")
+    f.write(str(simulation.step) + "," + str(minutes) + "," + str(avg_time_per_package) + "," + str(p_t_total_all_steps)
             + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(
         e_t_control_zone_all_steps)
             + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
