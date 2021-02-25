@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- generated on 2020-11-27 17:02:21.196154 by createNetTaxi.py v1_7_0+0000-714814baed
-  options:
--->
-<additional>
-    <edgeData id="edgeDetector" type="emissions" freq="75" file="emissionEdgeOutput.xml" excludeEmpty="true"/>
-    <edgeData id="edgeDetector2" type="emissions" file="emissionEdge2Output.xml" excludeEmpty="true"/>
-
-</additional>
