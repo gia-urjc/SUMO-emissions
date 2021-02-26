@@ -181,6 +181,7 @@ def historicalTester(simk, veh):
 
 
 def openHistorical(file_name, historicalTable):
+    """ Opens historical and writes the data in a variable historicalTable (dict())"""
     # OPEN HISTORICAL
     try:
         count_lines = 0
@@ -197,18 +198,15 @@ def openHistorical(file_name, historicalTable):
     except OSError:
         print('cannot open', file_name)
 
-
-
-
 """
 RUN
 
 """
-
-
 def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
             min_x, min_y, max_x, max_y):
+    """"""
+    # Initialization
     random.seed(1)
     randomLambda = random.Random(1)
     randomPackages = random.Random(1)
@@ -217,7 +215,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
     simulation = Simulation(step=0, threshold_L=threshold_L, threshold_H=threshold_H, k=1, strategy=strategy)
     window = Window(simulation.step, set(), set(), 0, 0, 0, 0, 0, 1, 0.8)
 
-    # open history file if necessary
+    # open history file if is necessary
     if (strategy != "baseline" and strategy != "noControl"):
         openHistorical(file_name, historicalTable)
 
