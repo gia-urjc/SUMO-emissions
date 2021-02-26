@@ -36,10 +36,9 @@ historicalTable = dict()
 
 # Window size (steps) and thresholds:
 window_size = 60
-
-#values with no truck:
 threshold_L = 80000
 threshold_H = 100000
+
 p_t_ini = 100000
 size_ratio = 4
 subs_NOx = 9000
@@ -58,13 +57,17 @@ enter_control_area_edges=["gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0", 
                         "gneE212_0", "-gneE212_0", "gneE239_0", "-gneE239_0", "gneE238_0", "-gneE238_0",
                         "gneE208_0", "-gneE208_0", "gneE196_0", "-gneE196_0"]
 
-    # Control Area Limits. See with NetEdit:
+# Control Area Limits. See with NetEdit:
 min_x = 3503
 min_y = -3503
 max_x = 8746
 max_y = -8746
+"""
+PROGRAM
 
+"""
 def get_options():
+    """" SUMO options """
     opt_parser = optparse.OptionParser()
     opt_parser.add_option("--nogui", action ="store_true", default=False, help="run the commandline version of sumo")
     options, args = opt_parser.parse_args()

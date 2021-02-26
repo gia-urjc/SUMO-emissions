@@ -1,3 +1,10 @@
+"""
+    main def at the end:
+        run (strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
+            min_x, min_y, max_x, max_y)
+"""
+
 from pathlib import Path
 import math
 import random
@@ -9,6 +16,8 @@ import results
 from Vehicle import Vehicle
 from Simulation import Simulation
 from Window import Window
+
+
 
 
 def closeToRestrictedArea(veh, enter_control_area_edges):

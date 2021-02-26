@@ -4,7 +4,7 @@ import os
 
 
 def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_packages, max_packages):
-    """ TODO"""
+    """ Write results in a file """
 
     """ First, we open the file"""
 
