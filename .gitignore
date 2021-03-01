@@ -1,4 +1,2 @@
 
-SUMO_emissions_runner/results/results_file_RRE0.csv
-SUMO_emissions_runner/results/results_file_RRE1.csv
-SUMO_emissions_runner/results/results_file_RREP0.csv
+SUMO_emissions_runner/results/*
