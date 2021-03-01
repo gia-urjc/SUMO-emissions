@@ -5,4 +5,3 @@ normalVehicle 0.08475
 hovDieselEuroSix 0.21575
 dieselEuroSix 0.39975
 truck 2.31725
-
