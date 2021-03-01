@@ -23,7 +23,15 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
     f = open(fileName, "w")
     print(fileName)
 
-    """Second, we write all simulation results """
+    """Second, we write the parameters"""
+    f.write(simulation.strategy + "\n")
+    f.write("PARAMETERS," + "\n")
+
+    f.write("window_size, threshold_L, threshold_H, p_t_ini, e_ini, size_ratio, subs_NOx, min_packages, max_packages," + "\n")
+    f.write(str(window_size) + "," + str(simulation.threshold_L) + "," + str(simulation.threshold_H) + "," + str(p_t_ini) +
+            "," + str(e_ini) + "," + str(size_ratio) + "," + str(subs_NOx)+ "," + str(min_packages) + "," + str(max_packages) + "," + "\n")
+
+    """Third, we write all simulation results """
     minutes = round(simulation.step / 60, 0)
     # Windows values
 
@@ -52,20 +60,14 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
     avg_time_per_package = avg_contrib / total_packages
 
     # Write:
-    f.write(simulation.strategy + "\n")
+
     f.write("ALL SIMULATION RESULTS," + "\n")
     f.write("total_steps(sec), minutes, avg_time_per_package (sec), p_t_total_all_steps, e_t_total_all_steps, p_t_control_zone_all_steps,  e_t_control_zone_all_steps, avg_k_all_steps, veh_enter_cz_all_steps, avg_total_time_all_steps" + "\n")
     f.write(str(simulation.step) + "," + str(minutes) + "," + str(avg_time_per_package) + "," + str(p_t_total_all_steps)
             + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(e_t_control_zone_all_steps)
             + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
 
-    """Third, the rest of results """
-
-    f.write("PARAMETERS," + "\n")
-
-    f.write("window_size, threshold_L, threshold_H, p_t_ini, e_ini, size_ratio, subs_NOx, min_packages, max_packages," + "\n")
-    f.write(str(window_size) + "," + str(simulation.threshold_L) + "," + str(simulation.threshold_H) + "," + str(p_t_ini) +
-            "," + str(e_ini) + "," + str(size_ratio) + "," + str(subs_NOx)+ "," + str(min_packages) + "," + str(max_packages) + "," + "\n")
+    """Fourth, the rest of results """
 
     f.write("WINDOWS," + "\n")
     f.write(
