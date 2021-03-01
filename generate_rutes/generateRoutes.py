@@ -7,7 +7,7 @@ def generateRoutes():
     probability_E = 1. / 20 # Probability eVehicle
     probability_G = 1. / 20  # Probability gasolineEuroSix
     probability_D = 1. / 20  # Probability dieselEuroSix
-    probability_HG = 1. / 20  # Probability hovGasolinaEuroSix
+    probability_HG = 1. / 20  # Probability hovDieselEuroSix
     probability_N = 1. / 20  # Probability normalVehicle
     probability_H = 1. / 40  # Probability highEmissions
     probability_T = 1. / 40  # Probability truck
@@ -21,7 +21,7 @@ def generateRoutes():
         <!-- C label -->
         <vType id="gasolineEuroSix" emissionClass="HBEFA3/LDV_G_EU6" vClass="passenger" guiShape="passenger" color="0,0,128"/>
         <vType id="dieselEuroSix" emissionClass="HBEFA3/LDV_D_EU6" vClass="passenger" guiShape="passenger" color="0,0,128"/>
-        <vType id="hovGasolinaEuroSix" emissionClass="HBEFA3/PC_D_EU6" vClass="passenger" guiShape="passenger" color="0,0,128"/>
+        <vType id="hovDieselEuroSix" emissionClass="HBEFA3/PC_D_EU6" vClass="passenger" guiShape="passenger" color="0,0,128"/>
         <vType id="normalVehicle" emissionClass="HBEFA3/PC_G_EU4" vClass="passenger" guiShape="passenger" color="0,0,128"/>
         
         <!-- B label -->
@@ -79,7 +79,7 @@ def generateRoutes():
 
 
             if random.uniform(0, 1) < probability_HG:  #
-                print('        <trip depart="%i" from="-%s" to="%s" color="yellow" type="hovGasolinaEuroSix" id="veh%i"/>' % (
+                print('        <trip depart="%i" from="-%s" to="%s" color="yellow" type="hovDieselEuroSix" id="veh%i"/>' % (
                     i, origin, dest, vehNr), file=routes)
                 vehNr += 1
                 cont_HG += 1
