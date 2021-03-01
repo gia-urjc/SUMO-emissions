@@ -19,7 +19,7 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"noControl", 1:"baseline", 2:"VE", 3:"VEP", 4:"RRE", 5:"RREP"}
-strategy = strategies[2] # SELECT ONE: strategies[0] = historical_ve
+strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
                          #      ...    strategies[6] = RREP
 
 # HISTORICAL FILE
@@ -31,6 +31,8 @@ elif strategy == "RRE":
     file_name = r"./historicals/historical_RRE.txt" # Change the txt name if is necessary
 elif strategy == "RREP":
     file_name = r"./historicals/historical_RREP.txt" # Change the txt name if is necessary
+else:
+    file_name = ""
 
 historicalTable = dict()
 
