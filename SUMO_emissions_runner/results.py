@@ -54,10 +54,9 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
     # Write:
     f.write(simulation.strategy + "\n")
     f.write("ALL SIMULATION RESULTS," + "\n")
-    f.write("total_steps(sec), minutes, avg_time_per_package (sec), p_t_total_all_steps, e_t_total_all_steps, veh_enter_cz_all_steps" + "\n")
+    f.write("total_steps(sec), minutes, avg_time_per_package (sec), p_t_total_all_steps, e_t_total_all_steps, p_t_control_zone_all_steps,  e_t_control_zone_all_steps, avg_k_all_steps, veh_enter_cz_all_steps, avg_total_time_all_steps" + "\n")
     f.write(str(simulation.step) + "," + str(minutes) + "," + str(avg_time_per_package) + "," + str(p_t_total_all_steps)
-            + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(
-        e_t_control_zone_all_steps)
+            + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(e_t_control_zone_all_steps)
             + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
 
     """Third, the rest of results """

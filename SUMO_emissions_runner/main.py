@@ -19,8 +19,8 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"noControl", 1:"baseline", 2:"VE", 3:"VEP", 4:"RRE", 5:"RREP"}
-strategy = strategies[4] # SELECT ONE: strategies[0] = historical_ve
-                         #      ...    strategies[6] = RREP
+strategy = strategies[5] # SELECT ONE: strategies[0] = noControl
+                         #      ...    strategies[5] = RREP
 
 # HISTORICAL FILE
 if strategy == "VE":
