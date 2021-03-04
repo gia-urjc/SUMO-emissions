@@ -21,7 +21,7 @@ from Window import Window
 
 
 def closeToRestrictedArea(veh, enter_control_area_edges):
-    string_current_edge = traci.vehicle.getRoadID(veh.id) + "_0"
+    string_current_edge = traci.vehicle.getLaneID(veh.id)
     if string_current_edge in enter_control_area_edges:
         dist = traci.vehicle.getLanePosition(
             veh.id)  # TODO ALGO DE AQUÍ DE WARNING: ARREGLAR, warning: Request backPos of vehicle 'veh676' for invalid lane ':gneJ94_0_0' time=2769.00.
@@ -52,9 +52,12 @@ def setNotAllowCar(veh):
 
 
 def all_cars_enter(simulation, enter_control_area_edges):
+    """ If the vehicle is near the control area """
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
+            print(traci.vehicle.getVehicleClass(veh.id))
             if traci.vehicle.getVehicleClass(veh.id) == "custom1":
+                print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(vehID=veh.id), traci.vehicle.getType(vehID=veh.id))
                 setAllowCar(veh)
 
 
@@ -87,6 +90,7 @@ def some_cars_enter(simulation, enter_control_area_edges):
 
 
 def calculate_k(simulation, w):
+    """ Calculate k: access permission level """
     if simulation.strategy != "noControl":
         aux = (simulation.threshold_H - simulation.p_t) / (simulation.threshold_H - simulation.threshold_L)
         simulation.k = min(1, max(aux, 0))
@@ -124,7 +128,7 @@ def setSwitchVehicleClass(emiClass, veh):
         traci.vehicle.setType(veh.id, typeID="dieselEuroSix")
     elif emiClass == "HBEFA3/PC_D_EU6":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
-        traci.vehicle.setType(veh.id, typeID="hovGasolinaEuroSix")
+        traci.vehicle.setType(veh.id, typeID="hovDieselEuroSix")
     elif emiClass == "HBEFA3/PC_G_EU4":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="normalVehicle")
@@ -224,14 +228,15 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
     for aEd in control_area_edges_cnf:
         traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["custom1"])
 
+    # TODO NO SÉ PARA QUE SIRVEN
     lastkSmaller1 = True
     start_total = True
     start_control = True
 
     # MAIN LOOP FOR THE SIMULATION
-    while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and waiting cars)
+    while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and cars waiting)
         # LAST STEP
-        # Vehicles to control area
+        # Vehicles in simulation and vehicles waiting
         vehs_load = traci.simulation.getLoadedIDList()
         vehs_load_Vehicle = []
         for veh in vehs_load:
@@ -241,7 +246,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
 
         simulation.vehs_load = vehs_load_Vehicle
 
-        # initialize
+        # initialize variables
         if simulation.step == 0:
             simulation.p_t = p_t_ini
             window.NOx_total_w = 0
@@ -259,7 +264,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
             # calculate k
             calculate_k(simulation, window)
 
-            # NEW STEP
+        # NEW STEP
 
         traci.simulationStep()  # Advance one time step: one second
         simulation.update_Step()
@@ -301,7 +306,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
 
         ## FOR EACH VEHICLE calculate its emisions :
         for veh in simulation.vehicles_in_simulation:
-            # emissions and counting vehicles
+            # emissions:
             vehNOxEmission = traci.vehicle.getNOxEmission(veh.id)  # Return the NOx value per vehicle in each ste
             # simulation
             simulation.add_NOx_Total(vehNOxEmission)
@@ -309,9 +314,8 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
             # Per Window
             window.add_NOx_Total_w(vehNOxEmission)
             # Control Area:
-            pos = traci.vehicle.getPosition(vehID=veh.id)  # (x,y)
-            if (pos[1] <= min_y and pos[1] >= max_y) and (
-                    pos[0] >= min_x and pos[0] <= max_x):  # x=> 0, y=>1. If the vehicle is in the control area
+            string_current_edge = traci.vehicle.getLaneID(veh.id)
+            if string_current_edge in control_area_edges_cnf:
                 # All simulation:
                 simulation.add_NOx_control_zone(vehNOxEmission)
                 # Per window:
@@ -320,16 +324,19 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                 veh.enter_cz = True
                 window.add_vehicles_in_control_zone_w(veh.id)
 
-        ## IMPORTANT PART - FOR EACH VEHICLE analyse whether it can enter or not :
+        ## IMPORTANT PART - FOR EACH VEHICLE analyze whether it can enter or not :
         if strategy != "noControl":
             if simulation.k >= 1:  # all cars enter
-                if lastkSmaller1:
+                if lastkSmaller1: # if the last k is >1 no need to redo
+                    print("ENTRA1")
                     all_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = False
             elif simulation.k < 0:  # no cars enter
+                print("ENTRA2")
                 no_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
             else:  # some cars enter
+                print("ENTRA3")
                 some_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
 

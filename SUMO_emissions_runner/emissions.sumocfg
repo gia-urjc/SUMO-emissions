@@ -7,7 +7,7 @@
 
     <input>
         <net-file value="emissions.net.xml"/>
-        <route-files value="smallRoute.rou.xml"/>
+        <route-files value="1h.rou.xml"/>
         <additional-files value="emissions.add.xml"/>
     </input>
 
