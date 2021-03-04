@@ -61,11 +61,7 @@ enter_control_area_edges=["gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0", 
                         "gneE212_0", "-gneE212_0", "gneE239_0", "-gneE239_0", "gneE238_0", "-gneE238_0",
                         "gneE208_0", "-gneE208_0", "gneE196_0", "-gneE196_0"]
 
-# Control Area Limits. See with NetEdit:
-min_x = 3503
-min_y = -3503
-max_x = 8746
-max_y = -8746
+
 """
 MAIN PROGRAM
 
