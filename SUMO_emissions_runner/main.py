@@ -1,3 +1,5 @@
+""" Main program. Set the parameters below imports and run this .py """
+
 import os
 import sys
 import optparse
@@ -65,7 +67,7 @@ min_y = -3503
 max_x = 8746
 max_y = -8746
 """
-PROGRAM
+MAIN PROGRAM
 
 """
 def get_options():
@@ -82,9 +84,11 @@ if __name__ == "__main__":
         sumoBinary = checkBinary("SUMO")
     else:
         sumoBinary = checkBinary("sumo-gui")
+
     #traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
     traci.start([sumoBinary, "-c", "emissions.sumocfg"])
 
+    # runner.py :
     runner.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
                min_x, min_y, max_x, max_y)

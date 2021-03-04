@@ -199,7 +199,7 @@ def openHistorical(file_name, historicalTable):
         print('cannot open', file_name)
 
 """
-RUN
+RUN - MAIN DEF 
 
 """
 def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
@@ -220,6 +220,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
         openHistorical(file_name, historicalTable)
 
     # put the centre closed for not allowed cars
+    # On this version, all the cars have the access closed at the beginning, and  later we calculate if one car enter or not
     for aEd in control_area_edges_cnf:
         traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["custom1"])
 
