@@ -2,8 +2,9 @@
 class Vehicle():
     """This class contains all vehicle definitions"""
 
-    def __init__(self, id="",vType="", NOx=0, n_packages = 0, step_ini=0, step_fin=0, enter_cz = False):
+    def __init__(self, id="",originalvType="",vType="", NOx=0, n_packages = 0, step_ini=0, step_fin=0, enter_cz = False):
         self.id = id
+        self.originalvType = originalvType
         self.vType = vType
         self.NOx = NOx
         self.n_packages = n_packages
@@ -31,6 +32,14 @@ class Vehicle():
     @id.setter
     def id(self, id):
         self._id = id
+
+    @property  # Getter
+    def originalvType(self):
+        return self._originalvType
+
+    @originalvType.setter
+    def originalvType(self, originalvType):
+        self._originalvType = originalvType
 
     @property # Getter
     def vType(self):
@@ -81,7 +90,7 @@ class Vehicle():
         self._enter_cz = enter_cz
 
     def __str__(self):
-        return str(self.id) + " . vType: " + str(self.vType) + " . Total NOx per vehicle: " + str(self.NOx) +" . Step ini: " + str(self.step_ini) +\
+        return str(self.id) + " . originalvType: " + str(self.originalvType) + " . vType: " + str(self.vType) + " . Total NOx per vehicle: " + str(self.NOx) +" . Step ini: " + str(self.step_ini) +\
                " . Step fin: " + str(self.step_fin) + " . Nº Packages: " + str(self.n_packages)
 
 

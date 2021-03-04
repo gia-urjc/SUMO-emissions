@@ -21,10 +21,11 @@ from Window import Window
 
 
 def closeToRestrictedArea(veh, enter_control_area_edges):
+    """ Return true if the veh is near (100) the control zone area """
     string_current_edge = traci.vehicle.getLaneID(veh.id)
     if string_current_edge in enter_control_area_edges:
         dist = traci.vehicle.getLanePosition(
-            veh.id)  # TODO ALGO DE AQUÍ DE WARNING: ARREGLAR, warning: Request backPos of vehicle 'veh676' for invalid lane ':gneJ94_0_0' time=2769.00.
+            veh.id)  # TODO ALGO DE AQUÍ DA WARNING: ARREGLAR, warning: Request backPos of vehicle 'veh676' for invalid lane ':gneJ94_0_0' time=2769.00.
         lane = traci.vehicle.getLaneID(veh.id)
         tam = traci.lane.getLength(lane)
         # only allow changes if not within 100 meters of the crossing
@@ -36,14 +37,16 @@ def closeToRestrictedArea(veh, enter_control_area_edges):
         return False
 
 
-def setAllowCar(veh):
+def setAllowCar(veh, simulation):
+    """ Returns to the original vClass and vType for vehicles entering the control zone. Changes veh color and reroutes"""
     em_Class = traci.vehicle.getEmissionClass(veh.id)
-    setSwitchVehicleClass(em_Class, veh)
+    setSwitchVehicleClass(em_Class, veh, simulation)
     traci.vehicle.setColor(vehID=veh.id, color=(0, 0, 128))
     traci.vehicle.rerouteTraveltime(veh.id, True)
 
 
 def setNotAllowCar(veh):
+    """ Set veh as custom1 and noauthority, Keeps its emission class, changes color and reroutes"""
     emiLastClass = traci.vehicle.getEmissionClass(veh.id)
     traci.vehicle.setType(vehID=veh.id, typeID="noauthority")
     setEmissionClass(emiLastClass, veh)
@@ -52,16 +55,19 @@ def setNotAllowCar(veh):
 
 
 def all_cars_enter(simulation, enter_control_area_edges):
-    """ If the vehicle is near the control area """
+    """ If the vehicle is near the control area and is custom1 (custom veh doesn't have access to control zone) =>
+    Returns to the original vClass and vType for vehicles entering the control zone. Changes veh color and reroutes"""
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
             print(traci.vehicle.getVehicleClass(veh.id))
             if traci.vehicle.getVehicleClass(veh.id) == "custom1":
-                print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", traci.vehicle.getEmissionClass(veh.id), traci.vehicle.getVehicleClass(vehID=veh.id), traci.vehicle.getType(vehID=veh.id))
-                setAllowCar(veh)
+                setAllowCar(veh, simulation)
 
 
 def no_cars_enter(simulation, enter_control_area_edges):
+    """ If the vehicle is near the control area and is NOT custom1 (custom veh doesn't have access to control zone) =>
+    Set veh as custom1 and noauthority, Keeps its emission class, changes color and reroutes"""
+
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
             if traci.vehicle.getVehicleClass(veh.id) != "custom1":
@@ -69,13 +75,15 @@ def no_cars_enter(simulation, enter_control_area_edges):
 
 
 def some_cars_enter(simulation, enter_control_area_edges):
+    """ If the vehicle is near the control area => Calculate whether or not a vehicle enters the control area (depends on strategy)"""
+
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
             # determine whether the car enters
             try:
                 if simulation.strategy == "baseline":
-                    enters = baselineTester(simulation.k, veh)
-                elif simulation.strategy == "VE" or simulation.strategy == "VEP" or simulation.strategy == "RRE" or simulation.strategy == "RREP":
+                    enters = baselineTester(simulation.k)
+                elif simulation.strategy != "noControl":
                     enters = historicalTester(simulation.k, veh)
             except NameError:
                 print("Strategy doesn't found")
@@ -83,7 +91,7 @@ def some_cars_enter(simulation, enter_control_area_edges):
 
             if enters:  # car should enter the area
                 if traci.vehicle.getVehicleClass(veh.id) == "custom1":
-                    setAllowCar(veh)
+                    setAllowCar(veh, simulation)
             else:  # car should not enter the area
                 if traci.vehicle.getVehicleClass(veh.id) != "custom1":
                     setNotAllowCar(veh)
@@ -100,6 +108,7 @@ def calculate_k(simulation, w):
 
 
 def setEmissionClass(emiLastClass, veh):
+    """ Keeps its emission class """
     if emiLastClass == "Zero/default":
         traci.vehicle.setEmissionClass(veh.id, "zero")
     elif emiLastClass == "HBEFA3/LDV_G_EU6":
@@ -116,28 +125,37 @@ def setEmissionClass(emiLastClass, veh):
         traci.vehicle.setEmissionClass(veh.id, "HBEFA3/HDV_D_EU4")
 
 
-def setSwitchVehicleClass(emiClass, veh):
+def setSwitchVehicleClass(emiClass, veh, simulation):
+    """ Returns to the original vClass and vType for vehicles entering the control zone"""
     if emiClass == "Zero/default":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="evehicle")
         traci.vehicle.setType(vehID=veh.id, typeID="eVehicle")
+        newType = "eVehicle"
     elif emiClass == "HBEFA3/LDV_G_EU6":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="gasolineEuroSix")
+        newType = "gasolineEuroSix"
     elif emiClass == "HBEFA3/LDV_D_EU6":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="dieselEuroSix")
+        newType = "dieselEuroSix"
     elif emiClass == "HBEFA3/PC_D_EU6":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="hovDieselEuroSix")
+        newType = "hovDieselEuroSix"
     elif emiClass == "HBEFA3/PC_G_EU4":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="normalVehicle")
+        newType = "normalVehicle"
     elif emiClass == "HBEFA3/PC_G_EU3":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="passenger")
         traci.vehicle.setType(veh.id, typeID="highEmissions")
+        newType = "highEmissions"
     elif emiClass == "HBEFA3/HDV_D_EU4":
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="truck")
         traci.vehicle.setType(veh.id, typeID="truck")
+        newType = "truck"
+    simulation.vType = newType
     # print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
 
 
@@ -147,7 +165,8 @@ STRATEGIES
 """
 
 
-def baselineTester(simk, veh):
+def baselineTester(simk):
+    """ If random <= k => True (vehicle is allowed)"""
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     if random.uniform(0, 1) <= simk:
@@ -157,13 +176,14 @@ def baselineTester(simk, veh):
 
 
 def historicalTester(simk, veh):
+    """ If True (vehicle is allowed)"""
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     # num_control = (k-acc(ant))/(acc-acc(ant))
     if simulation.strategy == "VEP" or simulation.strategy == "RREP":
-        vType = veh.vType + "-" + str(veh.n_packages)
+        vType = veh.originalvType + "-" + str(veh.n_packages)
     else:
-        vType = veh.vType
+        vType = veh.originalvType
     previous = ""
     for key, value in historicalTable.items():
         if key == vType:
@@ -224,11 +244,10 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
         openHistorical(file_name, historicalTable)
 
     # put the centre closed for not allowed cars
-    # On this version, all the cars have the access closed at the beginning, and  later we calculate if one car enter or not
+    # On this version, all the cars have the access opened at the beginning, and  later we calculate if one car enter or not
     for aEd in control_area_edges_cnf:
         traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["custom1"])
 
-    # TODO NO SÉ PARA QUE SIRVEN
     lastkSmaller1 = True
     start_total = True
     start_control = True
@@ -282,6 +301,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                     num_packages = randomPackages.randint(min_packages, max_packages)
                     id_veh_dep_Vehicle.n_packages = num_packages
                     id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
+                    id_veh_dep_Vehicle.originalvType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle)  # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -328,15 +348,12 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
         if strategy != "noControl":
             if simulation.k >= 1:  # all cars enter
                 if lastkSmaller1: # if the last k is >1 no need to redo
-                    print("ENTRA1")
                     all_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = False
             elif simulation.k < 0:  # no cars enter
-                print("ENTRA2")
                 no_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
             else:  # some cars enter
-                print("ENTRA3")
                 some_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
 
