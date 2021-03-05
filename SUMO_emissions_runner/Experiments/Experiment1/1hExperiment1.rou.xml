@@ -1,0 +1,92 @@
+ <routes>
+        
+        <vType id="truck" emissionClass="HBEFA3/HDV_D_EU4" vClass="truck" guiShape="passenger" color="0,0,128"/>
+  	<!-- Type noauthorized -->
+        <vType id="noauthority" vClass="custom1" guiShape="passenger" color="red" />
+
+      
+        <trip depart="108" from="-G" to="E" color="yellow" type="truck" id="veh26"/>
+        <trip depart="111" from="-E" to="G" color="yellow" type="truck" id="veh27"/>
+        <trip depart="152" from="-D" to="B" color="yellow" type="truck" id="veh34"/>
+        <trip depart="156" from="-F" to="H" color="yellow" type="truck" id="veh37"/>
+        <trip depart="171" from="-D" to="B" color="yellow" type="truck" id="veh41"/>
+        <trip depart="181" from="-E" to="G" color="yellow" type="truck" id="veh43"/>
+        <trip depart="192" from="-F" to="H" color="yellow" type="truck" id="veh47"/>
+        <trip depart="236" from="-B" to="D" color="yellow" type="truck" id="veh60"/>
+        <trip depart="281" from="-F" to="H" color="yellow" type="truck" id="veh73"/>
+        <trip depart="333" from="-H" to="F" color="yellow" type="truck" id="veh91"/>
+        <trip depart="337" from="-H" to="F" color="yellow" type="truck" id="veh92"/>
+        <trip depart="343" from="-G" to="E" color="yellow" type="truck" id="veh95"/>
+        <trip depart="344" from="-B" to="D" color="yellow" type="truck" id="veh96"/>
+        <trip depart="378" from="-E" to="G" color="yellow" type="truck" id="veh106"/>
+        <trip depart="434" from="-B" to="D" color="yellow" type="truck" id="veh121"/>
+        <trip depart="451" from="-B" to="D" color="yellow" type="truck" id="veh126"/>
+        <trip depart="516" from="-C" to="A" color="yellow" type="truck" id="veh139"/>
+        <trip depart="716" from="-F" to="H" color="yellow" type="truck" id="veh196"/>
+        <trip depart="746" from="-C" to="A" color="yellow" type="truck" id="veh206"/>
+        <trip depart="816" from="-B" to="D" color="yellow" type="truck" id="veh222"/>
+        <trip depart="842" from="-F" to="H" color="yellow" type="truck" id="veh231"/>
+        <trip depart="887" from="-G" to="E" color="yellow" type="truck" id="veh241"/>
+        <trip depart="975" from="-A" to="C" color="yellow" type="truck" id="veh267"/>
+        <trip depart="979" from="-C" to="A" color="yellow" type="truck" id="veh271"/>
+        <trip depart="1036" from="-G" to="E" color="yellow" type="truck" id="veh288"/>
+        <trip depart="1067" from="-E" to="G" color="yellow" type="truck" id="veh295"/>
+        <trip depart="1117" from="-D" to="B" color="yellow" type="truck" id="veh308"/>
+        <trip depart="1132" from="-D" to="B" color="yellow" type="truck" id="veh313"/>
+        <trip depart="1189" from="-D" to="B" color="yellow" type="truck" id="veh326"/>
+        <trip depart="1192" from="-C" to="A" color="yellow" type="truck" id="veh327"/>
+        <trip depart="1207" from="-F" to="H" color="yellow" type="truck" id="veh337"/>
+        <trip depart="1246" from="-B" to="D" color="yellow" type="truck" id="veh351"/>
+        <trip depart="1286" from="-F" to="H" color="yellow" type="truck" id="veh366"/>
+        <trip depart="1300" from="-H" to="F" color="yellow" type="truck" id="veh370"/>
+        <trip depart="1306" from="-E" to="G" color="yellow" type="truck" id="veh375"/>
+        <trip depart="1322" from="-C" to="A" color="yellow" type="truck" id="veh377"/>
+        <trip depart="1342" from="-E" to="G" color="yellow" type="truck" id="veh382"/>
+        <trip depart="1409" from="-G" to="E" color="yellow" type="truck" id="veh399"/>
+        <trip depart="1421" from="-D" to="B" color="yellow" type="truck" id="veh401"/>
+        <trip depart="1423" from="-H" to="F" color="yellow" type="truck" id="veh402"/>
+        <trip depart="1425" from="-E" to="G" color="yellow" type="truck" id="veh404"/>
+        <trip depart="1434" from="-C" to="A" color="yellow" type="truck" id="veh408"/>
+        <trip depart="1438" from="-D" to="B" color="yellow" type="truck" id="veh409"/>
+        <trip depart="1443" from="-B" to="D" color="yellow" type="truck" id="veh410"/>
+        <trip depart="1451" from="-E" to="G" color="yellow" type="truck" id="veh412"/>
+        <trip depart="1488" from="-H" to="F" color="yellow" type="truck" id="veh416"/>
+        <trip depart="1501" from="-B" to="D" color="yellow" type="truck" id="veh418"/>
+        <trip depart="1533" from="-H" to="F" color="yellow" type="truck" id="veh427"/>
+        <trip depart="1540" from="-F" to="H" color="yellow" type="truck" id="veh430"/>
+        <trip depart="1564" from="-A" to="C" color="yellow" type="truck" id="veh435"/>
+        <trip depart="1609" from="-F" to="H" color="yellow" type="truck" id="veh445"/>
+        <trip depart="1642" from="-A" to="C" color="yellow" type="truck" id="veh456"/>
+        <trip depart="1652" from="-H" to="F" color="yellow" type="truck" id="veh458"/>
+        <trip depart="1657" from="-E" to="G" color="yellow" type="truck" id="veh463"/>
+        <trip depart="1769" from="-C" to="A" color="yellow" type="truck" id="veh491"/>
+        <trip depart="1773" from="-C" to="A" color="yellow" type="truck" id="veh492"/>
+        <trip depart="1816" from="-A" to="C" color="yellow" type="truck" id="veh502"/>
+        <trip depart="2026" from="-E" to="G" color="yellow" type="truck" id="veh555"/>
+        <trip depart="2239" from="-A" to="C" color="yellow" type="truck" id="veh607"/>
+        <trip depart="2245" from="-E" to="G" color="yellow" type="truck" id="veh612"/>
+        <trip depart="2265" from="-E" to="G" color="yellow" type="truck" id="veh620"/>
+        <trip depart="2367" from="-A" to="C" color="yellow" type="truck" id="veh644"/>
+        <trip depart="2395" from="-A" to="C" color="yellow" type="truck" id="veh647"/>
+        <trip depart="2511" from="-F" to="H" color="yellow" type="truck" id="veh676"/>
+        <trip depart="2613" from="-D" to="B" color="yellow" type="truck" id="veh703"/>
+        <trip depart="2681" from="-H" to="F" color="yellow" type="truck" id="veh726"/>
+        <trip depart="2770" from="-C" to="A" color="yellow" type="truck" id="veh753"/>
+        <trip depart="2840" from="-C" to="A" color="yellow" type="truck" id="veh778"/>
+        <trip depart="2873" from="-A" to="C" color="yellow" type="truck" id="veh786"/>
+        <trip depart="2876" from="-F" to="H" color="yellow" type="truck" id="veh787"/>
+        <trip depart="2913" from="-E" to="G" color="yellow" type="truck" id="veh796"/>
+        <trip depart="2935" from="-D" to="B" color="yellow" type="truck" id="veh802"/>
+        <trip depart="2961" from="-G" to="E" color="yellow" type="truck" id="veh813"/>
+        <trip depart="2964" from="-G" to="E" color="yellow" type="truck" id="veh814"/>
+        <trip depart="3010" from="-G" to="E" color="yellow" type="truck" id="veh832"/>
+        <trip depart="3049" from="-A" to="C" color="yellow" type="truck" id="veh848"/>
+        <trip depart="3081" from="-D" to="B" color="yellow" type="truck" id="veh856"/>
+        <trip depart="3189" from="-G" to="E" color="yellow" type="truck" id="veh887"/>
+        <trip depart="3297" from="-G" to="E" color="yellow" type="truck" id="veh933"/>
+        <trip depart="3340" from="-D" to="B" color="yellow" type="truck" id="veh944"/>
+        <trip depart="3354" from="-D" to="B" color="yellow" type="truck" id="veh947"/>
+        <trip depart="3458" from="-E" to="G" color="yellow" type="truck" id="veh982"/>
+        <trip depart="3516" from="-B" to="D" color="yellow" type="truck" id="veh1002"/>
+        <trip depart="3558" from="-A" to="C" color="yellow" type="truck" id="veh1013"/>
+</routes>

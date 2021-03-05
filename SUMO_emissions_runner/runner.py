@@ -1,8 +1,7 @@
 """
     main def at the end:
         run (strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
-            min_x, min_y, max_x, max_y)
+            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
 """
 
 from pathlib import Path
@@ -59,7 +58,6 @@ def all_cars_enter(simulation, enter_control_area_edges):
     Returns to the original vClass and vType for vehicles entering the control zone. Changes veh color and reroutes"""
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
-            print(traci.vehicle.getVehicleClass(veh.id))
             if traci.vehicle.getVehicleClass(veh.id) == "custom1":
                 setAllowCar(veh, simulation)
 
@@ -74,7 +72,7 @@ def no_cars_enter(simulation, enter_control_area_edges):
                 setNotAllowCar(veh)
 
 
-def some_cars_enter(simulation, enter_control_area_edges):
+def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
     """ If the vehicle is near the control area => Calculate whether or not a vehicle enters the control area (depends on strategy)"""
 
     for veh in simulation.vehicles_in_simulation:
@@ -84,7 +82,7 @@ def some_cars_enter(simulation, enter_control_area_edges):
                 if simulation.strategy == "baseline":
                     enters = baselineTester(simulation.k)
                 elif simulation.strategy != "noControl":
-                    enters = historicalTester(simulation.k, veh)
+                    enters = historicalTester(simulation, veh, historicalTable)
             except NameError:
                 print("Strategy doesn't found")
                 raise RuntimeError('error')
@@ -175,7 +173,7 @@ def baselineTester(simk):
         return False
 
 
-def historicalTester(simk, veh):
+def historicalTester(simulation, veh, historicalTable):
     """ If True (vehicle is allowed)"""
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
@@ -193,11 +191,10 @@ def historicalTester(simk, veh):
         aux = 0
     else:
         aux = historicalTable[previous]
-
     if (historicalTable[vType] - aux) == 0:
         num_control = 2
     else:
-        num_control = (simk - aux) / (historicalTable[vType] - aux)
+        num_control = (simulation.k - aux) / (historicalTable[vType] - aux)
     if random.uniform(0, 1) <= num_control:
         return True
     else:
@@ -227,8 +224,7 @@ RUN - MAIN DEF
 
 """
 def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
-            min_x, min_y, max_x, max_y):
+            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges):
     """"""
     # Initialization
     random.seed(1)
@@ -354,7 +350,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                 no_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
             else:  # some cars enter
-                some_cars_enter(simulation, enter_control_area_edges)
+                some_cars_enter(simulation, enter_control_area_edges, historicalTable)
                 lastkSmaller1 = True
 
         # Window

@@ -86,5 +86,4 @@ if __name__ == "__main__":
 
     # runner.py :
     runner.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges,
-               min_x, min_y, max_x, max_y)
+               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
