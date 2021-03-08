@@ -47,7 +47,7 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
         acum += w.NOx_total_w
 
     # Vehicles values
-    p_all, cont, avg_contrib, total_packages, enter_cz_all_steps, avg_total_time_all_steps = 0, 0, 0, 0, 0, 0
+    p_all, cont, avg_contrib, total_packages, enter_cz_all_steps, not_enter_cz_all_steps, avg_total_time_all_steps = 0, 0, 0, 0, 0, 0, 0
     for v in simulation.all_veh:
         total_time = v.step_fin - v.step_ini
         avg_total_time_all_steps += total_time
@@ -55,7 +55,10 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
         cont += 1
         avg_contrib += total_time * v.n_packages
         total_packages += v.n_packages
-        if v.enter_cz == True: enter_cz_all_steps += 1
+        if v.enter_cz == True:
+            enter_cz_all_steps += 1
+        else:
+            not_enter_cz_all_steps +=1
 
     avg_total_time_all_steps = avg_total_time_all_steps / cont
     avg_time_per_package = avg_contrib / total_packages
@@ -63,10 +66,10 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
     # Write:
 
     f.write("ALL SIMULATION RESULTS," + "\n")
-    f.write("total_steps(sec), minutes, avg_time_per_package (sec), p_t_total_all_steps, e_t_total_all_steps, p_t_control_zone_all_steps,  e_t_control_zone_all_steps, avg_k_all_steps, veh_enter_cz_all_steps, avg_total_time_all_steps" + "\n")
+    f.write("total_steps(sec), minutes, avg_time_per_package (sec), p_t_total_all_steps, e_t_total_all_steps, p_t_control_zone_all_steps,  e_t_control_zone_all_steps, avg_k_all_steps, veh_enter_cz_all_steps, not_veh_enter_cz_all_steps, avg_total_time_all_steps" + "\n")
     f.write(str(simulation.step) + "," + str(minutes) + "," + str(avg_time_per_package) + "," + str(p_t_total_all_steps)
             + "," + str(e_t_total_all_steps) + "," + str(p_t_control_zone_all_steps) + "," + str(e_t_control_zone_all_steps)
-            + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
+            + "," + str(avg_k_all_steps) + "," + str(enter_cz_all_steps) + "," + str(not_enter_cz_all_steps) + "," + str(avg_total_time_all_steps) + "\n")
 
     """Fourth, the rest of results """
 
