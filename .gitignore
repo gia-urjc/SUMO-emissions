@@ -1,2 +1,4 @@
 
 SUMO_emissions_runner/results/*
+.DS_Store
+SUMO_emissions_runner/venv/*
