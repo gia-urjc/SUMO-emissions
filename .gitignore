@@ -1,4 +1,6 @@
-
-SUMO_emissions_runner/results/*
 .DS_Store
+SUMO_emissions_runner/.idea
+SUMO_emissions_runner/results/*
 SUMO_emissions_runner/venv/*
+generate_rutes/.idea
+generate_rutes/venv/*
