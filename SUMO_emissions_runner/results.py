@@ -46,6 +46,7 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
         avg_k_all_steps += w.k
         acum += w.NOx_total_w
 
+    avg_k_all_steps = avg_k_all_steps/len(simulation.windows)
     # Vehicles values
     p_all, cont, avg_contrib, total_packages, enter_cz_all_steps, not_enter_cz_all_steps, avg_total_time_all_steps = 0, 0, 0, 0, 0, 0, 0
     for v in simulation.all_veh:
