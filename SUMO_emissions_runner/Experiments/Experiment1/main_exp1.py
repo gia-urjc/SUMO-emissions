@@ -21,18 +21,18 @@ PARAMETERS TO CONFIGURE
 
 """
 strategies = {0:"noControl", 1:"baseline", 2:"VE", 3:"VEP", 4:"RRE", 5:"RREP"}
-strategy = strategies[2] # SELECT ONE: strategies[0] = noControl
+strategy = strategies[0] # SELECT ONE: strategies[0] = noControl
                          #      ...    strategies[5] = RREP
 
 # HISTORICAL FILE
 if strategy == "VE":
-    file_name = r"./historicals/historical_VE.txt" # Change the txt name if is necessary
+    file_name = r"./historicals_Experiment1/historical_VE.txt" # Change the txt name if is necessary
 elif strategy == "VEP":
-    file_name = r"./historicals/historical_VEP.txt" # Change the txt name if is necessary
+    file_name = r"./historicals_Experiment1/historical_VEP.txt" # Change the txt name if is necessary
 elif strategy == "RRE":
-    file_name = r"./historicals/historical_RRE.txt" # Change the txt name if is necessary
+    file_name = r"./historicals_Experiment1/historical_RRE.txt" # Change the txt name if is necessary
 elif strategy == "RREP":
-    file_name = r"./historicals/historical_RREP.txt" # Change the txt name if is necessary
+    file_name = r"./historicals_Experiment1/historical_RREP.txt" # Change the txt name if is necessary
 else:
     file_name = ""
 
