@@ -4,7 +4,7 @@ import os
 import sys
 import optparse
 
-import runner
+import runner_exp3
 
 # import python modules from $SUMO/HOME directory
 if 'SUMO_HOME' in os.environ:
