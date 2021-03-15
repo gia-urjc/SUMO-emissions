@@ -1,6 +1,5 @@
-.DS_Store
-SUMO_emissions_runner/.idea
+*/.DS_Store
+*/.idea
+*/venv/*
+*/__pycache__/*
 SUMO_emissions_runner/results/*
-SUMO_emissions_runner/venv/*
-generate_rutes/.idea
-generate_rutes/venv/*
