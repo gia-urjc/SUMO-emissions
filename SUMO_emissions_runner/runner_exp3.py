@@ -10,12 +10,30 @@ import random
 import traci
 import sys
 import os
+import re
 
 import results
 from Vehicle import Vehicle
 from Simulation import Simulation
 from Window import Window
 
+
+def getNumPackages(randomPackages, min_packages, max_packages, id_veh_dep_Vehicle):
+    """ No uniform distribution"""
+    if id_veh_dep_Vehicle.vType == "eVehicle":
+        if max_packages < (min_packages+4):
+            num_packages = randomPackages.randint(min_packages, min_packages+4)
+        else:
+            num_packages = randomPackages.randint(min_packages, max_packages)
+    elif id_veh_dep_Vehicle.vType == "gasolineEuroSix" or id_veh_dep_Vehicle.vType == "dieselEuroSix" or id_veh_dep_Vehicle.vType == "normalVehicle" or id_veh_dep_Vehicle.vType == "highEmissions":
+        num_packages = randomPackages.randint(min_packages, max_packages)
+    elif id_veh_dep_Vehicle.vType == "hovDieselEuroSix":
+        num_packages = randomPackages.randint(min_packages+10, max_packages + 10)
+    elif id_veh_dep_Vehicle.vType == "truck":
+        num_packages = randomPackages.randint(min_packages + 20, max_packages + 20)
+    else:
+        num_packages = randomPackages.randint(min_packages, max_packages)
+    return num_packages
 
 def closeToRestrictedArea(veh, enter_control_area_edges):
     """ Return true if the veh is near (100) the control zone area """
@@ -69,7 +87,7 @@ def no_cars_enter(simulation, enter_control_area_edges):
                 setNotAllowCar(veh)
 
 
-def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
+def some_cars_enter(simulation, enter_control_area_edges, historicalTable, historical_max_num_pack):
     """ If the vehicle is near the control area => Calculate whether or not a vehicle enters the control area (depends on strategy)"""
 
     for veh in simulation.vehicles_in_simulation:
@@ -80,7 +98,7 @@ def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
                 if simulation.strategy == "baseline":
                     enters = baselineTester(simulation.k)
                 elif simulation.strategy != "noControl":
-                    enters = historicalTester(simulation, veh, historicalTable)
+                    enters = historicalTester(simulation, veh, historicalTable, historical_max_num_pack)
             except NameError:
                 print("Strategy doesn't found")
                 raise RuntimeError('error')
@@ -173,13 +191,16 @@ def baselineTester(simk):
         return False
 
 
-def historicalTester(simulation, veh, historicalTable):
+def historicalTester(simulation, veh, historicalTable, historical_max_num_pack):
     """ If True (vehicle is allowed)"""
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
     # num_control = (k-acc(ant))/(acc-acc(ant))
     if simulation.strategy == "VEP" or simulation.strategy == "RREP":
-        vType = veh.originalvType + "-" + str(veh.n_packages)
+        if veh.n_packages > historical_max_num_pack[veh.originalvType]: # TODO REVISAR ESTO, tiene que ver con el historico y con que ahora tenemos vehiculos con más paquetes que en el histórico
+            vType = veh.originalvType + "-" + str(historical_max_num_pack[veh.originalvType])
+        else:
+            vType = veh.originalvType + "-" + str(veh.n_packages)
     else:
         vType = veh.originalvType
     previous = ""
@@ -201,7 +222,7 @@ def historicalTester(simulation, veh, historicalTable):
         return False
 
 
-def openHistorical(file_name, historicalTable):
+def openHistorical(file_name, historicalTable, historical_max_num_pack):
     """ Opens historical and writes the data in a variable historicalTable (dict())"""
     # OPEN HISTORICAL
     try:
@@ -214,7 +235,15 @@ def openHistorical(file_name, historicalTable):
             count_lines += 1
         for list_h_t in h_t:
             historicalTable[list_h_t[0]] = float(list_h_t[1])
+            name_veh = re.search(r'([A-z]+)', list_h_t[0]).group(0)
+            number_packages_hist = int(re.search(r'(?<=-)\w+', list_h_t[0]).group(0))
+            if name_veh in historical_max_num_pack:
+                if historical_max_num_pack[name_veh] < number_packages_hist:
+                    historical_max_num_pack[name_veh] = number_packages_hist
+            else:
+                historical_max_num_pack[name_veh] = number_packages_hist
         print("HISTORICAL: ", historicalTable)
+        print("historical_max_num_pack",historical_max_num_pack)
         f.close()
     except OSError:
         print('cannot open', file_name)
@@ -223,7 +252,7 @@ def openHistorical(file_name, historicalTable):
 RUN - MAIN DEF 
 
 """
-def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+def run(strategy,file_name,historicalTable, historical_max_num_pack, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges):
     """"""
     # Initialization
@@ -237,7 +266,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
 
     # open history file if is necessary
     if (strategy != "baseline" and strategy != "noControl"):
-        openHistorical(file_name, historicalTable)
+        openHistorical(file_name, historicalTable, historical_max_num_pack)
 
     # put the centre closed for not allowed cars
     # On this version, all the cars have the access opened at the beginning, and  later we calculate if one car enter or not
@@ -295,10 +324,9 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                 if id_veh_dep != "simulation.findRoute":
                     id_veh_dep_Vehicle = Vehicle(id_veh_dep)
                     id_veh_dep_Vehicle.step_ini = simulation.step
-                    num_packages = randomPackages.randint(min_packages, max_packages)
-                    id_veh_dep_Vehicle.n_packages = num_packages
                     id_veh_dep_Vehicle.vType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
                     id_veh_dep_Vehicle.originalvType = traci.vehicle.getTypeID(id_veh_dep_Vehicle.id)
+                    id_veh_dep_Vehicle.n_packages = getNumPackages(randomPackages, min_packages, max_packages, id_veh_dep_Vehicle)
                     id_vehs_departed_Vehicle.append(id_veh_dep_Vehicle)
             simulation.add_vehicles_in_simulation(id_vehs_departed_Vehicle)  # Add vehicles to the simulation list
             simulation.add_all_veh(id_vehs_departed_Vehicle)
@@ -351,7 +379,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                 no_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
             else:  # some cars enter
-                some_cars_enter(simulation, enter_control_area_edges, historicalTable)
+                some_cars_enter(simulation, enter_control_area_edges, historicalTable, historical_max_num_pack)
                 lastkSmaller1 = True
 
         # Window

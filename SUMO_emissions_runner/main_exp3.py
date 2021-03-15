@@ -37,6 +37,7 @@ else:
     file_name = ""
 
 historicalTable = dict()
+historical_max_num_pack = dict()
 
 # Window size (steps) and thresholds:
 window_size = 60
@@ -85,5 +86,5 @@ if __name__ == "__main__":
     traci.start([sumoBinary, "-c", "emissions.sumocfg"])
 
     # runner.py :
-    runner_exp3.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+    runner_exp3.run(strategy, file_name, historicalTable, historical_max_num_pack, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
