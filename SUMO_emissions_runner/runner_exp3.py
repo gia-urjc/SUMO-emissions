@@ -17,14 +17,11 @@ from Simulation import Simulation
 from Window import Window
 
 
-
-
 def closeToRestrictedArea(veh, enter_control_area_edges):
     """ Return true if the veh is near (100) the control zone area """
     string_current_edge = traci.vehicle.getLaneID(veh.id)
     if string_current_edge in enter_control_area_edges:
-        dist = traci.vehicle.getLanePosition(
-            veh.id)  # TODO ALGO DE AQUÍ DA WARNING: ARREGLAR, warning: Request backPos of vehicle 'veh676' for invalid lane ':gneJ94_0_0' time=2769.00.
+        dist = traci.vehicle.getLanePosition(veh.id)
         lane = traci.vehicle.getLaneID(veh.id)
         tam = traci.lane.getLength(lane)
         # only allow changes if not within 100 meters of the crossing
@@ -78,6 +75,7 @@ def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
     for veh in simulation.vehicles_in_simulation:
         if closeToRestrictedArea(veh, enter_control_area_edges):
             # determine whether the car enters
+            enters = False
             try:
                 if simulation.strategy == "baseline":
                     enters = baselineTester(simulation.k)
@@ -153,6 +151,8 @@ def setSwitchVehicleClass(emiClass, veh, simulation):
         traci.vehicle.setVehicleClass(vehID=veh.id, clazz="truck")
         traci.vehicle.setType(veh.id, typeID="truck")
         newType = "truck"
+    else:
+        newType = ""
     simulation.vType = newType
     # print("We switch to its previous class", traci.vehicle.getVehicleClass(vehID=veh.id))
 
@@ -263,6 +263,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
 
         # initialize variables
         if simulation.step == 0:
+            traci.simulationStep()
             simulation.p_t = p_t_ini
             window.NOx_total_w = 0
             window.NOx_control_zone_w = 0
