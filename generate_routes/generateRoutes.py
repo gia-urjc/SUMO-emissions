@@ -1,16 +1,13 @@
 import random
+from configuration import readConfigurationCSV as rCSV
 
 def generateRoutes():
     random.seed(1)
-    timeStep = 3600
 
-    probability_E = 1. / 20 # Probability eVehicle
-    probability_G = 1. / 20  # Probability gasolineEuroSix
-    probability_D = 1. / 20  # Probability dieselEuroSix
-    probability_HG = 1. / 20  # Probability hovDieselEuroSix
-    probability_N = 1. / 20  # Probability normalVehicle
-    probability_H = 1. / 40  # Probability highEmissions
-    probability_T = 1. / 40  # Probability truck
+    strategy, timeStep, probability_E, probability_G, probability_D, probability_HG, probability_N, probability_H, probability_T, \
+    window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
+    min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
+        rCSV.readConfigurationCSV()
 
 
     with open("changeName.rou.xml", "w") as routes:
