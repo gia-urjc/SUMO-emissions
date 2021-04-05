@@ -6,7 +6,7 @@ from sumolib import checkBinary  # noqa
 import traci  # noqa
 
 import runner
-import readConfigurationCSV as rCSV
+from configuration import readConfigurationCSV as rCSV
 
 # import python modules from $SUMO/HOME directory
 if 'SUMO_HOME' in os.environ:

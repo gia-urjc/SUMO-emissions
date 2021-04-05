@@ -1,9 +1,10 @@
-import csv
 import pandas as pd
 from fractions import Fraction
+import os
 
 def readConfigurationCSV():
-    df = pd.read_csv('../configurationFile.csv', delimiter=";")
+    CURR_DIR = os.path.dirname(os.path.realpath(__file__))
+    df = pd.read_csv(CURR_DIR+'/configurationFile.csv', delimiter=";")
     df = df.drop(columns = ["2","4","5"])
     df = df.set_index("1")
 
