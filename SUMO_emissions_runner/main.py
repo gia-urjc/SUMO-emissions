@@ -28,13 +28,13 @@ strategy, timeStep,probability_E ,probability_G, probability_D, probability_HG, 
 
 # HISTORICAL FILE
 if strategy == "VE":
-    file_name = r"./historicals/historical_VE.txt" # Change the txt name if is necessary
+    file_name = r"./historicals/historical_VE.txt"  # Change the txt name if is necessary
 elif strategy == "VEP":
-    file_name = r"./historicals/historical_VEP.txt" # Change the txt name if is necessary
+    file_name = r"./historicals/historical_VEP.txt"  # Change the txt name if is necessary
 elif strategy == "RRE":
-    file_name = r"./historicals/historical_RRE.txt" # Change the txt name if is necessary
+    file_name = r"./historicals/historical_RRE.txt"  # Change the txt name if is necessary
 elif strategy == "RREP":
-    file_name = r"./historicals/historical_RREP.txt" # Change the txt name if is necessary
+    file_name = r"./historicals/historical_RREP.txt"  # Change the txt name if is necessary
 else:
     file_name = ""
 
@@ -61,7 +61,32 @@ if __name__ == "__main__":
 
     #traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
     traci.start([sumoBinary, "-c", "emissions.sumocfg"])
+    """
+    election = input("Create historical? S/N \n")
+    while election!= "S" and election!= "s" and election!= "N" and election != "n":
+        election = input("Create historical? Introduce: S or N \n")
+    if election.upper() == "S":
+        print("First runs noControl to create the historical")
+        runner.run("noControl", "", historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+                   subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
+        print("Creating historical...")
+        
+        print("")
 
+    else:
+    
+        # HISTORICAL FILE
+        if strategy == "VE":
+            file_name = r"./historicals/historical_VE.txt"  # Change the txt name if is necessary
+        elif strategy == "VEP":
+            file_name = r"./historicals/historical_VEP.txt"  # Change the txt name if is necessary
+        elif strategy == "RRE":
+            file_name = r"./historicals/historical_RRE.txt"  # Change the txt name if is necessary
+        elif strategy == "RREP":
+            file_name = r"./historicals/historical_RREP.txt"  # Change the txt name if is necessary
+        else:
+            file_name = ""
+    """
     # runner.py :
     runner.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
