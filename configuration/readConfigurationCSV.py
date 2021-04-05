@@ -8,7 +8,7 @@ def readConfigurationCSV():
     df = df.drop(columns = ["2","4","5"])
     df = df.set_index("1")
 
-    strategy = df.iloc[df.index.get_loc("strategy"),0].replace(" ", "")
+    strategy = str(df.iloc[df.index.get_loc("strategy"),0].replace(" ", "").replace("\"",""))
     timeStep = int(df.iloc[df.index.get_loc("timeStep"), 0].replace(" ", ""))
     probability_E = float(Fraction(df.iloc[df.index.get_loc("probability_E"), 0].replace(" ", "").replace(".", "")))
     probability_G = float(Fraction(df.iloc[df.index.get_loc("probability_G"), 0].replace(" ", "").replace(".", "")))
