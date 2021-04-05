@@ -217,7 +217,10 @@ def openHistorical(file_name, historicalTable):
         print("HISTORICAL: ", historicalTable)
         f.close()
     except OSError:
-        print('cannot open', file_name)
+        if file_name == "":
+            print('historical is not necessary')
+        else:
+            print('cannot open', file_name)
 
 """
 RUN - MAIN DEF 

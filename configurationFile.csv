@@ -21,7 +21,7 @@ threshold_H;;100000;;NOx
 ;;;;
 p_t_ini;;100000;;NOx
 size_ratio;;4;;ratio sub p_t_total
-subs_Nox;;9000;;sub NOx
+subs_NOx;;9000;;sub NOx
 e_ini;;4000;;NOx
 ;;;;
 min_packages;;1;;
