@@ -16,22 +16,22 @@ if __name__ == "__main__":
 
     if election == "1":
         print("1")
-        route = r"../generate_historical/noControl/results_file_noControl.csv" # CHANGE IF YOU NEED
+        route = r"../generate_historical/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
     elif election == "2":
         print("First, runs noControl to create the historical")
-        if not os.path.exists("noControl"): # If the folder doesn't exists  -> Create folder
-            os.makedirs("noControl")
-        route = r"../generate_historical/noControl/results_file_noControl.csv" # CHANGE IF YOU NEED
+        if not os.path.exists("noControl_resultsHistorical"): # If the folder doesn't exists  -> Create folder
+            os.makedirs("noControl_resultsHistorical")
+        route = r"../generate_historical/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
         # TODO: Crear una condicion para que no se reescriba un nocontrol ya creado
         run_main("noControl", "", dict(), window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                    subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route)
 
     print("Creating historical...")
-
-    route = r"../generate_historical/noControl/results_file_noControl.csv"  # CHANGE IF YOU NEED
+#if __name__ == "__main__":
+    route = r"../generate_historical/noControl_resultsHistorical/results_file_noControl.csv"  # CHANGE IF YOU NEED
     df = pd.read_csv(route, delimiter=";", header=None)
     print("HOLA")
-    df.head()
+    print(df.head())
 
     # Con el archivo No control obtener NOx_total y total_time
     # En el archivo sumo_emissions_runner/createHistorical está como leer el XML de rutas generadas que lo necesitaremos
