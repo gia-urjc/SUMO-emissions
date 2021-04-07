@@ -4,23 +4,26 @@ import sys
 import os
 
 
-def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_packages, max_packages):
+def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_packages, max_packages, route = ""):
     """ Write results in a file """
 
     """ First, we open the file"""
+    if route =="":
+        if not os.path.exists("results"): # If the folder doesn't exists  -> Create folder
+            os.makedirs("results")
 
-    if not os.path.exists("results"): # If the folder doesn't exists  -> Create folder
-        os.makedirs("results")
-
-    cont_file = 0
-    file = "results_file_" + simulation.strategy
-    fileName = r"./results/" + file + str(cont_file) + ".csv"
-    fileObject = Path(fileName)
-    while fileObject.is_file(): # If the file exists -> new file name
-        cont_file += 1
+        cont_file = 0
+        file = "results_file_" + simulation.strategy
         fileName = r"./results/" + file + str(cont_file) + ".csv"
-        print(fileName)
         fileObject = Path(fileName)
+        while fileObject.is_file(): # If the file exists -> new file name
+            cont_file += 1
+            fileName = r"./results/" + file + str(cont_file) + ".csv"
+            print(fileName)
+            fileObject = Path(fileName)
+    else:
+        fileName = route
+
     f = open(fileName, "w")
     print(fileName)
 

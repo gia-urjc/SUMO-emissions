@@ -5,7 +5,7 @@ import optparse
 from sumolib import checkBinary  # noqa
 import traci  # noqa
 
-import runner
+from SUMO_emissions_runner import runner
 from configuration import readConfigurationCSV as rCSV
 
 # import python modules from $SUMO/HOME directory
@@ -51,7 +51,8 @@ def get_options():
     options, args = opt_parser.parse_args()
     return options
 
-if __name__ == "__main__":
+def run_main(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route):
     options = get_options()
 
     if options.nogui:
@@ -60,33 +61,12 @@ if __name__ == "__main__":
         sumoBinary = checkBinary("sumo-gui")
 
     #traci.start([sumoBinary, "-c", "casebase.sumocfg", "--tripinfo-output", "tripinfo.xml", "--emission-output", "emissionOutput.xml"])
-    traci.start([sumoBinary, "-c", "emissions.sumocfg"])
-    """
-    election = input("Create historical? S/N \n")
-    while election!= "S" and election!= "s" and election!= "N" and election != "n":
-        election = input("Create historical? Introduce: S or N \n")
-    if election.upper() == "S":
-        print("First runs noControl to create the historical")
-        runner.run("noControl", "", historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-                   subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
-        print("Creating historical...")
-        
-        print("")
+    traci.start([sumoBinary, "-c", "../configuration/emissions.sumocfg"])
 
-    else:
-    
-        # HISTORICAL FILE
-        if strategy == "VE":
-            file_name = r"./historicals/historical_VE.txt"  # Change the txt name if is necessary
-        elif strategy == "VEP":
-            file_name = r"./historicals/historical_VEP.txt"  # Change the txt name if is necessary
-        elif strategy == "RRE":
-            file_name = r"./historicals/historical_RRE.txt"  # Change the txt name if is necessary
-        elif strategy == "RREP":
-            file_name = r"./historicals/historical_RREP.txt"  # Change the txt name if is necessary
-        else:
-            file_name = ""
-    """
     # runner.py :
     runner.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
+               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route)
+
+if __name__ == "__main__":
+    run_main(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+               subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, "")

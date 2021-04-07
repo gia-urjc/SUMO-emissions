@@ -11,10 +11,10 @@ import traci
 import sys
 import os
 
-import results
-from Vehicle import Vehicle
-from Simulation import Simulation
-from Window import Window
+from SUMO_emissions_runner import results
+from SUMO_emissions_runner.Vehicle import Vehicle
+from SUMO_emissions_runner.Simulation import Simulation
+from SUMO_emissions_runner.Window import Window
 
 
 def closeToRestrictedArea(veh, enter_control_area_edges):
@@ -227,7 +227,7 @@ RUN - MAIN DEF
 
 """
 def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges):
+            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
     """"""
     # Initialization
     random.seed(1)
@@ -397,7 +397,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
             # calculate k
             calculate_k(simulation, window)
 
-    results.results(simulation, window_size, p_t_ini,size_ratio, subs_NOx, e_ini, min_packages, max_packages)
+    results.results(simulation, window_size, p_t_ini,size_ratio, subs_NOx, e_ini, min_packages, max_packages, route)
 
     # TraCI
     traci.close()
