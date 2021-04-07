@@ -9,7 +9,7 @@ timeStep;;3600;;sec , steps
 probability_E;;1. / 20;;
 probability_G;;1. / 20;;
 probability_D;;1. / 20;;
-probability_HG;;1. / 20;;
+probability_HD;;1. / 20;;
 probability_N;;1. / 20;;
 probability_H;;1. / 40;;
 probability_T;;1. / 40;;

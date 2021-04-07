@@ -21,7 +21,7 @@ PARAMETERS TO CONFIGURE
 
 """
 
-strategy, timeStep,probability_E ,probability_G, probability_D, probability_HG, probability_N, probability_H, probability_T,\
+strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T,\
     window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
     min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
     rCSV.readConfigurationCSV()

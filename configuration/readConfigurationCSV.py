@@ -13,7 +13,7 @@ def readConfigurationCSV():
     probability_E = float(Fraction(df.iloc[df.index.get_loc("probability_E"), 0].replace(" ", "").replace(".", "")))
     probability_G = float(Fraction(df.iloc[df.index.get_loc("probability_G"), 0].replace(" ", "").replace(".", "")))
     probability_D = float(Fraction(df.iloc[df.index.get_loc("probability_D"), 0].replace(" ", "").replace(".", "")))
-    probability_HG = float(Fraction(df.iloc[df.index.get_loc("probability_HG"), 0].replace(" ", "").replace(".", "")))
+    probability_HD = float(Fraction(df.iloc[df.index.get_loc("probability_HD"), 0].replace(" ", "").replace(".", "")))
     probability_N = float(Fraction(df.iloc[df.index.get_loc("probability_N"), 0].replace(" ", "").replace(".", "")))
     probability_H = float(Fraction(df.iloc[df.index.get_loc("probability_H"), 0].replace(" ", "").replace(".", "")))
     probability_T = float(Fraction(df.iloc[df.index.get_loc("probability_T"), 0].replace(" ", "").replace(".", "")))
@@ -39,6 +39,6 @@ def readConfigurationCSV():
     enter_control_area_edges = [(i.replace(" ", "").replace("\"", "")) for i in enter_control_area_edges_split]
 
 
-    return strategy, timeStep,probability_E ,probability_G, probability_D, probability_HG, probability_N, probability_H, probability_T, \
+    return strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T, \
            window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
            min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges
