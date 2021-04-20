@@ -75,7 +75,7 @@ def generateRoutes():
                 cont_D += 1
 
 
-            if random.uniform(0, 1) < probability_HG:  #
+            if random.uniform(0, 1) < probability_HD:  #
                 print('        <trip depart="%i" from="-%s" to="%s" color="yellow" type="hovDieselEuroSix" id="veh%i"/>' % (
                     i, origin, dest, vehNr), file=routes)
                 vehNr += 1
