@@ -26,7 +26,7 @@ strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, 
     min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
     rCSV.readConfigurationCSV()
 
-# HISTORICAL FILE
+# DENSITY FILE
 if strategy == "VE":
     file_name = r"./historicals/historical_VE.txt"  # Change the txt name if is necessary
 elif strategy == "VEP":
