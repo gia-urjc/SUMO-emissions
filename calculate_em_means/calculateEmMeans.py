@@ -18,12 +18,12 @@ def calculateEmMeans():
 
     if election == "1":
         print("1")
-        route_NoControl = r"../generate_historical/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
+        route_NoControl = r"../calculate_density_distribution/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
     elif election == "2":
         print("First, runs noControl to create the historical")
         if not os.path.exists("noControl_resultsHistorical"): # If the folder doesn't exists  -> Create folder
             os.makedirs("noControl_resultsHistorical")
-        route_NoControl = r"../generate_historical/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
+        route_NoControl = r"../calculate_density_distribution/noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
         # TODO: Crear una condicion para que no se reescriba un nocontrol ya creado
         run_main("noControl", "", dict(), window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                    subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route_NoControl)
@@ -54,16 +54,16 @@ def calculateEmMeans():
     print(em_average_s)
 
     """ Write results in a file """
-    if not os.path.exists("e_means_calculated"):  # If the folder doesn't exists  -> Create folder
-        os.makedirs("e_means_calculated")
+    if not os.path.exists("em_means_calculated"):  # If the folder doesn't exists  -> Create folder
+        os.makedirs("em_means_calculated")
 
     cont_file = 0
-    file = "e_means_results_"
-    fileName = r"./e_means_calculated/" + file + str(cont_file) + ".csv"
+    file = "em_means_results_"
+    fileName = r"./em_means_calculated/" + file + str(cont_file) + ".csv"
     fileObject = Path(fileName)
     while fileObject.is_file():  # If the file exists -> new file name
         cont_file += 1
-        fileName = r"./e_means_calculated/" + file + str(cont_file) + ".csv"
+        fileName = r"./em_means_calculated/" + file + str(cont_file) + ".csv"
         print(fileName)
         fileObject = Path(fileName)
 
