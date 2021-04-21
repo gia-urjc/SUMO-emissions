@@ -10,6 +10,7 @@ import random
 import traci
 import sys
 import os
+import pandas as pd
 
 from SUMO_emissions_runner import results
 from SUMO_emissions_runner.Vehicle import Vehicle
@@ -205,17 +206,10 @@ def openDensityDistribution(file_name_density, densityTable):
     """ Opens density distribution and writes the data in a variable densityTable (dict())"""
     # OPEN DENSITY DISTRIBUTION
     try:
-        count_lines = 0
-        h_t = []
-        f = open(file_name_density, 'r')
-        for l in f:
-            h_t.append("")
-            h_t[count_lines] = l.split()
-            count_lines += 1
-        for list_h_t in h_t:
-            densityTable[list_h_t[0]] = float(list_h_t[1])
-        print("DENSITY_DISTRIBUTION: ", densityTable)
-        f.close()
+        df = pd.read_csv(file_name_density, delimiter=";")
+        for i in range(df.shape[0]):
+            densityTable[df.iloc[i][0]] = df.iloc[i][1]
+        print("densityTable =", densityTable)
     except OSError:
         if file_name_density == "":
             print('density distribution is not necessary')
