@@ -5,7 +5,7 @@ class Simulation():
     def __init__(self, step, threshold_L, threshold_H , k=1, strategy ="",
                    restrictionMode = False, NOx_total = 0, NOx_control_zone = 0,
                    veh_total_number = 0, vehicles_in_simulation = [], vehs_load = [], all_veh = set(), windows = [],
-                   p_t = 0,  avg_historical = 0):
+                   p_t = 0,  avg_density_distribution = 0):
 
         self.step = step
         self.threshold_L = threshold_L
@@ -27,7 +27,7 @@ class Simulation():
         self.p_t = p_t
 
         # VE, VEP, RRE, RREP
-        self.avg_historical = avg_historical
+        self.avg_density_distribution = avg_density_distribution
 
 
 
@@ -198,12 +198,12 @@ class Simulation():
 
 
     @property  ##Getter
-    def avg_historical(self):
-        return self._avg_historical
+    def avg_density_distribution(self):
+        return self._avg_density_distribution
 
-    @avg_historical.setter
-    def avg_historical(self, avg_historical):
-        self._avg_historical = avg_historical
+    @avg_density_distribution.setter
+    def avg_density_distribution(self, avg_density_distribution):
+        self._avg_density_distribution = avg_density_distribution
 
 
     def __str__(self):

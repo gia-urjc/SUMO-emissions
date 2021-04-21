@@ -1,6 +1,6 @@
 """
     main def at the end:
-        run (strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+        run (strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
 """
 
@@ -69,7 +69,7 @@ def no_cars_enter(simulation, enter_control_area_edges):
                 setNotAllowCar(veh)
 
 
-def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
+def some_cars_enter(simulation, enter_control_area_edges, densityTable):
     """ If the vehicle is near the control area => Calculate whether or not a vehicle enters the control area (depends on strategy)"""
 
     for veh in simulation.vehicles_in_simulation:
@@ -80,7 +80,7 @@ def some_cars_enter(simulation, enter_control_area_edges, historicalTable):
                 if simulation.strategy == "baseline":
                     enters = baselineTester(simulation.k)
                 elif simulation.strategy != "noControl":
-                    enters = historicalTester(simulation, veh, historicalTable)
+                    enters = densityTester(simulation, veh, densityTable)
             except NameError:
                 print("Strategy doesn't found")
                 raise RuntimeError('error')
@@ -173,7 +173,7 @@ def baselineTester(simk):
         return False
 
 
-def historicalTester(simulation, veh, historicalTable):
+def densityTester(simulation, veh, densityTable):
     """ If True (vehicle is allowed)"""
     # simulation.k = 1 NO RESTRICTIONS
     # simulation.k = 0 NO VEHICLES ALLOWED
@@ -183,50 +183,50 @@ def historicalTester(simulation, veh, historicalTable):
     else:
         vType = veh.originalvType
     previous = ""
-    for key, value in historicalTable.items():
+    for key, value in densityTable.items():
         if key == vType:
             break
         previous = key
     if previous == "":
         aux = 0
     else:
-        aux = historicalTable[previous]
-    if (historicalTable[vType] - aux) == 0:
+        aux = densityTable[previous]
+    if (densityTable[vType] - aux) == 0:
         num_control = 2
     else:
-        num_control = (simulation.k - aux) / (historicalTable[vType] - aux)
+        num_control = (simulation.k - aux) / (densityTable[vType] - aux)
     if random.uniform(0, 1) <= num_control:
         return True
     else:
         return False
 
 
-def openHistorical(file_name, historicalTable):
-    """ Opens historical and writes the data in a variable historicalTable (dict())"""
-    # OPEN HISTORICAL
+def openDensityDistribution(file_name_density, densityTable):
+    """ Opens density distribution and writes the data in a variable densityTable (dict())"""
+    # OPEN DENSITY DISTRIBUTION
     try:
         count_lines = 0
         h_t = []
-        f = open(file_name, 'r')
+        f = open(file_name_density, 'r')
         for l in f:
             h_t.append("")
             h_t[count_lines] = l.split()
             count_lines += 1
         for list_h_t in h_t:
-            historicalTable[list_h_t[0]] = float(list_h_t[1])
-        print("HISTORICAL: ", historicalTable)
+            densityTable[list_h_t[0]] = float(list_h_t[1])
+        print("DENSITY_DISTRIBUTION: ", densityTable)
         f.close()
     except OSError:
-        if file_name == "":
-            print('historical is not necessary')
+        if file_name_density == "":
+            print('density distribution is not necessary')
         else:
-            print('cannot open', file_name)
+            print('cannot open', file_name_density)
 
 """
 RUN - MAIN DEF 
 
 """
-def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+def run(strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
     """"""
     # Initialization
@@ -240,7 +240,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
 
     # open history file if is necessary
     if (strategy != "baseline" and strategy != "noControl"):
-        openHistorical(file_name, historicalTable)
+        openDensityDistribution(file_name_density, densityTable)
 
     # put the centre closed for not allowed cars
     # On this version, all the cars have the access opened at the beginning, and  later we calculate if one car enter or not
@@ -354,7 +354,7 @@ def run(strategy,file_name,historicalTable, window_size, threshold_L, threshold_
                 no_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = True
             else:  # some cars enter
-                some_cars_enter(simulation, enter_control_area_edges, historicalTable)
+                some_cars_enter(simulation, enter_control_area_edges, densityTable)
                 lastkSmaller1 = True
 
         # Window
