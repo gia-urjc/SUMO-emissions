@@ -1,7 +1,7 @@
 1;2;3;4;5
 CONFIGURATION FILE;;;;Fill the cell near the name (third column)
 ;;;;
-strategy;;"""noControl""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
+strategy;;"""RRE""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
 file_name;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 ;;;;
 GENERATE ROUTES;;;;

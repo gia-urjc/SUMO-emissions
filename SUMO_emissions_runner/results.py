@@ -110,10 +110,10 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
 
         enter_cz_all_steps = 0
 
-        vTypes_vehs = set() # For historical
-        NOx_total_vehs = dict() # For historical
-        total_time_vehs = dict() # For historical
-        count_vehs = dict()  # For historical
+        vTypes_vehs = set() # For Density Distribution
+        NOx_total_vehs = dict() # For Density Distribution
+        total_time_vehs = dict() # For Density Distribution
+        count_vehs = dict()  # For Density Distribution
 
         for v in simulation.all_veh:
             total_time = v.step_fin - v.step_ini
@@ -123,7 +123,7 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
                 [v.id, v.vType, str(v.NOx), str(v.n_packages), str(v.step_ini), str(v.step_fin), str(total_time),
                  str(average_package), str(v.enter_cz)])
 
-            # For historical :
+            # For Density Distribution:
             vTypes_vehs.add(v.vType)
             if not v.vType in NOx_total_vehs:
                 NOx_total_vehs[v.vType] = 0
@@ -135,8 +135,8 @@ def results(simulation, window_size, p_t_ini, size_ratio, subs_NOx, e_ini, min_p
 
 
 
-        # FOR HISTORICAL
-        f.writerow(["FOR_HISTORICAL"])
+        # For Density Distribution:
+        f.writerow(["FOR_DENSITY_DISTRIBUTION"])
         f.writerow(["vType", "NOx_total", "total_time"])
 
         for v in vTypes_vehs:

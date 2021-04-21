@@ -4,13 +4,28 @@ import pandas as pd
 from pathlib import Path
 import os
 import csv
+import sys
 
 def calculateEmMeans():
-#if __name__ == "__main__":
+    ##################################
+    ########### CONFIGURE ############
+    ##################################
+    """ Change if you need"""
+    # No control file:
+    folderNoControl = "noControl_resultsHistorical"
+    nameFileNoControl = "results_file_noControl"  #If you are going to create a new NoControl, yo don't need to change it
+    # Results file:
+    fileEmMeansResults = "em_means_results_"
+    folderEmMeansResults = "em_means_calculated"
+    ##################################
+    ##################################
+    ##################################
+
     strategy, timeStep, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T, \
     window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
     min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
         rCSV.readConfigurationCSV()
+
 
     election = input("Press 1 to use your noControl file (change in code) or 2 to create a new file \n")
     while election != "1" and election != "2":
@@ -18,20 +33,32 @@ def calculateEmMeans():
 
     if election == "1":
         print("1")
-        route_NoControl = r"./noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
+        route_NoControl = r"./" + folderNoControl +"/" + nameFileNoControl + ".csv"
     elif election == "2":
         print("First, runs noControl to create the historical")
-        if not os.path.exists("noControl_resultsHistorical"): # If the folder doesn't exists  -> Create folder
-            os.makedirs("noControl_resultsHistorical")
-        route_NoControl = r"./noControl_resultsHistorical/results_file_noControl.csv" # CHANGE IF YOU NEED
-        # TODO: Crear una condicion para que no se reescriba un nocontrol ya creado
+
+        if not os.path.exists(folderNoControl): # If the folder doesn't exists  -> Create folder
+            os.makedirs(folderNoControl)
+
+        cont_file = 0
+        route_NoControl = r"./" + folderNoControl +"/"+ nameFileNoControl + str(cont_file) + ".csv"
+        fileObject = Path(route_NoControl)
+        while fileObject.is_file():  # If the file exists -> new file name
+            cont_file += 1
+            route_NoControl = r"./" + folderNoControl + "/" + nameFileNoControl + str(cont_file) + ".csv"
+            fileObject = Path(route_NoControl)
+
         run_main("noControl", "", dict(), window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                    subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route_NoControl)
 
+    try:
+        df = pd.read_csv(route_NoControl, delimiter=";")
+    except FileNotFoundError:
+        print('File does not exist, change it and rerun')
+        sys.exit()
+    print("Calculating em_means...")
 
-    df = pd.read_csv(route_NoControl, delimiter=";")
-
-    limit = (df[df["1"]=="FOR_HISTORICAL"].index.values[0])+1
+    limit = (df[df["1"]=="FOR_DENSITY_DISTRIBUTION"].index.values[0])+1
     drop_index = range(0, limit)
     df = df.drop(drop_index)
     df = df.drop(columns=["4", "5", "6", "7", "8", "9", "10", "11"])
@@ -53,26 +80,29 @@ def calculateEmMeans():
     print(em_means_s)
 
     """ Write results in a file """
-    if not os.path.exists("em_means_calculated"):  # If the folder doesn't exists  -> Create folder
-        os.makedirs("em_means_calculated")
 
-    cont_file = 0
-    file = "em_means_results_"
-    fileName = r"./em_means_calculated/" + file + str(cont_file) + ".csv"
-    fileObject = Path(fileName)
-    while fileObject.is_file():  # If the file exists -> new file name
-        cont_file += 1
-        fileName = r"./em_means_calculated/" + file + str(cont_file) + ".csv"
-        fileObject = Path(fileName)
+    if not os.path.exists(folderEmMeansResults):  # If the folder doesn't exists  -> Create folder
+        os.makedirs(folderEmMeansResults)
+
+    cont_file_write = 0
+    fileNameWrite = r"./"+ folderEmMeansResults + "/" + fileEmMeansResults + strategy + "_" + str(cont_file_write) + ".csv"
+    fileObjectWrite = Path(fileNameWrite)
+    while fileObjectWrite.is_file():  # If the file exists -> new file name
+        cont_file_write += 1
+        fileNameWrite = r"./" + folderEmMeansResults +"/" + fileEmMeansResults + strategy + "_" +str(cont_file_write) + ".csv"
+        fileObjectWrite = Path(fileNameWrite)
 
 
-    with open(fileName, mode='w', newline='') as f_csv:
-        print(fileName)
+    with open(fileNameWrite, mode='w', newline='') as f_csv:
+        print(fileNameWrite)
         f = csv.writer(f_csv, delimiter=';')
         """Second, we write the parameters"""
         f.writerow(["vType", "em_means"])
+
         for m, k in em_means_s:
             f.writerow([m,k])
+
+    print("done")
 
 
 
