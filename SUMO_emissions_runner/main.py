@@ -15,7 +15,6 @@ if 'SUMO_HOME' in os.environ:
 else:
     sys.exist("please declare environment variable 'SUMO_HOME'")
 
-
 """
 PARAMETERS TO CONFIGURE
 
@@ -26,24 +25,31 @@ strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, 
     min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
     rCSV.readConfigurationCSV()
 
+##################################
+########### CONFIGURE ############
+##################################
 # DENSITY FILE
 if strategy == "VE":
-    file_name = r"./historicals/historical_VE.txt"  # Change the txt name if is necessary
+    file_name_density = r"../calculate_density_distribution/density_distribution_calculated/density_distribution_results_VE_0.csv"  # Change the txt name if is necessary
 elif strategy == "VEP":
-    file_name = r"./historicals/historical_VEP.txt"  # Change the txt name if is necessary
+    file_name_density = r"../calculate_density_distribution/density_distribution_calculated/density_distribution_results_VEP_0.csv"  # Change the txt name if is necessary
 elif strategy == "RRE":
-    file_name = r"./historicals/historical_RRE.txt"  # Change the txt name if is necessary
+    file_name_density = r"../calculate_density_distribution/density_distribution_calculated/density_distribution_results_RRE_0.csv"  # Change the txt name if is necessary
 elif strategy == "RREP":
-    file_name = r"./historicals/historical_RREP.txt"  # Change the txt name if is necessary
+    file_name_density = r"../calculate_density_distribution/density_distribution_calculated/density_distribution_results_RREP_0.csv"  # Change the txt name if is necessary
 else:
-    file_name = ""
+    file_name_density = ""
+##################################
+##################################
+##################################
 
-historicalTable = dict()
+densityTable = dict()
 
 """
 MAIN PROGRAM
 
 """
+
 def get_options():
     """" SUMO options """
     opt_parser = optparse.OptionParser()
@@ -51,7 +57,7 @@ def get_options():
     options, args = opt_parser.parse_args()
     return options
 
-def run_main(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+def run_main(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route):
     options = get_options()
 
@@ -64,9 +70,9 @@ def run_main(strategy, file_name, historicalTable, window_size, threshold_L, thr
     traci.start([sumoBinary, "-c", "../configuration/emissions.sumocfg"])
 
     # runner.py :
-    runner.run(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+    runner.run(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route)
 
 if __name__ == "__main__":
-    run_main(strategy, file_name, historicalTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+    run_main(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, "")
