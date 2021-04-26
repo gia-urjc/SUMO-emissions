@@ -26,6 +26,22 @@ def getProbability(vType, probability_E, probability_G, probability_D, probabili
         p = probability_T
     return p
 
+def calculateAcc(acc, prob_norm, ordenationDict):
+    ilast = ""
+    for i in ordenationDict:
+        if tuple(ordenationDict.keys()).index(i) == 0:
+            acc[i] = prob_norm[i]
+        else:
+            acc[i] = acc[ilast] + prob_norm[i]
+        ilast = i
+    return acc
+
+def normalize(prob, sum_prob):
+    prob_norm = dict()
+    for i in prob:
+        prob_norm[i] = prob[i] / sum_prob
+    return prob_norm
+
 def calculateDensityDistribution():
     ##################################
     ########### CONFIGURE ############
@@ -33,7 +49,7 @@ def calculateDensityDistribution():
     """ Change if you need"""
     # File route e means:
     # VEP uses VE em_means and RREP uses RRE em_means
-    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_RRE_0.csv"
+    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_VE_0.csv"
     # Results file:
     folderResults = "density_distribution_calculated"
     fileResults = "density_distribution_results_"
@@ -46,7 +62,7 @@ def calculateDensityDistribution():
     min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges = \
         rCSV.readConfigurationCSV()
 
-    """ Calculate probability """
+
     print(strategy)
     print("Calculating acc...")
 
@@ -71,13 +87,7 @@ def calculateDensityDistribution():
 
         if strategy == "VE":
             """ Return acc prob n"""
-            ilast = ""
-            for i in em_means_s_o:
-                if tuple(em_means_s_o.keys()).index(i) == 0:
-                    acc[i] = prob_norm[i]
-                else:
-                    acc[i] = acc[ilast]+prob_norm[i]
-                ilast = i
+            acc = calculateAcc(acc, prob_norm, em_means_s_o)
         elif strategy == "RRE":
             """Return acc em prob n"""
             em_x_prob = dict()
@@ -86,16 +96,8 @@ def calculateDensityDistribution():
                 res_em_x_prob = (em_means_s_o[i] * prob_norm[i])
                 em_x_prob[i] = res_em_x_prob
                 sum_em_x_prob += res_em_x_prob
-            em_x_prob_norm = dict()
-            for i in em_x_prob:
-                em_x_prob_norm[i] = em_x_prob[i]/sum_em_x_prob
-            ilast = ""
-            for i in em_x_prob_norm:
-                if tuple(em_x_prob_norm.keys()).index(i) == 0:
-                    acc[i] = em_x_prob_norm[i]
-                else:
-                    acc[i] = acc[ilast] + em_x_prob_norm[i]
-                ilast = i
+            em_x_prob_norm = normalize(em_x_prob, sum_em_x_prob)
+            acc = calculateAcc(acc, em_x_prob_norm, em_x_prob_norm)
 
     elif strategy == "VEP" or strategy == "RREP":
         packages_range = range(min_packages, max_packages + 1)
@@ -109,26 +111,18 @@ def calculateDensityDistribution():
         prob_veh_pack = dict()
         sum_prob_veh_pack = 0
         for i in em_means_s_o: # For each vType
-            for j in packages_range:
-                # prob = probabilidad vType * 1 / max_packages
+            for j in packages_range: # For each num package
                 vType_pack = i + "-" + str(j)
                 p = getProbability(i, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T)
                 prob_veh_pack[vType_pack] = p * 1/max_packages
                 sum_prob_veh_pack += prob_veh_pack[vType_pack]
 
-        prob_veh_pack_norm = dict()
-        for i in prob_veh_pack:
-            prob_veh_pack_norm[i] = prob_veh_pack[i] / sum_prob_veh_pack
+        prob_veh_pack_norm = normalize(prob_veh_pack, sum_prob_veh_pack)
 
         em_packages_s = dict(sorted(em_packages.items(),key=operator.itemgetter(1)))
+
         if strategy == "VEP":
-            ilast = ""
-            for i in em_packages_s:
-                if tuple(em_packages_s.keys()).index(i) == 0:
-                    acc[i] = prob_veh_pack_norm[i]
-                else:
-                    acc[i] = acc[ilast] + prob_veh_pack_norm[i]
-                ilast = i
+            acc = calculateAcc(acc, prob_veh_pack_norm, em_packages_s)
 
         if strategy == "RREP":
             probN_x_em = dict()
@@ -138,28 +132,11 @@ def calculateDensityDistribution():
                 probN_x_em[i] = prob_veh_pack_norm[i] * em_means_s[vTypeVeh]
                 sum_probN_x_em += probN_x_em[i]
 
-            probN_x_em_norm = dict()
-            for i in probN_x_em:
-                probN_x_em_norm[i] = probN_x_em[i] / sum_probN_x_em
+            probN_x_em_norm = normalize(probN_x_em, sum_probN_x_em)
 
-            ilast = ""
-            for i in em_packages_s:
-                if tuple(em_packages_s.keys()).index(i) == 0:
-                    acc[i] = probN_x_em_norm[i]
-                else:
-                    acc[i] = acc[ilast] + probN_x_em_norm[i]
-                ilast = i
+            acc = calculateAcc(acc, probN_x_em_norm, em_packages_s)
 
     print("acc = ", acc)
-
-
-
-
-
-
-
-
-
 
 
     """ Write results in a file """
