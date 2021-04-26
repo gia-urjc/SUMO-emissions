@@ -32,7 +32,8 @@ def calculateDensityDistribution():
     ##################################
     """ Change if you need"""
     # File route e means:
-    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_VE_0.csv"
+    # VEP uses VE em_means and RREP uses RRE em_means
+    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_RRE_0.csv"
     # Results file:
     folderResults = "density_distribution_calculated"
     fileResults = "density_distribution_results_"
