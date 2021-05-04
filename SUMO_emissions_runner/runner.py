@@ -221,7 +221,7 @@ RUN - MAIN DEF
 
 """
 def run(strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
+            subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
     """"""
     # Initialization
     random.seed(1)
@@ -230,17 +230,18 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
     print("RUN")
     print(strategy)
     simulation = Simulation(step=0, threshold_L=threshold_L, threshold_H=threshold_H, k=1, strategy=strategy)
-    window = Window(simulation.step, set(), set(), 0, 0, 0, 0, 0, 1, 0.8)
+    window = Window(simulation.step, set(), set(), 0, 0, 0, 0, 0, ini_k_window, ini_lambda_l)
 
-    # open history file if is necessary
+    # open density distribution file if is necessary (only with VE, VEP, RRE or RREP
     if (strategy != "baseline" and strategy != "noControl"):
         openDensityDistribution(file_name_density, densityTable)
 
     # put the centre closed for not allowed cars
-    # On this version, all the cars have the access opened at the beginning, and  later we calculate if one car enter or not
+    # On this version, all the cars have the access opened at the beginning, and  later we calculate if one car enter or not (class custom1)
     for aEd in control_area_edges_cnf:
-        traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["custom1"])
+        traci.lane.setDisallowed(laneID=aEd, disallowedClasses=["custom1"]) # All the class are not custom1 at the beginning
 
+    # Control variables
     lastkSmaller1 = True
     start_total = True
     start_control = True
@@ -266,7 +267,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
             window.NOx_control_zone_w = 0
             window.p_t = p_t_ini
             window.p_t_total = p_t_ini
-            window.lambda_l = 0.8
+            window.lambda_l = ini_lambda_l
 
             # Add variables for the last 50 steps
             simulation.add_window(window)
@@ -356,7 +357,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
             # Discount NOx of the last window:
             for w in range(len(simulation.windows)):
                 if simulation.windows[w].step == simulation.step - window_size:
-                    lambda_l = randomLambda.uniform(0.8, 1.2)
+                    lambda_l = randomLambda.uniform(min_randomLambda, max_randomLambda) # (0.8,1.2)
                     window.lambda_l = lambda_l
                     x_cz = lambda_l * subs_NOx
                     # for heating up if emissens are lower than e_ini, use e_ini

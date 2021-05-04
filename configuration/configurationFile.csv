@@ -23,6 +23,10 @@ p_t_ini;;100000;;NOx
 size_ratio;;4;;ratio sub p_t_total
 subs_NOx;;9000;;sub NOx
 e_ini;;4000;;NOx
+ini_lambda_l;;0.8;;windows ratio ini
+min_randomLambda;;0.8;;windows ratio min
+max_randomLambda;;1.2;;windows ratio max
+ini_k_window;;1;;
 ;;;;
 min_packages;;1;;
 max_packages;;20;;

@@ -26,6 +26,10 @@ def readConfigurationCSV():
     size_ratio = int(df.iloc[df.index.get_loc("timeStep"), 0])
     subs_NOx = int(df.iloc[df.index.get_loc("subs_NOx"),0])
     e_ini = int(df.iloc[df.index.get_loc("e_ini"), 0])
+    ini_lambda_l = float(df.iloc[df.index.get_loc("ini_lambda_l"), 0])
+    min_randomLambda = float(df.iloc[df.index.get_loc("min_randomLambda"), 0])
+    max_randomLambda = float(df.iloc[df.index.get_loc("max_randomLambda"), 0])
+    ini_k_window = float(df.iloc[df.index.get_loc("ini_k_window"), 0])
 
     min_packages = int(df.iloc[df.index.get_loc("min_packages"), 0])
     max_packages = int(df.iloc[df.index.get_loc("max_packages"), 0])
@@ -41,4 +45,5 @@ def readConfigurationCSV():
 
     return strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T, \
            window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
+           ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window,\
            min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges
