@@ -259,12 +259,15 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
 
         simulation.vehs_load = vehs_load_Vehicle
 
+
         # initialize variables
+
         if simulation.step == 0:
-            traci.simulationStep()
+            #traci.simulationStep() # TODO QUITAR
             simulation.p_t = p_t_ini
-            window.NOx_total_w = 0
-            window.NOx_control_zone_w = 0
+            window.step = simulation.step
+            window.NOx_total_w = 0 ## All the map
+            window.NOx_control_zone_w = 0 ## Control zone
             window.p_t = p_t_ini
             window.p_t_total = p_t_ini
             window.lambda_l = ini_lambda_l
@@ -273,13 +276,12 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
             simulation.add_window(window)
             print("Window: ", window)
             # Reboot all
-            window = Window(simulation.step, window.vehicles_in_w.copy(), set(), 0, 0, window.veh_total_number_w)
+            #window = Window(simulation.step, window.vehicles_in_w.copy(), set(), 0, 0, window.veh_total_number_w) # TODO QUITAR
 
             # calculate k
-            calculate_k(simulation, window)
+            calculate_k(simulation, window) ## k: access permission level
 
         # NEW STEP
-
         traci.simulationStep()  # Advance one time step: one second
         simulation.update_Step()
         window.update_Step()
@@ -291,7 +293,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
             id_vehs_departed_Vehicle = []
             for id_veh_dep in id_vehs_departed:
                 if id_veh_dep != "simulation.findRoute":
-                    id_veh_dep_Vehicle = Vehicle(id_veh_dep)
+                    id_veh_dep_Vehicle = Vehicle(id_veh_dep) # We create the Vehicle Object only with the id
                     id_veh_dep_Vehicle.step_ini = simulation.step
                     num_packages = randomPackages.randint(min_packages, max_packages)
                     id_veh_dep_Vehicle.n_packages = num_packages
@@ -319,7 +321,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
                             break
                     break
 
-        ## FOR EACH VEHICLE calculate its emisions :
+        ## FOR EACH VEHICLE calculate its emissions :
         for veh in simulation.vehicles_in_simulation:
             # emissions:
             vehNOxEmission = traci.vehicle.getNOxEmission(veh.id)  # Return the NOx value per vehicle in each ste
@@ -330,7 +332,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
             window.add_NOx_Total_w(vehNOxEmission)
             # Control Area:
             string_current_edge = traci.vehicle.getLaneID(veh.id)
-            if string_current_edge in control_area_edges_cnf:
+            if string_current_edge in control_area_edges_cnf: # If a car is in the control area:
                 # All simulation:
                 simulation.add_NOx_control_zone(vehNOxEmission)
                 # Per window:
@@ -342,7 +344,7 @@ def run(strategy,file_name_density, densityTable, window_size, threshold_L, thre
         ## IMPORTANT PART - FOR EACH VEHICLE analyze whether it can enter or not :
         if strategy != "noControl":
             if simulation.k >= 1:  # all cars enter
-                if lastkSmaller1: # if the last k is >1 no need to redo
+                if lastkSmaller1: # if the last k is >1 no need to redo, else:
                     all_cars_enter(simulation, enter_control_area_edges)
                 lastkSmaller1 = False
             elif simulation.k < 0:  # no cars enter
