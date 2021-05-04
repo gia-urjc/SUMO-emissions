@@ -1,5 +1,5 @@
 *.DS_Store
-*/.idea
+*/.idea/*
 */venv/*
 */__pycache__/*
 SUMO_emissions_runner/results/*
