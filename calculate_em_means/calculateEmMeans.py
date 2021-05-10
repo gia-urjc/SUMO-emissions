@@ -42,7 +42,7 @@ def calculateEmMeans():
             os.makedirs(folderNoControl)
 
         cont_file = 0
-        route_NoControl = r"./" + folderNoControl +"/"+ nameFileNoControl + str(cont_file) + ".csv"
+        route_NoControl = r"./" + folderNoControl +"/"+ nameFileNoControl + ".csv"
         fileObject = Path(route_NoControl)
         while fileObject.is_file():  # If the file exists -> new file name
             cont_file += 1
@@ -86,11 +86,11 @@ def calculateEmMeans():
         os.makedirs(folderEmMeansResults)
 
     cont_file_write = 0
-    fileNameWrite = r"./"+ folderEmMeansResults + "/" + fileEmMeansResults + "_" + str(cont_file_write) + ".csv"
+    fileNameWrite = r"./"+ folderEmMeansResults + "/" + fileEmMeansResults + str(cont_file_write) + ".csv"
     fileObjectWrite = Path(fileNameWrite)
     while fileObjectWrite.is_file():  # If the file exists -> new file name
         cont_file_write += 1
-        fileNameWrite = r"./" + folderEmMeansResults +"/" + fileEmMeansResults + "_" +str(cont_file_write) + ".csv"
+        fileNameWrite = r"./" + folderEmMeansResults +"/" + fileEmMeansResults + str(cont_file_write) + ".csv"
         fileObjectWrite = Path(fileNameWrite)
 
 
