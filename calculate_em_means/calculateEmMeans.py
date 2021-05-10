@@ -86,11 +86,11 @@ def calculateEmMeans():
         os.makedirs(folderEmMeansResults)
 
     cont_file_write = 0
-    fileNameWrite = r"./"+ folderEmMeansResults + "/" + fileEmMeansResults + strategy + "_" + str(cont_file_write) + ".csv"
+    fileNameWrite = r"./"+ folderEmMeansResults + "/" + fileEmMeansResults + "_" + str(cont_file_write) + ".csv"
     fileObjectWrite = Path(fileNameWrite)
     while fileObjectWrite.is_file():  # If the file exists -> new file name
         cont_file_write += 1
-        fileNameWrite = r"./" + folderEmMeansResults +"/" + fileEmMeansResults + strategy + "_" +str(cont_file_write) + ".csv"
+        fileNameWrite = r"./" + folderEmMeansResults +"/" + fileEmMeansResults + "_" +str(cont_file_write) + ".csv"
         fileObjectWrite = Path(fileNameWrite)
 
 
