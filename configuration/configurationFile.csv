@@ -5,7 +5,7 @@ strategy;;"""RREP""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""
 file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 ;;;;
 GENERATE ROUTES;;;;
-timeStep;;3600;;sec , steps
+number_of_time_steps;;3600;;sec , steps
 probability_E;;1. / 20;;
 probability_G;;1. / 20;;
 probability_D;;1. / 20;;
