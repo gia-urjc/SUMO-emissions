@@ -6,6 +6,7 @@ import os
 import csv
 import operator
 import re
+import sys
 
 
 def getProbability(vType, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T):
@@ -49,7 +50,7 @@ def calculateDensityDistribution():
     """ Change if you need"""
     # File route e means:
     # VEP uses VE em_means and RREP uses RRE em_means
-    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_VE_0.csv"
+    route_e_means_calculated = r"../calculate_em_means/em_means_calculated/em_means_results_0.csv"
     # Results file:
     folderResults = "density_distribution_calculated"
     fileResults = "density_distribution_results_"
@@ -70,7 +71,11 @@ def calculateDensityDistribution():
     acc = dict()
 
     em_means_s = dict()
-    df = pd.read_csv(route_e_means_calculated, delimiter=";")
+    try:
+        df = pd.read_csv(route_e_means_calculated, delimiter=";")
+    except FileNotFoundError:
+        print('e_means file does not exist, change it and rerun')
+        sys.exit()
 
     for i in range(df.shape[0]):
         em_means_s[df.iloc[i][0]] = df.iloc[i][1]
