@@ -9,7 +9,7 @@ def readConfigurationCSV():
     df = df.set_index("1")
 
     strategy = str(df.iloc[df.index.get_loc("strategy"),0].replace(" ", "").replace("\"",""))
-    timeStep = int(df.iloc[df.index.get_loc("timeStep"), 0].replace(" ", ""))
+    number_of_time_steps = int(df.iloc[df.index.get_loc("number_of_time_steps"), 0].replace(" ", ""))
     probability_E = float(Fraction(df.iloc[df.index.get_loc("probability_E"), 0].replace(" ", "").replace(".", "")))
     probability_G = float(Fraction(df.iloc[df.index.get_loc("probability_G"), 0].replace(" ", "").replace(".", "")))
     probability_D = float(Fraction(df.iloc[df.index.get_loc("probability_D"), 0].replace(" ", "").replace(".", "")))
@@ -23,7 +23,7 @@ def readConfigurationCSV():
     threshold_H = int(df.iloc[df.index.get_loc("threshold_H"), 0])
 
     p_t_ini = int(df.iloc[df.index.get_loc("p_t_ini"), 0])
-    size_ratio = int(df.iloc[df.index.get_loc("timeStep"), 0])
+    size_ratio = int(df.iloc[df.index.get_loc("size_ratio"), 0])
     subs_NOx = int(df.iloc[df.index.get_loc("subs_NOx"),0])
     e_ini = int(df.iloc[df.index.get_loc("e_ini"), 0])
     ini_lambda_l = float(df.iloc[df.index.get_loc("ini_lambda_l"), 0])
@@ -43,7 +43,8 @@ def readConfigurationCSV():
     enter_control_area_edges = [(i.replace(" ", "").replace("\"", "")) for i in enter_control_area_edges_split]
 
 
-    return strategy, timeStep,probability_E ,probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T, \
+    return strategy, number_of_time_steps, probability_E, probability_G, probability_D, \
+           probability_HD, probability_N, probability_H, probability_T, \
            window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
            ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window,\
            min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges
