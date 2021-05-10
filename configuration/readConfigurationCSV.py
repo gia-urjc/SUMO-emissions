@@ -9,6 +9,7 @@ def readConfigurationCSV():
     df = df.set_index("1")
 
     strategy = str(df.iloc[df.index.get_loc("strategy"),0].replace(" ", "").replace("\"",""))
+    random_seed = int(df.iloc[df.index.get_loc("random_seed"),0])
     number_of_time_steps = int(df.iloc[df.index.get_loc("number_of_time_steps"), 0].replace(" ", ""))
     probability_E = float(Fraction(df.iloc[df.index.get_loc("probability_E"), 0].replace(" ", "").replace(".", "")))
     probability_G = float(Fraction(df.iloc[df.index.get_loc("probability_G"), 0].replace(" ", "").replace(".", "")))
@@ -43,8 +44,13 @@ def readConfigurationCSV():
     enter_control_area_edges = [(i.replace(" ", "").replace("\"", "")) for i in enter_control_area_edges_split]
 
 
-    return strategy, number_of_time_steps, probability_E, probability_G, probability_D, \
+
+    return ( strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, \
            probability_HD, probability_N, probability_H, probability_T, \
            window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
            ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window,\
-           min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges
+           min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
+
+
+if __name__ == "__main__":
+    print(readConfigurationCSV())

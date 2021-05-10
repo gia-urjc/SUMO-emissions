@@ -3,6 +3,7 @@ CONFIGURATION FILE;;;;Fill the cell near the name (third column)
 ;;;;
 strategy;;"""RREP""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
 file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
+random_seed;;42;;
 ;;;;
 GENERATE ROUTES;;;;
 number_of_time_steps;;3600;;sec , steps

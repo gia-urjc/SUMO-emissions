@@ -20,7 +20,7 @@ PARAMETERS TO CONFIGURE
 
 """
 
-strategy, number_of_time_steps, probability_E ,probability_G, probability_D, probability_HD, \
+strategy, random_seed, number_of_time_steps, probability_E ,probability_G, probability_D, probability_HD, \
     probability_N, probability_H, probability_T,\
     window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
     ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window,\
@@ -59,7 +59,7 @@ def get_options():
     options, args = opt_parser.parse_args()
     return options
 
-def run_main(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+def run_main(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route):
     options = get_options()
 
@@ -72,9 +72,9 @@ def run_main(strategy, file_name_density, densityTable, window_size, threshold_L
     traci.start([sumoBinary, "-c", "../configuration/emissions.sumocfg"])
 
     # runner.py :
-    runner.run(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+    runner.run(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route)
 
 if __name__ == "__main__":
-    run_main(strategy, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+    run_main(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
                subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, "")

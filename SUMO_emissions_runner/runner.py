@@ -220,13 +220,13 @@ def openDensityDistribution(file_name_density, densityTable):
 RUN - MAIN DEF 
 
 """
-def run(strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
+def run(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
     """"""
     # Initialization
-    random.seed(1)
-    randomLambda = random.Random(1)
-    randomPackages = random.Random(1)
+    random.seed(random_seed)
+    randomLambda = random.Random(random_seed)
+    randomPackages = random.Random(random_seed)
     print("RUN")
     print(strategy)
     simulation = Simulation(step=0, threshold_L=threshold_L, threshold_H=threshold_H, k=1, strategy=strategy)
