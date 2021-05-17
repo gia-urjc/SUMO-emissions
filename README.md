@@ -21,3 +21,14 @@ Sandra Gómez-Gálvez (Github: @sandruskyi ), Alberto Fernández (Github: @alber
 ------------------------------
 ## Keywords
 traffic management, last-mile delivery, prioritized resource allocation, agreement technologies, SUMO
+
+------------------------------
+# GUIDE
+
+## For Users 
+
+- [] TODO
+
+------------------------------
+## For Developers
+
