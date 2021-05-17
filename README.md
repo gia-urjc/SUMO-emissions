@@ -60,4 +60,20 @@ If you are a developer or researcher and wants to create new things for the simu
 
 Please make sure that all the binaries are registered in your PATH.
 
+### Getting Started for Development
+
+- You should always run main.py because it is necessary to run TraCI for simulation. 
+- TraCI is the SUMO Traffic Control Interface: https://sumo.dlr.de/docs/TraCI.html
+
+### General overview of the software architecture 
+
+- [] TODO
+
+### Setup
+
+- [] TODO
+
+
+### Build 
+- [] TODO
 
