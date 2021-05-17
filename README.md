@@ -25,10 +25,39 @@ traffic management, last-mile delivery, prioritized resource allocation, agreeme
 ------------------------------
 # GUIDE
 
+------------------------------
 ## For Users 
 
 - [] TODO
 
 ------------------------------
 ## For Developers
+If you are a developer or researcher and wants to create new things for the simulator, you should start here. 
+
+### Prerequisites
+
+1. It should work on Windows, Linux, and macOS.
+
+2. SUMO - Simulation of Urban MObility
+
+   Download: https://www.eclipse.org/sumo/
+   Version 1.7.0
+   Next versions may work
+
+3. Python
+
+   https://www.python.org/
+   Version 3.8
+   Next versions may work
+   
+4. IDE Pycharm or similar
+  
+   https://www.jetbrains.com/es-es/pycharm/
+   Community : Free
+   Professional: Free if you are a student https://www.jetbrains.com/education/ 
+   
+5. Git
+
+Please make sure that all the binaries are registered in your PATH.
+
 
