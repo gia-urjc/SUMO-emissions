@@ -13,3 +13,11 @@ Here you'll find all the necessary documentation to use and develop new features
 Sandra Gómez-Gálvez (Github: @sandruskyi ), Alberto Fernández (Github: @albertofernandezurjc ), Holger Billhardt (Github: @holgerbillhardt ).
 
 {sandra.gomez.galvez , alberto.fernandez, holger.billhardt}@urjc.es
+
+------------------------------
+## Publications 
+- [] TODO
+
+------------------------------
+## Keywords
+traffic management, last-mile delivery, prioritized resource allocation, agreement technologies, SUMO
