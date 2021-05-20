@@ -77,12 +77,14 @@ Please make sure that all the binaries are registered in your PATH.
 ------------------------------
 ## Simulation Guide
 
-### A*) Glossary: 
+### A*) Initial glossary: 
 
-   - e(t): is a measure representing the average emission the vehicle carrying out the trip t would emit in the control zone.
-   - ![formula](https://render.githubusercontent.com/render/math?math=k_{t}): access permission level  to the control zone 
-   - ![formula](https://render.githubusercontent.com/render/math?math=p_{t}): measured pollution in the area 
-   - t: time step
+   1) e(t): is a measure representing the average emission the vehicle carrying out the trip t would emit in the control zone.
+   2) ![formula](https://render.githubusercontent.com/render/math?math=k_{t}): access permission level to the control zone at time t.
+   3) ![formula](https://render.githubusercontent.com/render/math?math=p_{t}): measured pollution in the area (air) at time t.
+   4) t: time step (seconds).
+   5) pollution at time t: is the sum of the previous pollution plus the amount emitted by vehicles during the last time period minus a quantity that is removed by atmospheric effects: ![formula](https://render.githubusercontent.com/render/math?math=p_{t}) = ![formula](https://render.githubusercontent.com/render/math?math=p_{t})-1 + ![formula](https://render.githubusercontent.com/render/math?math=e_{t}) – λt·45000, where λt ∈ [0.8, +1.2] is a uniformly randomly generated factor that represents a ratio of 
+pollutants removed from the air in time t (we set the constant 45000 empirically).
   
 ### A) Understanding the configurationFile.csv file
 
@@ -98,20 +100,37 @@ lower emissions. Utility function: U(![formula](https://render.githubusercontent
       - RRE: Ratio Reduction Emission. Given ![formula](https://render.githubusercontent.com/render/math?math=k_{t}), we calculate the ratio ![formula](https://render.githubusercontent.com/render/math?math=k_{t})' of vehicles with lowest emissions (with respect to the normal demand) that together produce the (kt*100)% of the emissions normally generated in the same moment or time frame. It holds that ![formula](https://render.githubusercontent.com/render/math?math=k_{t})'≥ ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) . Afterwards, the strategy applies the same prioritization schema as VE.
       - RREP: Ratio Reduction Emission per Package. Here ![formula](https://render.githubusercontent.com/render/math?math=k_{t}), we calculate the ratio ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) is translated to a ratio of vehicles ![formula](https://render.githubusercontent.com/render/math?math=k_{t}), we calculate the ratio ![formula](https://render.githubusercontent.com/render/math?math=k_{t})'. Then, the same prioritization schema as in VEP is employed with the new ratio.
 
-   - file_name_density : this variable is not changed here. You can change it on main.py.
-   - random_seed: We use the seed to obtain the same random numbers. If you change this number you would obtain other random numbers.
-   - number_of_time_steps: In seconds. This variable is used to generate routes. During this time cars may appear.
-   - probability_E: eVehicle generation probability. This variable is used to generate routes. 
-   - probability_G: gasolineEuroSix generation probability. This variable is used to generate routes. 
-   - probability_D: dieselEuroSix generation probability. This variable is used to generate routes. 
-   - probability_HD: hovDieselEuroSix generation probability. This variable is used to generate routes. 
-   - probability_N: normalVehicle generation probability. This variable is used to generate routes. 
-   - probability_H: highEmissions generation probability. This variable is used to generate routes. 
-   - probability_T: truck generation probability. This variable is used to generate routes. 
+   - file_name_density : this variable is not changed here. You can change it on main.py. 
+   - random_seed: We use the seed to obtain the same random numbers. If you change this number you would obtain other random numbers. Example: 42;
+   
+   - number_of_time_steps: Steps, in seconds. This variable is used to generate routes. During this time cars may appear. Example: 3600;
+   - probability_E: eVehicle generation probability. This variable is used to generate routes. Example: 1. / 20;
+   - probability_G: gasolineEuroSix generation probability. This variable is used to generate routes. Example: 1. / 20;
+   - probability_D: dieselEuroSix generation probability. This variable is used to generate routes. Example: 1. / 20;
+   - probability_HD: hovDieselEuroSix generation probability. This variable is used to generate routes. Example: 1. / 20;
+   - probability_N: normalVehicle generation probability. This variable is used to generate routes. Example: 1. / 20;
+   - probability_H: highEmissions generation probability. This variable is used to generate routes. Example: 1. / 40;
+   - probability_T: truck generation probability. This variable is used to generate routes. Example: 1. / 40;
 
-   - window_size: 
-   - threshold_L;;80000;;NOx
-   - threshold_H;;100000;;NOx
+   - window_size: Steps, in seconds. Size of the emissions windows to control. Because we discount the proportional NOx of the last window. Example: 60;
+   - threshold_L: NOx. Max threshold: maximum allowed pollution. See the formula in strategy. Example: 80000;
+   - threshold_H: NOx. Min threshold: lower bound. See the formula in strategy. Example: 100000;
+   
+   - p_t_ini: NOx. Initial value. Initially measured pollution in the area. Example: 100000;
+   - size_ratio: Ratio sub p_t_total. Ratio of size to subtract NOx. See in A*) Initial glossary -  5). Example: 4;
+   - subs_NOx: Amount of NOx subtracted. This is multiplied by lambda. See in A*) Initial glossary -  5). Example: 9000;
+   - e_ini: NOx. Initial emissions. For heating up if emissions are lower than e_ini, use e_ini in A*) Initial glossary -  5). Example: 4000;
+   - ini_lambda_l: windows ratio ini lambda. See in A*) Initial glossary -  5). Example: 0.8;
+   - min_randomLambda: windows ratio min. See in A*) Initial glossary -  5). Example: 0.8;
+   - max_randomLambda: windows ratio max. See in A*) Initial glossary -  5). Example: 1.2;
+   - ini_k_window: initial k (access permission level to the control zone) in windows. Example: 1;
+   
+   - min_packages: for strategies that use packages. Min number of packages. Example: 1;
+   - max_packages: for strategies that use packages. Max number of packages. Example: 20;
+
+   - control_area_edges_cnf: List of edges within the control zone. Example: "gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0";
+   - enter_control_area_edges: List of edges that border and they are outside the control zone. Example: "gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0";
+
  
 ### B) Create a simulation
 
