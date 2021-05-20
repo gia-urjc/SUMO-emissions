@@ -77,7 +77,7 @@ Please make sure that all the binaries are registered in your PATH.
 ------------------------------
 ## Simulation Guide
 
-### A*) Initial glossary: 
+### Initial glossary: 
 
    1) e(t): is a measure representing the average emission the vehicle carrying out the trip t would emit in the control zone.
    2) ![formula](https://render.githubusercontent.com/render/math?math=k_{t}): access permission level to the control zone at time t.
