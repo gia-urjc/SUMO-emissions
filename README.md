@@ -129,13 +129,20 @@ lower emissions. Utility function: U(![formula](https://render.githubusercontent
    - max_packages: for strategies that use packages. Max number of packages. Example: 20;
 
    - control_area_edges_cnf: List of edges within the control zone. Example: "gneE191_0", "-gneE191_0", "gneE192_0", "-gneE192_0";
-   - enter_control_area_edges: List of edges that border and they are outside the control zone. Example: "gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0";
+   - enter_control_area_edges: List of edges that border and are outside the control zone. Example: "gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0";
 
- 
+### B) Generate routes
+   1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A).
+   2º) Go to folder: ./SUMMO-emmisions/generate_routes . Run generateRoutes.py
+   3º) The .py generates a changeName.rou.xml. You must copy this file.
+   4º) Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
+   5º) In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
+   6º) Now, You can run any simulation.
+   
 ### B) Create a simulation
 
    1º) Go to folder: ./SUMMO-emmisions/configuration/
-   2º) Open configurationFile.csv and configure the variables ( description in B) 
+   2º) Open configurationFile.csv and configure the variables ( description in A) 
 
 
 
