@@ -149,9 +149,28 @@ To calculate the density distribution of the vehicles in a simulation we need an
    2. If you want to generate an emissions means with a specific strategy results go to the folder ./SUMMO-emmisions/calculate_em_means/noControl_resultsHistorical and paste your strategy results. Go to ./SUMMO-emmisions/calculate_em_means/calculateEmMeans.py and change the value of the variables folderNoControl and nameFileNoControl.
     Otherwise, if you want to generate a new strategy, skip this step. 
    3. Go to folder: ./SUMMO-emmisions/calculate_em_means and run calculateEmMeans.py . The program will ask you if you want to use your own strategy results file (step 2) or if you want to create a new file. Select an option. 
-   4. The result of the program is saved in the folder ./SUMMO-emmisions/calculate_em_means/em_means_calculated . You can change this in calculateEmMeans.py changing the value of variables fileEmMeansResults and folderEmMeansResults.
+   4. The result of the program is saved in the folder ./SUMMO-emmisions/calculate_em_means/em_means_calculated . You can change this in calculateEmMeans.py changing the value of the variables fileEmMeansResults and folderEmMeansResults.
     
-   
+
+### D) Calculate density distribution
+The strategies need a density distribution. It can be calculated or put at our convenience. In the next steps, we can calculate the density distribution: 
+
+   1. Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. 
+   2. Go to folder: ./SUMMO-emmisions/calculate_density_distribution . Open calculateDensityDistribution.py .
+   3. Change the value of the variable route_e_means_calculated if is necessary, and the variables folderResults and fileResults too. 
+   4. Run the program (./SUMMO-emmisions/calculate_density_distribution/calculateDensityDistribution.py)
+   5. The result of the program is saved in the folder ./SUMMO-emmisions/calculate_density_distribution/calculate_density_distribution_calculated . You can change this in calculateDensityDistribution.py changing the value of the variables folderResults and fileResults.
+
+Example result: 
+      `vType;em_means
+      eVehicle;0.0
+      gasolineEuroSix;0.010730614366722355
+      highEmissions;0.0183520895101087
+      normalVehicle;0.03657923488347484
+      hovDieselEuroSix;0.09292680788804934
+      dieselEuroSix;0.1720199289789028
+      truck;1.0`
+
 ### B) Create a simulation
 
    1º) Go to folder: ./SUMMO-emmisions/configuration/
