@@ -26,12 +26,7 @@ traffic management, last-mile delivery, prioritized resource allocation, agreeme
 # GUIDE
 
 ------------------------------
-## For Users 
-
-- [] TODO
-
-------------------------------
-## For Developers
+## For Developers and Users 
 If you are a developer or researcher and wants to create new things for the simulator, you should start here. 
 
 ### Prerequisites
