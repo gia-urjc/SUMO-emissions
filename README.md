@@ -135,12 +135,12 @@ lower emissions. Utility function: U(![formula](https://render.githubusercontent
 ### B) Generate routes
 You need a route file to create a SUMO simulation, these steps show you how to create it:
 
-    1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). Important variables: strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T
-    2º) Go to folder: ./SUMMO-emmisions/generate_routes . Run generateRoutes.py
-    3º) The .py generates a changeName.rou.xml. You must copy this file.
-    4º) Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
-    5º) In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
-    6º) Now, You can run any simulation.
+   1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). Important variables: strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T
+   2º) Go to folder: ./SUMMO-emmisions/generate_routes . Run generateRoutes.py
+   3º) The .py generates a changeName.rou.xml. You must copy this file.
+   4º) Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
+   5º) In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
+   6º) Now, You can run any simulation.
    
 ### C) Calculate emissions means
 To calculate the density distribution of the vehicles in a simulation we need an emissions means. It can be calculated or put at our convenience. In the next steps, we can calculate the emissions means: 
