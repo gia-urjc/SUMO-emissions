@@ -88,7 +88,8 @@ pollutants removed from the air in time t (we set the constant 45000 empirically
   
 ### A) Understanding the configurationFile.csv file
 
-You can configure the value of the following variables: 
+You can configure the value of the following variables in configurationFile.csv file. This file is situated in the folder ./SUMMO-emmisions/configuration . 
+Variables: 
 
    - strategy -> Each strategy determines the access restrictions to be applied at each moment and decides the vehicles that can enter the control area. The idea of the strategy is to restrict access to the control zone in such a way that the ![formula](https://render.githubusercontent.com/render/math?math=p_{t}) is kept below a certain maximum at any time t. We calculate an ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) as follows: ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) = {1: ![formula](https://render.githubusercontent.com/render/math?math=p_{t})<= θL (no restrictions), 0: ![formula](https://render.githubusercontent.com/render/math?math=p_{t})>= θH (no vehicles allowed), ((θH - ![formula](https://render.githubusercontent.com/render/math?math=p_{t}))/(θH - θL)): otherwise); with 0<=![formula](https://render.githubusercontent.com/render/math?math=k_{t})<=1 and threshold values: θH (maximum allowed pollution) and θL (lower bound on ![formula](https://render.githubusercontent.com/render/math?math=p_{t})). Depend on ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) we define different control strategies. 
      Allowed options for the strategy variable (more information about each strategy in the section "Publications" specified above):
@@ -132,12 +133,25 @@ lower emissions. Utility function: U(![formula](https://render.githubusercontent
    - enter_control_area_edges: List of edges that border and are outside the control zone. Example: "gneE179_0", "-gneE179_0", "gneE181_0", "-gneE181_0";
 
 ### B) Generate routes
-   1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A).
-   2º) Go to folder: ./SUMMO-emmisions/generate_routes . Run generateRoutes.py
-   3º) The .py generates a changeName.rou.xml. You must copy this file.
-   4º) Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
-   5º) In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
-   6º) Now, You can run any simulation.
+You need a route file to create a SUMO simulation, these steps show you how to create it:
+
+    1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). Important variables: strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, probability_HD, probability_N, probability_H, probability_T
+    2º) Go to folder: ./SUMMO-emmisions/generate_routes . Run generateRoutes.py
+    3º) The .py generates a changeName.rou.xml. You must copy this file.
+    4º) Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
+    5º) In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
+    6º) Now, You can run any simulation.
+   
+### C) Calculate emissions means
+To calculate the density distribution of the vehicles in a simulation we need an emissions means. It can be calculated or put at our convenience. In the next steps, we can calculate the emissions means: 
+   
+    1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. 
+    2º) If you want to generate an emissions means with a specific strategy results go to the folder ./SUMMO-emmisions/calculate_em_means/noControl_resultsHistorical and paste your strategy results. Go to ./SUMMO-emmisions/calculate_em_means/calculateEmMeans.py and change the value of the variables folderNoControl and nameFileNoControl.
+    
+    Otherwise, if you want to generate a new strategy, skip this step. 
+    3º) Go to folder: ./SUMMO-emmisions/calculate_em_means and run calculateEmMeans.py . The program will ask you if you want to use your own strategy results file (step 2) or if you want to create a new file. Select an option. 
+    4º) The result of the program is saved in the folder ./SUMMO-emmisions/calculate_em_means/em_means_calculated . You can change this in calculateEmMeans.py changing the value of variables fileEmMeansResults and folderEmMeansResults.
+    
    
 ### B) Create a simulation
 
