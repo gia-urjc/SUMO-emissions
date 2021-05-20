@@ -205,10 +205,11 @@ Example result:
 
 ### E) Create a simulation
 
-   1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. CHOOSE A STRATEGY HERE!!!!
-   2º) Go to folder: ./SUMMO-emmisions/SUMO_emissions_runner . Open main.py and configure the variable file_name_density . 
-   3º) Now, you can run the simulator (run ./SUMMO-emmisions/SUMO_emissions_runner/main.py). main.py is necessary to initialize SUMO, you cannot use runner.py only. The classes results.py, runner.py, Simulation.py, Vehicle.py, and Window.py are used when we run main.py.
-   4º) The result of the program is saved in the folder ./SUMMO-emmisions/SUMO_emissions_runner/results . These results are not shared on Github, you can create your own results. The folder ./SUMMO-emmisions/SUMO_emissions_runner/Experiments saves old results.
+   1. Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. CHOOSE A STRATEGY HERE!!!!
+   2. You need a density distribution calculated, go to section D)
+   3. Go to folder: ./SUMMO-emmisions/SUMO_emissions_runner . Open main.py and configure the variable file_name_density (section D))
+   4. Now, you can run the simulator (run ./SUMMO-emmisions/SUMO_emissions_runner/main.py). main.py is necessary to initialize SUMO, you cannot use runner.py only. The classes results.py, runner.py, Simulation.py, Vehicle.py, and Window.py are used when we run main.py.
+   5. The result of the program is saved in the folder ./SUMMO-emmisions/SUMO_emissions_runner/results . These results are not shared on Github, you can create your own results. The folder ./SUMMO-emmisions/SUMO_emissions_runner/Experiments saves old results.
 
 
 
