@@ -145,12 +145,11 @@ You need a route file to create a SUMO simulation, these steps show you how to c
 ### C) Calculate emissions means
 To calculate the density distribution of the vehicles in a simulation we need an emissions means. It can be calculated or put at our convenience. In the next steps, we can calculate the emissions means: 
    
-    1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. 
-    2º) If you want to generate an emissions means with a specific strategy results go to the folder ./SUMMO-emmisions/calculate_em_means/noControl_resultsHistorical and paste your strategy results. Go to ./SUMMO-emmisions/calculate_em_means/calculateEmMeans.py and change the value of the variables folderNoControl and nameFileNoControl.
-    
+   1. Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. 
+   2. If you want to generate an emissions means with a specific strategy results go to the folder ./SUMMO-emmisions/calculate_em_means/noControl_resultsHistorical and paste your strategy results. Go to ./SUMMO-emmisions/calculate_em_means/calculateEmMeans.py and change the value of the variables folderNoControl and nameFileNoControl.
     Otherwise, if you want to generate a new strategy, skip this step. 
-    3º) Go to folder: ./SUMMO-emmisions/calculate_em_means and run calculateEmMeans.py . The program will ask you if you want to use your own strategy results file (step 2) or if you want to create a new file. Select an option. 
-    4º) The result of the program is saved in the folder ./SUMMO-emmisions/calculate_em_means/em_means_calculated . You can change this in calculateEmMeans.py changing the value of variables fileEmMeansResults and folderEmMeansResults.
+   3. Go to folder: ./SUMMO-emmisions/calculate_em_means and run calculateEmMeans.py . The program will ask you if you want to use your own strategy results file (step 2) or if you want to create a new file. Select an option. 
+   4. The result of the program is saved in the folder ./SUMMO-emmisions/calculate_em_means/em_means_calculated . You can change this in calculateEmMeans.py changing the value of variables fileEmMeansResults and folderEmMeansResults.
     
    
 ### B) Create a simulation
