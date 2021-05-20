@@ -80,6 +80,7 @@ Please make sure that all the binaries are registered in your PATH.
 ### A*) Glossary: 
 
    - e(t): is a measure representing the average emission the vehicle carrying out the trip t would emit in the control zone.
+   - ![formula](https://render.githubusercontent.com/render/math?math=k_{t})
    - $k_{t}$: access permission level  to the control zone 
    - pt: measured pollution in the area 
   
