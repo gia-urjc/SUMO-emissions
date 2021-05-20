@@ -141,7 +141,26 @@ You need a route file to create a SUMO simulation, these steps show you how to c
    4. Go to folder: ./SUMMO-emmisions/configuration . Paste the file, and change it name. Move the old rou.xml file to ./SUMMO-emmisions/configuration/someRoutes .
    5. In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
    6. Now, You can run any simulation.
-   
+
+Example result: 
+
+    <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+       <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
+       <vType id="normalVehicle" vClass="passenger" guiShape="passenger" color="0,0,128"/>
+       <vType id="authority" vClass="authority" guiShape="passenger" color="red" />
+
+       <trip depart="10" from="-A" to="C" color="yellow" type="eVehicle" id="veh1"/>
+       <trip depart="20" from="-E" to="G" color="yellow" type="normalVehicle" id="veh2"/>
+       <trip depart="30" from="-F" to="H" color="yellow" type="normalVehicle" id="veh3"/>
+       <trip depart="80" from="-C" to="A" color="yellow" type="normalVehicle" id="veh4"/>
+       <trip depart="85" from="-E" to="G" color="yellow" type="normalVehicle" id="veh5"/>
+       <trip depart="90" from="-A" to="C" color="yellow" type="eVehicle" id="veh6"/>
+       <trip depart="90" from="-E" to="G" color="yellow" type="normalVehicle" id="veh7"/>
+       <trip depart="90" from="-E" to="G" color="yellow" type="normalVehicle" id="veh8"/>
+       <trip depart="100" from="-G" to="E" color="yellow" type="eVehicle" id="veh9"/>
+       <trip depart="120" from="-B" to="D" color="yellow" type="normalVehicle" id="veh10"/>
+    </routes>
+    
 ### C) Calculate emissions means
 To calculate the density distribution of the vehicles in a simulation we need an emissions means. It can be calculated or put at our convenience. In the next steps, we can calculate the emissions means: 
    
