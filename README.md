@@ -142,7 +142,7 @@ You need a route file to create a SUMO simulation, these steps show you how to c
    5. In the folder ./SUMMO-emmisions/configuration open the file emissions.sumocfg, and change the old rou name for your new rou file name inside value in route-files.
    6. Now, You can run any simulation.
 
-Example result: 
+Example result (smallRoute.rou.xml): 
 
     <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
        <vType id="eVehicle" vClass="evehicle" guiShape="evehicle" color="green"/>
@@ -203,10 +203,12 @@ Example result:
     truck;1.0
       
 
-### B) Create a simulation
+### E) Create a simulation
 
-   1º) Go to folder: ./SUMMO-emmisions/configuration/
-   2º) Open configurationFile.csv and configure the variables ( description in A) 
+   1º) Go to folder: ./SUMMO-emmisions/configuration . Open configurationFile.csv and configure the variables ( description in A). All variables are important. CHOOSE A STRATEGY HERE!!!!
+   2º) Go to folder: ./SUMMO-emmisions/SUMO_emissions_runner . Open main.py and configure the variable file_name_density . 
+   3º) Now, you can run the simulator (run ./SUMMO-emmisions/SUMO_emissions_runner/main.py). main.py is necessary to initialize SUMO, you cannot use runner.py only. The classes results.py, runner.py, Simulation.py, Vehicle.py, and Window.py are used when we run main.py.
+   4º) The result of the program is saved in the folder ./SUMMO-emmisions/SUMO_emissions_runner/results . These results are not shared on Github, you can create your own results. The folder ./SUMMO-emmisions/SUMO_emissions_runner/Experiments saves old results.
 
 
 
