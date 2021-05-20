@@ -49,13 +49,17 @@ If you are a developer or researcher and wants to create new things for the simu
 3. Python
 
    https://www.python.org/
+   
    Version 3.8
+   
    Next versions may work
    
 4. IDE Pycharm or similar
   
    https://www.jetbrains.com/es-es/pycharm/
+   
    Community : Free
+   
    Professional: Free if you are a student https://www.jetbrains.com/education/ 
    
 5. Git
@@ -91,6 +95,7 @@ pollutants removed from the air in time t (we set the constant 45000 empirically
 ### A) Understanding the configurationFile.csv file
 
 You can configure the value of the following variables in configurationFile.csv file. This file is situated in the folder ./SUMMO-emmisions/configuration . 
+
 Variables: 
 
    - strategy -> Each strategy determines the access restrictions to be applied at each moment and decides the vehicles that can enter the control area. The idea of the strategy is to restrict access to the control zone in such a way that the ![formula](https://render.githubusercontent.com/render/math?math=p_{t}) is kept below a certain maximum at any time t. We calculate an ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) as follows: ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) = {1: ![formula](https://render.githubusercontent.com/render/math?math=p_{t})<= θL (no restrictions), 0: ![formula](https://render.githubusercontent.com/render/math?math=p_{t})>= θH (no vehicles allowed), ((θH - ![formula](https://render.githubusercontent.com/render/math?math=p_{t}))/(θH - θL)): otherwise); with 0<=![formula](https://render.githubusercontent.com/render/math?math=k_{t})<=1 and threshold values: θH (maximum allowed pollution) and θL (lower bound on ![formula](https://render.githubusercontent.com/render/math?math=p_{t})). Depend on ![formula](https://render.githubusercontent.com/render/math?math=k_{t}) we define different control strategies. 
