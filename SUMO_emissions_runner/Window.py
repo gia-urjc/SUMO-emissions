@@ -4,6 +4,7 @@ class Window():
     def __init__(self, step, vehicles_in_w, vehicles_in_control_zone_w, NOx_total_w = 0,
                  NOx_control_zone_w = 0, veh_total_number_w = 0,
                  p_t = 0, p_t_total = 0, k =1, lambda_l = 0.8):
+        ## EACH WINDOW SAVES THE DATA DURING THE STEP + WINDOW_SIZE
         self.step = step
         self.NOx_total_w = NOx_total_w
         self.NOx_control_zone_w = NOx_control_zone_w
