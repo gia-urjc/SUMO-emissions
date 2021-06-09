@@ -27,7 +27,7 @@ def generateRoutes():
         <vType id="truck" emissionClass="HBEFA3/HDV_D_EU4" vClass="truck" guiShape="passenger" color="0,0,128"/>
         
         <!-- Type authorized -->
-        <vType id="authority" vClass="authority" guiShape="passenger" color="red" />\n""", file=routes)
+        <vType id="noauthority" vClass="custom1" guiShape="passenger" color="red" />\n""", file=routes)
 
         vehNr = 0
 

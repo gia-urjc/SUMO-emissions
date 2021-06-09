@@ -1,7 +1,7 @@
 1;2;3;4;5
 CONFIGURATION FILE;;;;Fill the cell near the name (third column)
 ;;;;
-strategy;;"""noControl""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
+strategy;;"""VEP""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
 file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 random_seed;;42;;
 ;;;;
@@ -13,7 +13,7 @@ probability_D;;1. / 20;;dieselEuroSix probability
 probability_HD;;1. / 20;;hovDieselEuroSix probability
 probability_N;;1. / 20;;normalVehicle probability
 probability_H;;1. / 20;;highEmissions probability
-probability_T;;1. / 20;;truck probability
+probability_T;;0;;truck probability
 ;;;;
 SUMMO EMISSIONS RUNNER;;;;
 window_size;;60;;Seconds, Steps
