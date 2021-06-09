@@ -1,0 +1,1 @@
+Experimento con un único tipo de vehículos (truck) pero con la zona antigua, es decir, con la zona pequeña antes de ser extendida.
