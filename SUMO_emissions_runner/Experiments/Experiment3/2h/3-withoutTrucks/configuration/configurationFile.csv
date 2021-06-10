@@ -1,12 +1,12 @@
 1;2;3;4;5
 CONFIGURATION FILE;;;;Fill the cell near the name (third column)
 ;;;;
-strategy;;"""baseline""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
+strategy;;"""noControl""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
 file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 random_seed;;42;;
 ;;;;
 GENERATE ROUTES;;;;
-number_of_time_steps;;14400;;sec , steps
+number_of_time_steps;;7200;;sec , steps
 probability_E;;1. / 20;;eVehicle probability
 probability_G;;1. / 20;;gasolineEuroSix probability
 probability_D;;1. / 20;;dieselEuroSix probability
