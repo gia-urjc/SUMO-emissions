@@ -100,10 +100,10 @@ def some_cars_enter(simulation, enter_control_area_edges, densityTable):
                     setNotAllowCar(veh)
 
 
-def calculate_k(simulation, w):
+def calculate_k(simulation, w, bias):
     """ Calculate k: access permission level """
     if simulation.strategy != "noControl":
-        aux = (simulation.threshold_H - simulation.p_t) / (simulation.threshold_H - simulation.threshold_L)
+        aux = ((((simulation.threshold_H + simulation.threshold_L)/2) - simulation.p_t) / (simulation.threshold_H - simulation.threshold_L)) + bias
         simulation.k = min(1, max(aux, 0))
     else:
         simulation.k = 1
@@ -285,7 +285,7 @@ def run(strategy, random_seed, file_name_density, densityTable, window_size, thr
             #window = Window(simulation.step, window.vehicles_in_w.copy(), set(), 0, 0, window.veh_total_number_w) # TODO QUITAR
 
             # calculate k
-            calculate_k(simulation, window) ## k: access permission level
+            calculate_k(simulation, window, bias) ## k: access permission level
 
         # NEW STEP
         traci.simulationStep()  # Advance one time step: one second
@@ -398,7 +398,7 @@ def run(strategy, random_seed, file_name_density, densityTable, window_size, thr
 
             # CONTROL ZONE
             # calculate k
-            calculate_k(simulation, window)
+            calculate_k(simulation, window, bias)
 
     results.results(simulation, window_size, p_t_ini,size_ratio, subs_NOx, e_ini, min_packages, max_packages, route)
 

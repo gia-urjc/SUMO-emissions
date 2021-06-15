@@ -43,7 +43,7 @@ def readConfigurationCSV():
     enter_control_area_edges_split = enter_control_area_edges_ini.split(sep=",")
     enter_control_area_edges = [(i.replace(" ", "").replace("\"", "")) for i in enter_control_area_edges_split]
 
-    bias = int(df.iloc[df.index.get_loc("bias"), 0])
+    bias = float(df.iloc[df.index.get_loc("bias"), 0])
 
 
     return ( strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, \
