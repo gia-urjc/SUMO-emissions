@@ -35,3 +35,6 @@ max_packages;;20;;
 control_area_edges_cnf;;"""gneE191_0"", ""-gneE191_0"", ""gneE192_0"", ""-gneE192_0"", ""gneE197_0"", ""-gneE197_0"",""gneE198_0"", ""-gneE198_0"", ""gneE203_0"", ""-gneE203_0"", ""gneE199_0"", ""-gneE199_0"",""gneE279_0"", ""-gneE279_0"", ""gneE209_0"", ""-gneE209_0"", ""gneE210_0"", ""-gneE210_0"",""gneE215_0"", ""-gneE215_0"", ""gneE211_0"", ""-gneE211_0"", ""gneE216_0"", ""-gneE216_0""";;
 ;;;;
 enter_control_area_edges;;"""gneE179_0"", ""-gneE179_0"", ""gneE181_0"", ""-gneE181_0"", ""gneE200_0"", ""-gneE200_0"",""gneE212_0"", ""-gneE212_0"", ""gneE239_0"", ""-gneE239_0"", ""gneE238_0"", ""-gneE238_0"",""gneE208_0"", ""-gneE208_0"", ""gneE196_0"", ""-gneE196_0""";;
+;;;;
+2_RUNNER_1THRESHOLD;;;;
+bias;;5;;

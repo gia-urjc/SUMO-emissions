@@ -43,13 +43,14 @@ def readConfigurationCSV():
     enter_control_area_edges_split = enter_control_area_edges_ini.split(sep=",")
     enter_control_area_edges = [(i.replace(" ", "").replace("\"", "")) for i in enter_control_area_edges_split]
 
+    bias = int(df.iloc[df.index.get_loc("bias"), 0])
 
 
     return ( strategy, random_seed, number_of_time_steps, probability_E, probability_G, probability_D, \
            probability_HD, probability_N, probability_H, probability_T, \
            window_size, threshold_L, threshold_H, p_t_ini, size_ratio, subs_NOx, e_ini, \
            ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window,\
-           min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
+           min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, bias)
 
 
 if __name__ == "__main__":

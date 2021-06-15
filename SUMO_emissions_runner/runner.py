@@ -1,4 +1,10 @@
 """
+Runner with one normal threshold:
+k(t) = Kp·e(t) + bias
+e(t) = ((θH +θL )/2 )– p(t)=  θM – p(t)
+Kp = 1/(θH – θL)
+
+--------------
     main def at the end:
         run (strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
@@ -221,7 +227,7 @@ RUN - MAIN DEF
 
 """
 def run(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
+            subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, bias, route = ""):
     """"""
     # Initialization
     random.seed(random_seed)

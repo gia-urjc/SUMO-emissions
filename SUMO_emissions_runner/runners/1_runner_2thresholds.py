@@ -1,4 +1,10 @@
 """
+Runner with two normal thresholds:
+k(t) = Kp·e(t)
+e(t) = θH – p(t)
+Kp = 1/(θH – θL)
+
+--------------
     main def at the end:
         run (strategy,file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
             subs_NOx, e_ini, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges)
