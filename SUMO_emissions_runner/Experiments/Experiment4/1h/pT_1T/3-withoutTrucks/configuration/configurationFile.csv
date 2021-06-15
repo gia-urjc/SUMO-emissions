@@ -1,19 +1,19 @@
 1;2;3;4;5
 CONFIGURATION FILE;;;;Fill the cell near the name (third column)
 ;;;;
-strategy;;"""noControl""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
+strategy;;"""VE""";;"Options: ""noControl"", ""baseline"", ""VE"", ""VEP"", ""RRE"", ""RREP"""
 file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 random_seed;;42;;
 ;;;;
 GENERATE ROUTES;;;;
-number_of_time_steps;;7200;;sec , steps
+number_of_time_steps;;3600;;sec , steps
 probability_E;;1. / 20;;eVehicle probability
 probability_G;;1. / 20;;gasolineEuroSix probability
 probability_D;;1. / 20;;dieselEuroSix probability
 probability_HD;;1. / 20;;hovDieselEuroSix probability
 probability_N;;1. / 20;;normalVehicle probability
 probability_H;;1. / 40;;highEmissions probability
-probability_T;;1. / 40;;truck probability
+probability_T;;0;;truck probability
 ;;;;
 SUMMO EMISSIONS RUNNER;;;;
 window_size;;60;;Seconds, Steps

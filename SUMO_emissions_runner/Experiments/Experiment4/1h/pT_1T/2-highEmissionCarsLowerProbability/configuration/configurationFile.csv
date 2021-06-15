@@ -6,7 +6,7 @@ file_name_density;;CHANGE IN MAIN.PY IF IT IS NECESSARY ;;
 random_seed;;42;;
 ;;;;
 GENERATE ROUTES;;;;
-number_of_time_steps;;7200;;sec , steps
+number_of_time_steps;;3600;;sec , steps
 probability_E;;1. / 20;;eVehicle probability
 probability_G;;1. / 20;;gasolineEuroSix probability
 probability_D;;1. / 20;;dieselEuroSix probability
