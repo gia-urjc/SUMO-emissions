@@ -1,8 +1,10 @@
 """
-Runner with one normal threshold:
-k(t) = Kp·e(t) + bias
-e(t) = ((θH +θL )/2 )– p(t)=  θM – p(t)
-Kp = 1/(θH – θL)
+Runner with two thresholds - derivative - dC_2T:
+k(t) = kp·e(t) + kd·Δe(t)
+e(t) = θH – p(t)
+Δe(t) =  (θH – p(t))-(θH – p(t-1)) = -p+p(t-1)
+kp= 1/ (θH – θL)
+kd =  1/ (θH – θL)
 
 --------------
     main def at the end:
@@ -100,14 +102,17 @@ def some_cars_enter(simulation, enter_control_area_edges, densityTable):
                     setNotAllowCar(veh)
 
 
-def calculate_k(simulation, w, bias):
+def calculate_k(simulation, w, p_t_ant):
     """ Calculate k: access permission level """
     if simulation.strategy != "noControl":
-        aux = ((((simulation.threshold_H + simulation.threshold_L)/2) - simulation.p_t) / (simulation.threshold_H - simulation.threshold_L)) + bias
+        aux = ((simulation.threshold_H - simulation.p_t)/(simulation.threshold_H - simulation.threshold_L)) + ((-simulation.p_t + p_t_ant)/(simulation.threshold_H - simulation.threshold_L))
         simulation.k = min(1, max(aux, 0))
     else:
         simulation.k = 1
+    p_t_ant = simulation.p_t
     w.k = simulation.k
+
+    return p_t_ant
 
 
 def setEmissionClass(emiLastClass, veh):
@@ -227,7 +232,7 @@ RUN - MAIN DEF
 
 """
 def run(strategy, random_seed, file_name_density, densityTable, window_size, threshold_L, threshold_H, p_t_ini, size_ratio,
-            subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, bias, route = ""):
+            subs_NOx, e_ini, ini_lambda_l, min_randomLambda, max_randomLambda, ini_k_window, min_packages, max_packages, control_area_edges_cnf, enter_control_area_edges, route = ""):
     """"""
     # Initialization
     random.seed(random_seed)
@@ -251,6 +256,7 @@ def run(strategy, random_seed, file_name_density, densityTable, window_size, thr
     lastkSmaller1 = True
     start_total = True
     start_control = True
+    p_t_ant = p_t_ini
 
     # MAIN LOOP FOR THE SIMULATION
     while traci.simulation.getMinExpectedNumber() > 0:  # While there are cars (and cars waiting)
@@ -285,7 +291,7 @@ def run(strategy, random_seed, file_name_density, densityTable, window_size, thr
             #window = Window(simulation.step, window.vehicles_in_w.copy(), set(), 0, 0, window.veh_total_number_w) # TODO QUITAR
 
             # calculate k
-            calculate_k(simulation, window, bias) ## k: access permission level
+            calculate_k(simulation, window, p_t_ant) ## k: access permission level
 
         # NEW STEP
         traci.simulationStep()  # Advance one time step: one second
@@ -398,7 +404,7 @@ def run(strategy, random_seed, file_name_density, densityTable, window_size, thr
 
             # CONTROL ZONE
             # calculate k
-            calculate_k(simulation, window, bias)
+            calculate_k(simulation, window, p_t_ant)
 
     results.results(simulation, window_size, p_t_ini,size_ratio, subs_NOx, e_ini, min_packages, max_packages, route)
 
