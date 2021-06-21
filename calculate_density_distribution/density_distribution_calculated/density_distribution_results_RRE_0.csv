@@ -1,8 +1,8 @@
 vType;em_means
 eVehicle;0.0
-gasolineEuroSix;0.005717253666095911
-highEmissions;0.01396133728161584
-normalVehicle;0.02374219908873041
-hovDieselEuroSix;0.05392372023852623
-dieselEuroSix;0.09653991538509898
+gasolineEuroSix;0.010730614366722355
+highEmissions;0.0183520895101087
+normalVehicle;0.03657923488347484
+hovDieselEuroSix;0.09292680788804934
+dieselEuroSix;0.1720199289789028
 truck;1.0
